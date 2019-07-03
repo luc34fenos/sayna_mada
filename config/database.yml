@@ -81,5 +81,5 @@ test:
 production:
   <<: *default
   database: sayna_mada_production
-  username: sayna_mada
+  username: fenos
   password: <%= ENV['SAYNA_MADA_DATABASE_PASSWORD'] %>
