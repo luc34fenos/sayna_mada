@@ -7,4 +7,13 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: [:username])
   end
 
+  private
+    def formulaire
+      if user_signed_in?
+        if Entreprise.find_by(user_id: current_user.id)
+          redirect_to home_acce_path
+        end
+      end
+    end
+
 end
