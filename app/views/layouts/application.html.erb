@@ -5,18 +5,25 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+
+    <div class="container">
+
     <% if flash[:notice] %>
-      <%= flash[:notice] %>
+      <p class="alert alert-success"><%= notice %></p>
     <% end %>
     <% if flash[:alert] %>
-      <%= flash[:alert] %>
+      <p class="alert alert-danger"><%= alert %></p>
     <% end %>
 
-    <%= yield %>
+      <%= yield %>
+    </div>
+
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
   </body>
 </html>
