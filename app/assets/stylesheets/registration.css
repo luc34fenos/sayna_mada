@@ -5,87 +5,7 @@ License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 --*/
 /* reset */
-
-html,
-body,
-div,
-span,
-applet,
-object,
-iframe,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-blockquote,
-pre,
-a,
-abbr,
-acronym,
-address,
-big,
-cite,
-code,
-del,
-dfn,
-em,
-img,
-ins,
-kbd,
-q,
-s,
-samp,
-small,
-strike,
-strong,
-sub,
-sup,
-tt,
-var,
-b,
-u,
-i,
-dl,
-dt,
-dd,
-ol,
-nav ul,
-nav li,
-fieldset,
-form,
-label,
-legend,
-table,
-caption,
-tbody,
-tfoot,
-thead,
-tr,
-th,
-td,
-article,
-aside,
-canvas,
-details,
-embed,
-figure,
-figcaption,
-footer,
-header,
-hgroup,
-menu,
-nav,
-output,
-ruby,
-section,
-summary,
-time,
-mark,
-audio,
-video {
+.registration * {
     margin: 0;
     padding: 0;
     border: 0;
@@ -94,174 +14,31 @@ video {
     vertical-align: baseline;
 }
 
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-menu,
-nav,
-section {
-    display: block;
-}
-
-ol,
-ul {
-    list-style: none;
-    margin: 0px;
-    padding: 0px;
-}
-
-blockquote,
-q {
-    quotes: none;
-}
-
-blockquote:before,
-blockquote:after,
-q:before,
-q:after {
-    content: '';
-    content: none;
-}
-
-table {
-    border-collapse: collapse;
-    border-spacing: 0;
-}
-
-/* start editing from here */
-a {
-    text-decoration: none;
-}
-
-.txt-rt {
-    text-align: right;
-}
-
-/* text align right */
-.txt-lt {
-    text-align: left;
-}
-
-/* text align left */
-.txt-center {
-    text-align: center;
-}
-
-/* text align center */
-.float-rt {
-    float: right;
-}
-
-/* float right */
-.float-lt {
-    float: left;
-}
-
-/* float left */
-.clear {
-    clear: both;
-}
-
-/* clear float */
-.pos-relative {
-    position: relative;
-}
-
-/* Position Relative */
-.pos-absolute {
-    position: absolute;
-}
-
-/* Position Absolute */
-.vertical-base {
-    vertical-align: baseline;
-}
-
-/* vertical align baseline */
-.vertical-top {
-    vertical-align: top;
-}
-
-/* vertical align top */
-nav.vertical ul li {
-    display: block;
-}
-
-/* vertical menu */
-nav.horizontal ul li {
-    display: inline-block;
-}
-
-/* horizontal menu */
-img {
-    max-width: 100%;
-}
-
 /*end reset*/
-html,
-body {
+div.registration {
     font-size: 100%;
     background: #2F58B6;
     font-family: 'Signika', sans-serif;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-input,
-p,
-a,
-select {
+.registration h1,
+.registration h2,
+.registration h3,
+.registration h4,
+.registration h5,
+.registration h6,
+.registration input,
+.registration p,
+.registration a,
+.registration select {
     font-family: 'Signika', sans-serif;
     margin: 0;
 }
 
-ul,
-label {
-    margin: 0;
-    padding: 0;
-}
-
-body a:hover,
-body a {
-    text-decoration: none;
-}
-
 /*-- main --*/
-.agileits_copyright {
-    text-align: center;
-}
-
-.agileits_copyright p {
-    font-size: 14px;
-    color: #fff;
-    margin: 8em 0 0;
-    line-height: 1.8em;
-    padding: 0 1em;
-    text-transform: capitalize;
-}
-
-.agileits_copyright p a {
-    color: #fff;
-    text-decoration: underline;
-}
-
-.agileits_copyright p a:hover {
-    color: #D2D2D2;
-}
-
-input[type="submit"],
-.agileits_copyright p a,
-input[type="reset"],
-.simple-form-button {
+.registration input[type="submit"],
+.registration input[type="reset"],
+.registration .simple-form-button {
     transition: .5s ease-in;
     -webkit-transition: .5s ease-in;
     -moz-transition: .5s ease-in;
@@ -271,6 +48,7 @@ input[type="reset"],
 
 .main {
     margin: 3em auto;
+    padding-bottom: 10%; 
     text-align: center;
     position: relative;
     height: 100%;
@@ -336,22 +114,21 @@ a.previous-fieldset {
 }
 
 .progress-bar {
-    height: 15px;
+    height: 30px;
     /* Can be anything */
     position: relative;
-    background: #e2e2e2;
-    -moz-border-radius: 25px;
-    -webkit-border-radius: 25px;
-    border-radius: 25px;
+    -moz-border-radius: 0px;
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
     padding: 3px;
     -webkit-box-shadow: inset 0 -1px 1px rgba(255, 255, 255, 0.3);
     -moz-box-shadow: inset 0 -1px 1px rgba(255, 255, 255, 0.3);
     box-shadow: inset 0 -1px 1px rgba(255, 255, 255, 0.3);
-    margin: 10px 0;
     overflow: hidden;
 }
 
 .progress-bar .progress-bg {
+
     display: block;
     height: 100%;
     -webkit-border-top-right-radius: 20px;
@@ -395,10 +172,11 @@ a.previous-fieldset {
 }
 
 .progress-bar .progress-text {
+
     /*-- w3layouts --*/
     position: absolute;
-    left: 50%;
-    top: 2px;
+    height: 90%;
+    font-size: 1.4em;
     z-index: 10;
 }
 
@@ -422,6 +200,39 @@ form#testform {
     min-height: 0 !important;
 }
 
+.registration {
+    height: 100%;
+}
+.registration .fieldset {
+    width: 100% !important;
+}
+
+.registration fieldset {
+    margin: 3%;
+}
+
+.registration .user-form label {
+    font-weight: bold;
+    color: #2F58B6;
+    border: 1px solid #fff;
+    border-radius: 5px 10px 0px 0px;
+    background-color: rgba(0, 0, 0, .9);
+}
+
+.user_status {
+    margin: 0 !important;
+}
+
+.user_status label {
+    color: white;
+    font-size: 1.5em;
+}
+
+.guest-check {
+    color: #fff;
+    font-size: 1.5em;
+}
+
 input,
 textarea {
     background: #fff;
@@ -429,7 +240,6 @@ textarea {
     color: #403D3A;
     font-size: 14px;
     padding: 10px;
-    width: 68%;
 }
 
 textarea {
@@ -462,51 +272,44 @@ label.agileits_label {
     padding: .8em 0;
 }
 
-/*-- start-responsive-design --*/
-@media (min-width: 992px) 
-    .user_status {
-        /*border: 1px solid red;*/
-    }
-
-    .user_status span.third {
-        -webkit-box-flex: 0;
-        -ms-flex: 0 0 33.33333%;
-        flex: 0 0 33.33333%;
-        max-width: 33.33333%;
-        
-        margin: 0% 5%;
-        display: initial !important;
-    }
-
-    .user_status span.third input, fieldset.conditions *{
-        width: auto !important;
-    }
-
-    fieldset.conditions div.conditions {
-        overflow-y: auto;
-        height: 10em;
-        border: 1px solid grey;
-        box-shadow: 1px 2px 5px inset;
-        padding: 1% 5%;
-    }
+fieldset.conditions div.conditions {
+    overflow-y: auto;
+    height: 175px;
+    border: 1px solid grey;
+    box-shadow: 1px 2px 5px inset;
+    padding: 1% 5%;
 }
 
+fieldset.conditions input[type=checkbox] {
+    width: 5%;
+    float: left;
+}
+
+fieldset.conditions label{
+    width: 95%;
+    text-align: -webkit-left;
+    position: relative;
+    top: 6px;
+    left: 8px;
+}
+
+
+/*-- start-responsive-design --*/
+@media (min-width: 992px) {}
+
 @media (min-width: 668px) and (max-width:991px) {
-    
+
     textarea {
         width: 75% !important;
     }
+
     .main h1 {
         margin-bottom: 1.5em;
     }
 
-    .agileits_copyright p {
-        margin: 5em 0 0;
-    }
 }
 
-@media (min-width: 601px) and (max-width:667px) {
-}
+@media (min-width: 601px) and (max-width:667px) {}
 
 @media (min-width: 569px) and (max-width: 600px) {
     .main h1 {
@@ -516,10 +319,6 @@ label.agileits_label {
 
     #wrapper {
         width: 465px;
-    }
-
-    .agileits_copyright p {
-        margin: 3em 0 0;
     }
 
     label.agileits_label {
@@ -566,27 +365,10 @@ label.agileits_label {
         margin: 1em 0.2em;
     }
 }
-@media (min-width: 321px) {
-    textarea {
-        width: 72% !important;
-    }
-}
-@media (max-width: 320px) {
-    .user_status span.third {
-        display: inherit !important; 
-    }
-    .user_status span.third input {
-         width: 16% !important; 
-    }
-    .user_status span.third label {
-        margin: 0;
-        display: inline-flex;
-        width: 78%;
-    }
-    textarea {
-        width: 100% !important;
-    }
 
+@media (min-width: 321px) {}
+
+@media (max-width: 320px) {
     #wrapper {
         width: 275px;
     }
@@ -596,6 +378,9 @@ label.agileits_label {
     }
 
     .progress-bar .progress-text {
+
+        height: 80%;
+        font-size: 1.4em;
         font-size: 12px;
         line-height: 1.2;
     }
@@ -622,12 +407,6 @@ label.agileits_label {
         margin: 1em 0.1em;
         padding: 7px 35px;
         font-size: 14px;
-    }
-
-    .agileits_copyright p {
-        margin: 2em 0 0;
-        font-size: 13px;
-        /*-- agileits --*/
     }
 
     textarea#comments {

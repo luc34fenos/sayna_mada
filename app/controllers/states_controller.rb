@@ -1,8 +1,12 @@
 class StatesController < ApplicationController
   def index
-	  @states = CS.states(params[:country])
-  	respond_to do |format|
-  		format.js
-  	end
+  	p "State"*30
+  	puts params.inspect
+		@states = CS.states(params[:country])
+		p @states.inspect
+	  respond_to do |format|
+	  	format.js
+	  end
+  	p "State"*30
 	end
 end

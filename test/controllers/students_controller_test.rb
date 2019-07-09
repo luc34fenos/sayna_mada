@@ -1,6 +1,7 @@
 require 'test_helper'
 
 class StudentsControllerTest < ActionDispatch::IntegrationTest
+
   setup do
     @student = students(:one)
   end
@@ -45,4 +46,16 @@ class StudentsControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to students_url
   end
+
+  test "should get dashboard1" do
+    get students_dashboard1_url
+    assert_response :success
+  end
+
+  test "should get dashboard2" do
+    get students_dashboard2_url
+    assert_response :success
+  end
+
+
 end

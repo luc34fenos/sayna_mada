@@ -3,64 +3,84 @@ jQuery(document).ready(function($) {
         var $userForm = $(`.user-form`);
         var lastSpan = $(`.user-form span:last`);
         var status = this.value;
+        var icity = $(`select#city`);
+
+        var inputs = $(`.user_status .inputs`);
 
         if (status == 'student') {
-	        $userForm.html(`
-	        	<span class="w3layouts_personal">
-                    <label class="agileits_label" for="student_birthdate">Birthdate:</label>
-                    <input type="date" id="student_birthdate" name="student[birthdate]" placeholder="93401" />
+            icity.attr('name', 'student[city]');
+            inputs.html(`
+                <span class="agileits_personal">
+                    <input class="form-control" type="tel" id="student_tel" name="student[tel]" placeholder="Personal phone" />
                 </span>
-        		<span class="w3_agile_personal">
-                    <label class="agileits_label" for="student_country">Country:</label>
-                    <input type="text" id="student_country" name="student[country]" placeholder="USA" />
+            `);
+
+            $userForm.html(`
+                <span class="w3l_personal">
+                    <label class="agileits_label" for="student_lastname">Lastname</label>
+                    <input class="form-control" type="text" id="student_lastname" name="student[lastname]" placeholder="LASTNAME" />
                 </span>
-                <span class="agile_personal">
-                    <label class="agileits_label" for="student_city">City:</label>
-                    <input type="text" id="student_city" name="student[city]" placeholder="San Fransisco" />
-                </span>    
-                <span class="w3_agileits_personal">
-                    <label class="agileits_label" for="student_address">Address:</label>
-                    <input type="text" id="student_address" name="student[address]" placeholder="Somewhere on the earth" />
-                </span>
-                <span class="w3layouts_personal">
-                    <label class="agileits_label" for="student_hobbies">Hobbies:</label>
-                	<input id="student_hobbies" name="student[hobbies]" placeholder="Hacking - Playing Football - Playing baby foot - ..." />
+                <span class="w3l_personal">
+                    <label class="agileits_label" for="student_firstname">Firstname</label>
+                    <input class="form-control" type="text" id="student_firstname" name="student[firstname]" placeholder="Firstname" />
                 </span>
                 <span class="w3layouts_personal">
-                    <label class="agileits_label" for="student_summary">Summary:</label>
-                	<textarea id="student_summary" name="student[summary]" placeholder="The only thing that I know is 'I don't know anything'"></textarea>
-                </span>
-	        `);
-        } else if (status == 'business') {
-        	$userForm.html(`
-	        	<span class="w3layouts_personal">
-                    <label class="agileits_label" for="businness_name">Company name:</label>
-                    <input type="text" id="businness_name" name="business[name]" placeholder="Sayna" />
+                    <label class="agileits_label" for="student_birthdate">Birthdate</label>
+                    <input class="form-control" type="date" id="student_birthdate" name="student[birthdate]" placeholder="93401" />
                 </span>
                 <span class="w3_agileits_personal">
-                    <label class="agileits_label" for="business_address">Company address:</label>
-                    <input type="text" id="business_address" name="business[address]" placeholder="The nearest address" />
+                    <label class="agileits_label" for="student_address">Address</label>
+                    <input class="form-control" type="text" id="student_address" name="student[address]" placeholder="Somewhere on the earth" />
+                </span>
+                <span class="w3layouts_personal">
+                    <label class="agileits_label" for="student_hobbies">Hobbies</label>
+                    <input class="form-control" id="student_hobbies" name="student[hobbies]" placeholder="Hacking - Playing Football - ..." />
+                </span>
+                <span class="w3layouts_personal">
+                    <label class="agileits_label" for="student_summary">Summary</label>
+                    <textarea class="form-control" id="student_summary" name="student[summary]" placeholder="The only thing that I know is 'I don't know anything'"></textarea>
+                </span>
+            `);
+        } else if (status == 'company') {
+            icity.attr('name', 'company[city]');
+            inputs.html(`
+                <span class="agileits_personal">
+                    <input class="form-control" type="tel" id="company_tel" name="company[tel]" placeholder="Company contact" />
+                </span>
+            `);
+            $userForm.html(`
+                <span class="w3layouts_personal">
+                    <label class="agileits_label" for="company_name">Company name</label>
+                    <input class="form-control" type="text" id="company_name" name="company[name]" placeholder="Sayna Madagascar" />
                 </span>
                 <span class="w3_agileits_personal">
-                    <label class="agileits_label" for="business_contact">Company contact:</label>
-                    <input type="tel" id="business_contact" name="business[contact]" placeholder="XXX XX XXX XX" />
+                    <label class="agileits_label" for="company_address">Company address</label>
+                    <input class="form-control" type="text" id="company_address" name="company[address]" placeholder="The nearest address" />
                 </span>
                 <span class="w3_agileits_personal">
-                    <label class="agileits_label" for="business_email">Company email address:</label>
-                    <input type="email" id="business_email" name="business[email]" placeholder="example@company.com" />
+                    <label class="agileits_label" for="company_contact">Company contact</label>
+                    <input class="form-control" type="tel" id="company_contact" name="company[contact]" placeholder="XXX XX XXX XX" />
                 </span>
-	        `);
+                <span class="w3_agileits_personal">
+                    <label class="agileits_label" for="company_email">Company email address</label>
+                    <input class="form-control" type="email" id="company_email" name="company[email]" placeholder="example@company.com" />
+                </span>
+            `);
         } else {
-        	$userForm.html(`
-                <span class="w3_agile_personal">
-                    <label class="agileits_label" for="user_country">Country:</label>
-                    <input type="text" id="user_country" name="user[country]" placeholder="San Luis Obispo" />
-                </span>
-                <span class="agile_personal">
-                    <label class="agileits_label" for="user_city">City:</label>
-                    <input type="text" id="user_city" name="user[city]" placeholder="Your current city" />
-                </span>
-	        `);
+            inputs.html(``);
+            $userForm.html(``);
         }
     })
+
+    function loadCities() {
+        var country = document.getElementById("country");
+
+        country.addEventListener("change", function() {
+            Rails.ajax({
+                url: "/states?country=" + country.value,
+                type: "GET"
+            })
+        })
+    };
+    loadCities();
 })

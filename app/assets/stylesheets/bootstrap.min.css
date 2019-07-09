@@ -3315,7 +3315,7 @@ output {
     display: block;
     width: 100%;
     height: 34px;
-    padding: 6px 12px;
+    padding: 6px 12px !important;
     font-size: 14px;
     line-height: 1.42857143;
     color: #555;
@@ -6370,7 +6370,7 @@ a.thumbnail:hover {
         background-position: 0 0
     }
 }
-
+/*
 .progress {
     height: 20px;
     margin-bottom: 20px;
@@ -6396,7 +6396,7 @@ a.thumbnail:hover {
     -o-transition: width .6s ease;
     transition: width .6s ease
 }
-
+*/
 .progress-bar-striped,
 .progress-striped .progress-bar {
     background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
