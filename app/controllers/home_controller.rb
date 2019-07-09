@@ -3,8 +3,6 @@ class HomeController < ApplicationController
     formulaire
   end
 
-  def acce
-    @entreprise = Entreprise.all
-  end
+
 
 end

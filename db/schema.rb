@@ -17,10 +17,22 @@ ActiveRecord::Schema.define(version: 2019_07_08_091841) do
 
   create_table "entreprises", force: :cascade do |t|
     t.string "name"
-    t.string "description"
-    t.string "langague"
+    t.string "year"
     t.string "adress"
+    t.string "person"
+    t.string "titre"
+    t.string "juridique"
+    t.string "phone"
+    t.string "email"
+    t.string "web"
+    t.string "ville1"
+    t.string "ville2"
+    t.string "country"
+    t.string "secteur"
+    t.string "other"
+    t.string "siret"
     t.bigint "user_id"
+    t.boolean "check", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_entreprises_on_user_id"

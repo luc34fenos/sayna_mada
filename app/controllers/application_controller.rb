@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
     def formulaire
       if user_signed_in?
         if Entreprise.find_by(user_id: current_user.id)
-          redirect_to home_acce_path
+          redirect_to company_dashboard01_path
         end
       end
     end
