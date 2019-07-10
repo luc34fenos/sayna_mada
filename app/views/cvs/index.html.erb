@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Cvs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Hobbies</th>
+      <th>Summary</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @cvs.each do |cv| %>
+      <tr>
+        <td><%= cv.hobbies %></td>
+        <td><%= cv.summary %></td>
+        <td><%= link_to 'Show', cv, method: :get %></td>
+        <td><%= link_to 'Edit', edit_cv_path(cv), method: :get %></td>
+        <td><%= link_to 'Destroy', cv, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Cv', new_cv_path, method: :get %>

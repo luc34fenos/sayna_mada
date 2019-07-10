@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class StudentsControllerTest < ActionDispatch::IntegrationTest
-
   setup do
     @student = students(:one)
   end
@@ -18,7 +17,7 @@ class StudentsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create student" do
     assert_difference('Student.count') do
-      post students_url, params: { student: { birthdate: @student.birthdate, city: @student.city, firstname: @student.firstname, hobbies: @student.hobbies, lastname: @student.lastname, summary: @student.summary, tel: @student.tel } }
+      post students_url, params: { student: { address: @student.address, birthdate: @student.birthdate, cv_id: @student.cv_id, firstname: @student.firstname, lastname: @student.lastname, tel: @student.tel, user_id: @student.user_id } }
     end
 
     assert_redirected_to student_url(Student.last)
@@ -35,7 +34,7 @@ class StudentsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update student" do
-    patch student_url(@student), params: { student: { birthdate: @student.birthdate, city: @student.city, firstname: @student.firstname, hobbies: @student.hobbies, lastname: @student.lastname, summary: @student.summary, tel: @student.tel } }
+    patch student_url(@student), params: { student: { address: @student.address, birthdate: @student.birthdate, cv_id: @student.cv_id, firstname: @student.firstname, lastname: @student.lastname, tel: @student.tel, user_id: @student.user_id } }
     assert_redirected_to student_url(@student)
   end
 
@@ -46,16 +45,4 @@ class StudentsControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to students_url
   end
-
-  test "should get dashboard1" do
-    get students_dashboard1_url
-    assert_response :success
-  end
-
-  test "should get dashboard2" do
-    get students_dashboard2_url
-    assert_response :success
-  end
-
-
 end

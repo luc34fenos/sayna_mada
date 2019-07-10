@@ -32,44 +32,21 @@
   </div>
 
   <div class="field">
-    <%= form.label :summary %>
-    <%= form.text_area :summary %>
+    <%= form.label :user_id %>
+    <%= form.text_field :user_id %>
   </div>
 
   <div class="field">
-    <%= form.label :hobbies %>
-    <%= form.text_area :hobbies %>
+    <%= form.label :address %>
+    <%= form.text_field :address %>
   </div>
 
   <div class="field">
-  <!-- Country -->
-  <%= label_tag :country %>
-  <%= select_tag :country, options_for_select(CS.countries.map { |c| [c[1], c[0]] } ) %>
+    <%= form.label :cv_id %>
+    <%= form.text_field :cv_id %>
   </div>
-
-  <div class="field">
-    <!-- State -->
-    <%= form.label :city %>
-    <%= form.select :city, options_for_select([]) %>
-  </div>  
 
   <div class="actions">
     <%= form.submit %>
   </div>
 <% end %>
-
-<script type="text/javascript">
-  // ...
-  // Grab the Country select box
-  let country = document.getElementById("country");
-
-  // When a user chooses a country, send a GET 
-  // request to the server with the country's id as a parameter
-  country.addEventListener("change", function(){
-    Rails.ajax({
-      url: "/states?country=" + country.value,
-      type: "GET"
-    })
-  })
-  // ...
-</script>

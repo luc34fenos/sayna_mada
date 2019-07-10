@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :cvs
+  resources :students
   root 'home#index'
 
   get '/company_1' ,to: 'company#dashboard01'
@@ -8,10 +10,11 @@ Rails.application.routes.draw do
   get '/student_1' ,to: 'students#dashboard1'
   get '/student_2' ,to: 'students#dashboard2'
 
-  devise_for :users
+  devise_for :users, controllers: {
+  	registrations: 'users/registrations'
+  }
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  resources :students
   resources :states, only: :index
 
 end

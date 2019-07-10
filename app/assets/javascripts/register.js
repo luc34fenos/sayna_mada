@@ -33,12 +33,12 @@ jQuery(document).ready(function($) {
                     <input class="form-control" type="text" id="student_address" name="student[address]" placeholder="Somewhere on the earth" />
                 </span>
                 <span class="w3layouts_personal">
-                    <label class="agileits_label" for="student_hobbies">Hobbies</label>
-                    <input class="form-control" id="student_hobbies" name="student[hobbies]" placeholder="Hacking - Playing Football - ..." />
+                    <label class="agileits_label" for="cv_hobbies">Hobbies</label>
+                    <input class="form-control" id="cv_hobbies" name="cv[hobbies]" placeholder="Hacking - Playing Football - ..." />
                 </span>
                 <span class="w3layouts_personal">
-                    <label class="agileits_label" for="student_summary">Summary</label>
-                    <textarea class="form-control" id="student_summary" name="student[summary]" placeholder="The only thing that I know is 'I don't know anything'"></textarea>
+                    <label class="agileits_label" for="cv_summary">Summary</label>
+                    <textarea class="form-control" id="cv_summary" name="cv[summary]" placeholder="The only thing that I know is 'I don't know anything'"></textarea>
                 </span>
             `);
         } else if (status == 'company') {

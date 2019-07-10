@@ -3,11 +3,13 @@
 one:
   name: MyString
   description: MyText
-  beginning: 2019-07-05 15:40:16
-  ending: 2019-07-05 15:40:16
+  start_date: 2019-07-10 14:54:12
+  end_date: 2019-07-10 14:54:12
+  cv: one
 
 two:
   name: MyString
   description: MyText
-  beginning: 2019-07-05 15:40:16
-  ending: 2019-07-05 15:40:16
+  start_date: 2019-07-10 14:54:12
+  end_date: 2019-07-10 14:54:12
+  cv: two

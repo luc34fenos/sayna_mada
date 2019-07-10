@@ -10,29 +10,71 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_05_124427) do
+ActiveRecord::Schema.define(version: 2019_07_10_115412) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "backgrounds", force: :cascade do |t|
-    t.bigint "student_id"
     t.string "name"
     t.text "description"
-    t.datetime "beginning"
-    t.datetime "ending"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.bigint "cv_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["student_id"], name: "index_backgrounds_on_student_id"
+    t.index ["cv_id"], name: "index_backgrounds_on_cv_id"
+  end
+
+  create_table "cities", force: :cascade do |t|
+    t.string "name"
+    t.string "country"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "cover_letters", force: :cascade do |t|
-    t.bigint "student_id"
-    t.string "object"
     t.text "content"
+    t.bigint "cv_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["student_id"], name: "index_cover_letters_on_student_id"
+    t.index ["cv_id"], name: "index_cover_letters_on_cv_id"
+  end
+
+  create_table "cv_languages", force: :cascade do |t|
+    t.bigint "cv_id"
+    t.bigint "language_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cv_id"], name: "index_cv_languages_on_cv_id"
+    t.index ["language_id"], name: "index_cv_languages_on_language_id"
+  end
+
+  create_table "cv_programming_languages", force: :cascade do |t|
+    t.bigint "cv_id"
+    t.bigint "programming_language_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cv_id"], name: "index_cv_programming_languages_on_cv_id"
+    t.index ["programming_language_id"], name: "index_cv_programming_languages_on_programming_language_id"
+  end
+
+  create_table "cv_skills", force: :cascade do |t|
+    t.bigint "cv_id"
+    t.bigint "skill_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cv_id"], name: "index_cv_skills_on_cv_id"
+    t.index ["skill_id"], name: "index_cv_skills_on_skill_id"
+  end
+
+  create_table "cvs", force: :cascade do |t|
+    t.bigint "student_id"
+    t.text "hobbies"
+    t.text "summary"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["student_id"], name: "index_cvs_on_student_id"
   end
 
   create_table "languages", force: :cascade do |t|
@@ -45,12 +87,10 @@ ActiveRecord::Schema.define(version: 2019_07_05_124427) do
   end
 
   create_table "programming_languages", force: :cascade do |t|
-    t.bigint "student_id"
     t.string "name"
     t.integer "level"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["student_id"], name: "index_programming_languages_on_student_id"
   end
 
   create_table "skills", force: :cascade do |t|
@@ -62,15 +102,19 @@ ActiveRecord::Schema.define(version: 2019_07_05_124427) do
   end
 
   create_table "students", force: :cascade do |t|
+    t.bigint "user_id"
     t.string "firstname"
     t.string "lastname"
     t.datetime "birthdate"
     t.string "tel"
-    t.text "summary"
-    t.text "hobbies"
-    t.string "city"
+    t.string "address"
+    t.bigint "city_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["city_id"], name: "index_students_on_city_id"
+    t.index ["user_id"], name: "index_students_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "username", default: "", null: false
@@ -89,4 +133,13 @@ ActiveRecord::Schema.define(version: 2019_07_05_124427) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  create_table "webs", force: :cascade do |t|
+    t.string "name"
+    t.string "link"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "backgrounds", "cvs"
+  add_foreign_key "cover_letters", "cvs"
 end

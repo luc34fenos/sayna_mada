@@ -1,3 +1,4 @@
 class ProgrammingLanguage < ApplicationRecord
-	has_and_belongs_to_many :students
+	has_many :cv_programming_languages
+	has_many :cvs, through: :cv_programming_languages
 end
