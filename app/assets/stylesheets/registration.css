@@ -211,12 +211,12 @@ form#testform {
     margin: 3%;
 }
 
-.registration .user-form label {
+.registration .user-form label.agileits_label {
     font-weight: bold;
     color: #2F58B6;
     border: 1px solid #fff;
     border-radius: 5px 10px 0px 0px;
-    background-color: rgba(0, 0, 0, .9);
+    background-color: rgba(0, 0, 0, 1.0);
 }
 
 .user_status {

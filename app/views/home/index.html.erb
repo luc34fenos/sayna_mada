@@ -2,9 +2,9 @@
 <div>
   <% if !user_signed_in? %>
 
-    <%= link_to "s'inscrire", new_user_registration_path %>
+    <%= link_to "s'inscrire", new_user_registration_path, method: :get %>
     <br>
-    <%= link_to "se connecter", new_user_session_path %>
+    <%= link_to "se connecter", new_user_session_path, method: :get %>
 
   <% else %>
 
