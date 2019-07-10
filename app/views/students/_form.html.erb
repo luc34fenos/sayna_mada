@@ -1,0 +1,75 @@
+<%= form_with(model: student, local: true) do |form| %>
+  <% if student.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(student.errors.count, "error") %> prohibited this student from being saved:</h2>
+
+      <ul>
+      <% student.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :firstname %>
+    <%= form.text_field :firstname %>
+  </div>
+
+  <div class="field">
+    <%= form.label :lastname %>
+    <%= form.text_field :lastname %>
+  </div>
+
+  <div class="field">
+    <%= form.label :birthdate %>
+    <%= form.datetime_select :birthdate %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tel %>
+    <%= form.text_field :tel %>
+  </div>
+
+  <div class="field">
+    <%= form.label :summary %>
+    <%= form.text_area :summary %>
+  </div>
+
+  <div class="field">
+    <%= form.label :hobbies %>
+    <%= form.text_area :hobbies %>
+  </div>
+
+  <div class="field">
+  <!-- Country -->
+  <%= label_tag :country %>
+  <%= select_tag :country, options_for_select(CS.countries.map { |c| [c[1], c[0]] } ) %>
+  </div>
+
+  <div class="field">
+    <!-- State -->
+    <%= form.label :city %>
+    <%= form.select :city, options_for_select([]) %>
+  </div>  
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+  // ...
+  // Grab the Country select box
+  let country = document.getElementById("country");
+
+  // When a user chooses a country, send a GET 
+  // request to the server with the country's id as a parameter
+  country.addEventListener("change", function(){
+    Rails.ajax({
+      url: "/states?country=" + country.value,
+      type: "GET"
+    })
+  })
+  // ...
+</script>

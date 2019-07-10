@@ -15,6 +15,26 @@ ActiveRecord::Schema.define(version: 2019_07_08_091841) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "backgrounds", force: :cascade do |t|
+    t.bigint "student_id"
+    t.string "name"
+    t.text "description"
+    t.datetime "beginning"
+    t.datetime "ending"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["student_id"], name: "index_backgrounds_on_student_id"
+  end
+
+  create_table "cover_letters", force: :cascade do |t|
+    t.bigint "student_id"
+    t.string "object"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["student_id"], name: "index_cover_letters_on_student_id"
+  end
+
   create_table "entreprises", force: :cascade do |t|
     t.string "name"
     t.string "year"
@@ -36,6 +56,44 @@ ActiveRecord::Schema.define(version: 2019_07_08_091841) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_entreprises_on_user_id"
+  end
+
+  create_table "languages", force: :cascade do |t|
+    t.bigint "student_id"
+    t.string "name"
+    t.integer "level"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["student_id"], name: "index_languages_on_student_id"
+  end
+
+  create_table "programming_languages", force: :cascade do |t|
+    t.bigint "student_id"
+    t.string "name"
+    t.integer "level"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["student_id"], name: "index_programming_languages_on_student_id"
+  end
+
+  create_table "skills", force: :cascade do |t|
+    t.bigint "student_id"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["student_id"], name: "index_skills_on_student_id"
+  end
+
+  create_table "students", force: :cascade do |t|
+    t.string "firstname"
+    t.string "lastname"
+    t.datetime "birthdate"
+    t.string "tel"
+    t.text "summary"
+    t.text "hobbies"
+    t.string "city"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

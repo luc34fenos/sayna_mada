@@ -12,24 +12,80 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :name %>
+    <%= form.label :name , 'Nom complet de l’entreprise' %>
     <%= form.text_field :name %>
   </div>
 
   <div class="field">
-    <%= form.label :description %>
-    <%= form.text_field :description %>
+    <%= form.label :year , 'Année de fondation ' %>
+    <%= form.text_field :year %>
   </div>
 
   <div class="field">
-    <%= form.label :langague %>
-    <%= form.text_field :langague %>
+    <%= form.label :person ,'Nom de personne  à contacter ' %>
+    <%= form.text_field :person %>
   </div>
 
   <div class="field">
-    <%= form.label :adress %>
+    <%= form.label :adress   %>
     <%= form.text_field :adress %>
   </div>
+
+  <div class="field">
+    <%= form.label :titre, 'Titre de la personne à contacter'    %>
+    <%= form.text_field :titre %>
+  </div>
+
+  <div class="field">
+    <%= form.label :juridique , 'Forme juridique '   %>
+    <%= form.text_field :juridique %>
+  </div>
+
+  <div class="field">
+    <%= form.label :phone , 'N° Téléphone '   %>
+    <%= form.text_field :phone %>
+  </div>
+
+  <div class="field">
+    <%= form.label :email , 'Adresse e-mail '   %>
+    <%= form.text_field :email %>
+  </div>
+
+  <div class="field">
+    <%= form.label :web , 'Votre Site ou Page '   %>
+    <%= form.text_field :web %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ville1 , ' votre ville 1 '   %>
+    <%= form.text_field :ville1 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ville2 , ' votre ville 2 '   %>
+    <%= form.text_field :ville2 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :coutry , 'Pays'   %>
+    <%= form.text_field :country %>
+  </div>
+
+  <div class="field">
+    <%= form.label :secteur , 'Secteur d’activités '   %>
+    <%= form.text_field :secteur %>
+  </div>
+
+  <div class="field">
+    <%= form.label :other , 'Autre '   %>
+    <%= form.text_field :other %>
+  </div>
+
+  <div class="field">
+    <%= form.label :siret , 'Numéro Siret'   %>
+    <%= form.text_field :siret %>
+  </div>
+
 
   <div class="actions">
     <%= form.submit %>

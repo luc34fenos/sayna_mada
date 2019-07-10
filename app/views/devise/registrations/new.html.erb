@@ -1,34 +1,199 @@
-<h2>Sign up</h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :username %><br />
-    <%= f.text_field :username, autofocus: true, autocomplete: "username" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+<div class="registration">
+    <center>
+        <h1>Sign up</h1>
+    </center>
+    <div class="main">
+        <div id="wrapper" class="wrapper_w3layouts">
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: "testform", id: "testform"}) do |f| %>
+            <%= render "devise/shared/error_messages", resource: resource %>
+            <div class="fieldset">
+                <!-- user params -->
+                <fieldset class="personal-data w3_agileits_field">
+                    <span class="w3l_personal">
+                        <%= f.text_field :username, autofocus: true, autocomplete: "username", placeHolder:"Username", class: "form-control", value: "Linx", required: "" %>
+                    </span>
+                    <span class="w3ls_personal">
+                        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeHolder:"email@address.com", class: "form-control", value: "plinsy@yopmail.com", required: "" %>
+                    </span>
+                    <span class="agileits_personal">
+                        <%= f.password_field :password, autocomplete: "new-password", placeHolder:"******", class: "form-control", value: "000000", required: "" %>
+                    </span>
+                    <span class="agileits_personal">
+                        <%= f.password_field :password_confirmation, autocomplete: "new-password", placeHolder:"******", class: "form-control", value: "000000", required: ""  %>
+                    </span>
+                </fieldset>
+                <!-- end user params -->
+                <fieldset class="personal-data w3_agileits_field">
+                    <div class="user_status row">
+                        <div class="status">
+                            <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                                <input class="form-control" value="student" type="radio" name="status" id="student" checked="" />
+                                <label for="student">Student</label>
+                            </div>
+                            <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                                <input class="form-control" value="company" type="radio" name="status" id="company" />
+                                <label for="company">Company</label>
+                            </div>
+                        </div>
+                        <span class="w3_agile_personal">
+                            <select class="form-control" name="country" id="country">
+                                <% CS.countries.map do |c| %>
+                                <option value="<%= c[0] %>">
+                                    <%= c[1] %>
+                                </option>
+                                <% end %>
+                            </select>
+                        </span>
+                        <span class="agile_personal">
+                            <select class="form-control" name="city" id="city"></select>
+                        </span>
+                        <div class="inputs">
+                            <span class="agileits_personal">
+                                <input class="form-control" type="tel" id="student_tel" name="student[tel]" placeholder="Personal phone" />
+                            </span>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset class="address-data-input w3_agileits_field agileinfo_field user-form">
+                    <span class="w3l_personal">
+                        <label class="agileits_label" for="student_lastname">Lastname</label>
+                        <input class="form-control" type="text" id="student_lastname" name="student[lastname]" placeholder="LASTNAME" />
+                    </span>
+                    <span class="w3l_personal">
+                        <label class="agileits_label" for="student_firstname">Firstname</label>
+                        <input class="form-control" type="text" id="student_firstname" name="student[firstname]" placeholder="Firstname" />
+                    </span>
+                    <span class="w3layouts_personal">
+                        <label class="agileits_label" for="student_birthdate">Birthdate</label>
+                        <input class="form-control" type="date" id="student_birthdate" name="student[birthdate]" placeholder="93401" />
+                    </span>
+                    <span class="w3_agileits_personal">
+                        <label class="agileits_label" for="student_address">Address</label>
+                        <input class="form-control" type="text" id="student_address" name="student[address]" placeholder="Somewhere on the earth" />
+                    </span>
+                    <span class="w3layouts_personal">
+                        <label class="agileits_label" for="student_hobbies">Hobbies</label>
+                        <input class="form-control" id="student_hobbies" name="student[hobbies]" placeholder="Hacking - Playing Football - ..." />
+                    </span>
+                    <span class="w3layouts_personal">
+                        <label class="agileits_label" for="student_summary">Summary</label>
+                        <textarea class="form-control" id="student_summary" name="student[summary]" placeholder="The only thing that I know is 'I don't know anything'"></textarea>
+                    </span>
+                    <style type="text/css">
+                    </style>
+                </fieldset>
+                <fieldset class="message-details w3_agileits_field conditions">
+                    <span class="w3">
+                        <div class="conditions">
+                            <h2>Registration conditions</h2>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            </p>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            </p>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            </p>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            </p>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            </p>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            </p>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            </p>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            </p>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            </p>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            </p>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            </p>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            </p>
+                        </div>
+                    </span>
+                    <div class="">
+                        <input class="form-control" type="checkbox" id="registration_condition" name="registration[condition]">
+                        <label for="registration_condition">I checked without reading cuz I'm too lazy</label>
+                    </div>
+                </fieldset>
+            </div>
+            <% end %>
+            <div class="clear"></div>
+            <hr>
+            <%= render "devise/shared/links" %>
+        </div>
+    </div>
+</div>
