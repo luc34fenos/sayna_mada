@@ -33,6 +33,22 @@ ActiveRecord::Schema.define(version: 2019_07_10_115412) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "companies", force: :cascade do |t|
+    t.string "name"
+    t.integer "start_date"
+    t.string "address"
+    t.string "legal_status"
+    t.string "tel"
+    t.string "activity_area"
+    t.string "siret"
+    t.text "other"
+    t.bigint "user_id"
+    t.boolean "is_activated?", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_companies_on_user_id"
+  end
+
   create_table "cover_letters", force: :cascade do |t|
     t.text "content"
     t.bigint "cv_id"
@@ -99,6 +115,16 @@ ActiveRecord::Schema.define(version: 2019_07_10_115412) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["student_id"], name: "index_skills_on_student_id"
+  end
+
+  create_table "staffs", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "job"
+    t.string "email"
+    t.string "tel"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "students", force: :cascade do |t|

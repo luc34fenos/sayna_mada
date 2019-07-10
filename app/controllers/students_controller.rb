@@ -14,6 +14,7 @@ class StudentsController < ApplicationController
 
   # GET /students/new
   def new
+    formulaire
     @student = Student.new
   end
 

@@ -6,7 +6,7 @@ class User < ApplicationRecord
   
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable
-
+ has_one :company
   def self.find_for_database_authentication(conditions={})
     find_by(username: conditions[:email]) || find_by(email: conditions[:email])
   end
