@@ -9,11 +9,22 @@ class ApplicationController < ActionController::Base
 
   private
     def formulaire
-      if user_signed_in?
-        if Entreprise.find_by(user_id: current_user.id)
-          redirect_to company_1_path
-        end
-      end
+          if user_signed_in?
+                if Company.find_by(user_id: current_user.id)
+                      if Company.is_activated?
+                        redirect_to company_2_path
+                      else
+                        redirect_to company_1_path
+                      end
+                elsif Student.find_by(user_id: current_user.id)
+                      if Student.is_activated?
+                        redirect_to student_2_path
+                      else
+                        redirect_to student_1_path
+                      end
+                end
+
+          end
     end
 
 end

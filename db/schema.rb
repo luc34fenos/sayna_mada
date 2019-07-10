@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_08_091841) do
+ActiveRecord::Schema.define(version: 2019_07_10_110302) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,22 @@ ActiveRecord::Schema.define(version: 2019_07_08_091841) do
     t.index ["student_id"], name: "index_backgrounds_on_student_id"
   end
 
+  create_table "companies", force: :cascade do |t|
+    t.string "name"
+    t.integer "start_date"
+    t.string "address"
+    t.string "legal_status"
+    t.string "phone"
+    t.string "activity_area"
+    t.string "siret"
+    t.text "other"
+    t.bigint "user_id"
+    t.boolean "is_activated?", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_companies_on_user_id"
+  end
+
   create_table "cover_letters", force: :cascade do |t|
     t.bigint "student_id"
     t.string "object"
@@ -33,29 +49,6 @@ ActiveRecord::Schema.define(version: 2019_07_08_091841) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["student_id"], name: "index_cover_letters_on_student_id"
-  end
-
-  create_table "entreprises", force: :cascade do |t|
-    t.string "name"
-    t.string "year"
-    t.string "adress"
-    t.string "person"
-    t.string "titre"
-    t.string "juridique"
-    t.string "phone"
-    t.string "email"
-    t.string "web"
-    t.string "ville1"
-    t.string "ville2"
-    t.string "country"
-    t.string "secteur"
-    t.string "other"
-    t.string "siret"
-    t.bigint "user_id"
-    t.boolean "check", default: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_entreprises_on_user_id"
   end
 
   create_table "languages", force: :cascade do |t|
@@ -82,6 +75,16 @@ ActiveRecord::Schema.define(version: 2019_07_08_091841) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["student_id"], name: "index_skills_on_student_id"
+  end
+
+  create_table "staffs", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "job"
+    t.string "email"
+    t.string "tel"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "students", force: :cascade do |t|
