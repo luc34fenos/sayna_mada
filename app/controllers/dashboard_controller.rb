@@ -7,7 +7,7 @@ class DashboardController < ApplicationController
     def dashboard02
 
     end
-
+####################
     def dashboard1
 
     end

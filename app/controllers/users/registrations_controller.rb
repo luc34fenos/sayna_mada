@@ -14,7 +14,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    build_resource(sign_up_params)
+    puts 'c'*70
+    puts params.inspect
+    puts 'c'*70
+     build_resource(sign_up_params)
 
     resource.save
     yield resource if block_given?
@@ -179,7 +182,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
       p "S"*50
     elsif status == "company"
       p "C"*50
-
+      c = Company.new(company_params)
+       c.user = resource
+       c.save
       p "C"*50
     end
   end
@@ -197,7 +202,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def student_params
     params.require(:student).permit(:tel, :lastname, :firstname, :birthdate, :address)
   end
-
+  def company_params
+    params.require(:company).permit(:tel, :start_date, :address, :legal_status, :phone, :activity_area , :siret, :other)
+  end
   def cv_params
     params.require(:cv).permit(:hobbies, :summary)
   end

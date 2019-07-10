@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 2019_07_10_115412) do
     t.integer "start_date"
     t.string "address"
     t.string "legal_status"
-    t.string "phone"
+    t.string "tel"
     t.string "activity_area"
     t.string "siret"
     t.text "other"
@@ -137,11 +137,8 @@ ActiveRecord::Schema.define(version: 2019_07_10_115412) do
     t.bigint "city_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-<<<<<<< HEAD
-=======
     t.index ["city_id"], name: "index_students_on_city_id"
     t.index ["user_id"], name: "index_students_on_user_id"
->>>>>>> 817eaddd5ad97f6d38fbfb5bf6a17a453bf10239
   end
 
   create_table "users", force: :cascade do |t|

@@ -5,7 +5,7 @@ class CreateCompanies < ActiveRecord::Migration[5.2]
       t.integer :start_date
       t.string :address
       t.string :legal_status
-      t.string :phone
+      t.string :tel
       t.string :activity_area
       t.string :siret
       t.text :other
