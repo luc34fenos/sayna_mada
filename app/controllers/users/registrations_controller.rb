@@ -17,7 +17,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     puts 'c'*70
     puts params.inspect
     puts 'c'*70
-     build_resource(sign_up_params)
+    build_resource(sign_up_params)
 
     resource.save
     yield resource if block_given?
@@ -184,6 +184,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
       p "C"*50
       c = Company.new(company_params)
        c.user = resource
+       c.cities = [ ]
+       c.staff = [ ]
+       c.webs = [ ]
        c.save
       p "C"*50
     end
