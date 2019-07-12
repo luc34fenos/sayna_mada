@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   resources :cvs
   resources :students
   root 'home#index'
@@ -23,4 +22,5 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :states, only: :index
 
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 end
