@@ -14,9 +14,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
+<<<<<<< HEAD
+=======
     puts 'c'*70
     puts params.inspect
     puts 'c'*70
+>>>>>>> 84d1c55c8943f4fc60cfcbfb9a68b5d1883d522b
     build_resource(sign_up_params)
 
     resource.save!
@@ -203,7 +206,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def student_params
-    params.require(:student).permit(:tel, :lastname, :firstname, :birthdate, :address)
+    params.require(:student).permit(:tel, :lastname, :firstname, :birthdate, :address, :sexe, :marital_status)
   end
   def company_params
     params.require(:company).permit(:tel, :start_date, :address, :legal_status, :phone, :activity_area , :siret, :other)

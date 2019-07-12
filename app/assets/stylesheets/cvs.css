@@ -1,0 +1,23 @@
+.cv {
+    border: 2px solid;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, .6);
+}
+
+.cv .right {
+    border-top: 3px double;
+}
+
+.summary {
+    font-size: 1.2em;
+}
+
+.language {
+	display: -webkit-inline-box;
+}
+.language .col-md-10 {
+	padding-right: 2% !important;
+}
+.language .col-md-2 {
+	padding: 0;
+}
