@@ -19,7 +19,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     puts 'c'*70
     build_resource(sign_up_params)
 
-    resource.save
+    resource.save!
     yield resource if block_given?
     if resource.persisted?
       create_student_or_company(resource)
