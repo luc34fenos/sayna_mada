@@ -15,5 +15,9 @@ class DashboardController < ApplicationController
     def dashboard2
 
     end
+####################
+    def concour
+
+    end
 
 end
