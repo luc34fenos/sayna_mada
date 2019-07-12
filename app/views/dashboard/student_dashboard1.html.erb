@@ -1,7 +1,7 @@
 <center>
     <h1>Student 1</h1>
 </center>
-<div class="">
+<div class="student_dashboard1">
     <%= form_for @cv, method: :patch do |f| %>
     <div class="cv container">
         <center>
@@ -67,14 +67,31 @@
                     </tr>
                 </table>
             </div>
-            <div class="experiences right col-md-7">
+            <div class="right col-md-7">
                 <h2>Experiences</h2>
-                <% @cv.experiences.each do |exp| %>
-                <div class="experience">
-                    <%= exp.name %>
+                <div class="experiences row" style="display: block;">
+                    <div id="experience0" class="first-field experience form-group col-md-4">
+
+                            <select id="exp0" name="experiences[exp0]" class="form-control">
+                                <option>exp1</option>
+                                <option>exp2</option>
+                                <option>exp3</option>
+                            </select>
+                    </div>
+                    <% @cv.experiences.each do |exp| %>
+                    <div id="experience<%= exp.id %>" class="experience form-group col-md-4 row">
+                        <div class="col-md-11">
+                            <%= exp.name %>
+                        </div>
+                        <div class="col-2 col-sm-1 col-md-1 col-lg-1 remove">
+                            <button id="rmexp<%= exp.id %>" class="btn btn-danger remove-me">x</button>
+                        </div>
+                    </div>
+                    <% end %>
                 </div>
-                <% end %>
-                <a href="#" id="newexp" class="btn btn-primary"><i class="fas fa-plus"></i></a>
+                <div cla>
+                    <a href="#" id="experiences" class="add-more btn btn-primary"><i class="fas fa-plus"></i></a>
+                </div>
             </div>
         </div>
         <!-- <hr> -->
@@ -85,14 +102,28 @@
                     <%= f.text_area :hobbies, value: @cv.hobbies, class: "form-control" %>
                 </p>
             </div>
-            <div class="skills right col-md-7">
+            <div class="right col-md-7">
                 <h2>Compétences</h2>
-                <% @cv.skills.each do |skill| %>
-                <div class="skill">
-                    <%= skill.name %>
+                <div class="skills row">
+                    <div id="skill0" class="first-field skill form-group col-md-4">
+                            <select id="skill0" name="skills[skill0]" class="form-control">
+                                <option>skill1</option>
+                                <option>skill2</option>
+                                <option>skill3</option>
+                            </select>
+                    </div>
+                    <% @cv.skills.each do |skill| %>
+                    <div id="skill<%= skill.id %>" class="skill form-group col-md-4 row">
+                        <div class="col-md-11">
+                            <%= skill.name %>
+                        </div>
+                        <span class="col-2 col-sm-1 col-md-1 col-lg-1 remove">
+                            <button id="rmskill<%= skill.id %>" class="btn btn-danger remove-me">x</button>
+                        </span>
+                    </div>
+                    <% end %>
                 </div>
-                <% end %>
-                <a href="#" id="newskill" class="btn btn-primary"><i class="fas fa-plus"></i></a>
+                <a href="#" id="skills" class="add-more btn btn-primary"><i class="fas fa-plus"></i></a>
             </div>
         </div>
         <div class="row">
@@ -100,87 +131,123 @@
             <div class="right col-md-7">
                 <h2>Langues</h2>
                 <div class="languages row">
-                    <div class="col-md-4 language row">
-                        <div class="col-md-10">
-                            <select name="languages[lg0]" id="languages_lg0" class="form-control">
-                                <option>Malagasy</option>
-                                <option>Français</option>
-                                <option>English</option>
+                    <div id="language0" class="first-field language form-group col-md-4">
+                            <select id="language0" name="languages[language0]" class="form-control">
+                                <option>language1</option>
+                                <option>language2</option>
+                                <option>language3</option>
                             </select>
-                        </div>
-                        <div class="col-md-2">
-                            <a href="#" class="rmbutton btn btn-danger"><i class="fas fa-trash"></i></a>
-                        </div>
                     </div>
+                    <% @cv.languages.each do |language| %>
+                    <div id="language<%= language.id %>" class="language form-group col-md-4 row">
+                        <div class="col-md-11">
+                            <%= language.name %>
+                        </div>
+                        <span class="col-2 col-sm-1 col-md-1 col-lg-1 remove">
+                            <a href="#" id="rmlanguage<%= language.id %>" class="btn btn-danger remove-me"><i class="fas fa-plus"></i></a>
+                        </span>
+                    </div>
+                    <% end %>
                 </div>
-                <a href="#" id="newlanguage" class="btn btn-primary"><i class="fas fa-plus"></i></a>
+                <a href="#" id="languages" class="add-more btn btn-primary"><i class="fas fa-plus"></i></a>
             </div>
         </div>
+        <hr>
     </div>
     <% end %>
 </div>
-<div class="container col-md-4">
-    <div id="fields" class="col-12 form-group">
-        <div id="field1" class="form-group">
-            <select id="" name="" class="form-control">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-            </select>
-        </div>
-    </div>
-    <span class="col-12">
-        <button id="add" class="bw float-left btn btn-info add-more" type="button">+</button>
-    </span>
-</div>
-<% content_for :page_scripts do %>
+<style type="text/css">
+    .experiences, .skills, .languages {
+        padding: 0 15px;
+    }
+    .first-field{
+        padding: 0 8px 0 0;
+    }
+    .experience, .skill, .language{
+        margin: 0 0 1% 0 !important;
+    }
+    .student_dashboard1 .col-md-11, .student_dashboard1 .col-md-1 {
+        padding: 0;
+    }
+    .student_dashboard1 .col-md-11 {
+        margin-left: -15px;
+        margin-right: 5px;
+    }
+</style>
+<% content_for :head_tag do %>
 <script>
-let next = 1;
-$(".add-more").click(function(e) {
-    e.preventDefault();
-    let addto = "#field" + next;
-    let addRemove = "#field" + next;
-    next = next + 1;
-    let newIn = `
-                <div id="field${next}" class="form-group row">
-                    <div class="col-10 col-sm-11 col-md-11 col-lg-11">
-                        <select name="business${next}" id="field${next}" name="field${next}" class="form-control">
-                            <option value="1">E-Tech</option>
-                            <option value="2">Lomay</option>
-                            <option value="3">Everii</option>
-                            <option value="4">Vesta Security</option>
-                            <option value="5">Ingényosa</option>
-                            <option value="6">Ingédata</option>
-                            <option value="7">Société Générale</option>
-                            <option value="8">Numen</option>
-                            <option value="9">Eufonie</option>
-                            <option value="10">SaynaLab</option>
-                            <option value="11">My Smart Content</option>
-                            <option value="12">Sphères</option>
-                            <option value="13">Securex</option>
+$(document).ready(function($) {
+    
+    $(".add-more").click(function(e) {
+        e.preventDefault();
+
+        let id = this.id;
+
+        let div = $(`div.${id}:first`);
+        let child = $(`div.${id}:first div:last`);
+        let children = $(`div.${id}:first div.col-md-4`);
+
+        let newInput;
+
+        if (id == "experiences") {
+            newInput = `
+                <div id="experience${children.length}" class="experience form-group col-md-4 row">
+                    <div class="col-md-11">
+                        <select id="exp${children.length}" name="experiences[exp0]" class="form-control">
+                            <option>exp1</option>
+                            <option>exp2</option>
+                            <option>exp3</option>
                         </select>
                     </div>
-                    <span class="col-2 col-sm-1 col-md-1 col-lg-1 remove">
-                        <button id="remove${next}" class="btn btn-danger remove-me" >x</button>
-                    </span>
+                    <div class="col-2 col-sm-1 col-md-1 col-lg-1 remove">
+                        <a id="rmexperience${children.length}" class="btn btn-danger remove-me" >x</a>
+                    </div>
                 </div>
             `;
+        } else if (id == "skills") {
+            newInput = `
+                <div id="skill${children.length}" class="skill form-group col-md-4 row">
+                    <div class="col-md-11">
+                        <select id="skill${children.length}" name="skills[skill0]" class="form-control">
+                            <option>skill1</option>
+                            <option>skill2</option>
+                            <option>skill3</option>
+                        </select>
+                    </div>
+                    <div class="col-2 col-sm-1 col-md-1 col-lg-1 remove">
+                        <a id="rmskill${children.length}" class="btn btn-danger remove-me" >x</a>
+                    </div>
+                </div>
+            `;
+        } else if (id == "languages") {
+            newInput = `
+                <div id="language${children.length}" class="language form-group col-md-4 row">
+                    <div class="col-md-11">
+                        <select id="language${children.length}" name="languages[language0]" class="form-control">
+                            <option>language1</option>
+                            <option>language2</option>
+                            <option>language3</option>
+                        </select>
+                    </div>
+                    <div class="col-2 col-sm-1 col-md-1 col-lg-1 remove">
+                        <a id="rmlanguage${children.length}" class="btn btn-danger remove-me" >x</a>
+                    </div>
+                </div>
+            `;
+        } else {
+            newInput = ``;
+        }
 
-    let newInput = $(newIn);
+        $(div).append(newInput);
 
-    $(addto).after(newInput);
+        $(".remove-me").click(function(e) {
+            e.preventDefault();
 
-    $("#field" + next).attr('data-source', $(addto).attr('data-source'));
-    $("#count").val(next);
-
-    $('.remove-me').click(function(e) {
-        e.preventDefault();
-        next = next - 1;
-        let fieldNum = this.id.charAt(this.id.length - 1);
-        let fieldID = "#field" + fieldNum;
-        $(this).remove();
-        $(fieldID).remove();
+            let id = this.id.slice(2,this.id.length);
+            let div = $(`div#${id}`);
+            div.fadeOut('slow');
+        });
     });
-});
+})
 </script>
 <% end %>
