@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   get '/student_1' ,to: 'dashboard#student_dashboard1'
   get '/student_2' ,to: 'dashboard#student_dashboard2'
 
+  get '/concours' ,to: 'dashboard#concour'
+
   devise_for :users, controllers: {
   	registrations: 'users/registrations'
   }

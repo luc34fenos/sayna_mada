@@ -22,6 +22,10 @@ class DashboardController < ApplicationController
     def student_dashboard2
 
     end
+####################
+    def concour
+
+    end
 
     private 
     def formulaire

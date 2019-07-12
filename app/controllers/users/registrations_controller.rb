@@ -14,6 +14,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
+<<<<<<< HEAD
+=======
+    puts 'c'*70
+    puts params.inspect
+    puts 'c'*70
+>>>>>>> 84d1c55c8943f4fc60cfcbfb9a68b5d1883d522b
     build_resource(sign_up_params)
 
     resource.save
@@ -181,6 +187,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
       p "C"*50
       c = Company.new(company_params)
        c.user = resource
+       c.cities = [ ]
+       c.staff = [ ]
+       c.webs = [ ]
        c.save
       p "C"*50
     end

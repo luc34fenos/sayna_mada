@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2019_07_11_073718) do
+=======
+ActiveRecord::Schema.define(version: 2019_07_12_073554) do
+>>>>>>> 84d1c55c8943f4fc60cfcbfb9a68b5d1883d522b
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +35,13 @@ ActiveRecord::Schema.define(version: 2019_07_11_073718) do
     t.string "country"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "cities_companies", id: false, force: :cascade do |t|
+    t.bigint "city_id"
+    t.bigint "company_id"
+    t.index ["city_id"], name: "index_cities_companies_on_city_id"
+    t.index ["company_id"], name: "index_cities_companies_on_company_id"
   end
 
   create_table "companies", force: :cascade do |t|
@@ -164,6 +175,7 @@ ActiveRecord::Schema.define(version: 2019_07_11_073718) do
     t.string "email", default: "", null: false
     t.string "username", default: "", null: false
     t.string "encrypted_password", default: "", null: false
+    t.string "status", default: "guest", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
