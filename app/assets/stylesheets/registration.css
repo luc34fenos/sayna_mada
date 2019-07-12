@@ -186,7 +186,7 @@ a.previous-fieldset {
     position: relative;
 }
 
-form {
+.registration form {
     border-radius: 10px;
     border: 3px solid #ccc;
     box-shadow: 0px 2px 5px 0px #444;
@@ -212,6 +212,8 @@ form#testform {
 }
 
 .registration .user-form label.agileits_label {
+    width: auto;
+    padding: 0 2%;
     font-weight: bold;
     color: #2F58B6;
     border: 1px solid #fff;
@@ -243,6 +245,8 @@ textarea {
 }
 
 textarea {
+    clear: left;
+    width: 100% !important;
     min-height: 140px;
     resize: none;
     box-sizing: border-box;
@@ -300,7 +304,7 @@ fieldset.conditions label{
 @media (min-width: 668px) and (max-width:991px) {
 
     textarea {
-        width: 75% !important;
+        width: 100% !important;
     }
 
     .main h1 {

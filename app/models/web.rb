@@ -1,3 +1,4 @@
 class Web < ApplicationRecord
-	has_one :cv
+	belongs_to :cv
+	belongs_to :company
 end

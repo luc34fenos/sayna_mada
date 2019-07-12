@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_10_115412) do
+ActiveRecord::Schema.define(version: 2019_07_11_073718) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -88,18 +88,36 @@ ActiveRecord::Schema.define(version: 2019_07_10_115412) do
     t.bigint "student_id"
     t.text "hobbies"
     t.text "summary"
+    t.string "developer_type", default: "Web"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["student_id"], name: "index_cvs_on_student_id"
   end
 
+  create_table "experiences", force: :cascade do |t|
+    t.bigint "cv_id"
+    t.string "name"
+    t.text "description"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cv_id"], name: "index_experiences_on_cv_id"
+  end
+
   create_table "languages", force: :cascade do |t|
-    t.bigint "student_id"
     t.string "name"
     t.integer "level"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["student_id"], name: "index_languages_on_student_id"
+  end
+
+  create_table "motivational_videos", force: :cascade do |t|
+    t.bigint "cv_id"
+    t.string "link"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cv_id"], name: "index_motivational_videos_on_cv_id"
   end
 
   create_table "programming_languages", force: :cascade do |t|
@@ -110,11 +128,9 @@ ActiveRecord::Schema.define(version: 2019_07_10_115412) do
   end
 
   create_table "skills", force: :cascade do |t|
-    t.bigint "student_id"
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["student_id"], name: "index_skills_on_student_id"
   end
 
   create_table "staffs", force: :cascade do |t|
@@ -131,10 +147,13 @@ ActiveRecord::Schema.define(version: 2019_07_10_115412) do
     t.bigint "user_id"
     t.string "firstname"
     t.string "lastname"
+    t.string "sexe", default: "Non confirmé"
+    t.string "marital_status", default: "Compliqué"
     t.datetime "birthdate"
     t.string "tel"
     t.string "address"
     t.bigint "city_id"
+    t.boolean "is_activated?", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["city_id"], name: "index_students_on_city_id"
@@ -160,12 +179,20 @@ ActiveRecord::Schema.define(version: 2019_07_10_115412) do
   end
 
   create_table "webs", force: :cascade do |t|
+    t.bigint "cv_id"
+    t.bigint "company_id"
     t.string "name"
     t.string "link"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_webs_on_company_id"
+    t.index ["cv_id"], name: "index_webs_on_cv_id"
   end
 
   add_foreign_key "backgrounds", "cvs"
   add_foreign_key "cover_letters", "cvs"
+  add_foreign_key "experiences", "cvs"
+  add_foreign_key "motivational_videos", "cvs"
+  add_foreign_key "webs", "companies"
+  add_foreign_key "webs", "cvs"
 end

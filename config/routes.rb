@@ -1,14 +1,15 @@
 Rails.application.routes.draw do
 
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   resources :cvs
   resources :students
   root 'home#index'
 
-  get '/company_1' ,to: 'dashboard#dashboard01'
-  get '/company_2' ,to: 'dashboard#dashboard02'
+  get '/company_1' ,to: 'dashboard#company_dashboard1'
+  get '/company_2' ,to: 'dashboard#company_dashboard2'
 
-  get '/student_1' ,to: 'dashboard#dashboard1'
-  get '/student_2' ,to: 'dashboard#dashboard2'
+  get '/student_1' ,to: 'dashboard#student_dashboard1'
+  get '/student_2' ,to: 'dashboard#student_dashboard2'
 
   devise_for :users, controllers: {
   	registrations: 'users/registrations'

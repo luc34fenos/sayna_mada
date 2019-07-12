@@ -1,0 +1,186 @@
+<center>
+    <h1>Student 1</h1>
+</center>
+<div class="">
+    <%= form_for @cv, method: :patch do |f| %>
+    <div class="cv container">
+        <center>
+            <h1>Mon Curriculum Vitae</h1>
+        </center>
+        <div class="row">
+            <div class="avatar col-md-4">
+                <% avatar = @student.sexe == 'Homme' ? 'profilh.png' : 'profilf.png' %>
+                <div class="text-center">
+                    <%= image_tag avatar, class: "img-thumbnail rounded float-left" %>
+                </div>
+            </div>
+            <div class="summary right container col-md-8">
+                <%= f.label :summary, "Résumé" %>
+                <p class="summary">
+                    <%= f.text_area :summary, value: @cv.summary, class: "form-control" %>
+                </p>
+            </div>
+        </div>
+        <!-- <hr> -->
+        <div class="row">
+            <div class="student_infos col-md-5">
+                <h2>Developpeur
+                    <%= @cv.developer_type %>
+                </h2>
+                <table class="table table-primary">
+                    <tr>
+                        <th>Nom complet</th>
+                        <td>
+                            <%= @student.lastname %>
+                            <%= @student.firstname %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Date de naissance</th>
+                        <td>
+                            <%= tag.time l(@student.birthdate, format: :long) %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Contact</th>
+                        <td>
+                            <%= @student.tel %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Addresse</th>
+                        <td>
+                            <%= @student.address %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Sexe</th>
+                        <td>
+                            <%= @student.sexe %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Etat civil</th>
+                        <td>
+                            <%= @student.marital_status %>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="experiences right col-md-7">
+                <h2>Experiences</h2>
+                <% @cv.experiences.each do |exp| %>
+                <div class="experience">
+                    <%= exp.name %>
+                </div>
+                <% end %>
+                <a href="#" id="newexp" class="btn btn-primary"><i class="fas fa-plus"></i></a>
+            </div>
+        </div>
+        <!-- <hr> -->
+        <div class="row">
+            <div class="hobbies col-md-5">
+                <%= f.label :hobbies, "Passe temps" %>
+                <p class="hobbies">
+                    <%= f.text_area :hobbies, value: @cv.hobbies, class: "form-control" %>
+                </p>
+            </div>
+            <div class="skills right col-md-7">
+                <h2>Compétences</h2>
+                <% @cv.skills.each do |skill| %>
+                <div class="skill">
+                    <%= skill.name %>
+                </div>
+                <% end %>
+                <a href="#" id="newskill" class="btn btn-primary"><i class="fas fa-plus"></i></a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5"></div>
+            <div class="right col-md-7">
+                <h2>Langues</h2>
+                <div class="languages row">
+                    <div class="col-md-4 language row">
+                        <div class="col-md-10">
+                            <select name="languages[lg0]" id="languages_lg0" class="form-control">
+                                <option>Malagasy</option>
+                                <option>Français</option>
+                                <option>English</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <a href="#" class="rmbutton btn btn-danger"><i class="fas fa-trash"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <a href="#" id="newlanguage" class="btn btn-primary"><i class="fas fa-plus"></i></a>
+            </div>
+        </div>
+    </div>
+    <% end %>
+</div>
+<div class="container col-md-4">
+    <div id="fields" class="col-12 form-group">
+        <div id="field1" class="form-group">
+            <select id="" name="" class="form-control">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+            </select>
+        </div>
+    </div>
+    <span class="col-12">
+        <button id="add" class="bw float-left btn btn-info add-more" type="button">+</button>
+    </span>
+</div>
+<% content_for :page_scripts do %>
+<script>
+let next = 1;
+$(".add-more").click(function(e) {
+    e.preventDefault();
+    let addto = "#field" + next;
+    let addRemove = "#field" + next;
+    next = next + 1;
+    let newIn = `
+                <div id="field${next}" class="form-group row">
+                    <div class="col-10 col-sm-11 col-md-11 col-lg-11">
+                        <select name="business${next}" id="field${next}" name="field${next}" class="form-control">
+                            <option value="1">E-Tech</option>
+                            <option value="2">Lomay</option>
+                            <option value="3">Everii</option>
+                            <option value="4">Vesta Security</option>
+                            <option value="5">Ingényosa</option>
+                            <option value="6">Ingédata</option>
+                            <option value="7">Société Générale</option>
+                            <option value="8">Numen</option>
+                            <option value="9">Eufonie</option>
+                            <option value="10">SaynaLab</option>
+                            <option value="11">My Smart Content</option>
+                            <option value="12">Sphères</option>
+                            <option value="13">Securex</option>
+                        </select>
+                    </div>
+                    <span class="col-2 col-sm-1 col-md-1 col-lg-1 remove">
+                        <button id="remove${next}" class="btn btn-danger remove-me" >x</button>
+                    </span>
+                </div>
+            `;
+
+    let newInput = $(newIn);
+
+    $(addto).after(newInput);
+
+    $("#field" + next).attr('data-source', $(addto).attr('data-source'));
+    $("#count").val(next);
+
+    $('.remove-me').click(function(e) {
+        e.preventDefault();
+        next = next - 1;
+        let fieldNum = this.id.charAt(this.id.length - 1);
+        let fieldID = "#field" + fieldNum;
+        $(this).remove();
+        $(fieldID).remove();
+    });
+});
+</script>
+<% end %>
