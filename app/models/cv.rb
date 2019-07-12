@@ -12,5 +12,8 @@ class Cv < ApplicationRecord
 	has_many :skills, through: :cv_skills
 
 	has_one :cover_letter
+	has_one :motivational_video
+
 	has_many :backgrounds
+	has_many :experiences
 end

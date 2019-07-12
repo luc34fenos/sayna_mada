@@ -1,3 +1,8 @@
+<% content_for :head_tag do %>
+    <%= javascript_include_tag 'simpleform.min.js' %>
+    <%= javascript_include_tag 'users/registrations.js' %>
+    <%= javascript_include_tag 'validation.js' %>
+<% end %>
 <div class="registration">
     <center>
         <h1>Sign up</h1>
@@ -10,7 +15,7 @@
                 <!-- user params -->
                 <fieldset class="personal-data w3_agileits_field">
                     <span class="w3l_personal">
-                        <%= f.text_field :username, autofocus: true, autocomplete: "username", placeHolder:"Username", class: "form-control", value: "Linx", required: "" %>
+                        <%= f.text_field :username, autofocus: true, autocomplete: "username", placeHolder:"Pseudo", class: "form-control", value: "Linx", required: "" %>
                     </span>
                     <span class="w3ls_personal">
                         <%= f.email_field :email, autofocus: true, autocomplete: "email", placeHolder:"email@address.com", class: "form-control", value: "plinsy@yopmail.com", required: "" %>
@@ -28,11 +33,11 @@
                         <div class="status">
                             <div class="col-6 col-sm-6 col-md-6 col-lg-6">
                                 <input class="form-control" value="student" type="radio" name="status" id="student" checked="" />
-                                <label for="student">Student</label>
+                                <label for="student">Etudiant</label>
                             </div>
                             <div class="col-6 col-sm-6 col-md-6 col-lg-6">
                                 <input class="form-control" value="company" type="radio" name="status" id="company" />
-                                <label for="company">Company</label>
+                                <label for="company">Enteprise</label>
                             </div>
                         </div>
                         <span class="w3_agile_personal">
@@ -45,54 +50,92 @@
                             </select>
                         </span>
                         <span class="agile_personal">
-                            <select class="form-control" name="city" id="city" required=""></select>
+                            <select class="form-control" name="city" id="city" required="">
+                                <option>Choose a state</option>
+                                <% CS.states(:AD).map do |c| %>
+                                <option value="<%= c[0] %>">
+                                    <%= c[1] %>
+                                </option>
+                                <% end %>
+                            </select>
                         </span>
                         <div class="inputs">
                             <span class="agileits_personal">
-                                <input value="0347739305" class="form-control" type="tel" id="student_tel" name="student[tel]" placeholder="Personal phone" required="" />
+                                <input value="0347739305" class="form-control" type="tel" id="student_tel" name="student[tel]" placeholder="Telephone personal" required="" />
                             </span>
                         </div>
                     </div>
                 </fieldset>
                 <fieldset class="address-data-input w3_agileits_field agileinfo_field user-form">
-                    <span class="w3l_personal">
-                        <label class="agileits_label" for="student_lastname">Lastname</label>
-                        <input value="Princy" class="form-control" type="text" id="student_lastname" name="student[lastname]" placeholder="LASTNAME" required="" />
-                    </span>
-                    <span class="w3l_personal">
-                        <label class="agileits_label" for="student_firstname">Firstname</label>
-                        <input value="Linx" class="form-control" type="text" id="student_firstname" name="student[firstname]" placeholder="Firstname" required="" />
+                    <div class="row">
+                        <div class="col-md-6" style="padding-right: 2%">
+                            <span class="w3l_personal">
+                                <label class="agileits_label" for="student_lastname">Nom de famille</label>
+                                <input value="A.N.Tsimanarson" class="form-control" type="text" id="student_lastname" name="student[lastname]" placeholder="Nom de famille" required="" />
+                            </span>
+                        </div>
+                        <div class="col-md-6" style="padding-left: 2%">
+                            <span class="w3l_personal">
+                                <label class="agileits_label" for="student_firstname">Prénom</label>
+                                <input value="Princy" class="form-control" type="text" id="student_firstname" name="student[firstname]" placeholder="Prénom" required="" />
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6" style="padding-right: 2%">
+                            <span class="w3layouts_personal">
+                                <label class="agileits_label" for="student_birthdate">Date de naissance</label>
+                                <input class="form-control" type="date" id="student_birthdate" name="student[birthdate]" placeholder="03X XXX XX XXX" required="" />
+                            </span>
+                        </div>
+                        <div class="col-md-6" style="padding-left: 2%">
+                            <span class="w3_agileits_personal">
+                                <label class="agileits_label" for="student_address">Addresse</label>
+                                <input value="Lot FMAI 124 bis 67ha SUD" class="form-control" type="text" id="student_address" name="student[address]" placeholder="Somewhere on the earth" required="" />
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6" style="padding-right: 2%">
+                            <span class="w3_agileits_personal">
+                                <label class="agileits_label" for="student_sex">Sexe</label>
+                                <select class="form-control" name="student[sexe]" id="student_sexe">
+                                    <option>Homme</option>
+                                    <option>Femme</option>
+                                    <option>Non confirmé</option>
+                                </select>
+                            </span>
+                        </div>
+                        <div class="col-md-6" style="padding-left: 2%">
+                            <span class="w3_agileits_personal">
+                                <label class="agileits_label" for="student_marital_status">état civil</label>
+                                <select class="form-control" name="student[marital_status]" id="student_marital_status">
+                                    <option>Célibataire</option>
+                                    <option>Marié</option>
+                                    <option>Mariée</option>
+                                    <option>Divorcé</option>
+                                    <option>Divorcée</option>
+                                    <option>Veuf</option>
+                                    <option>Veuve</option>
+                                </select>
+                            </span>
+                        </div>
+                    </div>
+                    <span class="w3layouts_personal">
+                        <label class="agileits_label" for="cv_hobbies">Loisirs</label>
+                        <input value="Hacking - Football - Volleyball" class="form-control" id="cv_hobbies" name="cv[hobbies]" />
                     </span>
                     <span class="w3layouts_personal">
-                        <label class="agileits_label" for="student_birthdate">Birthdate</label>
-                        <input class="form-control" type="date" id="student_birthdate" name="student[birthdate]" placeholder="93401" required="" />
-                    </span>
-                    <span class="w3_agileits_personal">
-                        <label class="agileits_label" for="student_address">Address</label>
-                        <input value="Lot FMAI 124 bis 67ha SUD" class="form-control" type="text" id="student_address" name="student[address]" placeholder="Somewhere on the earth" required="" />
-                    </span>
-                    <span class="w3layouts_personal">
-                        <label class="agileits_label" for="cv_hobbies">Hobbies</label>
-                        <input value="Football - Hacking" class="form-control" id="cv_hobbies" name="cv[hobbies]" />
-                    </span>
-                    <span class="w3layouts_personal">
-                        <label class="agileits_label" for="cv_summary">Summary</label>
-                        <textarea class="form-control" id="cv_summary" name="cv[summary]" required="" >
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        <label class="agileits_label" for="cv_summary">Résumé</label>
+                        <textarea class="form-control" id="cv_summary" name="cv[summary]" required="">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do tempor ut labore et dolore magna aliqua. Ut enim ad minim veniam, nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo. Duis aute irure dolor in reprehenderit in voluptate velit esse dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non, sunt in culpa qui officia deserunt mollit anim id est laborum.
                         </textarea>
                     </span>
-                    <style type="text/css">
-                    </style>
                 </fieldset>
                 <fieldset class="message-details w3_agileits_field conditions">
                     <span class="w3">
                         <div class="conditions">
-                            <h2>Registration conditions</h2>
+                            <h2>Conditions d'inscription</h2>
                             <p>
                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                                 tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -193,7 +236,7 @@
                     </span>
                     <div class="">
                         <input class="form-control" type="checkbox" id="registration_condition" name="registration[condition]">
-                        <label for="registration_condition">I checked without reading cuz I'm too lazy</label>
+                        <label for="registration_condition">J'accepte les conditions sans lire car j'ai trop la flemme de la lecture</label>
                     </div>
                 </fieldset>
             </div>
