@@ -24,9 +24,7 @@
         <!-- <hr> -->
         <div class="row">
             <div class="student_infos col-md-5">
-                <h2>Developpeur
-                    <%= @cv.developer_type %>
-                </h2>
+                <h2><%= link_to "Developpeur #{@cv.developer_type}", edit_student_path(@student) %></h2>
                 <table class="table table-primary">
                     <tr>
                         <th>Nom complet</th>
@@ -68,7 +66,7 @@
                 </table>
             </div>
             <div class="right col-md-7">
-                <h2>Experiences</h2>
+                <h2><%= f.label :experiences, "Experiences" %></h2>
                 <div class="experiences row" style="display: block;">
                     <div id="experience0" class="first-field experience form-group col-md-4">
 
@@ -97,13 +95,13 @@
         <!-- <hr> -->
         <div class="row">
             <div class="hobbies col-md-5">
-                <%= f.label :hobbies, "Passe temps" %>
+                <h2><%= f.label :hobbies, "Passe temps" %></h2>
                 <p class="hobbies">
                     <%= f.text_area :hobbies, value: @cv.hobbies, class: "form-control" %>
                 </p>
             </div>
             <div class="right col-md-7">
-                <h2>Compétences</h2>
+                <h2><%= f.label :skills, "Compétences" %></h2>
                 <div class="skills row">
                     <div id="skill0" class="first-field skill form-group col-md-4">
                             <select id="skill0" name="skills[skill0]" class="form-control">
@@ -157,6 +155,12 @@
     <% end %>
 </div>
 <style type="text/css">
+    .student_infos a {
+            display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: 700;
+    }
     .experiences, .skills, .languages {
         padding: 0 15px;
     }

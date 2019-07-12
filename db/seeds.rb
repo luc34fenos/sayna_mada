@@ -12,3 +12,4 @@ f.save!
 
 l = User.new(username: "linx", email: "plinsy2@gmail.com", password: "Linx#01111998", password_confirmation: "Linx#01111998", status: "admin")
 l.save!
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
