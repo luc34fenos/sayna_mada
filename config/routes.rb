@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
 
-  devise_for :admin_users, ActiveAdmin::Devise.config
-  ActiveAdmin.routes(self)
+  get 'experiences/destroy'
+  # devise_for :admin_users, ActiveAdmin::Devise.config
+  # ActiveAdmin.routes(self)
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   resources :cvs
   resources :students
@@ -9,6 +10,9 @@ Rails.application.routes.draw do
 
   get '/company_1' ,to: 'dashboard#company_dashboard1'
   get '/company_2' ,to: 'dashboard#company_dashboard2'
+  
+    get '/mondashboard', to: 'dashboard#show'
+    get '/moncv/:id', to: 'cvs#show'
 
   get '/student_1' ,to: 'dashboard#student_dashboard1'
   get '/student_2' ,to: 'dashboard#student_dashboard2'
@@ -20,7 +24,7 @@ Rails.application.routes.draw do
   }
   resources :staffs
   resources :companies
-  resources :entreprises
+  resources :experiences, only: [:update, :destroy]
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :states, only: :index

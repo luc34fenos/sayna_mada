@@ -1,4 +1,3 @@
 class Language < ApplicationRecord
-	has_many :cv_languages
-	has_many :cvs, through: :cv_languages
+	has_and_belongs_to_many :cvs
 end
