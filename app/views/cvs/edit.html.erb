@@ -1,30 +1,27 @@
 <center>
     <h1 style="text-decoration: underline; text-transform: uppercase;">student 1</h1>
 </center>
+<div class="links">
+    <nav class="nav flex-column">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <%= link_to "Aperçu", @cv, method: :get, class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+                <%= link_to "Editer", edit_cv_path(@cv), method: :get, class: "nav-link active" %>
+            </li>
+            <li class="nav-item">
+                <a class="update nav-link" href="#">Maj</a>
+            </li>
+        </ul>
+    </nav>
+</div>
 <div class="">
     <div class="cv container">
         <%= form_for @cv, method: :patch do |f| %>
         <center>
             <h1>Mon Curriculum Vitae</h1>
         </center>
-        <div class="links">
-            <nav class="nav flex-column">
-                <ul class="nav nav-tabs">
-                    <li class="nav-item">
-                        <%= link_to "Aperçu", @cv, method: :get, class: "nav-link" %>
-                    </li>
-                    <li class="nav-item">
-                        <%= link_to "Editer", edit_cv_path(@cv), method: :get, class: "nav-link active" %>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Exporter</a>
-                    </li>
-                </ul>
-            </nav>
-            <div class="float-right" style="float: right;">
-                <%= f.submit "Maj", class: "nav-link" %>
-            </div>
-        </div>
         <section class="row">
             <div class="avatar col-md-4">
                 <% avatar = @student.sexe == 'Homme' ? 'profilh.png' : 'profilf.png' %>
@@ -36,9 +33,9 @@
                 <h2>
                     <%= f.label :summary, "Résumé" %>
                 </h2>
-                <p class="summary">
+                <div id="<%= @cv.id %>" class="summary">
                     <%= f.text_area :summary, value: @cv.summary, class: "form-control" %>
-                </p>
+                </div>
             </div>
         </section>
         <!-- <hr> -->
@@ -97,11 +94,10 @@
                     <div id="experience<%= ex.id %>" class="field experience old form-group col-md-4 row">
                         <input type="text" id="exp<%= ex.id %>0" name="expnames[name<%= ex.id %>]" class="form-control" value="<%= ex.name %>">
                         <div class="actions collapse row">
-                          <div class="col-md-10" style="padding: 0 0 0 2%;">
-                            <textarea id="exp<%= ex.id %>1" name="expdescriptions[description<%= ex.id %>]" class="level form-control col-md-10"><%= ex.description %></textarea>
-                          </div>
+                            <div class="col-md-10" style="padding: 0 0 0 2%;">
+                                <textarea id="exp<%= ex.id %>1" name="expdescriptions[description<%= ex.id %>]" class="level form-control col-md-10"><%= ex.description %></textarea>
+                            </div>
                             <div class="col-md-2" style="padding: 0 0 0 2%;">
-                                <a href="#" class="update"><i class="fa fa-arrow-down"></i></a>
                                 <a id="rmexperience<%= ex.id %>" class="remove-me"><i class="fa fa-trash"></i></a>
                             </div>
                         </div>
@@ -207,9 +203,9 @@
                     <h2>
                         <%= f.label :hobbies, "Passe temps" %>
                     </h2>
-                    <p class="hobbies">
+                    <div id="<%= @cv.id %>" class="field hobbies">
                         <%= f.text_area :hobbies, value: @cv.hobbies, class: "form-control" %>
-                    </p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -234,12 +230,15 @@ $(document).ready(function($) {
         if (id == "experiences") {
             newID = children.length + 1;
             newInput = `
-              <div id="experience${newID}" class="field experience form-group col-md-4 row">
+              <div id="experience${newID}" class="field experience new form-group col-md-4 row">
                 <input type="text" id="exp${newID}0" name="expnames[name${newID}]" class="form-control">
-                  <textarea id="exp${newID}1" name="expdescriptions[description${newID}]" class="level hide form-control"></textarea>
-                <div class="actions collapse">
-                  <a href="#" class="update btn btn-default">D</a>
-                  <a id="rmexperience${newID}" class="btn btn-danger remove-me"><i class="fa fa-trash"></i></a>
+                <div class="actions collapse row">
+                  <div class="col-md-10" style="padding: 0 0 0 2%;">
+                    <textarea id="exp${newID}1" name="expdescriptions[description${newID}]" class="level form-control col-md-10"></textarea>
+                  </div>
+                  <div class="col-md-2" style="padding: 0 0 0 2%;">
+                    <a id="rmexperience${newID}" class="remove-me"><i class="fa fa-trash"></i></a>
+                  </div>
                 </div>
               </div>
             `;
@@ -299,6 +298,7 @@ $(document).ready(function($) {
 
         removeDiv();
         toggleActions();
+        updateDiv();
     });
 
     function removeDiv() {
@@ -339,47 +339,66 @@ $(document).ready(function($) {
     removeDiv();
 
     function updateDiv() {
-      $(`input`).focusout(function(event) {
-        let div = $(this).parent();
-        if (div.hasClass('old')) {
-          let $ID, $NAME, $URL;
-          $NAME = this.value
-          if (div.hasClass('experience')) {
-            $ID = div.attr('id').slice(10, div.attr('id').length);
-            $URL = `/experiences/${$ID}`;
-          }
-          $.ajax({
-            url: $URL,
-            type: 'PATCH',
-            data: {
-              "authenticity_token": "+aLO+xloDFkm+Gqwz5LEDqTa7T2UjaLOg4d56UZQOdVXWbPtuXC7/FgSRNzCTqsom+lWbuqwgc9qrjzQUMY0Ww==",
-              id: $ID,
-              name: $NAME
+        $(`input`).focusout(function(event) {
+            let div = $(this).parent('.field:first');
+            if (div.hasClass('old')) {
+                let $ID, $NAME, $URL;
+                $NAME = this.value;
+                if (div.hasClass('experience')) {
+                    $ID = div.attr('id').slice(10, div.attr('id').length);
+                    $URL = `/experiences/${$ID}`;
+                }
+                $.ajax({
+                    url: $URL,
+                    type: 'PATCH',
+                    data: {
+                        "authenticity_token": "+aLO+xloDFkm+Gqwz5LEDqTa7T2UjaLOg4d56UZQOdVXWbPtuXC7/FgSRNzCTqsom+lWbuqwgc9qrjzQUMY0Ww==",
+                        id: $ID,
+                        name: $NAME
+                    }
+                });
+            } else if (div.hasClass('new')) {
+                let $CVID, $NAME, $URL;
+                $CVID = <%= @cv.id %>;
+                $NAME = this.value;
+                if (div.hasClass('experience')) {
+                    $URL = `/experiences`;
+                }
+                $.ajax({
+                    url: $URL,
+                    type: 'POST',
+                    data: {
+                        "authenticity_token": "+aLO+xloDFkm+Gqwz5LEDqTa7T2UjaLOg4d56UZQOdVXWbPtuXC7/FgSRNzCTqsom+lWbuqwgc9qrjzQUMY0Ww==",
+                        cv_id: $CVID,
+                        name: $NAME
+                    }
+                });
+
+                div.addClass('old');
             }
-          });
-        }
-      });
-      $(`textarea`).focusout(function(event) {
-        let div = $(this).parents('field:first');
-        console.log(div);
-        // if (div.hasClass('old')) {
-        //   let $ID, $NAME, $URL;
-        //   $NAME = this.value
-        //   if (div.hasClass('experience')) {
-        //     $ID = div.attr('id').slice(10, div.attr('id').length);
-        //     $URL = `/experiences/${$ID}`;
-        //   }
-        //   $.ajax({
-        //     url: $URL,
-        //     type: 'PATCH',
-        //     data: {
-        //       "authenticity_token": "+aLO+xloDFkm+Gqwz5LEDqTa7T2UjaLOg4d56UZQOdVXWbPtuXC7/FgSRNzCTqsom+lWbuqwgc9qrjzQUMY0Ww==",
-        //       id: $ID,
-        //       name: $NAME
-        //     }
-        //   });
-        // }
-      });
+        });
+        $(`textarea`).focusout(function(event) {
+            let div = $(this).parents('.field:first');
+
+            if (div.hasClass('old')) {
+                let $ID, $CONTENT, $URL;
+                $CONTENT = this.value;
+                if (div.hasClass('experience')) {
+                    $ID = div.attr('id').slice(10, div.attr('id').length);
+                    $URL = `/experiences/${$ID}`;
+                }
+
+                $.ajax({
+                    url: $URL,
+                    type: 'PATCH',
+                    data: {
+                        "authenticity_token": "+aLO+xloDFkm+Gqwz5LEDqTa7T2UjaLOg4d56UZQOdVXWbPtuXC7/FgSRNzCTqsom+lWbuqwgc9qrjzQUMY0Ww==",
+                        id: $ID,
+                        description: $CONTENT
+                    }
+                });
+            }
+        });
     }
     updateDiv();
 

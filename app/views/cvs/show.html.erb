@@ -1,26 +1,26 @@
 <center>
     <h1 style="text-decoration: underline; text-transform: uppercase;">student 1</h1>
 </center>
+<div class="links">
+    <nav class="nav flex-column">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" href="/moncv/<%= @cv.id %>" data-method="GET">Aperçu</a>
+            </li>
+            <li class="nav-item">
+                <%= link_to "Editer", edit_cv_path(@cv), method: :get, class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Exporter</a>
+            </li>
+        </ul>
+    </nav>
+</div>
 <div class="">
     <div class="cv container">
         <center>
             <h1>Mon Curriculum Vitae</h1>
         </center>
-        <div class="links">
-            <nav class="nav flex-column">
-                <ul class="nav nav-tabs">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="/moncv/<%= @cv.id %>" data-method="GET">Aperçu</a>
-                    </li>
-                    <li class="nav-item">
-                        <%= link_to "Editer", edit_cv_path(@cv), method: :get, class: "nav-link" %>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Exporter</a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
         <section class="row">
             <div class="avatar col-md-4">
                 <% avatar = @student.sexe == 'Homme' ? 'profilh.png' : 'profilf.png' %>
