@@ -1,0 +1,11 @@
+let div = $(`div.field.new.old:first`);
+div.attr('id', 'skill<%=@skill.id%>');
+
+let name = div.children('input:first');
+name.attr('id', 'skill<%=@skill.id%>0');
+name.attr('name', 'skillnames[name<%=@skill.id%>]');
+
+let remove = div.children('a.remove-me:first');
+remove.attr('id', 'rmskill<%=@skill.id%>');
+
+div.removeClass('new');

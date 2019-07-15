@@ -4,12 +4,12 @@
 </h1>
 <% if current_user.student && !current_user.student.is_activated? %>
 <%= render template: 'dashboard/student_dashboard1' %>
-<% elsif current_user.company && current_user.student.is_activated? %>
-<%= render template: 'student_dashboard2' %>
+<% elsif current_user.student && current_user.student.is_activated? %>
+<%= render template: 'dashboard/student_dashboard2' %>
 <% elsif current_user.company && !current_user.company.is_activated? %>
-<%= render template: 'company_dashboard1.html.erb' %>
+<%= render template: 'dashboard/company_dashboard1.html.erb' %>
 <% elsif current_user.company && current_user.company.is_activated? %>
-<%= render template: 'company_dashboard2.html.erb' %>
+<%= render template: 'dashboard/company_dashboard2.html.erb' %>
 <% elsif current_user.status == "admin" %>
 <% else %>
 <% end %>
