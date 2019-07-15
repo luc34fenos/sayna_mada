@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   get '/company_1' ,to: 'dashboard#company_dashboard1'
   get '/company_2' ,to: 'dashboard#company_dashboard2'
-  
+
     get '/mondashboard', to: 'dashboard#show'
     get '/moncv/:id', to: 'cvs#show'
 
@@ -29,5 +29,4 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :states, only: :index
 
-  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 end

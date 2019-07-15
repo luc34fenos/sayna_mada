@@ -1,6 +1,9 @@
 <h1>Editing Company</h1>
 
 <%= render 'form', company: @company %>
-
+          <%= form_for @company, method: :patch do |f| %>
+          <% @company.staff.each do |staf| %>
+          
+          <% end %>
 <%= link_to 'Show', @company %> |
 <%= link_to 'Back', companies_path %>

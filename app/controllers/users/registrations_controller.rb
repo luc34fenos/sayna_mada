@@ -203,7 +203,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     params.require(:student).permit(:tel, :lastname, :firstname, :birthdate, :address, :sexe, :marital_status)
   end
   def company_params
-    params.require(:company).permit(:tel, :start_date, :address, :legal_status, :phone, :activity_area , :siret, :other)
+    params.require(:company).permit(:name,  :tel, :start_date, :address, :legal_status, :phone, :activity_area , :siret, :other)
   end
   def cv_params
     params.require(:cv).permit(:hobbies, :summary)
