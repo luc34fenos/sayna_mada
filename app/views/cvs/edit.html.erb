@@ -1,3 +1,9 @@
+<%
+def level_blank(level)
+  5 - level
+end
+%>
+
 <center>
     <h1 style="text-decoration: underline; text-transform: uppercase;">student 1</h1>
 </center>
@@ -11,14 +17,14 @@
                 <%= link_to "Editer", edit_cv_path(@cv), method: :get, class: "nav-link active" %>
             </li>
             <li class="nav-item">
-                <a class="update nav-link" href="#">Maj</a>
+                <a class="update nav-link" href="#" id="update">Maj</a>
             </li>
         </ul>
     </nav>
 </div>
 <div class="">
     <div class="cv container">
-        <%= form_for @cv, method: :patch do |f| %>
+        <%= form_for @cv, method: :patch, html: {class: "updateCV", id: "updateCV"} do |f| %>
         <center>
             <h1>Mon Curriculum Vitae</h1>
         </center>
@@ -33,7 +39,7 @@
                 <h2>
                     <%= f.label :summary, "Résumé" %>
                 </h2>
-                <div id="<%= @cv.id %>" class="summary">
+                <div id="<%= @cv.id %>" class="summary field">
                     <%= f.text_area :summary, value: @cv.summary, class: "form-control" %>
                 </div>
             </div>
@@ -119,24 +125,28 @@
                 <div class="programming_languages row">
                     <% @cv.programming_languages.each do |programming_language| %>
                     <% if programming_language %>
-                    <div id="programming_language<%= programming_language.id %>" class="programming_language form-group col-md-6 row">
-                        <div class="col-md-11">
-                            <%= programming_language.name %>
+                    <div id="programming_language<%= programming_language.id %>" class="field programming_language old form-group col-md-4 row">
+                        <input type="text" id="programming_language<%= programming_language.id %>0" name="programming_languagenames[name<%= programming_language.id %>]" class="form-control" value="<%= programming_language.name %>">
+                        <div class="actions collapse row">
+                          <div class="col-md-12 row" style="padding-right: 0;">
+                            <% programming_language.level.to_i.times do  %>
+                              <div class="col-md-2" style="padding: 0 10px 0 10px;">
+                                <span class="glyphicon glyphicon-star" style="color: gold;"></span>
+                              </div>
+                            <% end %>
+                            <% level_blank(programming_language.level.to_i).times do  %>
+                              <div class="col-md-2" style="padding: 0 10px 0 10px;">
+                                <span class="glyphicon glyphicon-star-empty" style="color: gold;"></span>
+                              </div>
+                            <% end %>
+                          </div>
+                          <div class="col-md-2" style="padding: 0 0 0 2%;">
+                            <a id="rmprogramming_language<%= programming_language.id %>" class="remove-me"><i class="fa fa-trash"></i></a>
+                          </div>
                         </div>
-                        <span class="col-2 col-sm-1 col-md-1 col-lg-1 remove">
-                            <a href="#" id="rmprogramming_language<%= programming_language.id %>" class="btn btn-danger remove-me"><i class="fas fa-plus"></i></a>
-                        </span>
                     </div>
                     <% end %>
                     <% end %>
-                    <div id="programming_language0" class="first-field programming_language form-group col-md-6">
-                        <select id="programming_language0" name="programming_languages[programming_language0]" class="form-control">
-                            <option>Aucune</option>
-                            <option>programming_language1</option>
-                            <option>programming_language2</option>
-                            <option>programming_language3</option>
-                        </select>
-                    </div>
                 </div>
                 <a href="#" id="programming_languages" class="add-more btn btn-primary"><i class="fas fa-plus"></i></a>
             </div>
@@ -147,24 +157,16 @@
                 <div class="skills row">
                     <% @cv.skills.each do |skill| %>
                     <% if skill %>
-                    <div id="skill<%= skill.id %>" class="skill form-group col-md-4 row">
-                        <div class="col-md-11">
-                            <%= skill.name %>
+                    <div id="skill<%= skill.id %>" class="field skill old form-group col-md-4 row">
+                        <input type="text" id="skill<%= skill.id %>0" name="skillnames[name<%= skill.id %>]" class="form-control" value="<%= skill.name %>">
+                        <div class="actions collapse row">
+                            <div class="col-md-2" style="padding: 0 0 0 2%;">
+                                <a id="rmskill<%= skill.id %>" class="remove-me"><i class="fa fa-trash"></i></a>
+                            </div>
                         </div>
-                        <span class="col-2 col-sm-1 col-md-1 col-lg-1 remove">
-                            <button id="rmskill<%= skill.id %>" class="btn btn-danger remove-me">x</button>
-                        </span>
                     </div>
                     <% end %>
                     <% end %>
-                    <div id="skill0" class="first-field skill form-group col-md-4">
-                        <select id="skill0" name="skills[skill0]" class="form-control">
-                            <option>Aucune</option>
-                            <option>skill1</option>
-                            <option>skill2</option>
-                            <option>skill3</option>
-                        </select>
-                    </div>
                 </div>
                 <a href="#" id="skills" class="add-more btn btn-primary"><i class="fas fa-plus"></i></a>
             </div>
@@ -177,24 +179,28 @@
                 <div class="languages row">
                     <% @cv.languages.each do |language| %>
                     <% if language %>
-                    <div id="language<%= language.id %>" class="language form-group col-md-6 row">
-                        <div class="col-md-11">
-                            <%= language.name %>
+                    <div id="language<%= language.id %>" class="field language old form-group col-md-4 row">
+                        <input type="text" id="language<%= language.id %>0" name="languagenames[name<%= language.id %>]" class="form-control" value="<%= language.name %>">
+                        <div class="actions collapse row">
+                          <div class="col-md-12 row" style="padding-right: 0;">
+                            <% language.level.to_i.times do  %>
+                              <div class="col-md-2" style="padding: 0 10px 0 10px;">
+                                <span class="glyphicon glyphicon-star" style="color: gold;"></span>
+                              </div>
+                            <% end %>
+                            <% level_blank(language.level.to_i).times do  %>
+                              <div class="col-md-2" style="padding: 0 10px 0 10px;">
+                                <span class="glyphicon glyphicon-star-empty" style="color: gold;"></span>
+                              </div>
+                            <% end %>
+                          </div>
+                          <div class="col-md-2" style="padding: 0 0 0 2%;">
+                            <a id="rmlanguage<%= language.id %>" class="remove-me"><i class="fa fa-trash"></i></a>
+                          </div>
                         </div>
-                        <span class="col-2 col-sm-1 col-md-1 col-lg-1 remove">
-                            <a href="#" id="rmlanguage<%= language.id %>" class="btn btn-danger remove-me"><i class="fas fa-plus"></i></a>
-                        </span>
                     </div>
                     <% end %>
                     <% end %>
-                    <div id="language0" class="first-field language form-group col-md-6">
-                        <select id="language0" name="languages[language0]" class="form-control">
-                            <option>Aucune</option>
-                            <option>language1</option>
-                            <option>language2</option>
-                            <option>language3</option>
-                        </select>
-                    </div>
                 </div>
                 <a href="#" id="languages" class="add-more btn btn-primary"><i class="fas fa-plus"></i></a>
             </div>
@@ -216,6 +222,13 @@
 <% content_for :head_tag do %>
 <script>
 $(document).ready(function($) {
+    function updateCV(){
+      $(`a#update`).click(function(event) {
+        event.preventDefault();
+        $(`form#updateCV`).submit();
+      });
+    }
+    updateCV();
 
     $(".add-more").click(function(e) {
         e.preventDefault();
@@ -245,50 +258,62 @@ $(document).ready(function($) {
         } else if (id == "skills") {
             newID = children.length + 1;
             newInput = `
-                <div id="skill${newID}" class="skill form-group col-md-4 row">
-                    <div class="col-md-11">
-                        <select id="skill${newID}" name="skills[skill${newID}]" class="form-control">
-                            <option>skill1</option>
-                            <option>skill2</option>
-                            <option>skill3</option>
-                        </select>
-                    </div>
-                    <div class="col-2 col-sm-1 col-md-1 col-lg-1 remove">
-                        <a id="rmskill${newID}" class="btn btn-danger remove-me" >x</a>
-                    </div>
+              <div id="skill${newID}" class="field skill new form-group col-md-4 row">
+                <input type="text" id="skill${newID}0" name="skillnames[name${newID}]" class="form-control">
+                <div class="actions collapse row">
+                  <div class="col-md-2" style="padding: 0 0 0 2%;">
+                    <a id="rmskill${newID}" class="remove-me"><i class="fa fa-trash"></i></a>
+                  </div>
                 </div>
+              </div>
             `;
         } else if (id == "languages") {
             newID = children.length + 1;
             newInput = `
-                <div id="language${newID}" class="language form-group col-md-6 row">
-                    <div class="col-md-11">
-                        <select id="language${newID}" name="languages[language${newID}]" class="form-control">
-                            <option>language1</option>
-                            <option>language2</option>
-                            <option>language3</option>
-                        </select>
+              <div id="language${newID}" class="field language new form-group col-md-4 row">
+                <input type="text" id="language${newID}0" name="languagenames[name${newID}]" class="form-control">
+                <div class="actions collapse row">
+                  <div class="col-md-12 row" style="padding-right: 0;">
+                    <% 3.times do %>
+                    <div class="col-md-2" style="padding: 0 10px 0 10px;">
+                      <span class="glyphicon glyphicon-star" style="color: gold;"></span>
                     </div>
-                    <div class="col-2 col-sm-1 col-md-1 col-lg-1 remove">
-                        <a id="rmlanguage${newID}" class="btn btn-danger remove-me" >x</a>
+                    <% end %>
+                    <% 2.times do %>
+                    <div class="col-md-2" style="padding: 0 10px 0 10px;">
+                      <span class="glyphicon glyphicon-star-empty" style="color: gold;"></span>
                     </div>
+                    <% end %>
+                  </div>
+                  <div class="col-md-2" style="padding: 0 0 0 2%;">
+                    <a id="rmlanguage${newID}" class="remove-me" style="float: right;"><i class="fa fa-trash"></i></a>
+                  </div>
                 </div>
+              </div>
             `;
         } else if (id == "programming_languages") {
             newID = children.length + 1;
             newInput = `
-                <div id="programming_language${newID}" class="programming_language form-group col-md-6 row">
-                    <div class="col-md-11">
-                        <select id="programming_language${newID}" name="programming_languages[programming_language${newID}]" class="form-control">
-                            <option>programming_language1</option>
-                            <option>programming_language2</option>
-                            <option>programming_language3</option>
-                        </select>
+              <div id="programming_language${newID}" class="field programming_language new form-group col-md-4 row">
+                <input type="text" id="programming_language${newID}0" name="programming_languagenames[name${newID}]" class="form-control">
+                <div class="actions collapse row">            
+                  <div class="col-md-12 row" style="padding-right: 0;">
+                    <% 3.times do %>
+                    <div class="col-md-2" style="padding: 0 10px 0 10px;">
+                    <span class="glyphicon glyphicon-star" style="color: gold;"></span>
                     </div>
-                    <div class="col-2 col-sm-1 col-md-1 col-lg-1 remove">
-                        <a id="rmprogramming_language${newID}" class="btn btn-danger remove-me" >x</a>
+                    <% end %>
+                    <% 2.times do %>
+                    <div class="col-md-2" style="padding: 0 10px 0 10px;">
+                    <span class="glyphicon glyphicon-star-empty" style="color: gold;"></span>
                     </div>
+                    <% end %>
+                  </div>
+                  <div class="col-md-2" style="padding: 0 0 0 2%;">
+                    <a id="rmprogramming_language${newID}" class="remove-me" style="float: right;"><i class="fa fa-trash"></i></a>
+                  </div>
                 </div>
+              </div>
             `;
         } else {
             newInput = ``;
@@ -296,82 +321,121 @@ $(document).ready(function($) {
 
         $(div).append(newInput);
 
-        removeDiv();
+        destroyDiv();
         toggleActions();
         updateDiv();
     });
 
-    function removeDiv() {
+    function destroyDiv() {
         $(".remove-me").click(function(e) {
             e.preventDefault();
             let id = this.id.slice(2, this.id.length);
-            let div = $(`div#${id}`);
+            let div = $(this).parents('.field:first');
             div.fadeOut('slow', function() {
                 div.remove();
 
                 if (div.hasClass('old')) {
-                    let $ID = div.attr('id').slice(10, div.attr('id').length);
+                    let $ID;
 
                     if (div.hasClass('experience')) {
-                        $.ajax({
-                                url: `/experiences/${$ID}`,
-                                method: 'DELETE',
-                                data: {
-                                    "authenticity_token": "+aLO+xloDFkm+Gqwz5LEDqTa7T2UjaLOg4d56UZQOdVXWbPtuXC7/FgSRNzCTqsom+lWbuqwgc9qrjzQUMY0Ww==",
-                                    id: $ID
-                                }
-                            })
-                            .done(function() {
-                                console.log("success");
-                            })
-                            .fail(function() {
-                                console.log("error");
-                            })
-                            .always(function() {
-                                console.log("complete");
-                            });
+                      $ID = div.attr('id').slice('experience'.length, div.attr('id').length);
+                      $.ajax({
+                        url: `/experiences/${$ID}`,
+                        method: 'DELETE',
+                        data: {
+                          "authenticity_token": "JCisvOWDgl7FgYbLGwk35s7sR1+u1weWTRv3TwKk+cAt61lLWGVnQJmETd2/10NU+HGzT5T/6GJEWJRt3N5KNg==",
+                          id: $ID
+                        }
+                      });
                     }
-
+                    if (div.hasClass('skill')) {
+                      $ID = div.attr('id').slice('skill'.length, div.attr('id').length);
+                      $.ajax({
+                        url: `/skills/${$ID}`,
+                        method: 'DELETE',
+                        data: {
+                          "authenticity_token": "JCisvOWDgl7FgYbLGwk35s7sR1+u1weWTRv3TwKk+cAt61lLWGVnQJmETd2/10NU+HGzT5T/6GJEWJRt3N5KNg==",
+                          id: $ID
+                        }
+                      });
+                    }
+                    if (div.hasClass('programming_language')) {
+                      $ID = div.attr('id').slice('programming_language'.length, div.attr('id').length);
+                      $.ajax({
+                        url: `/programming_languages/${$ID}`,
+                        method: 'DELETE',
+                        data: {
+                          "authenticity_token": "JCisvOWDgl7FgYbLGwk35s7sR1+u1weWTRv3TwKk+cAt61lLWGVnQJmETd2/10NU+HGzT5T/6GJEWJRt3N5KNg==",
+                          id: $ID
+                        }
+                      });
+                    }
+                    if (div.hasClass('language')) {
+                      $ID = div.attr('id').slice('language'.length, div.attr('id').length);
+                      $.ajax({
+                        url: `/languages/${$ID}`,
+                        method: 'DELETE',
+                        data: {
+                          "authenticity_token": "JCisvOWDgl7FgYbLGwk35s7sR1+u1weWTRv3TwKk+cAt61lLWGVnQJmETd2/10NU+HGzT5T/6GJEWJRt3N5KNg==",
+                          id: $ID
+                        }
+                      });
+                    }
                 }
             });
         });
     }
-    removeDiv();
+    destroyDiv();
 
     function updateDiv() {
         $(`input`).focusout(function(event) {
-            let div = $(this).parent('.field:first');
-            if (div.hasClass('old')) {
+            let div = $(this).parents('.field:first');
+            if (div.hasClass('old')) { // update
                 let $ID, $NAME, $URL;
                 $NAME = this.value;
                 if (div.hasClass('experience')) {
-                    $ID = div.attr('id').slice(10, div.attr('id').length);
+                    $ID = div.attr('id').slice('experience'.length, div.attr('id').length);
                     $URL = `/experiences/${$ID}`;
                 }
+                else if (div.hasClass('skill')) {
+                    $ID = div.attr('id').slice('skill'.length, div.attr('id').length);
+                    $URL = `/skills/${$ID}`;
+                }
+                else if (div.hasClass('programming_language')) {
+                    $ID = div.attr('id').slice('programming_language'.length, div.attr('id').length);
+                    $URL = `/programming_languages/${$ID}`;
+                }
                 $.ajax({
-                    url: $URL,
-                    type: 'PATCH',
-                    data: {
-                        "authenticity_token": "+aLO+xloDFkm+Gqwz5LEDqTa7T2UjaLOg4d56UZQOdVXWbPtuXC7/FgSRNzCTqsom+lWbuqwgc9qrjzQUMY0Ww==",
-                        id: $ID,
-                        name: $NAME
-                    }
+                  url: $URL,
+                  type: 'PATCH',
+                  data: {
+                    "authenticity_token": "JCisvOWDgl7FgYbLGwk35s7sR1+u1weWTRv3TwKk+cAt61lLWGVnQJmETd2/10NU+HGzT5T/6GJEWJRt3N5KNg==",
+                    id: $ID,
+                    name: $NAME
+                  }
                 });
-            } else if (div.hasClass('new')) {
+            } else if (div.hasClass('new')) { // create
                 let $CVID, $NAME, $URL;
                 $CVID = <%= @cv.id %>;
                 $NAME = this.value;
                 if (div.hasClass('experience')) {
                     $URL = `/experiences`;
+                } else if (div.hasClass('skill')) {
+                    $URL = `/skills`;
+                } else if (div.hasClass('programming_language')) {
+                    $URL = `/programming_languages`;
+                } else if (div.hasClass('language')) {
+                    $URL = `/languages`;
                 }
+
                 $.ajax({
-                    url: $URL,
-                    type: 'POST',
-                    data: {
-                        "authenticity_token": "+aLO+xloDFkm+Gqwz5LEDqTa7T2UjaLOg4d56UZQOdVXWbPtuXC7/FgSRNzCTqsom+lWbuqwgc9qrjzQUMY0Ww==",
-                        cv_id: $CVID,
-                        name: $NAME
-                    }
+                  url: $URL,
+                  type: 'POST',
+                  data: {
+                    "authenticity_token": "JCisvOWDgl7FgYbLGwk35s7sR1+u1weWTRv3TwKk+cAt61lLWGVnQJmETd2/10NU+HGzT5T/6GJEWJRt3N5KNg==",
+                    cv_id: $CVID,
+                    name: $NAME
+                  }
                 });
 
                 div.addClass('old');
@@ -379,6 +443,11 @@ $(document).ready(function($) {
         });
         $(`textarea`).focusout(function(event) {
             let div = $(this).parents('.field:first');
+
+            $(`a#update`).css({
+              'background-color': 'gold',
+              'text-transform': 'uppercase'
+            });
 
             if (div.hasClass('old')) {
                 let $ID, $CONTENT, $URL;
@@ -392,11 +461,42 @@ $(document).ready(function($) {
                     url: $URL,
                     type: 'PATCH',
                     data: {
-                        "authenticity_token": "+aLO+xloDFkm+Gqwz5LEDqTa7T2UjaLOg4d56UZQOdVXWbPtuXC7/FgSRNzCTqsom+lWbuqwgc9qrjzQUMY0Ww==",
-                        id: $ID,
-                        description: $CONTENT
+                      "authenticity_token": "JCisvOWDgl7FgYbLGwk35s7sR1+u1weWTRv3TwKk+cAt61lLWGVnQJmETd2/10NU+HGzT5T/6GJEWJRt3N5KNg==",
+                      id: $ID,
+                      description: $CONTENT
                     }
                 });
+            }
+        });
+        $(`span.glyphicon`).click(function(event) {
+          let div = $(this).parents('.field:first');
+
+            $(`a#update`).css({
+              'background-color': 'gold',
+              'text-transform': 'uppercase'
+            });
+
+            if (div.hasClass('old')) {
+                let $ID, $LEVEL, $URL;
+
+                console.log( div );
+                console.log( div.children('span.glyphicon').length );
+                console.log( div.children('span.glyphicon').index($(this)) );
+                // $CONTENT = this.value;
+                // if (div.hasClass('experience')) {
+                //     $ID = div.attr('id').slice(10, div.attr('id').length);
+                //     $URL = `/experiences/${$ID}`;
+                // }
+
+                // $.ajax({
+                //     url: $URL,
+                //     type: 'PATCH',
+                //     data: {
+                //       "authenticity_token": "JCisvOWDgl7FgYbLGwk35s7sR1+u1weWTRv3TwKk+cAt61lLWGVnQJmETd2/10NU+HGzT5T/6GJEWJRt3N5KNg==",
+                //       id: $ID,
+                //       description: $CONTENT
+                //     }
+                // });
             }
         });
     }

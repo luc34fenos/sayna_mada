@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'experiences/destroy'
   # devise_for :admin_users, ActiveAdmin::Devise.config
   # ActiveAdmin.routes(self)
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
@@ -24,9 +23,15 @@ Rails.application.routes.draw do
   }
   resources :staffs
   resources :companies
+  resources :skills, only: [:create, :update, :destroy]
+  resources :languages, only: [:create, :update, :destroy]
   resources :experiences, only: [:create, :update, :destroy]
+  resources :programming_languages, only: [:create, :update, :destroy]
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :states, only: :index
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9ea6bf12aff0427239d66a6bd3b7623da3904dbb
 end

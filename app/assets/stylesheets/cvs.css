@@ -12,10 +12,6 @@
     font-size: 1.2em;
 }
 
-.language {
-    display: -webkit-inline-box;
-}
-
 .language .col-md-10 {
     padding-right: 2% !important;
 }

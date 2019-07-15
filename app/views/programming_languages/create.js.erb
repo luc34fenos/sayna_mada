@@ -1,0 +1,15 @@
+let div = $(`div.field.new.old:first`);
+div.attr('id', 'pl<%=@pl.id%>');
+
+let name = div.children('input:first');
+name.attr('id', 'pl<%=@pl.id%>0');
+name.attr('name', 'plnames[name<%=@pl.id%>]');
+
+// let level = div.children('textarea:first');
+// level.attr('id', 'pl<%=@pl.id%>1');
+// level.attr('name', 'pllevels[level<%=@pl.id%>]');
+
+let remove = div.children('a.remove-me:first');
+remove.attr('id', 'rmpl<%=@pl.id%>');
+
+div.removeClass('new');
