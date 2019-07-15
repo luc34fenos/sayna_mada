@@ -1,0 +1,15 @@
+let div = $(`div.field.new.old:first`);
+div.attr('id', 'experience<%=@experience.id%>');
+
+let name = div.children('input:first');
+name.attr('id', 'exp<%=@experience.id%>0');
+name.attr('name', 'expnames[name<%=@experience.id%>]');
+
+let description = div.children('textarea:first');
+description.attr('id', 'exp<%=@experience.id%>1');
+description.attr('name', 'expdescriptions[description<%=@experience.id%>]');
+
+let remove = div.children('a.remove-me:first');
+remove.attr('id', 'rmexperience<%=@experience.id%>');
+
+div.removeClass('new');

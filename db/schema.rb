@@ -10,10 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_12_073554) do
+ActiveRecord::Schema.define(version: 2019_07_13_101529) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "active_admin_comments", force: :cascade do |t|
+    t.string "namespace"
+    t.text "body"
+    t.string "resource_type"
+    t.bigint "resource_id"
+    t.string "author_type"
+    t.bigint "author_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
+    t.index ["namespace"], name: "index_active_admin_comments_on_namespace"
+    t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
+  end
+
+  create_table "admin_users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_admin_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+  end
 
   create_table "backgrounds", force: :cascade do |t|
     t.string "name"
@@ -57,47 +83,43 @@ ActiveRecord::Schema.define(version: 2019_07_12_073554) do
   end
 
   create_table "cover_letters", force: :cascade do |t|
-    t.text "content"
     t.bigint "cv_id"
+    t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["cv_id"], name: "index_cover_letters_on_cv_id"
-  end
-
-  create_table "cv_languages", force: :cascade do |t|
-    t.bigint "cv_id"
-    t.bigint "language_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["cv_id"], name: "index_cv_languages_on_cv_id"
-    t.index ["language_id"], name: "index_cv_languages_on_language_id"
-  end
-
-  create_table "cv_programming_languages", force: :cascade do |t|
-    t.bigint "cv_id"
-    t.bigint "programming_language_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["cv_id"], name: "index_cv_programming_languages_on_cv_id"
-    t.index ["programming_language_id"], name: "index_cv_programming_languages_on_programming_language_id"
-  end
-
-  create_table "cv_skills", force: :cascade do |t|
-    t.bigint "cv_id"
-    t.bigint "skill_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["cv_id"], name: "index_cv_skills_on_cv_id"
-    t.index ["skill_id"], name: "index_cv_skills_on_skill_id"
   end
 
   create_table "cvs", force: :cascade do |t|
     t.bigint "student_id"
     t.text "hobbies"
     t.text "summary"
+    t.string "developer_type", default: "Developpeur Web"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["student_id"], name: "index_cvs_on_student_id"
+  end
+
+  create_table "cvs_languages", id: false, force: :cascade do |t|
+    t.bigint "cv_id", null: false
+    t.bigint "language_id", null: false
+    t.index ["cv_id"], name: "index_cvs_languages_on_cv_id"
+    t.index ["language_id"], name: "index_cvs_languages_on_language_id"
+  end
+
+  create_table "cvs_programming_languages", id: false, force: :cascade do |t|
+    t.bigint "cv_id", null: false
+    t.bigint "programming_language_id", null: false
+    t.index ["cv_id"], name: "index_cvs_programming_languages_on_cv_id"
+    t.index ["programming_language_id"], name: "index_cvs_programming_languages_on_programming_language_id"
+  end
+
+  create_table "cvs_skills", id: false, force: :cascade do |t|
+    t.bigint "cv_id", null: false
+    t.bigint "skill_id", null: false
+    t.index ["cv_id"], name: "index_cvs_skills_on_cv_id"
+    t.index ["skill_id"], name: "index_cvs_skills_on_skill_id"
+
   end
 
   create_table "experiences", force: :cascade do |t|
@@ -194,7 +216,8 @@ ActiveRecord::Schema.define(version: 2019_07_12_073554) do
   end
 
   add_foreign_key "backgrounds", "cvs"
-  add_foreign_key "cover_letters", "cvs"
   add_foreign_key "experiences", "cvs"
+  add_foreign_key "webs", "companies"
+  add_foreign_key "webs", "cvs"
   add_foreign_key "motivational_videos", "cvs"
 end

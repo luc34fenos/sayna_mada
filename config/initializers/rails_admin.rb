@@ -6,6 +6,19 @@ RailsAdmin.config do |config|
   # config.authenticate_with do
   #   warden.authenticate! scope: :user
   # end
+  def render_404
+    respond_to do |format|
+      format.html { render :file => "#{Rails.root}/public/404", :layout => false, :status => :not_found }
+      format.xml  { head :not_found }
+      format.any  { head :not_found }
+    end
+  end
+  
+  config.authenticate_with do
+    unless user_signed_in? && current_user.status == "admin"
+      render_404
+    end
+  end
   # config.current_user_method(&:current_user)
 
   config.authorize_with do

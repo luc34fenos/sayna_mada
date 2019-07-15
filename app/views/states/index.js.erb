@@ -13,5 +13,5 @@ state.appendChild(placeholder);
 
 // Use erb templating to add the states
 <% @states.each do |s| %>
-  state.options[state.options.length] = new Option('<%= s[1] %>', '<%= s[0] %>')
+  state.options[state.options.length] = new Option('<%= s[1] %>', '<%= s[1] %>')
 <% end %>

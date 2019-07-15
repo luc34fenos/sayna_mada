@@ -31,6 +31,10 @@
 <% end %>
 
 <%- if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks' %>
+<<<<<<< HEAD
+  <%= link_to "Didn't receive unlock instructions?", new_unlock_path(resource_name), method: :get %><br />
+
+=======
   <%= link_to "Didn't receive unlock instructions?", new_unlock_path(resource_name) %><br />
 >>>>>>> c7b7c570ece560deeeb57b1c3dcea06dbd7dddb0
 <% end %>

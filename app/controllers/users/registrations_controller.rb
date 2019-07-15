@@ -14,9 +14,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    puts 'c'*70
-    puts params.inspect
-    puts 'c'*70
     build_resource(sign_up_params)
 
     resource.save!
