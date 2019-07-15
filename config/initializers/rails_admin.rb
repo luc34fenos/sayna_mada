@@ -21,6 +21,13 @@ RailsAdmin.config do |config|
   end
   # config.current_user_method(&:current_user)
 
+  config.authorize_with do
+    if user_signed_in?
+      redirect_to '/', alert: 'mdr' unless current_user.status == "admin"
+    else
+      redirect_to '/', alert: 'lol'
+    end
+  end
   ## == Cancan ==
   # config.authorize_with :cancan
 

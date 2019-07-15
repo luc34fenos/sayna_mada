@@ -1,0 +1,19 @@
+<<<<<<< HEAD
+=======
+
+<div>
+  <% if !user_signed_in? %>
+
+    <%= link_to "s'inscrire", new_user_registration_path, method: :get %>
+    <br>
+    <%= link_to "se connecter", new_user_session_path, method: :get %>
+
+  <% else %>
+
+    <%= link_to "se deconnecter", destroy_user_session_path, method: :delete %>
+    <br>
+
+
+  <% end %>
+</div>
+>>>>>>> c7b7c570ece560deeeb57b1c3dcea06dbd7dddb0
