@@ -30,8 +30,4 @@ Rails.application.routes.draw do
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :states, only: :index
-<<<<<<< HEAD
-
-=======
->>>>>>> 9ea6bf12aff0427239d66a6bd3b7623da3904dbb
 end

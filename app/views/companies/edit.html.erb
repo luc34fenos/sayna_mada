@@ -1,9 +1,220 @@
 <h1>Editing Company</h1>
 
-<%= render 'form', company: @company %>
-          <%= form_for @company, method: :patch do |f| %>
-          <% @company.staff.each do |staf| %>
-          
-          <% end %>
-<%= link_to 'Show', @company %> |
-<%= link_to 'Back', companies_path %>
+    <%= render 'form', company: @company %>
+              <%= form_for @company, method: :patch do |f| %>
+              <%= f.label :staffs, "Staffs" %>
+              <div class="staff row">
+                  <% @company.staff.each do |staf| %>
+                  <% if staf %>
+                  <div id="staf<%= staf.id %>" class="field staf old form-group col-md-4 row">
+                      <input type="text" id="staf<%= staf.id %>0" name="staffirstnames[firstname<%= staf.id %>]" class="form-control" value="<%= staf.firstname %>">
+                      <div class="actions collapse row">
+                          <div class="col-md-10" style="padding: 0 0 0 2%;">
+                              <textarea id="staf<%= staf.id %>1" name="staflastnames[lastname<%= staf.id %>]" class="level form-control col-md-10"><%= staf.lastname %></textarea>
+                          </div>
+
+                          <input type="text" id="staf<%= staf.id %>0" name="stafjobs[job<%= staf.id %>]" class="form-control" value="<%= staf.job %>">
+                          <input type="email" id="staf<%= staf.id %>0" name="stafemails[email<%= staf.id %>]" class="form-control" value="<%= staf.email %>">
+                          <input type="text" id="staf<%= staf.id %>0" name="staftels[tel<%= staf.id %>]" class="form-control" value="<%= staf.tel %>">
+
+                          <div class="col-md-2" style="padding: 0 0 0 2%;">
+                              <a id="rmstaf<%= staf.id %>" class="remove-me"><i class="fa fa-trash"></i></a>
+                          </div>
+                      </div>
+                  </div>
+                  <% end %>
+                  <% end %>
+
+              </div>
+              <% end %>
+              <a href="#" id="staff" class="add-more btn btn-primary"><i class="fas fa-plus"></i></a>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+    <%= link_to 'Show', @company %> |
+    <%= link_to 'Back', companies_path %>
+
+<% content_for :head_tag do %>
+
+    <script>
+
+      $(document).ready(function($){
+            function updateCOMPANY(){
+                    $('a#update').click(function(event){
+                      event.preventDefault();
+                      $('form#updateCOMPANY').submit();
+                    });
+
+                  }
+
+                  updateCOMPANY();
+        $(".add-more").click(function(e) {
+          e.preventDefault();
+
+          let id = this.id;
+
+          let div = $(`div.${id}:first`);
+
+          let children;
+
+          let newInput;
+
+          if (id == "staff"){
+            children = $(`div.staf`);
+            newID = children.length + 1;
+            newInput = `
+              <div id="staf${newID}" class="field staf old form-group col-md-4 row">
+                <input type="text" id="staf${newID}0" name="stafnames[name${newID}]" class="form-control" >
+                  <div class="actions collapse row">
+                        <textarea id="staf${newID}1" name="staflastnames[lastname${newID}]" class="level form-control col-md-10"></textarea>
+                        <input type="text" id="staf${newID}0" name="stafjobs[job${newID}]" class="form-control" >
+                        <input type="email" id="staf${newID}0" name="stafemails[email${newID}]" class="form-control">
+                        <input type="text" id="staf${newID}0" name="staftels[tel${newID}]" class="form-control" >
+
+                  <div class="col-md-2" style="padding: 0 0 0 2%;">
+                    <a id="rmstaf${newID}" class="remove-me"><i class="fa fa-trash"></i></a>
+                  </div>
+                </div>
+              </div>
+            `;
+          }
+          console.log(div);
+          console.log(newInput);
+
+          $(div).append(newInput);
+          destroyDiv();
+          toggleActions();
+          updateDiv();
+        });
+        function destroyDiv() {
+            $(".remove-me").click(function(e) {
+                e.preventDefault();
+                let id = this.id.slice(2, this.id.length);
+                let div = $(this).parents('.field:first');
+                div.fadeOut('slow', function() {
+                    div.remove();
+
+                    if (div.hasClass('old')) {
+                        let $ID;
+
+                        if (div.hasClass('staff')) {
+                          $ID = div.attr('id').slice('staff'.length, div.attr('id').length);
+                          $.ajax({
+                            url: `/staffs/${$ID}`,
+                            method: 'DELETE',
+                            data: {
+                              "authenticity_token": "JCisvOWDgl7FgYbLGwk35s7sR1+u1weWTRv3TwKk+cAt61lLWGVnQJmETd2/10NU+HGzT5T/6GJEWJRt3N5KNg==",
+                              id: $ID
+                            }
+                          });
+                        }
+
+                    }
+                });
+            });
+        }
+        destroyDiv();
+        function updateDiv() {
+            $(`input`).focusout(function(event) {
+                let div = $(this).parents('.field:first');
+                if (div.hasClass('old')) { // update
+                    let $ID, $NAME, $URL;
+                    $NAME = this.value;
+                    if (div.hasClass('staff')) {
+                        $ID = div.attr('id').slice('staff'.length, div.attr('id').length);
+                        $URL = `/staffs/${$ID}`;
+                    }
+
+                    $.ajax({
+                      url: $URL,
+                      type: 'PATCH',
+                      data: {
+                        "authenticity_token": "JCisvOWDgl7FgYbLGwk35s7sR1+u1weWTRv3TwKk+cAt61lLWGVnQJmETd2/10NU+HGzT5T/6GJEWJRt3N5KNg==",
+                        id: $ID,
+                        name: $NAME
+                      }
+                    });
+                } else if (div.hasClass('new')) { // create
+                    let $CVID, $NAME, $URL;
+                    $COMPANYID = <%= @company.id %>;
+                    $NAME = this.value;
+                    if (div.hasClass('staff')) {
+                        $URL = `/staffs`;
+                    }
+
+                    $.ajax({
+                      url: $URL,
+                      type: 'POST',
+                      data: {
+                        "authenticity_token": "JCisvOWDgl7FgYbLGwk35s7sR1+u1weWTRv3TwKk+cAt61lLWGVnQJmETd2/10NU+HGzT5T/6GJEWJRt3N5KNg==",
+                        cv_id: $CVID,
+                        name: $NAME
+                      }
+                    });
+
+                    div.addClass('old');
+                }
+            });
+            $(`textarea`).focusout(function(event) {
+                let div = $(this).parents('.field:first');
+
+                $(`a#update`).css({
+                  'background-color': 'gold',
+                  'text-transform': 'uppercase'
+                });
+
+                if (div.hasClass('old')) {
+                    let $ID, $CONTENT, $URL;
+                    $CONTENT = this.value;
+                    if (div.hasClass('staff')) {
+                        $ID = div.attr('id').slice(10, div.attr('id').length);
+                        $URL = `/staffs/${$ID}`;
+                    }
+
+                    $.ajax({
+                        url: $URL,
+                        type: 'PATCH',
+                        data: {
+                          "authenticity_token": "JCisvOWDgl7FgYbLGwk35s7sR1+u1weWTRv3TwKk+cAt61lLWGVnQJmETd2/10NU+HGzT5T/6GJEWJRt3N5KNg==",
+                          id: $ID,
+                          description: $CONTENT
+                        }
+                    });
+                }
+            });
+            $(`span.glyphicon`).click(function(event) {
+              let div = $(this).parents('.field:first');
+
+                $(`a#update`).css({
+                  'background-color': 'gold',
+                  'text-transform': 'uppercase'
+                });
+
+                if (div.hasClass('old')) {
+                    let $ID, $LEVEL, $URL;
+
+                    console.log( div );
+                    console.log( div.children('span.glyphicon').length );
+                    console.log( div.children('span.glyphicon').index($(this)) );
+
+                }
+            });
+        }
+        updateDiv();
+        function toggleActions() {
+            $(`.field`).hover(function() {
+                let actions = $(this).children('.actions:first');
+                actions.slideDown('fast');
+            }, function() {
+                let actions = $(this).children('.actions:first');
+                actions.slideUp('fast');
+            });
+        }
+        toggleActions();
+      })
+    </script>
+<% end %>

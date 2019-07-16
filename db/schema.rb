@@ -166,8 +166,10 @@ ActiveRecord::Schema.define(version: 2019_07_13_101529) do
     t.string "job"
     t.string "email"
     t.string "tel"
+    t.bigint "company_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_staffs_on_company_id"
   end
 
   create_table "students", force: :cascade do |t|
@@ -219,6 +221,7 @@ ActiveRecord::Schema.define(version: 2019_07_13_101529) do
 
   add_foreign_key "backgrounds", "cvs"
   add_foreign_key "experiences", "cvs"
+  add_foreign_key "staffs", "companies"
   add_foreign_key "webs", "companies"
   add_foreign_key "webs", "cvs"
 end
