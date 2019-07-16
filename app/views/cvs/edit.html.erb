@@ -128,19 +128,15 @@ end
                     <div id="programming_language<%= programming_language.id %>" class="field programming_language old form-group col-md-4 row">
                         <input type="text" id="programming_language<%= programming_language.id %>0" name="programming_languagenames[name<%= programming_language.id %>]" class="form-control" value="<%= programming_language.name %>">
                         <div class="actions collapse row">
-                          <div class="col-md-12 row" style="padding-right: 0;">
+                          <div class="col-md-10" style="padding-left: 0;">
                             <% programming_language.level.to_i.times do  %>
-                              <div class="col-md-2" style="padding: 0 10px 0 10px;">
-                                <span class="glyphicon glyphicon-star" style="color: gold;"></span>
-                              </div>
+                                <span class="glyphicon glyphicon-star col-md-2" style="padding-left: 5%;position: relative;top: 2px;margin: 0 1%; color: gold;"></span>
                             <% end %>
                             <% level_blank(programming_language.level.to_i).times do  %>
-                              <div class="col-md-2" style="padding: 0 10px 0 10px;">
-                                <span class="glyphicon glyphicon-star-empty" style="color: gold;"></span>
-                              </div>
+                                <span class="glyphicon glyphicon-star-empty col-md-2" style="padding-left: 5%;position: relative;top: 2px;margin: 0 1%; color: gold;"></span>
                             <% end %>
                           </div>
-                          <div class="col-md-2" style="padding: 0 0 0 2%;">
+                          <div class="col-md-2" style="padding: 0;">
                             <a id="rmprogramming_language<%= programming_language.id %>" class="remove-me"><i class="fa fa-trash"></i></a>
                           </div>
                         </div>
@@ -182,19 +178,15 @@ end
                     <div id="language<%= language.id %>" class="field language old form-group col-md-4 row">
                         <input type="text" id="language<%= language.id %>0" name="languagenames[name<%= language.id %>]" class="form-control" value="<%= language.name %>">
                         <div class="actions collapse row">
-                          <div class="col-md-12 row" style="padding-right: 0;">
+                          <div class="col-md-10" style="padding-left: 0;">
                             <% language.level.to_i.times do  %>
-                              <div class="col-md-2" style="padding: 0 10px 0 10px;">
-                                <span class="glyphicon glyphicon-star" style="color: gold;"></span>
-                              </div>
+                                <span class="glyphicon glyphicon-star col-md-2" style="padding-left: 5%;position: relative;top: 2px;margin: 0 1%; color: gold;"></span>
                             <% end %>
                             <% level_blank(language.level.to_i).times do  %>
-                              <div class="col-md-2" style="padding: 0 10px 0 10px;">
-                                <span class="glyphicon glyphicon-star-empty" style="color: gold;"></span>
-                              </div>
+                                <span class="glyphicon glyphicon-star-empty col-md-2" style="padding-left: 5%;position: relative;top: 2px;margin: 0 1%; color: gold;"></span>
                             <% end %>
                           </div>
-                          <div class="col-md-2" style="padding: 0 0 0 2%;">
+                          <div class="col-md-2" style="padding: 0;">
                             <a id="rmlanguage<%= language.id %>" class="remove-me"><i class="fa fa-trash"></i></a>
                           </div>
                         </div>
@@ -343,7 +335,7 @@ $(document).ready(function($) {
                         url: `/experiences/${$ID}`,
                         method: 'DELETE',
                         data: {
-                          "authenticity_token": "JCisvOWDgl7FgYbLGwk35s7sR1+u1weWTRv3TwKk+cAt61lLWGVnQJmETd2/10NU+HGzT5T/6GJEWJRt3N5KNg==",
+                          "authenticity_token": "9Xp2v2K7zXdrn9sM8P6O2dLgi0Nfc75jR6kK5pUA+bAGOmIIuNGCJmYoDeQznR9KskeKn+VFPbkSsA8ZLSm76g==",
                           id: $ID
                         }
                       });
@@ -354,7 +346,7 @@ $(document).ready(function($) {
                         url: `/skills/${$ID}`,
                         method: 'DELETE',
                         data: {
-                          "authenticity_token": "JCisvOWDgl7FgYbLGwk35s7sR1+u1weWTRv3TwKk+cAt61lLWGVnQJmETd2/10NU+HGzT5T/6GJEWJRt3N5KNg==",
+                          "authenticity_token": "9Xp2v2K7zXdrn9sM8P6O2dLgi0Nfc75jR6kK5pUA+bAGOmIIuNGCJmYoDeQznR9KskeKn+VFPbkSsA8ZLSm76g==",
                           id: $ID
                         }
                       });
@@ -365,7 +357,7 @@ $(document).ready(function($) {
                         url: `/programming_languages/${$ID}`,
                         method: 'DELETE',
                         data: {
-                          "authenticity_token": "JCisvOWDgl7FgYbLGwk35s7sR1+u1weWTRv3TwKk+cAt61lLWGVnQJmETd2/10NU+HGzT5T/6GJEWJRt3N5KNg==",
+                          "authenticity_token": "9Xp2v2K7zXdrn9sM8P6O2dLgi0Nfc75jR6kK5pUA+bAGOmIIuNGCJmYoDeQznR9KskeKn+VFPbkSsA8ZLSm76g==",
                           id: $ID
                         }
                       });
@@ -376,7 +368,7 @@ $(document).ready(function($) {
                         url: `/languages/${$ID}`,
                         method: 'DELETE',
                         data: {
-                          "authenticity_token": "JCisvOWDgl7FgYbLGwk35s7sR1+u1weWTRv3TwKk+cAt61lLWGVnQJmETd2/10NU+HGzT5T/6GJEWJRt3N5KNg==",
+                          "authenticity_token": "9Xp2v2K7zXdrn9sM8P6O2dLgi0Nfc75jR6kK5pUA+bAGOmIIuNGCJmYoDeQznR9KskeKn+VFPbkSsA8ZLSm76g==",
                           id: $ID
                         }
                       });
@@ -409,7 +401,7 @@ $(document).ready(function($) {
                   url: $URL,
                   type: 'PATCH',
                   data: {
-                    "authenticity_token": "JCisvOWDgl7FgYbLGwk35s7sR1+u1weWTRv3TwKk+cAt61lLWGVnQJmETd2/10NU+HGzT5T/6GJEWJRt3N5KNg==",
+                    "authenticity_token": "9Xp2v2K7zXdrn9sM8P6O2dLgi0Nfc75jR6kK5pUA+bAGOmIIuNGCJmYoDeQznR9KskeKn+VFPbkSsA8ZLSm76g==",
                     id: $ID,
                     name: $NAME
                   }
@@ -432,7 +424,7 @@ $(document).ready(function($) {
                   url: $URL,
                   type: 'POST',
                   data: {
-                    "authenticity_token": "JCisvOWDgl7FgYbLGwk35s7sR1+u1weWTRv3TwKk+cAt61lLWGVnQJmETd2/10NU+HGzT5T/6GJEWJRt3N5KNg==",
+                    "authenticity_token": "9Xp2v2K7zXdrn9sM8P6O2dLgi0Nfc75jR6kK5pUA+bAGOmIIuNGCJmYoDeQznR9KskeKn+VFPbkSsA8ZLSm76g==",
                     cv_id: $CVID,
                     name: $NAME
                   }
@@ -461,7 +453,7 @@ $(document).ready(function($) {
                     url: $URL,
                     type: 'PATCH',
                     data: {
-                      "authenticity_token": "JCisvOWDgl7FgYbLGwk35s7sR1+u1weWTRv3TwKk+cAt61lLWGVnQJmETd2/10NU+HGzT5T/6GJEWJRt3N5KNg==",
+                      "authenticity_token": "9Xp2v2K7zXdrn9sM8P6O2dLgi0Nfc75jR6kK5pUA+bAGOmIIuNGCJmYoDeQznR9KskeKn+VFPbkSsA8ZLSm76g==",
                       id: $ID,
                       description: $CONTENT
                     }
@@ -478,25 +470,38 @@ $(document).ready(function($) {
 
             if (div.hasClass('old')) {
                 let $ID, $LEVEL, $URL;
+                let parent = $(this).parent('div');
+                let siblings = parent.children('span.glyphicon');
 
-                console.log( div );
-                console.log( div.children('span.glyphicon').length );
-                console.log( div.children('span.glyphicon').index($(this)) );
-                // $CONTENT = this.value;
-                // if (div.hasClass('experience')) {
-                //     $ID = div.attr('id').slice(10, div.attr('id').length);
-                //     $URL = `/experiences/${$ID}`;
-                // }
+                $LEVEL = Number(siblings.index(this))+1;
 
-                // $.ajax({
-                //     url: $URL,
-                //     type: 'PATCH',
-                //     data: {
-                //       "authenticity_token": "JCisvOWDgl7FgYbLGwk35s7sR1+u1weWTRv3TwKk+cAt61lLWGVnQJmETd2/10NU+HGzT5T/6GJEWJRt3N5KNg==",
-                //       id: $ID,
-                //       description: $CONTENT
-                //     }
-                // });
+                for (let i = siblings.length - 1; i >= 0; i--) {
+                  if (siblings.index(siblings.eq(i)) <= siblings.index(this)) {
+                    siblings.eq(i).removeClass('glyphicon-star-empty');
+                    siblings.eq(i).addClass('glyphicon-star');
+                  } else{
+                    siblings.eq(i).removeClass('glyphicon-star');
+                    siblings.eq(i).addClass('glyphicon-star-empty');
+                  }
+                }
+                
+                if (div.hasClass('language')) {
+                    $ID = div.attr('id').slice('language'.length, div.attr('id').length);
+                    $URL = `/languages/${$ID}`;
+                } else if (div.hasClass('programming_language')) {
+                    $ID = div.attr('id').slice('programming_language'.length, div.attr('id').length);
+                    $URL = `/programming_languages/${$ID}`;
+                }
+
+                $.ajax({
+                    url: $URL,
+                    type: 'PATCH',
+                    data: {
+                      "authenticity_token": "9Xp2v2K7zXdrn9sM8P6O2dLgi0Nfc75jR6kK5pUA+bAGOmIIuNGCJmYoDeQznR9KskeKn+VFPbkSsA8ZLSm76g==",
+                      id: $ID,
+                      level: $LEVEL
+                    }
+                });
             }
         });
     }
