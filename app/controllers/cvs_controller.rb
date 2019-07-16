@@ -46,7 +46,7 @@ class CvsController < ApplicationController
     p params.inspect
     respond_to do |format|
       if @cv.update(cv_params)
-        add_exp_skill_lg_plg(@cv)
+        # add_exp_skill_lg_plg(@cv)
         format.html { redirect_to @cv, notice: 'Cv was successfully updated.' }
         format.json { render :show, status: :ok, location: @cv }
       else

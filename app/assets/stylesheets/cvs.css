@@ -12,11 +12,11 @@
     font-size: 1.2em;
 }
 
-.language .col-md-10 {
+.language .col-md-10, .programming_language .col-md-10 {
     padding-right: 2% !important;
 }
 
-.language .col-md-2 {
+.language .col-md-2, .programming_language .col-md-2 {
     padding: 0;
 }
 
