@@ -135,7 +135,7 @@
                             <% language.level.to_i.times do  %>
                                 <span class="glyphicon glyphicon-star" style="color: gold;"></span>
                             <% end %>
-                            <% level_blank(language.level.to_i).times do  %>
+                            <% (5-language.level.to_i).times do  %>
                                 <span class="glyphicon glyphicon-star-empty" style="color: gold;"></span>
                             <% end %>
                         </li>

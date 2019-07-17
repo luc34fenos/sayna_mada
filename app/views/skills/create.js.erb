@@ -1,11 +1,25 @@
-let div = $(`div.field.new.old:first`);
-div.attr('id', 'skill<%=@skill.id%>');
+let $tag = $(`.tag.new:first`),
+$a = $tag.children('a.skill');
 
-let name = div.children('input:first');
-name.attr('id', 'skill<%=@skill.id%>0');
-name.attr('name', 'skillnames[name<%=@skill.id%>]');
+$tag.addClass('old');
+$a.addClass('old');
 
-let remove = div.children('a.remove-me:first');
-remove.attr('id', 'rmskill<%=@skill.id%>');
+$tag.removeClass('new');
+$a.removeClass('new');
 
-div.removeClass('new');
+$a.attr('id', 'skill<%= @skill.id %>');
+
+$a.bind('click', function(e) {
+  e.preventDefault();
+  $(this).unbind('click');
+  if ($a.parent('div.tag').hasClass('old')) {
+	  $.ajax({
+		  url: `/skills/<%= @skill.id %>`,
+		  type: 'DELETE',
+		  data: { 
+		  "authenticity_token": "F5nAxhIi0R2zwNE77wXvOHfUsukeiVAf6O337a37i7rk2dRxyEieTL53B9MsZn6rF3OzNaS/08W99PISFdLJ4A==",
+		  id: `<%= @skill.id %>`
+		  },
+	  });
+  }
+});
