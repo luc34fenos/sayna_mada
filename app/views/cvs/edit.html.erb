@@ -1,9 +1,3 @@
-<%
-def level_blank(level)
-  5 - level
-end
-%>
-
 <center>
     <h1 style="text-decoration: underline; text-transform: uppercase;">student 1</h1>
 </center>
@@ -23,7 +17,7 @@ end
     </nav>
 </div>
 <div class="">
-    <div class="cv container">
+    <div id="<%=@cv.id%>" class="moncv container">
         <%= form_for @cv, method: :patch, html: {class: "updateCV", id: "updateCV"} do |f| %>
         <center>
             <h1>Mon Curriculum Vitae</h1>
@@ -125,20 +119,20 @@ end
                 <div class="programming_languages row">
                     <% @cv.programming_languages.each do |programming_language| %>
                     <% if programming_language %>
-                    <div id="programming_language<%= programming_language.id %>" class="field programming_language old form-group col-md-4 row">
+                    <div id="programming_language<%= programming_language.id %>" class="field programming_language form-group col-md-4 row old">
                         <input type="text" id="programming_language<%= programming_language.id %>0" name="programming_languagenames[name<%= programming_language.id %>]" class="form-control" value="<%= programming_language.name %>">
                         <div class="actions collapse row">
-                          <div class="col-md-10" style="padding-left: 0;">
-                            <% programming_language.level.to_i.times do  %>
+                            <div class="col-md-10" style="padding-left: 0;">
+                                <% programming_language.level.to_i.times do  %>
                                 <span class="glyphicon glyphicon-star col-md-2" style="padding-left: 5%;position: relative;top: 2px;margin: 0 1%; color: gold;"></span>
-                            <% end %>
-                            <% level_blank(programming_language.level.to_i).times do  %>
+                                <% end %>
+                                <% (5-programming_language.level.to_i).times do  %>
                                 <span class="glyphicon glyphicon-star-empty col-md-2" style="padding-left: 5%;position: relative;top: 2px;margin: 0 1%; color: gold;"></span>
-                            <% end %>
-                          </div>
-                          <div class="col-md-2" style="padding: 0;">
-                            <a id="rmprogramming_language<%= programming_language.id %>" class="remove-me"><i class="fa fa-trash"></i></a>
-                          </div>
+                                <% end %>
+                            </div>
+                            <div class="col-md-2" style="padding: 0;">
+                                <a id="rmprogramming_language<%= programming_language.id %>" class="remove-me"><i class="fa fa-trash"></i></a>
+                            </div>
                         </div>
                     </div>
                     <% end %>
@@ -150,21 +144,20 @@ end
                 <h2>
                     <%= f.label :skills, "Compétences" %>
                 </h2>
-                <div class="skills row">
-                    <% @cv.skills.each do |skill| %>
-                    <% if skill %>
-                    <div id="skill<%= skill.id %>" class="field skill old form-group col-md-4 row">
-                        <input type="text" id="skill<%= skill.id %>0" name="skillnames[name<%= skill.id %>]" class="form-control" value="<%= skill.name %>">
-                        <div class="actions collapse row">
-                            <div class="col-md-2" style="padding: 0 0 0 2%;">
-                                <a id="rmskill<%= skill.id %>" class="remove-me"><i class="fa fa-trash"></i></a>
-                            </div>
-                        </div>
+                <!--  -->
+                  <div id='skills'>
+                    <div class='tagHere'>
+                      <% @cv.skills.each do |skill| %>
+                        <% if skill %>
+                          <div class="tag old"><a href="#" class="skill old" id="skill<%=skill.id%>"><i class="fa fa-times" aria-hidden="true"></i></a><span><%=skill.name%></span></div>
+                        <% end %>
+                      <% end %>
                     </div>
-                    <% end %>
-                    <% end %>
-                </div>
-                <a href="#" id="skills" class="add-more btn btn-primary"><i class="fas fa-plus"></i></a>
+                    <input type="text" autofocus />
+                  </div>
+
+                <div class='note'>Use Tab to input a tag.</div>
+                <!--  -->
             </div>
         </section>
         <section class="row">
@@ -175,20 +168,20 @@ end
                 <div class="languages row">
                     <% @cv.languages.each do |language| %>
                     <% if language %>
-                    <div id="language<%= language.id %>" class="field language old form-group col-md-4 row">
+                    <div id="language<%= language.id %>" class="field language form-group col-md-4 row old">
                         <input type="text" id="language<%= language.id %>0" name="languagenames[name<%= language.id %>]" class="form-control" value="<%= language.name %>">
                         <div class="actions collapse row">
-                          <div class="col-md-10" style="padding-left: 0;">
-                            <% language.level.to_i.times do  %>
+                            <div class="col-md-10" style="padding-left: 0;">
+                                <% language.level.to_i.times do  %>
                                 <span class="glyphicon glyphicon-star col-md-2" style="padding-left: 5%;position: relative;top: 2px;margin: 0 1%; color: gold;"></span>
-                            <% end %>
-                            <% level_blank(language.level.to_i).times do  %>
+                                <% end %>
+                                <% (5-language.level.to_i).times do  %>
                                 <span class="glyphicon glyphicon-star-empty col-md-2" style="padding-left: 5%;position: relative;top: 2px;margin: 0 1%; color: gold;"></span>
-                            <% end %>
-                          </div>
-                          <div class="col-md-2" style="padding: 0;">
-                            <a id="rmlanguage<%= language.id %>" class="remove-me"><i class="fa fa-trash"></i></a>
-                          </div>
+                                <% end %>
+                            </div>
+                            <div class="col-md-2" style="padding: 0;">
+                                <a id="rmlanguage<%= language.id %>" class="remove-me"><i class="fa fa-trash"></i></a>
+                            </div>
                         </div>
                     </div>
                     <% end %>
@@ -214,11 +207,11 @@ end
 <% content_for :head_tag do %>
 <script>
 $(document).ready(function($) {
-    function updateCV(){
-      $(`a#update`).click(function(event) {
-        event.preventDefault();
-        $(`form#updateCV`).submit();
-      });
+    function updateCV() {
+        $(`a#update`).click(function(event) {
+            event.preventDefault();
+            $(`form#updateCV`).submit();
+        });
     }
     updateCV();
 
@@ -235,7 +228,7 @@ $(document).ready(function($) {
         if (id == "experiences") {
             newID = children.length + 1;
             newInput = `
-              <div id="experience${newID}" class="field experience new form-group col-md-4 row">
+              <div id="experience${newID}" class="field experience form-group col-md-4 row new">
                 <input type="text" id="exp${newID}0" name="expnames[name${newID}]" class="form-control">
                 <div class="actions collapse row">
                   <div class="col-md-10" style="padding: 0 0 0 2%;">
@@ -247,38 +240,19 @@ $(document).ready(function($) {
                 </div>
               </div>
             `;
-        } else if (id == "skills") {
-            newID = children.length + 1;
-            newInput = `
-              <div id="skill${newID}" class="field skill new form-group col-md-4 row">
-                <input type="text" id="skill${newID}0" name="skillnames[name${newID}]" class="form-control">
-                <div class="actions collapse row">
-                  <div class="col-md-2" style="padding: 0 0 0 2%;">
-                    <a id="rmskill${newID}" class="remove-me"><i class="fa fa-trash"></i></a>
-                  </div>
-                </div>
-              </div>
-            `;
         } else if (id == "languages") {
             newID = children.length + 1;
             newInput = `
-              <div id="language${newID}" class="field language new form-group col-md-4 row">
+              <div id="language${newID}" class="field language form-group col-md-4 row new">
                 <input type="text" id="language${newID}0" name="languagenames[name${newID}]" class="form-control">
                 <div class="actions collapse row">
-                  <div class="col-md-12 row" style="padding-right: 0;">
-                    <% 3.times do %>
-                    <div class="col-md-2" style="padding: 0 10px 0 10px;">
-                      <span class="glyphicon glyphicon-star" style="color: gold;"></span>
-                    </div>
-                    <% end %>
-                    <% 2.times do %>
-                    <div class="col-md-2" style="padding: 0 10px 0 10px;">
-                      <span class="glyphicon glyphicon-star-empty" style="color: gold;"></span>
-                    </div>
+                  <div class="col-md-10" style="padding-left: 0;">
+                    <% 5.times do  %>
+                    <span class="glyphicon glyphicon-star-empty col-md-2" style="padding-left: 5%;position: relative;top: 2px;margin: 0 1%; color: gold;"></span>
                     <% end %>
                   </div>
-                  <div class="col-md-2" style="padding: 0 0 0 2%;">
-                    <a id="rmlanguage${newID}" class="remove-me" style="float: right;"><i class="fa fa-trash"></i></a>
+                  <div class="col-md-2" style="padding: 0;">
+                    <a id="rmlanguage${newID}" class="remove-me"><i class="fa fa-trash"></i></a>
                   </div>
                 </div>
               </div>
@@ -286,19 +260,12 @@ $(document).ready(function($) {
         } else if (id == "programming_languages") {
             newID = children.length + 1;
             newInput = `
-              <div id="programming_language${newID}" class="field programming_language new form-group col-md-4 row">
+              <div id="programming_language${newID}" class="field programming_language form-group col-md-4 row new">
                 <input type="text" id="programming_language${newID}0" name="programming_languagenames[name${newID}]" class="form-control">
                 <div class="actions collapse row">            
-                  <div class="col-md-12 row" style="padding-right: 0;">
-                    <% 3.times do %>
-                    <div class="col-md-2" style="padding: 0 10px 0 10px;">
-                    <span class="glyphicon glyphicon-star" style="color: gold;"></span>
-                    </div>
-                    <% end %>
-                    <% 2.times do %>
-                    <div class="col-md-2" style="padding: 0 10px 0 10px;">
-                    <span class="glyphicon glyphicon-star-empty" style="color: gold;"></span>
-                    </div>
+                  <div class="col-md-10" style="padding-left: 0;">
+                    <% 5.times do  %>
+                    <span class="glyphicon glyphicon-star-empty col-md-2" style="padding-left: 5%;position: relative;top: 2px;margin: 0 1%; color: gold;"></span>
                     <% end %>
                   </div>
                   <div class="col-md-2" style="padding: 0 0 0 2%;">
@@ -313,9 +280,10 @@ $(document).ready(function($) {
 
         $(div).append(newInput);
 
+        updateDiv();
+        updateLevel();
         destroyDiv();
         toggleActions();
-        updateDiv();
     });
 
     function destroyDiv() {
@@ -330,122 +298,110 @@ $(document).ready(function($) {
                     let $ID;
 
                     if (div.hasClass('experience')) {
-                      $ID = div.attr('id').slice('experience'.length, div.attr('id').length);
-                      $.ajax({
-                        url: `/experiences/${$ID}`,
-                        method: 'DELETE',
-                        data: {
-                          "authenticity_token": "9Xp2v2K7zXdrn9sM8P6O2dLgi0Nfc75jR6kK5pUA+bAGOmIIuNGCJmYoDeQznR9KskeKn+VFPbkSsA8ZLSm76g==",
-                          id: $ID
-                        }
-                      });
-                    }
-                    if (div.hasClass('skill')) {
-                      $ID = div.attr('id').slice('skill'.length, div.attr('id').length);
-                      $.ajax({
-                        url: `/skills/${$ID}`,
-                        method: 'DELETE',
-                        data: {
-                          "authenticity_token": "9Xp2v2K7zXdrn9sM8P6O2dLgi0Nfc75jR6kK5pUA+bAGOmIIuNGCJmYoDeQznR9KskeKn+VFPbkSsA8ZLSm76g==",
-                          id: $ID
-                        }
-                      });
+                        $ID = div.attr('id').slice('experience'.length, div.attr('id').length);
+                        $.ajax({
+                            url: `/experiences/${$ID}`,
+                            method: 'DELETE',
+                            data: {
+                                "authenticity_token": "F5nAxhIi0R2zwNE77wXvOHfUsukeiVAf6O337a37i7rk2dRxyEieTL53B9MsZn6rF3OzNaS/08W99PISFdLJ4A==",
+                                id: $ID
+                            }
+                        });
                     }
                     if (div.hasClass('programming_language')) {
-                      $ID = div.attr('id').slice('programming_language'.length, div.attr('id').length);
-                      $.ajax({
-                        url: `/programming_languages/${$ID}`,
-                        method: 'DELETE',
-                        data: {
-                          "authenticity_token": "9Xp2v2K7zXdrn9sM8P6O2dLgi0Nfc75jR6kK5pUA+bAGOmIIuNGCJmYoDeQznR9KskeKn+VFPbkSsA8ZLSm76g==",
-                          id: $ID
-                        }
-                      });
+                        $ID = div.attr('id').slice('programming_language'.length, div.attr('id').length);
+                        $.ajax({
+                            url: `/programming_languages/${$ID}`,
+                            method: 'DELETE',
+                            data: {
+                                "authenticity_token": "F5nAxhIi0R2zwNE77wXvOHfUsukeiVAf6O337a37i7rk2dRxyEieTL53B9MsZn6rF3OzNaS/08W99PISFdLJ4A==",
+                                id: $ID
+                            }
+                        });
                     }
                     if (div.hasClass('language')) {
-                      $ID = div.attr('id').slice('language'.length, div.attr('id').length);
-                      $.ajax({
-                        url: `/languages/${$ID}`,
-                        method: 'DELETE',
-                        data: {
-                          "authenticity_token": "9Xp2v2K7zXdrn9sM8P6O2dLgi0Nfc75jR6kK5pUA+bAGOmIIuNGCJmYoDeQznR9KskeKn+VFPbkSsA8ZLSm76g==",
-                          id: $ID
-                        }
-                      });
+                        $ID = div.attr('id').slice('language'.length, div.attr('id').length);
+                        $.ajax({
+                            url: `/languages/${$ID}`,
+                            method: 'DELETE',
+                            data: {
+                                "authenticity_token": "F5nAxhIi0R2zwNE77wXvOHfUsukeiVAf6O337a37i7rk2dRxyEieTL53B9MsZn6rF3OzNaS/08W99PISFdLJ4A==",
+                                id: $ID
+                            }
+                        });
                     }
                 }
             });
         });
     }
-    destroyDiv();
 
     function updateDiv() {
         $(`input`).focusout(function(event) {
+            event.preventDefault();
             let div = $(this).parents('.field:first');
             if (div.hasClass('old')) { // update
-                let $ID, $NAME, $URL;
+                let $ID, $NAME, $LEVEL, $URL;
                 $NAME = this.value;
                 if (div.hasClass('experience')) {
                     $ID = div.attr('id').slice('experience'.length, div.attr('id').length);
                     $URL = `/experiences/${$ID}`;
-                }
-                else if (div.hasClass('skill')) {
-                    $ID = div.attr('id').slice('skill'.length, div.attr('id').length);
-                    $URL = `/skills/${$ID}`;
-                }
-                else if (div.hasClass('programming_language')) {
+                } else if (div.hasClass('language')) {
+                    $ID = div.attr('id').slice('language'.length, div.attr('id').length);
+                    $URL = `/languages/${$ID}`;
+                } else if (div.hasClass('programming_language')) {
                     $ID = div.attr('id').slice('programming_language'.length, div.attr('id').length);
                     $URL = `/programming_languages/${$ID}`;
                 }
-                $.ajax({
-                  url: $URL,
-                  type: 'PATCH',
-                  data: {
-                    "authenticity_token": "9Xp2v2K7zXdrn9sM8P6O2dLgi0Nfc75jR6kK5pUA+bAGOmIIuNGCJmYoDeQznR9KskeKn+VFPbkSsA8ZLSm76g==",
-                    id: $ID,
-                    name: $NAME
-                  }
-                });
+                if (div.hasClass('experience') || div.hasClass('skill') || div.hasClass('language') || div.hasClass('programming_language')) {
+                    $.ajax({
+                        url: $URL,
+                        type: 'PATCH',
+                        data: {
+                            "authenticity_token": "F5nAxhIi0R2zwNE77wXvOHfUsukeiVAf6O337a37i7rk2dRxyEieTL53B9MsZn6rF3OzNaS/08W99PISFdLJ4A==",
+                            id: $ID,
+                            name: $NAME
+                        }
+                    });
+                }
             } else if (div.hasClass('new')) { // create
                 let $CVID, $NAME, $URL;
-                $CVID = <%= @cv.id %>;
+                $CVID = $(`div.moncv:first`).attr('id');
                 $NAME = this.value;
                 if (div.hasClass('experience')) {
                     $URL = `/experiences`;
-                } else if (div.hasClass('skill')) {
-                    $URL = `/skills`;
                 } else if (div.hasClass('programming_language')) {
                     $URL = `/programming_languages`;
                 } else if (div.hasClass('language')) {
                     $URL = `/languages`;
                 }
 
-                $.ajax({
-                  url: $URL,
-                  type: 'POST',
-                  data: {
-                    "authenticity_token": "9Xp2v2K7zXdrn9sM8P6O2dLgi0Nfc75jR6kK5pUA+bAGOmIIuNGCJmYoDeQznR9KskeKn+VFPbkSsA8ZLSm76g==",
-                    cv_id: $CVID,
-                    name: $NAME
-                  }
-                });
-
-                div.addClass('old');
+                if ($NAME != "") {
+                    $.ajax({
+                        url: $URL,
+                        type: 'POST',
+                        data: {
+                            "authenticity_token": "F5nAxhIi0R2zwNE77wXvOHfUsukeiVAf6O337a37i7rk2dRxyEieTL53B9MsZn6rF3OzNaS/08W99PISFdLJ4A==",
+                            cv_id: $CVID,
+                            name: $NAME
+                        }
+                    });
+                    div.addClass('old');
+                }
             }
         });
         $(`textarea`).focusout(function(event) {
             let div = $(this).parents('.field:first');
 
             $(`a#update`).css({
-              'background-color': 'gold',
-              'text-transform': 'uppercase'
+                'background-color': 'gold',
+                'text-transform': 'uppercase'
             });
 
             if (div.hasClass('old')) {
                 let $ID, $CONTENT, $URL;
                 $CONTENT = this.value;
                 if (div.hasClass('experience')) {
-                    $ID = div.attr('id').slice(10, div.attr('id').length);
+                    $ID = div.attr('id').slice('experience'.length, div.attr('id').length);
                     $URL = `/experiences/${$ID}`;
                 }
 
@@ -453,38 +409,43 @@ $(document).ready(function($) {
                     url: $URL,
                     type: 'PATCH',
                     data: {
-                      "authenticity_token": "9Xp2v2K7zXdrn9sM8P6O2dLgi0Nfc75jR6kK5pUA+bAGOmIIuNGCJmYoDeQznR9KskeKn+VFPbkSsA8ZLSm76g==",
-                      id: $ID,
-                      description: $CONTENT
+                        "authenticity_token": "F5nAxhIi0R2zwNE77wXvOHfUsukeiVAf6O337a37i7rk2dRxyEieTL53B9MsZn6rF3OzNaS/08W99PISFdLJ4A==",
+                        id: $ID,
+                        description: $CONTENT
                     }
                 });
             }
         });
+    }
+
+    function updateLevel() {
         $(`span.glyphicon`).click(function(event) {
-          let div = $(this).parents('.field:first');
+            event.preventDefault();
+            let div = $(this).parents('.field:first');
 
             $(`a#update`).css({
-              'background-color': 'gold',
-              'text-transform': 'uppercase'
+                'background-color': 'gold',
+                'text-transform': 'uppercase'
             });
 
             if (div.hasClass('old')) {
+                updateDiv();
                 let $ID, $LEVEL, $URL;
                 let parent = $(this).parent('div');
                 let siblings = parent.children('span.glyphicon');
 
-                $LEVEL = Number(siblings.index(this))+1;
+                $LEVEL = Number(siblings.index(this)) + 1;
 
                 for (let i = siblings.length - 1; i >= 0; i--) {
-                  if (siblings.index(siblings.eq(i)) <= siblings.index(this)) {
-                    siblings.eq(i).removeClass('glyphicon-star-empty');
-                    siblings.eq(i).addClass('glyphicon-star');
-                  } else{
-                    siblings.eq(i).removeClass('glyphicon-star');
-                    siblings.eq(i).addClass('glyphicon-star-empty');
-                  }
+                    if (siblings.index(siblings.eq(i)) <= siblings.index(this)) {
+                        siblings.eq(i).removeClass('glyphicon-star-empty');
+                        siblings.eq(i).addClass('glyphicon-star');
+                    } else {
+                        siblings.eq(i).removeClass('glyphicon-star');
+                        siblings.eq(i).addClass('glyphicon-star-empty');
+                    }
                 }
-                
+
                 if (div.hasClass('language')) {
                     $ID = div.attr('id').slice('language'.length, div.attr('id').length);
                     $URL = `/languages/${$ID}`;
@@ -497,18 +458,119 @@ $(document).ready(function($) {
                     url: $URL,
                     type: 'PATCH',
                     data: {
-                      "authenticity_token": "9Xp2v2K7zXdrn9sM8P6O2dLgi0Nfc75jR6kK5pUA+bAGOmIIuNGCJmYoDeQznR9KskeKn+VFPbkSsA8ZLSm76g==",
-                      id: $ID,
-                      level: $LEVEL
+                        "authenticity_token": "F5nAxhIi0R2zwNE77wXvOHfUsukeiVAf6O337a37i7rk2dRxyEieTL53B9MsZn6rF3OzNaS/08W99PISFdLJ4A==",
+                        id: $ID,
+                        level: $LEVEL
                     }
                 });
             }
         });
     }
-    updateDiv();
+
+    function updateSkill() {
+        let $input = $("#skills input"),
+        $CVID = $(`div.moncv:first`).attr('id'),
+        $appendHere = $(".tagHere"),
+        oldKey = 0,
+        newKey,
+        TABKEY = 9;
+        $input.focus();
+
+        $input.keydown(function(e) {
+
+            if (e.keyCode == TABKEY) {
+                if (e.preventDefault) {
+                    e.preventDefault();
+                    if ($(this).val() == '' || $(this).val() == ' ') {
+                        return false;
+                    } else {
+                      $NAME = $(this).val();
+                      $.ajax({
+                        url: '/skills',
+                        type: 'POST',
+                        data: { 
+                          "authenticity_token": "F5nAxhIi0R2zwNE77wXvOHfUsukeiVAf6O337a37i7rk2dRxyEieTL53B9MsZn6rF3OzNaS/08W99PISFdLJ4A==", 
+                          cv_id: $CVID,
+                          name: $NAME
+                        },
+                      });
+                    }
+                    
+                    addTag($(this));
+                }
+                return false;
+            }
+
+            if ($(this).val() == '' && e.keyCode === 8) { // Destroy
+              let $tag = $(".tag:last-child"),
+              $a = $tag.children('a.skill'),
+              $ID = $a.attr('id').slice('skill'.length, $a.attr('id').length);
+
+              if ($tag.hasClass('old')) {
+                $.ajax({
+                  url: `/skills/${$ID}`,
+                  type: 'DELETE',
+                  data: { 
+                    "authenticity_token": "F5nAxhIi0R2zwNE77wXvOHfUsukeiVAf6O337a37i7rk2dRxyEieTL53B9MsZn6rF3OzNaS/08W99PISFdLJ4A==",
+                    id: $ID
+                  },
+                });
+              }
+              $tag.remove();
+            }
+
+        })
+
+        function addTag(element) { // Create
+          let $tag = $("<div />"),
+            $a = $(`<a href='#' class="skill new"/>`),
+            $span = $("<span />");
+          $tag.addClass('tag');
+          $tag.addClass('new');
+          $('<i class="fa fa-times" aria-hidden="true"></i>').appendTo($a);
+          
+          $span.text($(element).val());
+
+          $a.bind('click', function(e) {
+            e.preventDefault();
+            $(this).parent().remove();
+            $(this).unbind('click');
+          });
+
+          $a.appendTo($tag);
+          $span.appendTo($tag);
+          $tag.appendTo($appendHere);
+          $(element).val('');
+        }
+    }
+    updateSkill();
+
+    function destroySkill(){
+      let $a = $(`#skills a.skill`),
+      $ID;
+      $a.bind('click', function(e) {
+        e.preventDefault();
+        $ID = this.id.slice('skill'.length, this.id.length);
+        $(this).parent().remove();
+        $(this).unbind('click');
+
+        if ($a.parent('div.tag').hasClass('old')) {
+          $.ajax({
+            url: `/skills/${$ID}`,
+            type: 'DELETE',
+            data: { 
+              "authenticity_token": "F5nAxhIi0R2zwNE77wXvOHfUsukeiVAf6O337a37i7rk2dRxyEieTL53B9MsZn6rF3OzNaS/08W99PISFdLJ4A==",
+              id: $ID
+            },
+          });
+        }
+      });
+    }
+    destroySkill();
 
     function toggleActions() {
-        $(`.field`).hover(function() {
+        let div = $(`.field`);
+        div.hover(function() {
             let actions = $(this).children('.actions:first');
             actions.slideDown('fast');
         }, function() {
@@ -516,6 +578,10 @@ $(document).ready(function($) {
             actions.slideUp('fast');
         });
     }
+
+    updateDiv();
+    updateLevel();
+    destroyDiv();
     toggleActions();
 })
 </script>
