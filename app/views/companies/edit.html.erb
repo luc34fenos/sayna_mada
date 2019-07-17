@@ -2,32 +2,71 @@
 
     <%= render 'form', company: @company %>
               <%= form_for @company, method: :patch do |f| %>
-              <%= f.label :staffs, "Staffs" %>
-              <div class="staff row">
-                  <% @company.staff.each do |staf| %>
-                  <% if staf %>
-                  <div id="staf<%= staf.id %>" class="field staf old form-group col-md-4 row">
-                      <input type="text" id="staf<%= staf.id %>0" name="staffirstnames[firstname<%= staf.id %>]" class="form-control" value="<%= staf.firstname %>">
-                      <div class="actions collapse row">
-                          <div class="col-md-10" style="padding: 0 0 0 2%;">
-                              <textarea id="staf<%= staf.id %>1" name="staflastnames[lastname<%= staf.id %>]" class="level form-control col-md-10"><%= staf.lastname %></textarea>
-                          </div>
+                      <%= f.label :staffs, "Staffs" %>
+                          <div class="staff row">
+                              <% @company.staff.each do |staf| %>
+                              <% if staf %>
+                                  <div id="staf<%= staf.id %>" class="field staf old form-group col-md-4 row">
+                                          <input type="text" id="staf<%= staf.id %>0" name="staffirstnames[firstname<%= staf.id %>]" class="form-control" value="<%= staf.firstname %>">
+                                          <div class="actions collapse row">
+                                              <div class="col-md-10" style="padding: 0 0 0 2%;">
+                                                  <textarea id="staf<%= staf.id %>1" name="staflastnames[lastname<%= staf.id %>]" class="level form-control col-md-10"><%= staf.lastname %></textarea>
+                                              </div>
 
-                          <input type="text" id="staf<%= staf.id %>0" name="stafjobs[job<%= staf.id %>]" class="form-control" value="<%= staf.job %>">
-                          <input type="email" id="staf<%= staf.id %>0" name="stafemails[email<%= staf.id %>]" class="form-control" value="<%= staf.email %>">
-                          <input type="text" id="staf<%= staf.id %>0" name="staftels[tel<%= staf.id %>]" class="form-control" value="<%= staf.tel %>">
+                                            <input type="text" id="staf<%= staf.id %>0" name="stafjobs[job<%= staf.id %>]" class="form-control" value="<%= staf.job %>">
+                                                        <input type="email" id="staf<%= staf.id %>0" name="stafemails[email<%= staf.id %>]" class="form-control" value="<%= staf.email %>">
+                                                        <input type="text" id="staf<%= staf.id %>0" name="staftels[tel<%= staf.id %>]" class="form-control" value="<%= staf.tel %>">
 
-                          <div class="col-md-2" style="padding: 0 0 0 2%;">
-                              <a id="rmstaf<%= staf.id %>" class="remove-me"><i class="fa fa-trash"></i></a>
-                          </div>
-                      </div>
-                  </div>
-                  <% end %>
-                  <% end %>
+                                                <div class="col-md-2" style="padding: 0 0 0 2%;">
+                                                    <a id="rmstaf<%= staf.id %>" class="remove-me"><i class="fa fa-trash"></i></a>
+                                                </div>
+                                        </div>
+                                    </div>
+                              <% end %>
+                              <% end %>
+                              <a href="#" id="staff" class="add-more btn btn-primary"><i class="fas fa-plus"></i></a>
 
-              </div>
+                            </div>
+                            <%= f.label :webs, "webs" %>
+                                <div class="web row">
+                                    <% @company.webs.each do |page| %>
+                                    <% if page %>
+                                        <div id="page<%= page.id %>" class="field page old form-group col-md-4 row">
+                                                <input type="text" id="page<%= page.id %>0" name="pagenames[name<%= page.id %>]" class="form-control" value="<%= page.name %>">
+                                                <div class="actions collapse row">
+                                                    <div class="col-md-10" style="padding: 0 0 0 2%;">
+                                                        <textarea id="page<%= page.id %>1" name="pagelinks[link<%= page.id %>]" class="level form-control col-md-10"><%= page.link %></textarea>
+                                                    </div>
+                                                      <div class="col-md-2" style="padding: 0 0 0 2%;">
+                                                          <a id="rmpage<%= page.id %>" class="remove-me"><i class="fa fa-trash"></i></a>
+                                                      </div>
+                                              </div>
+                                          </div>
+                                    <% end %>
+                                    <% end %>
+                                    <a href="#" id="web" class="add-more btn btn-primary"><i class="fas fa-plus"></i></a>
+
+                                  </div>
+                                  <%= f.label :countries, "cities" %>
+                                      <div class="city row">
+                                          <% @company.cities.each do |cite| %>
+                                          <% if cite %>
+                                              <div id="cite<%= cite.id %>" class="field cite old form-group col-md-4 row">
+                                                      <input type="text" id="cite<%= cite.id %>0" name="citenames[name<%= cite.id %>]" class="form-control" value="<%= cite.name %>">
+                                                      <div class="actions collapse row">
+                                                          <div class="col-md-10" style="padding: 0 0 0 2%;">
+                                                              <textarea id="cite<%= cite.id %>1" name="citecountries[link<%= cite.id %>]" class="level form-control col-md-10"><%= cite.country %></textarea>
+                                                          </div>
+                                                            <div class="col-md-2" style="padding: 0 0 0 2%;">
+                                                                <a id="rmcite<%= cite.id %>" class="remove-me"><i class="fa fa-trash"></i></a>
+                                                            </div>
+                                                    </div>
+                                                </div>
+                                          <% end %>
+                                          <% end %>
+                                          <a href="#" id="city" class="add-more btn btn-primary"><i class="fas fa-plus"></i></a>
+                                        </div>
               <% end %>
-              <a href="#" id="staff" class="add-more btn btn-primary"><i class="fas fa-plus"></i></a>
               <br>
               <br>
               <br>
@@ -35,7 +74,7 @@
               <br>
               <br>
               <br>
-    <%= link_to 'Show', @company %> |
+    <%= link_to 'Apercu', @company %> |
     <%= link_to 'Back', companies_path %>
 
 <% content_for :head_tag do %>
@@ -50,6 +89,7 @@
                     });
 
                   }
+
 
                   updateCOMPANY();
         $(".add-more").click(function(e) {
@@ -81,6 +121,36 @@
                 </div>
               </div>
             `;
+          }else if  (id == "web"){
+            children = $(`div.staf`);
+            newID = children.length + 1;
+            newInput = `
+              <div id="page${newID}" class="field page old form-group col-md-4 row">
+                <input type="text" id="page${newID}0" name="pagenames[name${newID}]" class="form-control" >
+                  <div class="actions collapse row">
+                        <textarea id="page${newID}1" name="pagelinks[link${newID}]" class="level form-control col-md-10"></textarea>
+
+                  <div class="col-md-2" style="padding: 0 0 0 2%;">
+                    <a id="rmpage${newID}" class="remove-me"><i class="fa fa-trash"></i></a>
+                  </div>
+                </div>
+              </div>
+            `;
+          }else if  (id == "city"){
+            children = $(`div.staf`);
+            newID = children.length + 1;
+            newInput = `
+              <div id="cite${newID}" class="field cite old form-group col-md-4 row">
+                <input type="text" id="cite${newID}0" name="citenames[name${newID}]" class="form-control" >
+                  <div class="actions collapse row">
+                        <textarea id="cite${newID}1" name="citecountries[country${newID}]" class="level form-control col-md-10"></textarea>
+
+                  <div class="col-md-2" style="padding: 0 0 0 2%;">
+                    <a id="rmcite${newID}" class="remove-me"><i class="fa fa-trash"></i></a>
+                  </div>
+                </div>
+              </div>
+            `;
           }
           console.log(div);
           console.log(newInput);
@@ -100,7 +170,6 @@
 
                     if (div.hasClass('old')) {
                         let $ID;
-
                         if (div.hasClass('staff')) {
                           $ID = div.attr('id').slice('staff'.length, div.attr('id').length);
                           $.ajax({
@@ -111,8 +180,29 @@
                               id: $ID
                             }
                           });
-                        }
 
+                        } else if (div.hasClass('web')) {
+                          $ID = div.attr('id').slice('web'.length, div.attr('id').length);
+                          $.ajax({
+                            url: `/webs/${$ID}`,
+                            method: 'DELETE',
+                            data: {
+                              "authenticity_token": "JCisvOWDgl7FgYbLGwk35s7sR1+u1weWTRv3TwKk+cAt61lLWGVnQJmETd2/10NU+HGzT5T/6GJEWJRt3N5KNg==",
+                              id: $ID
+                            }
+                          });
+                        }
+                        else if (div.hasClass('country')) {
+                          $ID = div.attr('id').slice('country'.length, div.attr('id').length);
+                          $.ajax({
+                            url: `/countries/${$ID}`,
+                            method: 'DELETE',
+                            data: {
+                              "authenticity_token": "JCisvOWDgl7FgYbLGwk35s7sR1+u1weWTRv3TwKk+cAt61lLWGVnQJmETd2/10NU+HGzT5T/6GJEWJRt3N5KNg==",
+                              id: $ID
+                            }
+                          });
+                        }
                     }
                 });
             });
@@ -127,6 +217,12 @@
                     if (div.hasClass('staff')) {
                         $ID = div.attr('id').slice('staff'.length, div.attr('id').length);
                         $URL = `/staffs/${$ID}`;
+                    }else if (div.hasClass('web')) {
+                        $ID = div.attr('id').slice('web'.length, div.attr('id').length);
+                        $URL = `/webs/${$ID}`;
+                    }else if (div.hasClass('country')) {
+                        $ID = div.attr('id').slice('country'.length, div.attr('id').length);
+                        $URL = `/countries/${$ID}`;
                     }
 
                     $.ajax({
@@ -144,6 +240,10 @@
                     $NAME = this.value;
                     if (div.hasClass('staff')) {
                         $URL = `/staffs`;
+                    } else if (div.hasClass('web')) {
+                          $URL = `/webs`;
+                    }else if (div.hasClass('country')) {
+                          $URL = `/countries`;
                     }
 
                     $.ajax({
@@ -151,7 +251,7 @@
                       type: 'POST',
                       data: {
                         "authenticity_token": "JCisvOWDgl7FgYbLGwk35s7sR1+u1weWTRv3TwKk+cAt61lLWGVnQJmETd2/10NU+HGzT5T/6GJEWJRt3N5KNg==",
-                        cv_id: $CVID,
+                        company_id: $COMPANYID,
                         name: $NAME
                       }
                     });
@@ -173,7 +273,14 @@
                     if (div.hasClass('staff')) {
                         $ID = div.attr('id').slice(10, div.attr('id').length);
                         $URL = `/staffs/${$ID}`;
+                    } else if (div.hasClass('web')) {
+                        $ID = div.attr('id').slice(10, div.attr('id').length);
+                        $URL = `/webs/${$ID}`;
+                    }else if (div.hasClass('country')) {
+                        $ID = div.attr('id').slice(10, div.attr('id').length);
+                        $URL = `/countries/${$ID}`;
                     }
+
 
                     $.ajax({
                         url: $URL,
