@@ -10,9 +10,9 @@ RailsAdmin.config do |config|
 
   config.authorize_with do
     if user_signed_in?
-      redirect_to '/', alert: 'mdr' unless current_user.status == "admin"
+      redirect_to '/', alert: 'bien essayer petit malin!!!' unless current_user.status == "admin"
     else
-      redirect_to '/', alert: 'lol'
+      redirect_to '/', alert: 'bien essayer petit malin!!!'
     end
   end
   ## == Cancan ==
