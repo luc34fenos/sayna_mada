@@ -1,6 +1,6 @@
 class CvsController < ApplicationController
   before_action :set_cv, only: [:show, :edit, :update, :destroy]
-
+  before_action :only_connected
   # GET /cvs
   # GET /cvs.json
   def index
@@ -46,7 +46,7 @@ class CvsController < ApplicationController
     p params.inspect
     respond_to do |format|
       if @cv.update(cv_params)
-        # add_exp_skill_lg_plg(@cv)
+        #add_exp_skill_lg_plg(@cv)
         format.html { redirect_to @cv, notice: 'Cv was successfully updated.' }
         format.json { render :show, status: :ok, location: @cv }
       else
@@ -117,5 +117,12 @@ class CvsController < ApplicationController
     def add_exp_skill_lg_plg(cv)
       # adding experiences
       experience_params(cv)
+    end
+
+    def only_connected()
+      unless user_signed_in?
+        flash[:alert] = "vous n'avez pas le droit à cette action"
+        redirect_to new_user_registration_path
+      end
     end
 end

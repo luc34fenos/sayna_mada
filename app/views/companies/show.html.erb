@@ -22,7 +22,7 @@
 
 <p>
   <strong>Phone:</strong>
-  <%= @company.phone %>
+  <%= @company.tel %>
 </p>
 
 <p>
@@ -40,5 +40,5 @@
   <%= @company.other %>
 </p>
 
-<%= link_to 'Edit', edit_company_path(@company) %> |
+<%= link_to 'Edit', edit_company_path(@company) ,method: :get %> |
 <%= link_to 'Back', companies_path %>

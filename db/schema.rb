@@ -99,11 +99,7 @@ ActiveRecord::Schema.define(version: 2019_07_16_052459) do
     t.bigint "student_id"
     t.text "hobbies"
     t.text "summary"
-<<<<<<< HEAD
-    t.string "developer_type", default: "Web"
-=======
     t.string "developer_type", default: "Developpeur Web"
->>>>>>> d699aea71bea73c85ee667c0a850cd3d15acf8bc
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["student_id"], name: "index_cvs_on_student_id"
@@ -175,8 +171,10 @@ ActiveRecord::Schema.define(version: 2019_07_16_052459) do
     t.string "job"
     t.string "email"
     t.string "tel"
+    t.bigint "company_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_staffs_on_company_id"
   end
 
   create_table "students", force: :cascade do |t|
@@ -228,10 +226,7 @@ ActiveRecord::Schema.define(version: 2019_07_16_052459) do
 
   add_foreign_key "backgrounds", "cvs"
   add_foreign_key "experiences", "cvs"
-<<<<<<< HEAD
-  add_foreign_key "motivational_videos", "cvs"
-=======
->>>>>>> d699aea71bea73c85ee667c0a850cd3d15acf8bc
+  add_foreign_key "staffs", "companies"
   add_foreign_key "webs", "companies"
   add_foreign_key "webs", "cvs"
 end

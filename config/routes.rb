@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
   get '/company_1' ,to: 'dashboard#company_dashboard1'
   get '/company_2' ,to: 'dashboard#company_dashboard2'
-  
+
     get '/mondashboard', to: 'dashboard#show'
     
     get '/moncv/:id', to: 'cvs#show'

@@ -7,9 +7,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/sign_up
   def new
+    if user_signed_in?
+      flash[:alert] = "vous etes déjà connecté"
+      redirect_to home_path
+    end
     build_resource
     yield resource if block_given?
     respond_with resource
+
   end
 
   # POST /resource
@@ -36,7 +41,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       end
     else
       flash[:alert] = "l'une des donnée n'est pas valide"
-      redirect_to new_user_session_path
+      redirect_to new_user_registration_path
     end
   end
 
@@ -207,7 +212,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     params.require(:student).permit(:tel, :lastname, :firstname, :birthdate, :address, :sexe, :marital_status)
   end
   def company_params
-    params.require(:company).permit(:tel, :start_date, :address, :legal_status, :phone, :activity_area , :siret, :other)
+    params.require(:company).permit(:name,  :tel, :start_date, :address, :legal_status, :phone, :activity_area , :siret, :other)
   end
   def cv_params
     params.require(:cv).permit(:hobbies, :summary)

@@ -10,11 +10,13 @@ class CompaniesController < ApplicationController
   # GET /companies/1
   # GET /companies/1.json
   def show
+    
   end
 
   # GET /companies/new
   def new
     formulaire
+
     @company = Company.new
   end
 
