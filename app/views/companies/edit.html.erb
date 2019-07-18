@@ -1,81 +1,88 @@
-<h1>Editing Company</h1>
+<div class="form_row">
 
-    <%= render 'form', company: @company %>
-              <%= form_for @company, method: :patch do |f| %>
-                      <%= f.label :staffs, "Staffs" %>
-                          <div class="staff row">
-                              <% @company.staff.each do |staf| %>
-                              <% if staf %>
-                                  <div id="staf<%= staf.id %>" class="field staf old form-group col-md-4 row">
-                                          <input type="text" id="staf<%= staf.id %>0" name="staffirstnames[firstname<%= staf.id %>]" class="form-control" value="<%= staf.firstname %>">
-                                          <div class="actions collapse row">
-                                              <div class="col-md-10" style="padding: 0 0 0 2%;">
-                                                  <textarea id="staf<%= staf.id %>1" name="staflastnames[lastname<%= staf.id %>]" class="level form-control col-md-10"><%= staf.lastname %></textarea>
-                                              </div>
+  <h1>Editing Company</h1>
+  <%= link_to 'Apercu', @company , class:'btn btn-light' %> |
+  <%= link_to 'Back', root_path , class:'btn btn-light' %>
 
-                                            <input type="text" id="staf<%= staf.id %>0" name="stafjobs[job<%= staf.id %>]" class="form-control" value="<%= staf.job %>">
-                                                        <input type="email" id="staf<%= staf.id %>0" name="stafemails[email<%= staf.id %>]" class="form-control" value="<%= staf.email %>">
-                                                        <input type="text" id="staf<%= staf.id %>0" name="staftels[tel<%= staf.id %>]" class="form-control" value="<%= staf.tel %>">
+      <%= render 'form', company: @company %>
+      <div class="form_row" class="center">
+          <%= form_for @company, method: :patch do |f| %>
+            <%= f.label :staffs, "Staffs" %>
+            <div class="staff row">
+              <% @company.staff.each do |staf| %>
+                <% if staf %>
+                    <div id="staf<%= staf.id %>" class="field staf old form-group col-md-4 row">
+                            <input type="text" id="staf<%= staf.id %>0" name="staffirstnames[firstname<%= staf.id %>]" class="form-control" value="<%= staf.firstname %>">
+                            <div class="actions collapse row">
+                                <div class="col-md-10" style="padding: 0 0 0 2%;">
+                                    <textarea id="staf<%= staf.id %>1" name="staflastnames[lastname<%= staf.id %>]" class="level form-control col-md-10"><%= staf.lastname %></textarea>
+                                </div>
 
-                                                <div class="col-md-2" style="padding: 0 0 0 2%;">
-                                                    <a id="rmstaf<%= staf.id %>" class="remove-me"><i class="fa fa-trash"></i></a>
-                                                </div>
-                                        </div>
-                                    </div>
-                              <% end %>
-                              <% end %>
-                              <a href="#" id="staff" class="add-more btn btn-primary"><i class="fas fa-plus"></i></a>
+                              <input type="text" id="staf<%= staf.id %>0" name="stafjobs[job<%= staf.id %>]" class="form-control" value="<%= staf.job %>">
+                                          <input type="email" id="staf<%= staf.id %>0" name="stafemails[email<%= staf.id %>]" class="form-control" value="<%= staf.email %>">
+                                          <input type="text" id="staf<%= staf.id %>0" name="staftels[tel<%= staf.id %>]" class="form-control" value="<%= staf.tel %>">
 
-                            </div>
-                            <%= f.label :webs, "webs" %>
-                                <div class="web row">
-                                    <% @company.webs.each do |page| %>
-                                    <% if page %>
-                                        <div id="page<%= page.id %>" class="field page old form-group col-md-4 row">
-                                                <input type="text" id="page<%= page.id %>0" name="pagenames[name<%= page.id %>]" class="form-control" value="<%= page.name %>">
-                                                <div class="actions collapse row">
-                                                    <div class="col-md-10" style="padding: 0 0 0 2%;">
-                                                        <textarea id="page<%= page.id %>1" name="pagelinks[link<%= page.id %>]" class="level form-control col-md-10"><%= page.link %></textarea>
-                                                    </div>
-                                                      <div class="col-md-2" style="padding: 0 0 0 2%;">
-                                                          <a id="rmpage<%= page.id %>" class="remove-me"><i class="fa fa-trash"></i></a>
-                                                      </div>
-                                              </div>
-                                          </div>
-                                    <% end %>
-                                    <% end %>
-                                    <a href="#" id="web" class="add-more btn btn-primary"><i class="fas fa-plus"></i></a>
-
+                                  <div class="col-md-2" style="padding: 0 0 0 2%;">
+                                      <a id="rmstaf<%= staf.id %>" class="remove-me"><i class="fa fa-trash"></i></a>
                                   </div>
-                                  <%= f.label :countries, "cities" %>
-                                      <div class="city row">
-                                          <% @company.cities.each do |cite| %>
-                                          <% if cite %>
-                                              <div id="cite<%= cite.id %>" class="field cite old form-group col-md-4 row">
-                                                      <input type="text" id="cite<%= cite.id %>0" name="citenames[name<%= cite.id %>]" class="form-control" value="<%= cite.name %>">
-                                                      <div class="actions collapse row">
-                                                          <div class="col-md-10" style="padding: 0 0 0 2%;">
-                                                              <textarea id="cite<%= cite.id %>1" name="citecountries[link<%= cite.id %>]" class="level form-control col-md-10"><%= cite.country %></textarea>
-                                                          </div>
-                                                            <div class="col-md-2" style="padding: 0 0 0 2%;">
-                                                                <a id="rmcite<%= cite.id %>" class="remove-me"><i class="fa fa-trash"></i></a>
-                                                            </div>
-                                                    </div>
-                                                </div>
-                                          <% end %>
-                                          <% end %>
-                                          <a href="#" id="city" class="add-more btn btn-primary"><i class="fas fa-plus"></i></a>
-                                        </div>
+                          </div>
+                      </div>
+                <% end %>
               <% end %>
-              <br>
-              <br>
-              <br>
-              <br>
-              <br>
-              <br>
-              <br>
-    <%= link_to 'Apercu', @company %> |
-    <%= link_to 'Back', companies_path %>
+              <a href="#" id="staff" class="add-more btn btn-primary"><i class="fas fa-plus"></i></a>
+            </div>
+
+            <%= f.label :webs, "webs" %>
+            <div class="web row" >
+              <% @company.webs.each do |page| %>
+                  <% if page %>
+                      <div id="page<%= page.id %>" class="field page old form-group col-md-4 row">
+                              <input type="text" id="page<%= page.id %>0" name="pagenames[name<%= page.id %>]" class="form-control" value="<%= page.name %>">
+                              <div class="actions collapse row">
+                                  <div class="col-md-10" style="padding: 0 0 0 2%;">
+                                      <textarea id="page<%= page.id %>1" name="pagelinks[link<%= page.id %>]" class="level form-control col-md-10"><%= page.link %></textarea>
+                                  </div>
+                                    <div class="col-md-2" style="padding: 0 0 0 2%;">
+                                        <a id="rmpage<%= page.id %>" class="remove-me"><i class="fa fa-trash"></i></a>
+                                    </div>
+                            </div>
+                        </div>
+                  <% end %>
+                <% end %>
+                <a href="#" id="web" class="add-more btn btn-primary"><i class="fas fa-plus"></i></a>
+            </div>
+
+            <%= f.label :countries, "cities" %>
+            <div class="city row">
+              <% @company.cities.each do |cite| %>
+                  <% if cite %>
+                      <div id="cite<%= cite.id %>" class="field cite old form-group col-md-4 row">
+                              <input type="text" id="cite<%= cite.id %>0" name="citenames[name<%= cite.id %>]" class="form-control" value="<%= cite.name %>">
+                              <div class="actions collapse row">
+                                  <div class="col-md-10" style="padding: 0 0 0 2%;">
+                                      <textarea id="cite<%= cite.id %>1" name="citecountries[link<%= cite.id %>]" class="level form-control col-md-10"><%= cite.country %></textarea>
+                                  </div>
+                                    <div class="col-md-2" style="padding: 0 0 0 2%;">
+                                        <a id="rmcite<%= cite.id %>" class="remove-me"><i class="fa fa-trash"></i></a>
+                                    </div>
+                            </div>
+                        </div>
+                  <% end %>
+                <% end %>
+                <a href="#" id="city" class="add-more btn btn-primary"><i class="fas fa-plus"></i></a>
+            </div>
+          <% end %>
+        </div>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+
+
+</div>
 
 <% content_for :head_tag do %>
 
