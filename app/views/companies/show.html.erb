@@ -1,44 +1,58 @@
-<p id="notice"><%= notice %></p>
+<style>
+    .contenue{
+      background-color:#2b5876;
+      color: #fff !important;
+      margin: 1.5rem !important;
+      height: 100% !important;
+      border-radius: .65rem !important;
+      box-sizing: border-box;
+    }
+</style>
 
-<p>
-  <strong>Name:</strong>
-  <%= @company.name %>
-</p>
+<div class="contenue">
+  <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Start date:</strong>
-  <%= @company.start_date %>
-</p>
+  <p>
+    <strong>Name:</strong>
+    <%= @company.name %>
+  </p>
 
-<p>
-  <strong>Address:</strong>
-  <%= @company.address %>
-</p>
+  <p>
+    <strong>Start date:</strong>
+    <%= @company.start_date %>
+  </p>
 
-<p>
-  <strong>Legal status:</strong>
-  <%= @company.legal_status %>
-</p>
+  <p>
+    <strong>Address:</strong>
+    <%= @company.address %>
+  </p>
 
-<p>
-  <strong>Phone:</strong>
-  <%= @company.tel %>
-</p>
+  <p>
+    <strong>Legal status:</strong>
+    <%= @company.legal_status %>
+  </p>
 
-<p>
-  <strong>Activity area:</strong>
-  <%= @company.activity_area %>
-</p>
+  <p>
+    <strong>Phone:</strong>
+    <%= @company.tel %>
+  </p>
 
-<p>
-  <strong>Siret:</strong>
-  <%= @company.siret %>
-</p>
+  <p>
+    <strong>Activity area:</strong>
+    <%= @company.activity_area %>
+  </p>
 
-<p>
-  <strong>Other:</strong>
-  <%= @company.other %>
-</p>
+  <p>
+    <strong>Siret:</strong>
+    <%= @company.siret %>
+  </p>
 
-<%= link_to 'Edit', edit_company_path(@company) ,method: :get %> |
-<%= link_to 'Back', companies_path %>
+  <p>
+    <strong>Other:</strong>
+    <%= @company.other %>
+  </p>
+
+  <%= link_to 'Edit', edit_company_path(@company) ,method: :get %> |
+  <%= link_to 'Back', companies_path %>
+
+</div>
