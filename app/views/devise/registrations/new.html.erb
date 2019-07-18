@@ -15,10 +15,10 @@
                 <!-- user params -->
                 <fieldset class="personal-data w3_agileits_field">
                     <span class="w3l_personal">
-                        <%= f.text_field :username, autofocus: true, autocomplete: "username", placeHolder:"Pseudo", class: "form-control", value: "Linx", required: "" %>
+                        <%= f.text_field :username, autofocus: true, autocomplete: "username", placeHolder:"Pseudo", class: "form-control", value: "Mikasa", required: "" %>
                     </span>
                     <span class="w3ls_personal">
-                        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeHolder:"email@address.com", class: "form-control", value: "plinsy@yopmail.com", required: "" %>
+                        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeHolder:"email@address.com", class: "form-control", value: "mikasa@yopmail.com", required: "" %>
                     </span>
                     <span class="agileits_personal">
                         <%= f.password_field :password, autocomplete: "new-password", placeHolder:"******", class: "form-control", value: "000000", required: "" %>
@@ -53,7 +53,7 @@
                             <select class="form-control" name="city" id="city" required="">
                                 <option>Choose a state</option>
                                 <% CS.states(:AD).map do |c| %>
-                                <option value="<%= c[0] %>">
+                                <option value="<%= c[1] %>">
                                     <%= c[1] %>
                                 </option>
                                 <% end %>

@@ -1,0 +1,15 @@
+let div = $(`div.field.new.old:first`);
+div.attr('id', 'programming_language<%=@programming_language.id%>');
+
+let name = div.children('input:first');
+name.attr('id', 'programming_language<%=@programming_language.id%>0');
+name.attr('name', 'programming_languagenames[name<%=@programming_language.id%>]');
+
+// let level = div.children('textarea:first');
+// level.attr('id', 'programming_language<%=@programming_language.id%>1');
+// level.attr('name', 'programming_languagelevels[level<%=@programming_language.id%>]');
+
+let remove = div.children('a.remove-me:first');
+remove.attr('id', 'rmprogramming_language<%=@programming_language.id%>');
+
+div.removeClass('new');

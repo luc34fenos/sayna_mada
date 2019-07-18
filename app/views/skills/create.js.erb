@@ -1,0 +1,25 @@
+let $tag = $(`.tag.new:first`),
+$a = $tag.children('a.skill');
+
+$tag.addClass('old');
+$a.addClass('old');
+
+$tag.removeClass('new');
+$a.removeClass('new');
+
+$a.attr('id', 'skill<%= @skill.id %>');
+
+$a.bind('click', function(e) {
+  e.preventDefault();
+  $(this).unbind('click');
+  if ($a.parent('div.tag').hasClass('old')) {
+	  $.ajax({
+		  url: `/skills/<%= @skill.id %>`,
+		  type: 'DELETE',
+		  data: { 
+		  "authenticity_token": "F5nAxhIi0R2zwNE77wXvOHfUsukeiVAf6O337a37i7rk2dRxyEieTL53B9MsZn6rF3OzNaS/08W99PISFdLJ4A==",
+		  id: `<%= @skill.id %>`
+		  },
+	  });
+  }
+});

@@ -46,6 +46,10 @@ div.registration {
     -ms-transition: .5s ease-in;
 }
 
+.registration form input[type=submit] {
+    display: none;
+}
+
 .main {
     margin: 3em auto;
     padding-bottom: 10%; 

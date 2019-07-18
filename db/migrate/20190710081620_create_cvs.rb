@@ -4,7 +4,7 @@ class CreateCvs < ActiveRecord::Migration[5.2]
     	t.belongs_to :student, index: true
       t.text :hobbies
       t.text :summary
-      t.string :developer_type, default: "Web"
+      t.string :developer_type, default: "Developpeur Web"
 
       t.timestamps
     end

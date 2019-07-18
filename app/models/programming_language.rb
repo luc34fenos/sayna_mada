@@ -1,4 +1,4 @@
 class ProgrammingLanguage < ApplicationRecord
-	has_many :cv_programming_languages
-	has_many :cvs, through: :cv_programming_languages
+	has_and_belongs_to_many :cvs
+	validates_uniqueness_of :name
 end

@@ -1,14 +1,213 @@
-<p id="notice"><%= notice %></p>
+<center>
+    <h1 style="text-decoration: underline; text-transform: uppercase;">student 1</h1>
+</center>
+<div class="links">
+    <nav class="nav flex-column">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" href="/moncv/<%= @cv.id %>" data-method="GET">Aperçu</a>
+            </li>
+            <li class="nav-item">
+                <%= link_to "Editer", edit_cv_path(@cv), method: :get, class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+                <%= link_to "Exporter", cv_download_path(@cv, format: "pdf"),target: "_blank", class: "download" %>
+            </li>
+        </ul>
+    </nav>
+</div>
+<br>
+<div id="moncv" class="cv container">
+    <section class="row">
+        <div class="avatar col-md-4">
+            <% avatar = @student.sexe == 'Homme' ? 'profilh.png' : 'profilf.png' %>
+            <div class="text-center">
+                <%= image_tag avatar, class: "img-thumbnail rounded float-left" %>
+            </div>
+        </div>
+        <div class="summary right container col-md-8">
+            <h2>
+                <label>Résumé</label>
+            </h2>
+            <p class="summary">
+                <%= @cv.summary %>
+            </p>
+        </div>
+    </section>
+    <hr>
+    <section class="row">
+        <div class="student_infos col-md-4">
+            <h2>
+                <%= @cv.developer_type %>
+            </h2>
+            <table class="table table-primary">
+                <tr>
+                    <th class="col-sm-4">Nom complet</th>
+                    <td class="col-sm-8">
+                        <%= @student.lastname %>
+                        <%= @student.firstname %>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="col-sm-4">Date de naissance</th>
+                    <td class="col-sm-8">
+                        <%= @student.birthdate.strftime("%B %d, %Y") %>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="col-sm-4">Contact</th>
+                    <td class="col-sm-8">
+                        <%= @student.tel %>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="col-sm-4">Addresse</th>
+                    <td class="col-sm-8">
+                        <%= @student.address %>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="col-sm-4">Sexe</th>
+                    <td class="col-sm-8">
+                        <%= @student.sexe %>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="col-sm-4">Etat civil</th>
+                    <td class="col-sm-8">
+                        <%= @student.marital_status %>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="right col-md-8">
+            <h2>
+                <%= "Experiences" %>
+            </h2>
+            <div class="experiences" style="display: block;">
+                <% @cv.experiences.each do |ex| %>
+                <% if ex %>
+                <div class="experience">
+                    <div class="name" style="">
+                        <%= ex.name %>
+                        <div>
+                            <%= ex.start_date %>
+                            <%= ex.end_date %>
+                        </div>
+                    </div>
+                    <div class="description" style="">
+                        <%= ex.description %>
+                    </div>
+                    <style type="text/css">
+                    .experience .name {
+                        position: relative;
+                        top: 0;
+                        left: 0;
+                        background-color: rgba(0, 0, 0, 1.0);
+                        color: white;
+                    }
 
-<p>
-  <strong>Hobbies:</strong>
-  <%= @cv.hobbies %>
-</p>
+                    .experience .description {
+                        background-color: rgba(250, 250, 250, 1.0);
+                        color: black;
+                        border: 1px solid;
+                    }
 
-<p>
-  <strong>Summary:</strong>
-  <%= @cv.summary %>
-</p>
-
-<%= link_to 'Edit', edit_cv_path(@cv) %> |
-<%= link_to 'Back', cvs_path %>
+                    .experience .name, .experience .description{
+                        padding: 0 1%;
+                    }
+                    </style>
+                </div>
+                <% end %>
+                <% end %>
+            </div>
+        </div>
+    </section>
+    <hr>
+    <section class="row">
+        <div class="col-md-4">
+            <h2>
+                <%= "Techniques" %>
+            </h2>
+            <div class="programming_languages">
+                <ul class="list-group">
+                    <% @cv.programming_languages.each do |programming_language| %>
+                    <% if programming_language %>
+                    <li class="list-item">
+                        <div class="col-auto col-md-auto">
+                            <%= programming_language.name %>
+                        </div>
+                        <div class="stars col-auto col-md-auto">
+                            <% programming_language.level.to_i.times do  %>
+                            <span class="glyphicon glyphicon-star" style="color: gold;"></span>
+                            <% end %>
+                            <% (5-programming_language.level.to_i).times do  %>
+                            <span class="glyphicon glyphicon-star-empty" style=""></span>
+                            <% end %>
+                        </div>
+                    </li>
+                    <% end %>
+                    <% end %>
+                </ul>
+            </div>
+        </div>
+        <div class="right col-md-8">
+            <h2>
+                <%= "Compétences" %>
+            </h2>
+            <div class="skills">
+                <ul class="list-group">
+                    <% @cv.skills.each do |skill| %>
+                    <% if skill %>
+                    <li class="list-item">
+                        <%= skill.name %>
+                    </li>
+                    <% end %>
+                    <% end %>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <hr>
+    <section class="row">
+        <div class="col-md-4">
+            <h2>
+                <%= "Langues" %>
+            </h2>
+            <div class="languages">
+                <ul class="list-group">
+                    <% @cv.languages.each do |language| %>
+                    <% if language %>
+                    <li class="list-item">
+                        <div class="col-4 col-md-4">
+                            <%= language.name %>
+                        </div>
+                        <div class="stars col-8 col-md-8">
+                            <% language.level.to_i.times do  %>
+                            <span class="glyphicon glyphicon-star" style="color: gold;"></span>
+                            <% end %>
+                            <% (5-language.level.to_i).times do  %>
+                            <span class="glyphicon glyphicon-star-empty" style=""></span>
+                            <% end %>
+                        </div>
+                    </li>
+                    <% end %>
+                    <% end %>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <h2>
+                <%= "Passe temps" %>
+            </h2>
+            <div class="hobbies">
+                <ul class="list-group">
+                    <li class="list-item">
+                        <%= @cv.hobbies %>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <hr>
+</div>
