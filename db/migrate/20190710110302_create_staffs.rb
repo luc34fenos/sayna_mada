@@ -6,7 +6,7 @@ class CreateStaffs < ActiveRecord::Migration[5.2]
       t.string :job
       t.string :email
       t.string :tel
-
+      t.references :company, foreign_key: true
       t.timestamps
     end
   end

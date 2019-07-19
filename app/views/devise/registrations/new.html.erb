@@ -1,3 +1,15 @@
+<style type="text/css">
+    .personal-data {
+        clear: both;
+    }
+
+    .progress-bar {
+        width: 100%;
+        border-radius: 15px;
+        margin-bottom: 10px;
+    }
+</style>
+
 <% content_for :head_tag do %>
     <%= javascript_include_tag 'simpleform.min.js' %>
     <%= javascript_include_tag 'users/registrations.js' %>
@@ -15,10 +27,10 @@
                 <!-- user params -->
                 <fieldset class="personal-data w3_agileits_field">
                     <span class="w3l_personal">
-                        <%= f.text_field :username, autofocus: true, autocomplete: "username", placeHolder:"Pseudo", class: "form-control", value: "Mikasa", required: "" %>
+                        <%= f.text_field :username, autofocus: true, autocomplete: "username", placeHolder:"Pseudo", class: "form-control", required: "" %>
                     </span>
                     <span class="w3ls_personal">
-                        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeHolder:"email@address.com", class: "form-control", value: "mikasa@yopmail.com", required: "" %>
+                        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeHolder:"email@address.com", class: "form-control", required: "" %>
                     </span>
                     <span class="agileits_personal">
                         <%= f.password_field :password, autocomplete: "new-password", placeHolder:"******", class: "form-control", value: "000000", required: "" %>
@@ -66,18 +78,18 @@
                         </div>
                     </div>
                 </fieldset>
-                <fieldset class="address-data-input w3_agileits_field agileinfo_field user-form">
+                <fieldset class="personal-data address-data-input w3_agileits_field agileinfo_field user-form">
                     <div class="row">
                         <div class="col-md-6" style="padding-right: 2%">
                             <span class="w3l_personal">
                                 <label class="agileits_label" for="student_lastname">Nom de famille</label>
-                                <input value="A.N.Tsimanarson" class="form-control" type="text" id="student_lastname" name="student[lastname]" placeholder="Nom de famille" required="" />
+                                <input value="RASOLONDRAIBE" class="form-control" type="text" id="student_lastname" name="student[lastname]" placeholder="Nom de famille" required="" />
                             </span>
                         </div>
                         <div class="col-md-6" style="padding-left: 2%">
                             <span class="w3l_personal">
                                 <label class="agileits_label" for="student_firstname">Prénom</label>
-                                <input value="Princy" class="form-control" type="text" id="student_firstname" name="student[firstname]" placeholder="Prénom" required="" />
+                                <input value="Fenositraka" class="form-control" type="text" id="student_firstname" name="student[firstname]" placeholder="Prénom" required="" />
                             </span>
                         </div>
                     </div>
@@ -132,7 +144,7 @@
                         </textarea>
                     </span>
                 </fieldset>
-                <fieldset class="message-details w3_agileits_field conditions">
+                <fieldset class="personal-data message-details w3_agileits_field conditions">
                     <span class="w3">
                         <div class="conditions">
                             <h2>Conditions d'inscription</h2>

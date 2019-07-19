@@ -3,20 +3,19 @@ Rails.application.routes.draw do
   get 'downloads_controller/show'
   get 'downloads_controller/cv_pdf'
   get 'downloads_controller/send_cv_pdf'
-  # devise_for :admin_users, ActiveAdmin::Devise.config
-  # ActiveAdmin.routes(self)
+
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   resources :cvs do
     resource :download, only: [:show]
   end
-  resources :students
+  resources :students, only: [:show, :edit, :update, :new, :create, :destroy]
   root 'home#index'
 
   get '/company_1' ,to: 'dashboard#company_dashboard1'
   get '/company_2' ,to: 'dashboard#company_dashboard2'
-  
+
     get '/mondashboard', to: 'dashboard#show'
-    
+
     get '/moncv/:id', to: 'cvs#show'
     get '/moncv/:id/edit', to: 'cvs#edit'
 
@@ -40,4 +39,6 @@ Rails.application.routes.draw do
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :states, only: :index
+
+  match '*path' => 'home#not_found', via: :all
 end
