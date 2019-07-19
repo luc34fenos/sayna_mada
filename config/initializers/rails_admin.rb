@@ -13,21 +13,13 @@ RailsAdmin.config do |config|
       format.any  { head :not_found }
     end
   end
-  
+
   config.authenticate_with do
     unless user_signed_in? && current_user.status == "admin"
       render_404
     end
   end
   # config.current_user_method(&:current_user)
-
-  config.authorize_with do
-    if user_signed_in?
-      redirect_to '/', alert: 'mdr' unless current_user.status == "admin"
-    else
-      redirect_to '/', alert: 'lol'
-    end
-  end
   ## == Cancan ==
   # config.authorize_with :cancan
 

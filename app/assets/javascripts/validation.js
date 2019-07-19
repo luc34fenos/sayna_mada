@@ -9,7 +9,8 @@ jQuery(document).ready(function($) {
 
     // Registration Conditions
     let input = $(`input#registration_condition`);
-    let c = false;
+    input.prop("checked", false);
+    let c = input.is(':checked');
     let submitButton = $(`input[value=Submit]:first`);
 
     input.change(function() {

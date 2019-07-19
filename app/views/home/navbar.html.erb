@@ -1,21 +1,40 @@
 
-    <ul class="nav">
-        <li class="nav-item">
-            <a href="/" data-method="GET">home</a>
-        </li>
-        <% if !user_signed_in? %>
-        <li class="nav-item">
-            <%= link_to "s'inscrire", new_user_registration_path, method: :get %>
-        </li>
-        <li class="nav-item">
-            <%= link_to "se connecter", new_user_session_path, method: :get %>
-        </li>
-        <% else %>
-        <li class="nav-item">
-            <%= link_to "mondashboard", mondashboard_path, method: :get %>
-        </li>
-        <li class="nav-item">
-            <%= link_to "se deconnecter", destroy_user_session_path, method: :delete %>
-        </li>
+<nav class="navbar navbar-inverse">
+  <a class="navbar-brand" href="/">Home</a>
+
+  <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="/">Accueil  <span class="sr-only">(current)</span></a></li>
+        <% if user_signed_in? && current_user.company %>
+            <li><a href="<%= root_path %>">Liste des etudiants</a></li>
         <% end %>
-    </ul>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                <% if !user_signed_in? %>
+                    S'inscrire
+                <% else %>
+                    <%= current_user.username %>
+                <% end %>
+            <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <% if !user_signed_in? %>
+                <li><a href="<%= new_user_registration_path %>" data-method="get">S'inscrire</a></li>
+                    <li role="separator" class="divider"></li>
+                <li><a href="<%= new_user_session_path %>" data-method="get">Se connecter</a></li>
+            <% else %>
+                <% if current_user.status == "admin" %>
+                    <li><a href="/admin" data-method="get">Dashboard</a></li>
+                <% else %>
+                    <li><a href="<%= mondashboard_path %>" data-method="get">Dashboard</a></li>
+                        <li role="separator" class="divider"></li>
+                    <li><a href="<%= current_user.company ? company_path(Company.find_by(user_id: current_user.id).id) : monprofil_path(Student.find_by(user_id: current_user.id).id) %>" data-method="get">profil</a></li>
+                <% end %>
+                    <li role="separator" class="divider"></li>
+                <li><a href="<%= destroy_user_session_path %>" data-method="delete">se deconnecter</a></li>
+            <% end %>
+          </ul>
+        </li>
+      </ul>
+    </div>
+</nav>

@@ -16,8 +16,10 @@
 </head>
 
 <body class="<%= controller_name %> <%= action_name %>">
-    <%= render template: 'home/navbar' %>
     <div class="container">
+        <div>
+            <%= render template: 'home/navbar' %>
+        </div>
         <% if flash[:notice] %>
         <p class="alert alert-success">
             <%= notice %>
