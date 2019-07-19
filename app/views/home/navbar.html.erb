@@ -28,7 +28,7 @@
                 <% else %>
                     <li><a href="<%= mondashboard_path %>" data-method="get">Dashboard</a></li>
                         <li role="separator" class="divider"></li>
-                    <li><a href="<%= current_user.company ? company_path(Company.find_by(user_id: current_user.id).id) : monprofil_path(Student.find_by(user_id: current_user.id).id) %>" data-method="get">profil</a></li>
+                    <li><a href="<%= current_user.company ? company_path(Company.find_by(user_id: current_user.id).id) : student_path(Student.find_by(user_id: current_user.id).id) %>" data-method="get">profil</a></li>
                 <% end %>
                     <li role="separator" class="divider"></li>
                 <li><a href="<%= destroy_user_session_path %>" data-method="delete">se deconnecter</a></li>
