@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   get '/company_2' ,to: 'dashboard#company_dashboard2'
 
     get '/mondashboard', to: 'dashboard#show'
-    
+
     get '/moncv/:id', to: 'cvs#show'
     get '/moncv/:id/edit', to: 'cvs#edit'
 
@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   get '/student_2' ,to: 'dashboard#student_dashboard2'
 
   get '/concours' ,to: 'dashboard#concour'
-
+ get '/card' , to: 'dashboard#card'
   devise_for :users, controllers: {
   	registrations: 'users/registrations'
   }

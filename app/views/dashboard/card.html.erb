@@ -1,0 +1,6 @@
+  <% @students.each do |student| %>
+      <% if student.is_activated?  %>
+        <td><%= student.firstname %></td>
+        <td><%= student.lastname %></td>
+      <% end %>
+  <% end %>

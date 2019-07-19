@@ -1,7 +1,7 @@
-<h1>
+<!-- <h1>
     <%= controller_name %>
     <%= action_name %>
-</h1>
+</h1> -->
 <% if current_user.student && !current_user.student.is_activated? %>
 <%= render template: 'dashboard/student_dashboard1' %>
 <% elsif current_user.student && current_user.student.is_activated? %>
