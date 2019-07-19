@@ -12,7 +12,7 @@
 
 <p>
   <strong>Birthdate:</strong>
-  <%= @student.birthdate %>
+  <%= @student.birthdate.strftime("%B %d, %Y") %>
 </p>
 
 <p>
@@ -21,8 +21,8 @@
 </p>
 
 <p>
-  <strong>User:</strong>
-  <%= @student.user %>
+  <strong>Userame:</strong>
+  <%= @student.user.username %>
 </p>
 
 <p>
@@ -32,7 +32,7 @@
 
 <p>
   <strong>Cv:</strong>
-  <%= @student.cv %>
+  <%= link_to "mon cv", "/moncv/#{@student.cv.id}" %>
 </p>
 
 <%= link_to 'Edit', edit_student_path(@student) %> |

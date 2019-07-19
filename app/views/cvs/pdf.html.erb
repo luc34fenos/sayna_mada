@@ -1,159 +1,1034 @@
-    <div class="container">
-        <center>
-            <h1>Mon Curriculum Vitae</h1>
-        </center>
-        <section class="row">
-            <div class="avatar col-md-4">
-                <% avatar = cv.student.sexe == 'Homme' ? 'profilh.png' : 'profilf.png' %>
-                <div class="text-center">
-                    <%= image_tag avatar, class: "img-thumbnail rounded float-left" %>
-                </div>
-            </div>
-            <div class="summary col-md-8">
-                <h2>
-                    <label>Résumé</label>
-                </h2>
-                <p class="summary">
-                    <%= cv.summary %>
-                </p>
-            </div>
-        </section>
-        <!-- <hr> -->
-        <section class="row">
-            <div class="student_infos col-md-5">
-                <h2>
-                    <%= cv.developer_type %>
-                </h2>
-                <table class="table table-primary">
-                    <tr>
-                        <th>Nom complet</th>
-                        <td>
-                            <%= cv.student.lastname %>
-                            <%= cv.student.firstname %>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0//EN" "http://www.w3.org/Math/DTD/mathml2/xhtml-math11-f.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!--This file was converted to xhtml by LibreOffice - see https://cgit.freedesktop.org/libreoffice/core/tree/filter/source/xslt for the code.-->
+
+<head profile="http://dublincore.org/documents/dcmi-terms/">
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+    <title xml:lang="en-US">- no title specified</title>
+    <meta name="DCTERMS.title" content="" xml:lang="en-US" />
+    <meta name="DCTERMS.language" content="en-US" scheme="DCTERMS.RFC4646" />
+    <meta name="DCTERMS.source" content="http://xml.openoffice.org/odf2xhtml" />
+    <meta name="DCTERMS.creator" content="hloom.com" />
+    <meta name="DCTERMS.issued" content="2018-03-16T06:11:00" scheme="DCTERMS.W3CDTF" />
+    <meta name="DCTERMS.contributor" content="Jaidev Singh" />
+    <meta name="DCTERMS.modified" content="2018-03-16T06:11:00" scheme="DCTERMS.W3CDTF" />
+    <meta name="DCTERMS.provenance" content="" xml:lang="en-US" />
+    <meta name="DCTERMS.subject" content="," xml:lang="en-US" />
+    <style type="text/css">
+    @page {}
+
+    table {
+        border-collapse: collapse;
+        border-spacing: 0;
+        empty-cells: show
+    }
+
+    td,
+    th {
+        vertical-align: top;
+        font-size: 12pt;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        clear: both;
+    }
+
+    ol,
+    ul {
+        margin: 0;
+        padding: 0;
+    }
+
+    li {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* "li span.odfLiEnd" - IE 7 issue*/
+    li span. {
+        clear: both;
+        line-height: 0;
+        width: 0;
+        height: 0;
+        margin: 0;
+        padding: 0;
+    }
+
+    span.footnodeNumber {
+        padding-right: 1em;
+    }
+
+    span.annotation_style_by_filter {
+        font-size: 95%;
+        font-family: Arial;
+        background-color: #fff000;
+        margin: 0;
+        border: 0;
+        padding: 0;
+    }
+
+    span.heading_numbering {
+        margin-right: 0.8rem;
+    }
+
+    * {
+        margin: 0;
+    }
+
+    .fr1 {
+        font-size: 11pt;
+        font-family: Calibri;
+        text-align: center;
+        vertical-align: top;
+        margin-left: 0cm;
+        margin-right: 0cm;
+        margin-top: 0cm;
+        margin-bottom: 0cm;
+        background-color: transparent;
+        padding: 0cm;
+        border-style: none;
+    }
+
+    .fr2 {
+        font-size: 11pt;
+        font-family: Calibri;
+        vertical-align: top;
+        margin-left: 0.318cm;
+        margin-right: 0.318cm;
+        margin-top: 0cm;
+        margin-bottom: 0cm;
+        background-color: transparent;
+        padding: 0cm;
+        border-style: none;
+    }
+
+    .gr1 {
+        font-size: 11pt;
+        font-family: Calibri;
+        margin-left: 0.318cm;
+        margin-right: 0.318cm;
+        margin-top: 0cm;
+        margin-bottom: 0cm;
+        vertical-align: top;
+    }
+
+    .gr2 {
+        font-size: 11pt;
+        font-family: Calibri;
+        margin-left: 0.318cm;
+        margin-right: 0.318cm;
+        margin-top: 0cm;
+        margin-bottom: 0cm;
+        vertical-align: bottom;
+        text-align: center;
+    }
+
+    .gr3 {
+        font-size: 11pt;
+        font-family: Calibri;
+        min-height: 0cm;
+        min-width: 0cm;
+        margin-left: 0.318cm;
+        margin-right: 0.318cm;
+        margin-top: 0cm;
+        margin-bottom: 0cm;
+        vertical-align: top;
+    }
+
+    .gr4 {
+        font-size: 11pt;
+        font-family: Calibri;
+        min-height: 0cm;
+        min-width: 0cm;
+        margin-left: 0.318cm;
+        margin-right: 0.318cm;
+        margin-top: 0cm;
+        margin-bottom: 0cm;
+        vertical-align: top;
+    }
+
+    .Contact_20_Info {
+        font-size: 10pt;
+        margin-bottom: 0cm;
+        margin-top: 0.176cm;
+        text-align: left ! important;
+        font-family: Cambria;
+        writing-mode: lr-tb;
+    }
+
+    .Footer {
+        font-size: 11pt;
+        margin-bottom: 0cm;
+        margin-top: 0cm;
+        text-align: left ! important;
+        font-family: Cambria;
+        writing-mode: lr-tb;
+    }
+
+    .GPA {
+        font-size: 11pt;
+        margin-bottom: 0.176cm;
+        margin-top: 0.141cm;
+        text-align: left ! important;
+        font-family: Cambria;
+        writing-mode: lr-tb;
+    }
+
+    .Header {
+        font-size: 11pt;
+        margin-bottom: 0cm;
+        margin-top: 0cm;
+        text-align: left ! important;
+        font-family: Cambria;
+        writing-mode: lr-tb;
+    }
+
+    .No_20_Spacing {
+        font-size: 11pt;
+        font-family: Cambria;
+        writing-mode: lr-tb;
+        margin-top: 0cm;
+        margin-bottom: 0cm;
+        text-align: left ! important;
+    }
+
+    .P1 {
+        font-size: 11pt;
+        font-family: Calibri;
+        writing-mode: page;
+        text-align: center ! important;
+    }
+
+    .P2 {
+        font-size: 11pt;
+        font-family: Calibri;
+        writing-mode: page;
+        text-align: center ! important;
+    }
+
+    .P4 {
+        font-size: 11pt;
+        margin-bottom: 0cm;
+        margin-left: 0.94cm;
+        margin-right: 0cm;
+        margin-top: 0.141cm;
+        text-align: left ! important;
+        text-indent: 0cm;
+        font-family: Cambria;
+        writing-mode: lr-tb;
+    }
+
+    .P5_borderStart {
+        font-size: 12pt;
+        margin-top: 0cm;
+        text-align: justify ! important;
+        font-family: Times New Roman;
+        writing-mode: lr-tb;
+        padding-left: 0.353cm;
+        padding-right: 0.353cm;
+        padding-top: 0.353cm;
+        border-left-width: 0.1058cm;
+        border-left-style: solid;
+        border-left-color: #9bbb59;
+        border-right-width: 0.1058cm;
+        border-right-style: solid;
+        border-right-color: #9bbb59;
+        border-top-width: 0.1058cm;
+        border-top-style: solid;
+        border-top-color: #9bbb59;
+        padding-bottom: 0cm;
+        border-bottom-style: none;
+    }
+
+    .P5 {
+        font-size: 12pt;
+        text-align: justify ! important;
+        font-family: Times New Roman;
+        writing-mode: lr-tb;
+        padding-left: 0.353cm;
+        padding-right: 0.353cm;
+        border-left-width: 0.1058cm;
+        border-left-style: solid;
+        border-left-color: #9bbb59;
+        border-right-width: 0.1058cm;
+        border-right-style: solid;
+        border-right-color: #9bbb59;
+        padding-bottom: 0cm;
+        padding-top: 0cm;
+        border-top-style: none;
+        border-bottom-style: none;
+    }
+
+    .P5_borderEnd {
+        font-size: 12pt;
+        margin-bottom: 0cm;
+        text-align: justify ! important;
+        font-family: Times New Roman;
+        writing-mode: lr-tb;
+        padding-left: 0.353cm;
+        padding-right: 0.353cm;
+        padding-bottom: 0cm;
+        border-left-width: 0.1058cm;
+        border-left-style: solid;
+        border-left-color: #9bbb59;
+        border-right-width: 0.1058cm;
+        border-right-style: solid;
+        border-right-color: #9bbb59;
+        border-bottom-style: none;
+        padding-top: 0cm;
+        border-top-style: none;
+    }
+
+    .P6_borderStart {
+        font-size: 12pt;
+        margin-top: 0cm;
+        text-align: justify ! important;
+        font-family: Times New Roman;
+        writing-mode: lr-tb;
+        padding-left: 0.353cm;
+        padding-right: 0.353cm;
+        padding-top: 0cm;
+        border-left-width: 0.1058cm;
+        border-left-style: solid;
+        border-left-color: #9bbb59;
+        border-right-width: 0.1058cm;
+        border-right-style: solid;
+        border-right-color: #9bbb59;
+        border-top-style: none;
+        padding-bottom: 0cm;
+        border-bottom-style: none;
+    }
+
+    .P6 {
+        font-size: 12pt;
+        text-align: justify ! important;
+        font-family: Times New Roman;
+        writing-mode: lr-tb;
+        padding-left: 0.353cm;
+        padding-right: 0.353cm;
+        border-left-width: 0.1058cm;
+        border-left-style: solid;
+        border-left-color: #9bbb59;
+        border-right-width: 0.1058cm;
+        border-right-style: solid;
+        border-right-color: #9bbb59;
+        padding-bottom: 0cm;
+        padding-top: 0cm;
+        border-top-style: none;
+        border-bottom-style: none;
+    }
+
+    .P6_borderEnd {
+        font-size: 12pt;
+        margin-bottom: 0cm;
+        text-align: justify ! important;
+        font-family: Times New Roman;
+        writing-mode: lr-tb;
+        padding-left: 0.353cm;
+        padding-right: 0.353cm;
+        padding-bottom: 0cm;
+        border-left-width: 0.1058cm;
+        border-left-style: solid;
+        border-left-color: #9bbb59;
+        border-right-width: 0.1058cm;
+        border-right-style: solid;
+        border-right-color: #9bbb59;
+        border-bottom-style: none;
+        padding-top: 0cm;
+        border-top-style: none;
+    }
+
+    .P7_borderStart {
+        font-size: 12pt;
+        margin-top: 0cm;
+        text-align: justify ! important;
+        font-family: Times New Roman;
+        writing-mode: lr-tb;
+        padding-left: 0.353cm;
+        padding-right: 0.353cm;
+        padding-top: 0cm;
+        border-left-width: 0.1058cm;
+        border-left-style: solid;
+        border-left-color: #9bbb59;
+        border-right-width: 0.1058cm;
+        border-right-style: solid;
+        border-right-color: #9bbb59;
+        border-top-style: none;
+        padding-bottom: 0cm;
+        border-bottom-style: none;
+    }
+
+    .P7 {
+        font-size: 12pt;
+        text-align: justify ! important;
+        font-family: Times New Roman;
+        writing-mode: lr-tb;
+        padding-left: 0.353cm;
+        padding-right: 0.353cm;
+        border-left-width: 0.1058cm;
+        border-left-style: solid;
+        border-left-color: #9bbb59;
+        border-right-width: 0.1058cm;
+        border-right-style: solid;
+        border-right-color: #9bbb59;
+        padding-bottom: 0cm;
+        padding-top: 0cm;
+        border-top-style: none;
+        border-bottom-style: none;
+    }
+
+    .P7_borderEnd {
+        font-size: 12pt;
+        margin-bottom: 0cm;
+        text-align: justify ! important;
+        font-family: Times New Roman;
+        writing-mode: lr-tb;
+        padding-left: 0.353cm;
+        padding-right: 0.353cm;
+        padding-bottom: 0.353cm;
+        border-left-width: 0.1058cm;
+        border-left-style: solid;
+        border-left-color: #9bbb59;
+        border-right-width: 0.1058cm;
+        border-right-style: solid;
+        border-right-color: #9bbb59;
+        border-bottom-width: 0.1058cm;
+        border-bottom-style: solid;
+        border-bottom-color: #9bbb59;
+        padding-top: 0cm;
+        border-top-style: none;
+    }
+
+    .P8 {
+        font-size: 11pt;
+        font-family: Calibri;
+        writing-mode: page;
+    }
+
+    .PositionDegree {
+        font-size: 11pt;
+        margin-bottom: 0cm;
+        margin-top: 0.071cm;
+        text-align: left ! important;
+        font-family: Cambria;
+        writing-mode: lr-tb;
+        font-weight: bold;
+    }
+
+    .Section_20_Title_20_Left {
+        font-size: 14pt;
+        margin-bottom: 0cm;
+        margin-top: 0cm;
+        text-align: left ! important;
+        font-family: Cambria;
+        writing-mode: lr-tb;
+        color: #8d9764;
+        font-weight: bold;
+    }
+
+    .Section_20_Title_20_Right {
+        font-size: 14pt;
+        margin-bottom: 0.141cm;
+        margin-top: 0.141cm;
+        text-align: left ! important;
+        font-family: Cambria;
+        writing-mode: lr-tb;
+        color: #8d9764;
+        font-weight: bold;
+    }
+
+    .Skill {
+        font-size: 11pt;
+        margin-bottom: 0.141cm;
+        margin-top: 0.141cm;
+        text-align: left ! important;
+        font-family: Cambria;
+        writing-mode: lr-tb;
+        color: #8d9764;
+    }
+
+    .Standard {
+        font-size: 11pt;
+        font-family: Cambria;
+        writing-mode: lr-tb;
+        margin-top: 0.141cm;
+        margin-bottom: 0cm;
+        text-align: left ! important;
+    }
+
+    .Table1 {
+        width: 6.096cm;
+        margin-top: 0cm;
+        margin-bottom: 0cm;
+        margin-left: auto;
+        margin-right: 0px;
+        writing-mode: lr-tb;
+    }
+
+    .Table2 {
+        width: 12.065cm;
+        margin-top: 0cm;
+        margin-bottom: 0cm;
+        margin-left: auto;
+        margin-right: 0px;
+        writing-mode: lr-tb;
+    }
+
+    .Table3 {
+        width: 19.431cm;
+        margin-top: 0cm;
+        margin-bottom: 0cm;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .Table1_A1 {
+        vertical-align: middle;
+        background-color: #e7e5c7;
+        padding: 0cm;
+        border-style: none;
+    }
+
+    .Table1_A10 {
+        padding: 0cm;
+        border-style: none;
+    }
+
+    .Table1_A2 {
+        padding: 0cm;
+        border-style: none;
+    }
+
+    .Table1_A3 {
+        background-color: #e7e5c7;
+        padding: 0cm;
+        border-style: none;
+    }
+
+    .Table1_A4 {
+        padding: 0cm;
+        border-style: none;
+    }
+
+    .Table1_A5 {
+        padding: 0cm;
+        border-style: none;
+    }
+
+    .Table1_A6 {
+        background-color: #e7e5c7;
+        padding: 0cm;
+        border-style: none;
+    }
+
+    .Table1_A7 {
+        padding: 0cm;
+        border-style: none;
+    }
+
+    .Table1_A8 {
+        background-color: #e7e5c7;
+        padding: 0cm;
+        border-style: none;
+    }
+
+    .Table1_A9 {
+        padding: 0cm;
+        border-style: none;
+    }
+
+    .Table1_B1 {
+        vertical-align: middle;
+        background-color: #e7e5c7;
+        padding-left: 0.33cm;
+        padding-right: 0.33cm;
+        padding-top: 0cm;
+        padding-bottom: 0cm;
+        border-style: none;
+    }
+
+    .Table1_B2 {
+        padding-left: 0.33cm;
+        padding-right: 0.33cm;
+        padding-top: 0cm;
+        padding-bottom: 0cm;
+        border-style: none;
+    }
+
+    .Table1_B4 {
+        background-color: #f2f2f2;
+        padding-left: 0.33cm;
+        padding-right: 0.33cm;
+        padding-top: 0cm;
+        padding-bottom: 0cm;
+        border-style: none;
+    }
+
+    .Table1_B7 {
+        background-color: #f2f2f2;
+        padding-left: 0.33cm;
+        padding-right: 0.33cm;
+        padding-top: 0cm;
+        padding-bottom: 0cm;
+        border-style: none;
+    }
+
+    .Table1_B9 {
+        background-color: #f2f2f2;
+        padding-left: 0.33cm;
+        padding-right: 0.33cm;
+        padding-top: 0cm;
+        padding-bottom: 0cm;
+        border-style: none;
+    }
+
+    .Table2_A1 {
+        vertical-align: middle;
+        background-color: #e7e5c7;
+        padding-left: 0.33cm;
+        padding-right: 0.33cm;
+        padding-top: 0cm;
+        padding-bottom: 0cm;
+        border-style: none;
+    }
+
+    .Table2_A2 {
+        background-color: #f2f2f2;
+        padding-left: 0.33cm;
+        padding-right: 0.33cm;
+        padding-top: 0cm;
+        padding-bottom: 0cm;
+        border-style: none;
+    }
+
+    .Table2_A5 {
+        background-color: #f2f2f2;
+        padding-left: 0.33cm;
+        padding-right: 0.33cm;
+        padding-top: 0cm;
+        padding-bottom: 0cm;
+        border-style: none;
+    }
+
+    .Table2_A7 {
+        background-color: #f2f2f2;
+        padding-left: 0.33cm;
+        padding-right: 0.33cm;
+        padding-top: 0cm;
+        padding-bottom: 0cm;
+        border-style: none;
+    }
+
+    .Table2_B1 {
+        background-color: #e7e5c7;
+        padding: 0cm;
+        border-style: none;
+    }
+
+    .Table2_B2 {
+        padding: 0cm;
+        border-style: none;
+    }
+
+    .Table2_B3 {
+        padding: 0cm;
+        border-style: none;
+    }
+
+    .Table2_B4 {
+        background-color: #e7e5c7;
+        padding: 0cm;
+        border-style: none;
+    }
+
+    .Table2_B5 {
+        padding: 0cm;
+        border-style: none;
+    }
+
+    .Table2_B6 {
+        background-color: #e7e5c7;
+        padding: 0cm;
+        border-style: none;
+    }
+
+    .Table2_B7 {
+        padding: 0cm;
+        border-style: none;
+    }
+
+    .Table3_A1 {
+        padding-left: 0.191cm;
+        padding-right: 0.191cm;
+        padding-top: 0cm;
+        padding-bottom: 0cm;
+        border-style: none;
+    }
+
+    .Table1_A {
+        width: 0.54cm;
+    }
+
+    .Table1_B {
+        width: 5.554cm;
+    }
+
+    .Table2_A {
+        width: 11.587cm;
+    }
+
+    .Table2_B {
+        width: 0.476cm;
+    }
+
+    .Table3_A {
+        width: 6.856cm;
+    }
+
+    .Table3_B {
+        width: 12.573cm;
+    }
+
+    .Internet_20_link {
+        color: #0000ff;
+        text-decoration: underline;
+    }
+
+    .ListLabel_20_10 {
+        color: #1155cc;
+        font-family: Calibri;
+        font-size: 11pt;
+    }
+
+    .ListLabel_20_4 {
+        color: #244a58;
+        font-size: 14pt;
+        letter-spacing: 0.106cm;
+        text-shadow: none;
+        display: true;
+    }
+
+    .ListLabel_20_8 {
+        font-family: Calibri;
+        font-size: 11pt;
+        font-weight: bold;
+    }
+
+    .ListLabel_20_9 {
+        font-family: Calibri;
+        font-size: 11pt;
+    }
+
+    .T1 {
+        font-family: Cambria;
+        display: none;
+    }
+
+    .T10 {
+        color: #1155cc;
+        font-family: Calibri;
+        font-size: 11pt;
+    }
+
+    .T2 {
+        color: #000000;
+    }
+
+    .T3 {
+        color: #000000;
+        font-family: Calibri;
+        font-size: 11pt;
+        font-weight: bold;
+    }
+
+    .T4 {
+        color: #000000;
+        font-family: Calibri;
+        font-size: 11pt;
+    }
+
+    .T5 {
+        font-family: Wingdings;
+    }
+
+    .T6 {
+        color: #bfbfbf;
+        font-family: Wingdings;
+    }
+
+    .T8 {
+        font-family: Calibri;
+        font-size: 11pt;
+        font-weight: bold;
+    }
+
+    .T9 {
+        font-family: Calibri;
+        font-size: 11pt;
+    }
+
+    /* ODF styles with no properties representable as CSS */
+    .Table1.1 .Table1.10 .Table1.2 .Table1.3 .Table1.4 .Table1.5 .Table1.7 .Table1.9 .Table2.1 .Table2.4 .Table3.1 .ListLabel_20_1 .ListLabel_20_2 .ListLabel_20_3 .ListLabel_20_5 .ListLabel_20_6 .ListLabel_20_7 ._5f_tgc {}
+    </style>
+</head>
+
+<body dir="ltr" style="max-width:21.59cm;margin-top:1.27cm; margin-bottom:1.27cm; margin-left:1.27cm; margin-right:1.27cm; ">
+    <table border="0" cellspacing="0" cellpadding="0" class="Table3">
+        <colgroup>
+            <col width="300" />
+            <col width="549" />
+        </colgroup>
+        <tr class="Table31">
+            <td style="text-align:left;width:6.856cm; " class="Table3_A1">
+                <table border="0" cellspacing="0" cellpadding="0" class="Table1">
+                    <colgroup>
+                        <col width="24" />
+                        <col width="243" />
+                    </colgroup>
+                    <tr class="Table11">
+                        <td style="text-align:left;width:0.54cm; " class="Table1_A1">
+                        </td>
+                        <td style="text-align:left;width:5.554cm; " class="Table1_B1">
+                            <p class="Section_20_Title_20_Left"><span class="T2">
+                                    <%=cv.student.firstname%>
+                                    <%=cv.student.lastname%></span></p>
                         </td>
                     </tr>
-                    <tr>
-                        <th>Date de naissance</th>
-                        <td>
-                            <%= tag.time l(cv.student.birthdate, format: :long) %>
+                    <tr class="Table12">
+                        <td style="text-align:left;width:0.54cm; " class="Table1_A2">
+                            <div class="Standard" />
+                        </td>
+                        <td style="text-align:left;width:5.554cm; " class="Table1_B2">
+                            <!--Next 'div' was a 'text:p'.-->
+                            <div class="Standard" style="position: relative; top: -4px;">
+                                <!--Next '
+            div' is a draw:frame.
+        -->
+                                <div style="height:5.562cm;width:5.562cm; padding:0;  float:left; position:relative; left:-0.3cm; top:0.025cm; " class="fr2" id="Picture_3"><img style="height:5.562cm;width:5.562cm;" alt="" src="data:image/jpeg;base64,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bmcAAAAAAAAAC2Nyb3BSZWN0VG9wbG9uZwAAAAAAOEJJTQPtAAAAAAAQAEgAAAABAAEASAAAAAEAAThCSU0EJgAAAAAADgAAAAAAAAAAAAA/gAAAOEJJTQQNAAAAAAAEAAAAeDhCSU0EGQAAAAAABAAAAB44QklNA/MAAAAAAAkAAAAAAAAAAAEAOEJJTScQAAAAAAAKAAEAAAAAAAAAAjhCSU0D9QAAAAAASAAvZmYAAQBsZmYABgAAAAAAAQAvZmYAAQChmZoABgAAAAAAAQAyAAAAAQBaAAAABgAAAAAAAQA1AAAAAQAtAAAABgAAAAAAAThCSU0D+AAAAAAAcAAA/////////////////////////////wPoAAAAAP////////////////////////////8D6AAAAAD/////////////////////////////A+gAAAAA/////////////////////////////wPoAAA4QklNBAgAAAAAABAAAAABAAACQAAAAkAAAAAAOEJJTQQeAAAAAAAEAAAAADhCSU0EGgAAAAADPwAAAAYAAAAAAAAAAAAAAF8AAABfAAAABQBzAGgAYQByAHAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAF8AAABfAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAEAAAAAAABudWxsAAAAAgAAAAZib3VuZHNPYmpjAAAAAQAAAAAAAFJjdDEAAAAEAAAAAFRvcCBsb25nAAAAAAAAAABMZWZ0bG9uZwAAAAAAAAAAQnRvbWxvbmcAAABfAAAAAFJnaHRsb25nAAAAXwAAAAZzbGljZXNWbExzAAAAAU9iamMAAAABAAAAAAAFc2xpY2UAAAASAAAAB3NsaWNlSURsb25nAAAAAAAAAAdncm91cElEbG9uZwAAAAAAAAAGb3JpZ2luZW51bQAAAAxFU2xpY2VPcmlnaW4AAAANYXV0b0dlbmVyYXRlZAAAAABUeXBlZW51bQAAAApFU2xpY2VUeXBlAAAAAEltZyAAAAAGYm91bmRzT2JqYwAAAAEAAAAAAABSY3QxAAAABAAAAABUb3AgbG9uZwAAAAAAAAAATGVmdGxvbmcAAAAAAAAAAEJ0b21sb25nAAAAXwAAAABSZ2h0bG9u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YmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdEV2dD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlRXZlbnQjIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1sbnM6cGhvdG9zaG9wPSJodHRwOi8vbnMuYWRvYmUuY29tL3Bob3Rvc2hvcC8xLjAvIiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCBDUzYgKE1hY2ludG9zaCkiIHhtcDpDcmVhdGVEYXRlPSIyMDEyLTAzLTI4VDE2OjA5OjM4KzAxOjAwIiB4bXA6TWV0YWRhdGFEYXRlPSIyMDE0LTAzLTE0VDE3OjM1OjIxKzAxOjAwIiB4bXA6TW9kaWZ5RGF0ZT0iMjAxNC0wMy0xNFQxNzozNToyMSswMTowMCIgZGM6Zm9ybWF0PSJpbWFnZS9qcGVnIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjQ1NkUyNzg1MEMyNzY4MTE4MjJBQzUxMUM5M0IzMkMwIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjk0QjUwODNDMEIyMDY4MTE4MDgzQ0IzOTEzNUM3RTJDIiB4bXBNTTpPcmlnaW5hbERvY3VtZW50SUQ9InhtcC5kaWQ6OTRCNTA4M0MwQjIwNjgxMTgwODNDQjM5MTM1QzdFMkMiIHBob3Rvc2hvcDpMZWdhY3lJUFRDRGlnZXN0PSJEM0M5OUY0QjNEOERFQTI4ODU0ODM1NkE4NDE1OUMyQiIgcGhvdG9zaG9wOkNvbG9yTW9kZT0iMyIgcGhvdG9zaG9wOklDQ1Byb2ZpbGU9InNSR0IgSUVDNjE5NjYtMi4xIj4gPHhtcE1NOkhpc3Rvcnk+IDxyZGY6U2VxPiA8cmRmOmxpIHN0RXZ0OmFjdGlvbj0iY3JlYXRlZCIgc3RFdnQ6aW5zdGFuY2VJRD0ieG1wLmlpZDo5NEI1MDgzQzBCMjA2ODExODA4M0NCMzkxMzVDN0UyQyIgc3RFdnQ6d2hlbj0iMjAxMi0wMy0yOFQxNjowOTozOCswMTowMCIgc3RFdnQ6c29mdHdhcmVBZ2VudD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoMTMuMCAyMDEyMDMwNS5tLjQxNSAyMDEyLzAzLzA1OjIxOjAwOjAwKSAgKE1hY2ludG9zaCkiLz4gPHJkZjpsaSBzdEV2dDphY3Rpb249InNhdmVkIiBzdEV2dDppbnN0YW5jZUlEPSJ4bXAuaWlkOjkxQUNBRjczMTYyMDY4MTE4MDgzQ0IzOTEzNUM3RTJDIiBzdEV2dDp3aGVuPSIyMDEyLTAzLTI4VDE2OjI2OjMxKzAxOjAwIiBzdEV2dDpzb2Z0d2FyZUFnZW50PSJBZG9iZSBQaG90b3Nob3AgQ1M2ICgxMy4wIDIwMTIwMzA1Lm0uNDE1IDIwMTIvMDMvMDU6MjE6MDA6MDApICAoTWFjaW50b3NoKSIgc3RFdnQ6Y2hhbmdlZD0iLyIvPiA8cmRmOmxpIHN0RXZ0OmFjdGlvbj0ic2F2ZWQiIHN0RXZ0Omluc3RhbmNlSUQ9InhtcC5paWQ6NDM2RTI3ODUwQzI3NjgxMTgyMkFDNTExQzkzQjMyQzAiIHN0RXZ0OndoZW49IjIwMTQtMDMtMTRUMTc6Mjg6MjgrMDE6MDAiIHN0RXZ0OnNvZnR3YXJlQWdlbnQ9IkFkb2JlIFBob3Rvc2hvcCBDUzYgKE1hY2ludG9zaCkiIHN0RXZ0OmNoYW5nZWQ9Ii8iLz4gPHJkZjpsaSBzdEV2dDphY3Rpb249ImNvbnZlcnRlZCIgc3RFdnQ6cGFyYW1ldGVycz0iZnJvbSBhcHBsaWNhdGlvbi92bmQuYWRvYmUucGhvdG9zaG9wIHRvIGltYWdlL2pwZWciLz4gPHJkZjpsaSBzdEV2dDphY3Rpb249ImRlcml2ZWQiIHN0RXZ0OnBhcmFtZXRlcnM9ImNvbnZlcnRlZCBmcm9tIGFwcGxpY2F0aW9uL3ZuZC5hZG9iZS5waG90b3Nob3AgdG8gaW1hZ2UvanBlZyIvPiA8cmRmOmxpIHN0RXZ0OmFjdGlvbj0ic2F2ZWQiIHN0RXZ0Omluc3RhbmNlSUQ9InhtcC5paWQ6NDQ2RTI3ODUwQzI3NjgxMTgyMkFDNTExQzkzQjMyQzAiIHN0RXZ0OndoZW49IjIwMTQtMDMtMTRUMTc6Mjg6MjgrMDE6MDAiIHN0RXZ0OnNvZnR3YXJlQWdlbnQ9IkFkb2JlIFBob3Rvc2hvcCBDUzYgKE1hY2ludG9zaCkiIHN0RXZ0OmNoYW5nZWQ9Ii8iLz4gPHJkZjpsaSBzdEV2dDphY3Rpb249InNhdmVkIiBzdEV2dDppbnN0YW5jZUlEPSJ4bXAuaWlkOjQ1NkUyNzg1MEMyNzY4MTE4MjJBQzUxMUM5M0IzMkMwIiBzdEV2dDp3aGVuPSIyMDE0LTAzLTE0VDE3OjM1OjIxKzAxOjAwIiBzdEV2dDpzb2Z0d2FyZUFnZW50PSJBZG9iZSBQaG90b3Nob3AgQ1M2IChNYWNpbnRvc2gpIiBzdEV2dDpjaGFuZ2VkPSIvIi8+IDwvcmRmOlNlcT4gPC94bXBNTTpIaXN0b3J5PiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo0MzZFMjc4NTBDMjc2ODExODIyQUM1MTFDOTNCMzJDMCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5NEI1MDgzQzBCMjA2ODExODA4M0NCMzkxMzVDN0UyQyIgc3RSZWY6b3JpZ2luYWxEb2N1bWVudElEPSJ4bXAuZGlkOjk0QjUwODNDMEIyMDY4MTE4MDgzQ0IzOTEzNUM3RTJDIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDw/eHBhY2tldCBlbmQ9InciPz7/4gxYSUNDX1BST0ZJTEUAAQEAAAxITGlubwIQAABtbnRyUkdCIFhZWiAHzgACAAkABgAxAABhY3NwTVNGVAAAAABJRUMgc1JHQgAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLUhQICAAAAAAAAAAAAAA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" /></div>
+                            </div>
+                            <div style="clear:both; line-height:0; width:0; height:0; margin:0; padding:0;"> </div>
                         </td>
                     </tr>
-                    <tr>
-                        <th>Contact</th>
-                        <td>
-                            <%= cv.student.tel %>
+                    <tr class="Table13">
+                        <td style="text-align:left;width:0.54cm; " class="Table1_A3">
+                            <p class="Section_20_Title_20_Left"> </p>
+                        </td>
+                        <td style="text-align:left;width:5.554cm; " class="Table1_B1">
+                            <p class="Section_20_Title_20_Left">Contact Information</p>
                         </td>
                     </tr>
-                    <tr>
-                        <th>Addresse</th>
-                        <td>
-                            <%= cv.student.address %>
+                    <tr class="Table14">
+                        <td style="text-align:left;width:0.54cm; " class="Table1_A4">
+                            <div class="Contact_20_Info" />
+                        </td>
+                        <td rowspan="2" style="text-align:left;width:5.554cm; " class="Table1_B4">
+                            <p class="Contact_20_Info">Address:<span>
+                                    <%= cv.student.address %></span></p>
+                            <p class="Contact_20_Info">Phone:<span> 
+                                    <%=cv.student.tel%></span></p>
+                            <p class="Contact_20_Info">Email:<span> 
+                                    <%=cv.student.user.email%></span></p>
+                            <p class="Contact_20_Info">Website:<span> www.hloom.com</span></p>
+                            <p class="No_20_Spacing"> </p>
                         </td>
                     </tr>
-                    <tr>
-                        <th>Sexe</th>
-                        <td>
-                            <%= cv.student.sexe %>
+                    <tr class="Table15">
+                        <td style="text-align:left;width:0.54cm; " class="Table1_A5">
+                            <p class="Contact_20_Info"> </p>
                         </td>
                     </tr>
-                    <tr>
-                        <th>Etat civil</th>
-                        <td>
-                            <%= cv.student.marital_status %>
+                    <tr class="Table13">
+                        <td style="text-align:left;width:0.54cm; " class="Table1_A6">
+                            <p class="Section_20_Title_20_Left"> </p>
+                        </td>
+                        <td style="text-align:left;width:5.554cm; " class="Table1_B1">
+                            <p class="Section_20_Title_20_Left">Social Contacts</p>
+                        </td>
+                    </tr>
+                    <tr class="Table17">
+                        <td style="text-align:left;width:0.54cm; " class="Table1_A7">
+                            <div class="Contact_20_Info" />
+                        </td>
+                        <td style="text-align:left;width:5.554cm; " class="Table1_B7">
+                            <p class="Contact_20_Info">Facebook:<span> officetemplates</span></p>
+                            <p class="Contact_20_Info">Twitter:<span> hloomtemplates</span></p>
+                            <p class="Contact_20_Info">G+:<span> hloomsome</span></p>
+                            <p class="Contact_20_Info">Skype:<span> hloom</span></p>
+                            <p class="No_20_Spacing"> </p>
+                        </td>
+                    </tr>
+                    <tr class="Table13">
+                        <td style="text-align:left;width:0.54cm; " class="Table1_A6">
+                            <p class="Section_20_Title_20_Left"> </p>
+                        </td>
+                        <td style="text-align:left;width:5.554cm; " class="Table1_B1">
+                            <p class="Section_20_Title_20_Left">Langues</p>
+                        </td>
+                    </tr>
+                    <tr class="Table17">
+                        <td style="text-align:left;width:0.54cm; " class="Table1_A7">
+                            <div class="Contact_20_Info" />
+                        </td>
+                        <td style="text-align:left;width:5.554cm; " class="Table1_B7">
+                            <% cv.languages.each do |language| %>
+                            <p class="Contact_20_Info">
+                                <%=language.name%>:
+                                <% language.level.to_i.times do |variable| %>
+                                <span>⭐</span>
+                                <%end%>
+                            </p>
+                            <% end %>
+                            <p class="Contact_20_Info"></p>
+                        </td>
+                    </tr>
+                    <tr class="Table13">
+                        <td style="text-align:left;width:0.54cm; " class="Table1_A8">
+                            <p class="Section_20_Title_20_Left"> </p>
+                        </td>
+                        <td style="text-align:left;width:5.554cm; " class="Table1_B1">
+                            <p class="Section_20_Title_20_Left">References</p>
+                        </td>
+                    </tr>
+                    <tr class="Table19">
+                        <td style="text-align:left;width:0.54cm; " class="Table1_A9">
+                            <div class="Standard" />
+                        </td>
+                        <td rowspan="2" style="text-align:left;width:5.554cm; " class="Table1_B9">
+                            <p class="Standard">John Miller</p>
+                            <p class="Standard">Manager Operations</p>
+                            <p class="Standard">TNT company</p>
+                            <p class="Standard">(123) 123 4567</p>
+                            <p class="No_20_Spacing"> </p>
+                        </td>
+                    </tr>
+                    <tr class="Table110">
+                        <td style="text-align:left;width:0.54cm; " class="Table1_A10">
+                            <p class="Standard"> </p>
                         </td>
                     </tr>
                 </table>
-            </div>
-            <div class="right col-md-7">
-                <h2>
-                    <%= "Experiences" %>
-                </h2>
-                <div class="experiences" style="display: block;">
-                    <table class="table table-responsive">
-                        <% cv.experiences.each do |ex| %>
-                        <% if ex %>
-                        <tr class="table table-condensed">
-                            <th>
-                                <%= ex.name %>
-                            </th>
-                            <td>
-                                <%= ex.description %>
-                            </td>
-                        </tr>
-                        <% end %>
-                        <% end %>
-                    </table>
-                </div>
-            </div>
-        </section>
-        <!-- <hr> -->
-        <section class="row">
-            <div class="col-md-5">
-                <h2>
-                    <%= "Techniques" %>
-                </h2>
-                <div class="programming_languages">
-                    <ul class="list-group">
-                        <% cv.programming_languages.each do |programming_language| %>
-                        <% if programming_language %>
-                        <li class="list-item" style="list-style: ">
-                            <%= programming_language.name %><% programming_language.level.to_i.times do  %><span class="glyphicon glyphicon-star"></span><% end %>
-                        </li>
-                        <% end %>
-                        <% end %>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-md-7">
-                <h2>
-                    <%= "Compétences" %>
-                </h2>
-                <div class="skills">
-                    <ul class="list-group">
-                        <% cv.skills.each do |skill| %>
-                        <% if skill %>
-                        <li class="list-item">
-                            <%= skill.name %>
-                        </li>
-                        <% end %>
-                        <% end %>
-                    </ul>
-                </div>
-            </div>
-        </section>
-        <section class="row">
-            <div class="col-md-5">
-                <h2>
-                    <%= "Langues" %>
-                </h2>
-                <div class="languages">
-                    <ul class="list-group">
-                        <% cv.languages.each do |language| %>
-                        <% if language %>
-                        <li class="list-item">
-                            <%= language.name %>
-                            <% language.level.to_i.times do  %>
-                                <span class="glyphicon glyphicon-star" style="color: gold;"></span>
+                <p class="Standard"> </p>
+            </td>
+            <td style="text-align:left;width:12.573cm; " class="Table3_A1">
+                <table border="0" cellspacing="0" cellpadding="0" class="Table2">
+                    <colgroup>
+                        <col width="506" />
+                        <col width="21" />
+                    </colgroup>
+                    <tr class="Table21">
+                        <td style="text-align:left;width:11.587cm; " class="Table2_A1">
+                            <p class="Section_20_Title_20_Right">Work Experience</p>
+                        </td>
+                        <td style="text-align:left;width:0.476cm; " class="Table2_B1">
+                            <p class="PositionDegree"> </p>
+                        </td>
+                    </tr>
+                    <tr class="Table21">
+                        <td rowspan="2" style="text-align:left;width:11.587cm; " class="Table2_A2">
+                            <p class="PositionDegree">Director of Creative Services</p>
+                            <p class="Standard">FN Interactive<span style="position:absolute;left:12.199cm;text-align:right;">2009 – Present</span></p>
+                            <p class="Standard">Duis a quam non nequelobortismalesuada. Praesenteuismod. Donecnullaaugue, venenatisscelerisque, dapibus a, consequat at.</p>
+                            <ul>
+                                <li>
+                                    <p class="P4" style="margin-left:0.94cm;"><span class="ListLabel_20_4" style="display:block;float:left;min-width:0.635cm;">»»</span>Sedaliquamodio vitae tortor.<span class="odfLiEnd" /> </p>
+                                </li>
+                                <li>
+                                    <p class="P4" style="margin-left:0.94cm;"><span class="ListLabel_20_4" style="display:block;float:left;min-width:0.635cm;">»»</span>Proinhendrerit tempus arcu.<span class="odfLiEnd" /> </p>
+                                </li>
+                                <li>
+                                    <p class="P4" style="margin-left:0.94cm;"><span class="ListLabel_20_4" style="display:block;float:left;min-width:0.635cm;">»»</span>In hachabitasseplateadictumst.<span class="odfLiEnd" /> </p>
+                                </li>
+                                <li>
+                                    <p class="P4" style="margin-left:0.94cm;"><span class="ListLabel_20_4" style="display:block;float:left;min-width:0.635cm;">»»</span>Suspendissepotenti.<span class="odfLiEnd" /> </p>
+                                </li>
+                                <li>
+                                    <p class="P4" style="margin-left:0.94cm;"><span class="ListLabel_20_4" style="display:block;float:left;min-width:0.635cm;">»»</span>Pellentesqueliberolectus, tristique ac, consectetuersit.<span class="odfLiEnd" /> </p>
+                                </li>
+                            </ul>
+                            <p class="PositionDegree"> </p>
+                            <p class="PositionDegree">Director of Creative Services</p>
+                            <p class="Standard">FN Interactive<span style="position:absolute;left:12.199cm;text-align:right;">2007 – 2009</span></p>
+                            <p class="Standard">Vivamus vitae massaadipiscingestlaciniasodales. Donecmetusmassa, mollisvel, tempus placerat, vestibulumcondimentum.</p>
+                            <ul>
+                                <li>
+                                    <p class="P4" style="margin-left:0.94cm;"><span class="ListLabel_20_4" style="display:block;float:left;min-width:0.635cm;">»»</span>Nunc lacus metus, posuereeget, laciniaeu, variusquis.<span class="odfLiEnd" /> </p>
+                                </li>
+                                <li>
+                                    <p class="P4" style="margin-left:0.94cm;"><span class="ListLabel_20_4" style="display:block;float:left;min-width:0.635cm;">»»</span>Aliquamnonummyadipiscingaugue.<span class="odfLiEnd" /> </p>
+                                </li>
+                                <li>
+                                    <p class="P4" style="margin-left:0.94cm;"><span class="ListLabel_20_4" style="display:block;float:left;min-width:0.635cm;">»»</span>Loremipsumdolor sitamet, consectetueradipiscingelit.<span class="odfLiEnd" /> </p>
+                                </li>
+                                <li>
+                                    <p class="P4" style="margin-left:0.94cm;"><span class="ListLabel_20_4" style="display:block;float:left;min-width:0.635cm;">»»</span>Maecenas porttitorconguemassa.<span class="odfLiEnd" /> </p>
+                                </li>
+                            </ul>
+                            <p class="No_20_Spacing"> </p>
+                        </td>
+                        <td style="text-align:left;width:0.476cm; " class="Table2_B2">
+                            <div class="PositionDegree" />
+                        </td>
+                    </tr>
+                    <tr class="Table21">
+                        <td style="text-align:left;width:0.476cm; " class="Table2_B3">
+                            <p class="PositionDegree"> </p>
+                        </td>
+                    </tr>
+                    <tr class="Table24">
+                        <td style="text-align:left;width:11.587cm; " class="Table2_A1">
+                            <p class="Section_20_Title_20_Right">Education</p>
+                        </td>
+                        <td style="text-align:left;width:0.476cm; " class="Table2_B4">
+                            <p class="Section_20_Title_20_Right"> </p>
+                        </td>
+                    </tr>
+                    <tr class="Table21">
+                        <td style="text-align:left;width:11.587cm; " class="Table2_A5">
+                            <p class="PositionDegree">Diploma in interior Designing</p>
+                            <p class="Standard">Art Center College of Design<span style="position:absolute;left:12.199cm;text-align:right;">2005</span></p>
+                            <p class="GPA">GPA: 3.54</p>
+                            <p class="PositionDegree">Bachelor of Arts</p>
+                            <p class="Standard">National College of Arts<span style="position:absolute;left:12.199cm;text-align:right;">2001</span></p>
+                            <p class="GPA">GPA: 3.55</p>
+                            <p class="No_20_Spacing"> </p>
+                        </td>
+                        <td style="text-align:left;width:0.476cm; " class="Table2_B5">
+                            <div class="PositionDegree" />
+                        </td>
+                    </tr>
+                    <tr class="Table24">
+                        <td style="text-align:left;width:11.587cm; " class="Table2_A1">
+                            <p class="Section_20_Title_20_Right">Skill &amp; Proficiencies</p>
+                        </td>
+                        <td style="text-align:left;width:0.476cm; " class="Table2_B6">
+                            <p class="Section_20_Title_20_Right"> </p>
+                        </td>
+                    </tr>
+                    <tr class="Table21">
+                        <td style="text-align:left;width:15cm; " class="Table2_A7">
+                            <% cv.skills.each do |skill| %>
+                            <p class="Standard">
+                                <%= skill.name %>
+                            </p>
                             <% end %>
-                            <% (5-language.level.to_i).times do  %>
-                                <span class="glyphicon glyphicon-star-empty" style="color: gold;"></span>
-                            <% end %>
-                        </li>
-                        <% end %>
-                        <% end %>
-                    </ul>
-                </div>
-            </div>
-            <div class="right col-md-7">
-                <div class="hobbies">
-                    <h2>
-                        <%= "Passe temps" %>
-                    </h2>
-                    <p class="hobbies">
-                        <%= cv.hobbies %>
-                    </p>
-                </div>
-            </div>
-        </section>
-        <hr>
-    </div>
+                            <p class="Standard"></p>
+                        </td>
+                        <td style="text-align:left;width:0.476cm; " class="Table2_B7">
+                            <p class="Skill"> </p>
+                        </td>
+                    </tr>
+                </table>
+                <p class="Standard"> </p>
+            </td>
+        </tr>
+    </table>
+</body>
+
+</html>

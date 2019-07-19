@@ -182,6 +182,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       p "S"*50
       s = Student.new(student_params)
       create_cv(s)
+
       create_city(s)
       s.user = resource
       s.save
@@ -200,7 +201,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def create_cv(student)
     c = Cv.create(cv_params)
+    create_cover_letter(c)
     student.cv = c
+  end
+
+  def create_cover_letter(cv)
+    cl = CoverLetter.create(cv: cv)
   end
 
   def create_city(student)

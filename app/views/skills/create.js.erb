@@ -1,25 +1,48 @@
-let $tag = $(`.tag.new:first`),
-$a = $tag.children('a.skill');
+let $input = $(`div#skills`).children('input.skill:first'),
+    $tag = $("<div />"),
+    $a = $(`<a href='#' class="skill"/>`),
+    $span = $("<span />"),
+    $appendHere = $(`.tagHere.skills:first`);
 
-$tag.addClass('old');
-$a.addClass('old');
+$tag.addClass('tag');
 
-$tag.removeClass('new');
-$a.removeClass('new');
+$('<i class="fa fa-times" aria-hidden="true"></i>').appendTo($a);
 
-$a.attr('id', 'skill<%= @skill.id %>');
+$span.text("<%= @skill.name %>");
+
+$a.appendTo($tag);
+$span.appendTo($tag);
+$tag.appendTo($appendHere);
+
+$($input).val('');
+$($input).focus();
 
 $a.bind('click', function(e) {
   e.preventDefault();
   $(this).unbind('click');
-  if ($a.parent('div.tag').hasClass('old')) {
-	  $.ajax({
-		  url: `/skills/<%= @skill.id %>`,
-		  type: 'DELETE',
-		  data: { 
-		  "authenticity_token": "F5nAxhIi0R2zwNE77wXvOHfUsukeiVAf6O337a37i7rk2dRxyEieTL53B9MsZn6rF3OzNaS/08W99PISFdLJ4A==",
-		  id: `<%= @skill.id %>`
-		  },
-	  });
-  }
+	
+	let $DIV = $tag,
+    $CVID = $(`div.moncv:first`).attr('id'),
+		$ID = "<%=  @skill.id %>";
+
+	removeSkill($DIV, $CVID, $ID);
 });
+
+
+function removeSkill(div, cv_id, id) {
+    let AUTH_TOKEN = $(`input[name="authenticity_token"]`).attr('value');
+
+    div.fadeOut('slow', function() {
+      div.remove();
+    });
+
+    $.ajax({
+        url: `/skills/${id}`,
+        type: 'DELETE',
+        data: {
+            authenticity_token: AUTH_TOKEN,
+            cv_id: cv_id,
+            id: id
+        },
+    });
+}

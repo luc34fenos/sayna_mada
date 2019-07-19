@@ -13,4 +13,18 @@ f.save!
 # l = User.new(username: "linx", email: "plinsy2@gmail.com", password: "Linx#01111998", password_confirmation: "Linx#01111998", status: "admin")
 # l.save!
 
+<<<<<<< HEAD
+# admins = [
+# 	{username: "Linx", email: "plinsy2@gmail.com", password: "#{ENV[LINX_PASSWORD]}", password_confirmation: "#{ENV[LINX_PASSWORD]}", status: "admin"}
+# ]
+
+# admins.each do |admin|
+# 	User.create(admin)
+# end
+
 # AdminUser.create!(email: 'plinsy2@gmail.com', password: "Linx#01111998", password_confirmation: "Linx#01111998") if Rails.env.development?
+
+CS.update
+=======
+# AdminUser.create!(email: 'plinsy2@gmail.com', password: "Linx#01111998", password_confirmation: "Linx#01111998") if Rails.env.development?
+>>>>>>> bed684a9d2a51a38113b8c3f7329f4f4455693a0
