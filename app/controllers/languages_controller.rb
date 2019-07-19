@@ -16,14 +16,13 @@ class LanguagesController < ApplicationController
 
   def update
     @language = Language.find(params[:id])
-    if params[:name]
-     @language.update(name: params[:name])
-    else
-     @language.update(level: params[:level])
+
+    if @language.update(level: params[:level])
+      respond_to do |format|
+        format.js
+      end
     end
-    respond_to do |format|
-      format.js
-    end
+    
   end
   
   def destroy

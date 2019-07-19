@@ -1,15 +1,96 @@
-let div = $(`div.field.new.old:first`);
-div.attr('id', 'programming_language<%=@programming_language.id%>');
+let $input = $(`div#programming_languages`).children('input.programming_language:first'),
+    $tag = $("<div />"),
+    $a = $(`<a href='#' class="programming_language"/>`),
+    $span = $("<span />"),
+    $appendHere = $(`.tagHere.programming_languages:first`);
 
-let name = div.children('input:first');
-name.attr('id', 'programming_language<%=@programming_language.id%>0');
-name.attr('name', 'programming_languagenames[name<%=@programming_language.id%>]');
+$tag.addClass('tag programming_language');
 
-// let level = div.children('textarea:first');
-// level.attr('id', 'programming_language<%=@programming_language.id%>1');
-// level.attr('name', 'programming_languagelevels[level<%=@programming_language.id%>]');
+$('<i class="fa fa-times" aria-hidden="true"></i>').appendTo($a);
 
-let remove = div.children('a.remove-me:first');
-remove.attr('id', 'rmprogramming_language<%=@programming_language.id%>');
+$span.text("<%= @programming_language.name %>");
 
-div.removeClass('new');
+$a.appendTo($tag);
+$span.appendTo($tag);
+
+for (var i = 0; i < 3; i++) {
+    $(`<span class="glyphicon glyphicon-star" style="color: gold;"></span>`).appendTo($tag);
+}
+
+for (var i = 0; i < 4; i++) {
+    $(`<span class="glyphicon glyphicon-star-empty" style="color: gold;"></span>`).appendTo($tag);
+}
+
+$tag.appendTo($appendHere);
+
+$($input).val('');
+$($input).focus();
+
+$a.bind('click', function(e) {
+    e.preventDefault();
+    $(this).unbind('click');
+
+    let $DIV = $tag,
+        $CVID = $(`div.moncv:first`).attr('id'),
+        $ID = "<%=  @programming_language.id %>";
+
+    removeProgrammingLanguage($DIV, $CVID, $ID);
+});
+
+$(`span.glyphicon`).click(function(event) {
+    event.preventDefault();
+    let $ITEM, $ID, $LEVEL;
+    let parent = $(this).parent('div.tag:first');
+    let siblings = parent.children('span.glyphicon');
+
+
+    $ITEM = "programming_languages";
+    $ID = "<%=  @programming_language.id %>";
+    $LEVEL = Number(siblings.index(this)) + 1;
+
+    for (let i = siblings.length - 1; i >= 0; i--) {
+        if (siblings.index(siblings.eq(i)) <= siblings.index(this)) {
+            siblings.eq(i).removeClass('glyphicon-star-empty');
+            siblings.eq(i).addClass('glyphicon-star');
+        } else {
+            siblings.eq(i).removeClass('glyphicon-star');
+            siblings.eq(i).addClass('glyphicon-star-empty');
+        }
+    }
+
+    updateLevel($ITEM, $ID, $LEVEL);
+});
+
+
+
+function removeProgrammingLanguage(div, cv_id, id) {
+    let AUTH_TOKEN = $(`input[name="authenticity_token"]`).attr('value');
+
+    div.fadeOut('slow', function() {
+        div.remove();
+    });
+
+    $.ajax({
+        url: `/programming_languages/${id}`,
+        type: 'DELETE',
+        data: {
+            authenticity_token: AUTH_TOKEN,
+            cv_id: cv_id,
+            id: id
+        },
+    });
+}
+
+function updateLevel(item, id, level) {
+    let AUTH_TOKEN = $(`input[name="authenticity_token"]`).attr('value');
+
+    $.ajax({
+        url: `/${item}/${id}`,
+        type: 'PATCH',
+        data: {
+            authenticity_token: AUTH_TOKEN,
+            id: id,
+            level: level
+        }
+    });
+}

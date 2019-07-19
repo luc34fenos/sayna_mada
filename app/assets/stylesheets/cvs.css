@@ -2,7 +2,7 @@ body.cvs {
     background: rgba(0, 0, 0, .6);
 }
 
-#moncv {
+#moncv, .moncv {
     background: ghostwhite;
     border-right: 40px solid;
     border-left: 0;
@@ -95,16 +95,16 @@ body.cvs {
     word-spacing: .7em;
 }
 
-#skills, #languages {
+#skills, #languages, #programming_languages {
     background: #fff;
     border-radius: 4px;
-    box-shadow: 0 40px 50px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 40px 50px rgba(0, 0, 0, 0.25) !important;
     outline: none;
     font-size: 1em;
     padding: 1%;
 }
 
-#skills input, #languages input {
+#skills input, #languages input, #programming_languages input {
     outline: none;
     border: 0;
     float: left;
@@ -116,17 +116,17 @@ body.cvs {
     margin: 0.5% 0.5%;
 }
 
-#languages input {
+#languages input, #programming_languages input {
     width: 100%;
     margin: 1% 5% 0% 0%;
 }
 
-#skills::before, #languages::before {
+#skills::before, #languages::before, #programming_languages::before {
     content: '';
     display: table;
 }
 
-#skills::after, #languages::after {
+#skills::after, #languages::after, #programming_languages::after {
     content: '';
     display: table;
     clear: both;
@@ -165,6 +165,53 @@ body.cvs {
     bottom: 10px;
     text-align: center;
     width: 100%;
+}
+
+/* Experiences */
+
+.experience {
+    margin: 0 2.5% 1% 2.5%;
+    border: 1px solid;
+    padding: 1%;
+    border-radius: 5px;
+}
+
+.experience .name, .experience .date {
+    display: inline;
+}
+
+.experience .name {
+    width: 40%;
+}
+
+.experience .date {
+    width: 60%;
+}
+
+
+
+.experience .name span, .experience .name input{
+    margin-bottom: 1%;
+    border: 1px solid;
+    padding: 0 1%;
+    border-radius: 5px;
+    display: -webkit-inline-box;
+        background-color: #4CAF50;
+    color: white;
+}
+
+.experience .date span, .experience .date input{
+        border: 1px solid;
+    padding: 0 1%;
+    border-radius: 5px;
+    margin: 0 .5% 0 0%;
+}
+
+.experience .description p, .experience .description textarea{
+    border: 1px solid;
+    padding: 0 1%;
+    border-radius: 5px;
+    margin: .5% 0;
 }
 
 @media only screen and (min-width: 1200px) {
