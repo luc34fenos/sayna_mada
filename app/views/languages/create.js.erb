@@ -1,15 +1,57 @@
-let div = $(`div.field.new.old:first`);
-div.attr('id', 'language<%=@language.id%>');
+let $input = $(`div#languages`).children('input.language:first'),
+    $tag = $("<div />"),
+    $a = $(`<a href='#' class="language"/>`),
+    $span = $("<span />"),
+    $appendHere = $(`.tagHere.languages:first`);
 
-let name = div.children('input:first');
-name.attr('id', 'language<%=@language.id%>0');
-name.attr('name', 'languagenames[name<%=@language.id%>]');
+$tag.addClass('tag language');
 
-// let level = div.children('textarea:first');
-// level.attr('id', 'language<%=@language.id%>1');
-// level.attr('name', 'languagelevels[level<%=@language.id%>]');
+$('<i class="fa fa-times" aria-hidden="true"></i>').appendTo($a);
 
-let remove = div.children('a.remove-me:first');
-remove.attr('id', 'rmlanguage<%=@language.id%>');
+$span.text("<%= @language.name %>");
 
-div.removeClass('new');
+$a.appendTo($tag);
+$span.appendTo($tag);
+
+for (var i = 0; i < 3; i++) {
+	$(`<span class="glyphicon glyphicon-star" style="color: gold;"></span>`).appendTo($tag);
+}
+
+for (var i = 0; i < 4; i++) {
+	$(`<span class="glyphicon glyphicon-star-empty"></span>`).appendTo($tag);
+}
+
+$tag.appendTo($appendHere);
+
+$($input).val('');
+$($input).focus();
+
+$a.bind('click', function(e) {
+  e.preventDefault();
+  $(this).unbind('click');
+	
+	let $DIV = $tag,
+    $CVID = $(`div.moncv:first`).attr('id'),
+		$ID = "<%=  @language.id %>";
+
+	removeLanguage($DIV, $CVID, $ID);
+});
+
+
+function removeLanguage(div, cv_id, id) {
+    let AUTH_TOKEN = $(`input[name="authenticity_token"]`).attr('value');
+
+    div.fadeOut('slow', function() {
+      div.remove();
+    });
+
+    $.ajax({
+        url: `/languages/${id}`,
+        type: 'DELETE',
+        data: {
+            authenticity_token: AUTH_TOKEN,
+            cv_id: cv_id,
+            id: id
+        },
+    });
+}

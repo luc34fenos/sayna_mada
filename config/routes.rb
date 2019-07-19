@@ -20,6 +20,9 @@ Rails.application.routes.draw do
     get '/moncv/:id', to: 'cvs#show'
     get '/moncv/:id/edit', to: 'cvs#edit'
 
+    get '/monprofil/:id', to: 'students#show'
+    get '/monprofil/:id/edit', to: 'students#edit'
+
   get '/student_1' ,to: 'dashboard#student_dashboard1'
   get '/student_2' ,to: 'dashboard#student_dashboard2'
 

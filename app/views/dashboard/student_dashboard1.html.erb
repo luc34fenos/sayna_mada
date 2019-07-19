@@ -1,0 +1,14 @@
+<ul class="list-group">
+	<li class="list_item">
+		<%= link_to "mon profil", "/monprofil/#{current_user.student.id}" %>
+	</li>
+	<li class="list_item">
+		<%= link_to "editer mon profil", "/monprofil/#{current_user.student.id}/edit" %>
+	</li>
+	<li class="list_item">
+		<%= link_to "mon cv", "/moncv/#{current_user.student.cv.id}" %>
+	</li>
+	<li class="list_item">
+		<%= link_to "editer mon cv", "/moncv/#{current_user.student.cv.id}/edit" %>
+	</li>
+</ul>
