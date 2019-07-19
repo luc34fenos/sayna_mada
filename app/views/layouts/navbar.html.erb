@@ -4,6 +4,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
             <li class="active"><a href="/">Accueil <span class="sr-only">(current)</span></a></li>
+      
             <% if user_signed_in? && current_user.company %>
             <li><a href="<%= root_path %>">Liste des etudiants</a></li>
             <% end %>
@@ -17,6 +18,8 @@
                     <li role="separator" class="divider"></li>
                     <li><a href="<%= new_user_session_path %>" data-method="get">Se connecter</a></li>
                     <% else %>
+
+
                     <% if current_user.status == "admin" %>
                     <li><a href="/admin" data-method="get">Dashboard</a></li>
                     <% else %>
