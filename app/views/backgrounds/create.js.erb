@@ -1,0 +1,34 @@
+let div = $(`div.tagHere.backgrounds:first`),
+	$NAME = $(`div.background.new:first`).children('div.name:first').children('input:first'),
+	$DESCRIPTION = $(`div.background.new:first`).children('div.description:first').children('textarea:first'),
+	$START = $(`div.background.new:first`).children('div.date:first').children('input:first'),
+	$END = $(`div.background.new:first`).children('div.date:first').children('input:last');
+
+$NAME.val('');
+$DESCRIPTION.val('');
+$START.val('');
+$END.val('');
+
+$NAME.focus();
+
+div.append(`
+	<div id="<%= @background.id %>" class="background">
+		<a href="" class="close"></a>
+		<div class="name">
+			<span><%= @background.name %></span>
+		</div>
+		<div class="date">
+		<label>Du</label>
+		<span>
+		<%= @background.start_date.strftime("%B %Y") %></span>
+		<label>jusqu'en</label>
+		<span>
+		<%= @background.end_date ? @background.end_date.strftime("%B %Y") : Time.now.strftime("%B %Y") %></span>
+		</div>
+		<div class="description">
+		<p>
+		<%= @background.description %>
+		</p>
+		</div>
+	</div>
+`);

@@ -1,23 +1,26 @@
 <div id="navbar" class="icon-bar">
-    <a href="/monprofil/<%= current_user.student.id %>/edit" data-method="GET" <% if controller_name=="students" && action_name=="edit" %>class="active"
+    <a href="/monprofile/<%= current_user.company.id %>/edit" data-method="GET" <% if controller_name=="companies" && action_name=="edit" %>class="active"
         <% end %>>
-        <i class="fas fa-user-edit"></i>
+        <i class="fa fa-user-edit"></i>
     </a>
-    <a href="/monprofil/<%= current_user.student.id %>" data-method="GET" <% if controller_name=="students" && action_name=="show" %>class="active"
+    <a href="/monprofile/<%= current_user.company.id %>" data-method="GET" <% if controller_name=="companies" && action_name=="show" %>class="active"
         <% end %> >
         <i class="fa fa-user"></i>
     </a>
-    <a href="/moncv/<%= current_user.student.cv.id %>" data-method="GET" <% if controller_name=="cvs" && action_name=="show" %>class="active"
+    <a href="/students" data-method="GET" <% if controller_name=="students" && action_name=="index" %>class="active"
         <% end %> >
-        <i class="fa fa-address-card"></i>
+        <i class="fa fa-home"></i>
     </a>
-    <a href="/moncv/<%= current_user.student.cv.id %>/edit" data-method="GET" <% if controller_name=="cvs" && action_name=="edit" %>class="active"
-        <% end %>>
-        <i class="fa fa-edit"></i>
+    <% if controller_name=="students" && action_name=="show" %>
+    <a href="#" class="active">
+      <i class="fa fa-user-plus"></i>
     </a>
-    <a href="<%= cv_download_path(current_user.student.cv, format: "pdf") %>", data-method="GET", target="_blank">
-        <i class="fas fa-file-export"></i>
+    <% end %>
+    <% if controller_name=="cvs" && action_name=="show" %>
+    <a href="#" class="active">
+      <i class="fa fa-user-plus"></i>
     </a>
+    <% end %>
 </div>
 <style>
     #navbar {

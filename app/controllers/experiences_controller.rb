@@ -1,7 +1,7 @@
 class ExperiencesController < ApplicationController
   def create
     @cv = Cv.find(params[:cv_id])
-    @experience = Experience.new(name: params[:name])
+    @experience = Experience.new(name: params[:name], description: params[:description], start_date: params[:start_date], end_date: params[:end_date])
     @experience.cv = @cv
     respond_to do |format|
       if @experience.save

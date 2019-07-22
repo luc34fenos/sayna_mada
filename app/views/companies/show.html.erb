@@ -1,78 +1,58 @@
-<style>
-
-</style>
-<h1>profil Company</h1>
-<div class="contenue">
-  <p id="notice"><%= notice %></p>
-
-
-  <div class="form_row">
-    <div class="form-group col-md-6">
-
-      <div class="form-group">
-        <label for='name' class='formGroupExampleInput' >Nom de l'entreprise:</label>
-        <input value="<%= @company.name %>" type='text_field' id='name' class='form-control' readOnly="readOnly">
-      </div>
-    </div>
-    <div class="form-group col-md-6">
-
-      <div class="form-group">
-        <label for='start_date' class='formGroupExampleInput' >Date d'ouverture(formelle):</label>
-        <input value="<%= @company.start_date %>" type='number_field' id='start_date' class='form-control' readOnly="readOnly">
-      </div>
-    </div>
-  </div>
-
-  <div class="form_row">
-    <div class="form-group col-md-6">
-      <div class="form-group">
-        <label for='address' class='formGroupExampleInput' > Addresse:</label>
-        <input value="<%= @company.address %>" type='text_field' id='address' class='form-control' readOnly="readOnly">
-      </div>
-    </div>
-    <div class="form-group col-md-6">
-      <div class="form-group">
-        <label for='tel' class='formGroupExampleInput' >Numero de téléphone:</label>
-        <input value="<%= @company.tel %>" type='text_field' id='tel' class='form-control' readOnly="readOnly">
-      </div>
-    </div>
-  </div>
-
-    <div class="form_row">
-      <div class="form-group col-md-6">
-        <div class="form-group">
-          <label for='activity_area' class='formGroupExampleInput' > Secteur d'activité:</label>
-          <input value="<%= @company.activity_area %>" type='text_field' id='activity_area' class='form-control' readOnly="readOnly">
-        </div>
-      </div>
-
-      <div class="form-group col-md-6">
-        <div class="form-group">
-          <label for='siret' class='formGroupExampleInput' >Numero de série:</label>
-          <input value="<%= @company.siret %>" type='text_field' id='siret' class='form-control' readOnly="readOnly">
-        </div>
-      </div>
-    </div>
-
+<div class="container">
     <div class="form_row">
         <div class="form-group col-md-6">
-
             <div class="form-group">
-              <label for='legal_status' class='formGroupExampleInput' > Status légal:</label>
-              <input value="<%= @company.legal_status %>" type='text_field' id='legal_status' class='form-control' readOnly="readOnly">
+                <label for='name' class='formGroupExampleInput'>Nom de l'entreprise:</label>
+                <input value="<%= @company.name %>" type='text_field' id='name' class='form-control' readOnly="readOnly">
             </div>
         </div>
         <div class="form-group col-md-6">
-
-          <div class="form-group">
-            <label for='Other' class='formGroupExampleInput' >Autre:</label>
-            <input value="<%= @company.other %>" type='text_field' id='other' class='form-control' readOnly="readOnly">
-          </div>
-
+            <div class="form-group">
+                <label for='start_date' class='formGroupExampleInput'>Date d'ouverture(formelle):</label>
+                <input value="<%= @company.start_date %>" type='number_field' id='start_date' class='form-control' readOnly="readOnly">
+            </div>
         </div>
     </div>
-
-  <%= link_to 'Edit', edit_company_path(@company) ,method: :get %> |
-  <%= link_to 'Back', root_path %>
-
+    <div class="form_row">
+        <div class="form-group col-md-6">
+            <div class="form-group">
+                <label for='address' class='formGroupExampleInput'> Addresse:</label>
+                <input value="<%= @company.address %>" type='text_field' id='address' class='form-control' readOnly="readOnly">
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <div class="form-group">
+                <label for='tel' class='formGroupExampleInput'>Numero de téléphone:</label>
+                <input value="<%= @company.tel %>" type='text_field' id='tel' class='form-control' readOnly="readOnly">
+            </div>
+        </div>
+    </div>
+    <div class="form_row">
+        <div class="form-group col-md-6">
+            <div class="form-group">
+                <label for='activity_area' class='formGroupExampleInput'> Secteur d'activité:</label>
+                <input value="<%= @company.activity_area %>" type='text_field' id='activity_area' class='form-control' readOnly="readOnly">
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <div class="form-group">
+                <label for='siret' class='formGroupExampleInput'>Numero de série:</label>
+                <input value="<%= @company.siret %>" type='text_field' id='siret' class='form-control' readOnly="readOnly">
+            </div>
+        </div>
+    </div>
+    <div class="form_row">
+        <div class="form-group col-md-6">
+            <div class="form-group">
+                <label for='legal_status' class='formGroupExampleInput'> Status légal:</label>
+                <input value="<%= @company.legal_status %>" type='text_field' id='legal_status' class='form-control' readOnly="readOnly">
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <div class="form-group">
+                <label for='Other' class='formGroupExampleInput'>Autre:</label>
+                <input value="<%= @company.other %>" type='text_field' id='other' class='form-control' readOnly="readOnly">
+            </div>
+        </div>
+    </div>
 </div>

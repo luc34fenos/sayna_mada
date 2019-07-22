@@ -779,7 +779,7 @@
     </style>
 </head>
 
-<body dir="ltr" style="max-width:21.59cm;margin-top:1.27cm; margin-bottom:1.27cm; margin-left:1.27cm; margin-right:1.27cm; ">
+<body dir="ltr" style="">
     <table border="0" cellspacing="0" cellpadding="0" class="Table3">
         <colgroup>
             <col width="300" />
@@ -797,8 +797,10 @@
                         </td>
                         <td style="text-align:left;width:5.554cm; " class="Table1_B1">
                             <p class="Section_20_Title_20_Left"><span class="T2">
+                                    <%=cv.student.lastname%>
                                     <%=cv.student.firstname%>
-                                    <%=cv.student.lastname%></span></p>
+                                        
+                                    </span></p>
                         </td>
                     </tr>
                     <tr class="Table12">
@@ -807,7 +809,7 @@
                         </td>
                         <td style="text-align:left;width:5.554cm; " class="Table1_B2">
                             <!--Next 'div' was a 'text:p'.-->
-                            <div class="Standard" style="position: relative; top: -4px;">
+                            <div class="Standard" style="position: relative; top: -3px; left: 9px;">
                                 <!--Next '
             div' is a draw:frame.
         -->
@@ -932,7 +934,9 @@
                     </tr>
                     <tr class="Table21">
                         <td rowspan="2" style="text-align:left;width:11.587cm; " class="Table2_A2">
-                            <p class="PositionDegree">Director of Creative Services</p>
+                            <% cv.experiences.each do |experience| %>
+                                
+                            <p class="PositionDegree"><%= experience.name %></p>
                             <p class="Standard">FN Interactive<span style="position:absolute;left:12.199cm;text-align:right;">2009 – Present</span></p>
                             <p class="Standard">Duis a quam non nequelobortismalesuada. Praesenteuismod. Donecnullaaugue, venenatisscelerisque, dapibus a, consequat at.</p>
                             <ul>
@@ -953,6 +957,7 @@
                                 </li>
                             </ul>
                             <p class="PositionDegree"> </p>
+                            <% end %>
                             <p class="PositionDegree">Director of Creative Services</p>
                             <p class="Standard">FN Interactive<span style="position:absolute;left:12.199cm;text-align:right;">2007 – 2009</span></p>
                             <p class="Standard">Vivamus vitae massaadipiscingestlaciniasodales. Donecmetusmassa, mollisvel, tempus placerat, vestibulumcondimentum.</p>

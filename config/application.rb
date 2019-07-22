@@ -16,6 +16,7 @@ module SaynaMada
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
     config.assets.paths << Rails.root.join('app','assets','fonts')
+    config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
   	ENV['RAILS_ADMIN_THEME'] = 'rollincode'
   end
 end

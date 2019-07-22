@@ -23,6 +23,12 @@ body.cvs {
     /* border-top: 3px double; */
 }
 
+.cv .summary textarea {
+    max-width: 100%;
+    width: 100%;
+    min-height: 10.8em;
+}
+
 .summary {
     font-size: 1.2em;
 }
@@ -42,6 +48,9 @@ body.cvs {
     margin: 1% 0;
 }
 
+.cv label {
+    text-transform: capitalize;
+}
 .student_infos a {
     display: inline-block;
     max-width: 100%;
@@ -95,7 +104,7 @@ body.cvs {
     word-spacing: .7em;
 }
 
-#skills, #languages, #programming_languages {
+#skills, #languages, #programming_languages, #experiences, #backgrounds, #hobbies, #summaries, #developer_type, #myprofil {
     background: #fff;
     border-radius: 4px;
     box-shadow: 0 40px 50px rgba(0, 0, 0, 0.25) !important;
@@ -121,12 +130,12 @@ body.cvs {
     margin: 1% 5% 0% 0%;
 }
 
-#skills::before, #languages::before, #programming_languages::before {
+#skills::before, #languages::before, #programming_languages::before, #summaries::before {
     content: '';
     display: table;
 }
 
-#skills::after, #languages::after, #programming_languages::after {
+#skills::after, #languages::after, #programming_languages::after, #summaries::after {
     content: '';
     display: table;
     clear: both;
@@ -154,7 +163,7 @@ body.cvs {
 }
 
 .tag span {
-    padding-right: 10px;
+    /* padding-right: 10px; */
     padding-left: 0px;
     padding-top: 5px;
     padding-bottom: 5px;
@@ -169,30 +178,32 @@ body.cvs {
 
 /* Experiences */
 
-.experience {
-    margin: 0 2.5% 1% 2.5%;
-    border: 1px solid;
+.experience, .background {
+    background-color: #222;
+    border:  0 none;
+    margin: 0 .2% 1% .2%;
+    color: whitesmoke;
     padding: 1%;
     border-radius: 5px;
 }
 
-.experience .name, .experience .date {
+.experience .name, .experience .date, .background .name, .background .date {
     display: inline;
 }
 
-.experience .name {
+.experience .name, .background .name {
     width: 40%;
 }
 
-.experience .date {
+.experience .date, .background .date {
     width: 60%;
 }
 
 
 
-.experience .name span, .experience .name input{
+.experience .name span, .experience .name input, .background .name span, .background .name input{
+
     margin-bottom: 1%;
-    border: 1px solid;
     padding: 0 1%;
     border-radius: 5px;
     display: -webkit-inline-box;
@@ -200,15 +211,18 @@ body.cvs {
     color: white;
 }
 
-.experience .date span, .experience .date input{
+.experience .date span, .experience .date input, .background .date span, .background .date input{
+    width: 25.1612195%;
         border: 1px solid;
     padding: 0 1%;
     border-radius: 5px;
     margin: 0 .5% 0 0%;
 }
 
-.experience .description p, .experience .description textarea{
+.experience .description p, .experience .description textarea, .background .description p, .background .description textarea{
     border: 1px solid;
+    background-color: whitesmoke;
+    color: #222;
     padding: 0 1%;
     border-radius: 5px;
     margin: .5% 0;

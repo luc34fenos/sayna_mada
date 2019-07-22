@@ -1606,7 +1606,7 @@ h6 small {
 
 .h1,
 h1 {
-    font-size: 36px
+    font-size: 36px !important;
 }
 
 .h2,
@@ -2998,6 +2998,7 @@ th {
     padding: 8px;
     line-height: 1.42857143;
     vertical-align: top;
+    text-align: center;
     border-top: 1px solid #ddd
 }
 
@@ -5214,13 +5215,13 @@ textarea.input-group-sm>.input-group-btn>.btn {
 .navbar {
     position: relative;
     min-height: 50px;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
     border: 1px solid transparent
 }
 
 @media (min-width:768px) {
     .navbar {
-        border-radius: 4px
+        /* border-radius: 4px */
     }
 }
 
@@ -5639,7 +5640,8 @@ textarea.input-group-sm>.input-group-btn>.btn {
 .navbar-default .navbar-nav>.active>a:focus,
 .navbar-default .navbar-nav>.active>a:hover {
     color: #555;
-    background-color: #e7e7e7
+    /* background-color: #e7e7e7 */
+    background-color: red
 }
 
 .navbar-default .navbar-nav>.disabled>a,
@@ -6248,10 +6250,13 @@ a.thumbnail:hover {
 }
 
 .alert {
+    position: fixed;
+    width: 100%;
     padding: 15px;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
     border: 1px solid transparent;
-    border-radius: 4px
+    /* border-radius: 30px; */
+    text-align: center;
 }
 
 .alert h4 {
@@ -6287,8 +6292,10 @@ a.thumbnail:hover {
 
 .alert-success {
     color: #3c763d;
-    background-color: #dff0d8;
-    border-color: #d6e9c6
+    /* background-color: #dff0d8; */
+    background-color: #4CAF50;
+    color: white;
+    border: 0 none;
 }
 
 .alert-success hr {
