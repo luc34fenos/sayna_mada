@@ -1,0 +1,12 @@
+let div = $(`.moncv:first`),
+    maj = $(`.update:first`);
+
+div.css({
+    background: 'white'
+});
+
+maj.slideToggle("slow");
+
+maj.click(function(event) {
+    $(`#updateCV`).submit();
+});

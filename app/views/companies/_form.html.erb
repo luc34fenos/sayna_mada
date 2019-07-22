@@ -14,13 +14,13 @@
   <div class="form_row">
     <div class="form-group col-md-6">
       <div class="form-group">
-        <%= form.label :name , class: 'formGroupExampleInput' %>
+        <%= form.label :name, "Nom", class: '' %>
         <%= form.text_field :name , class: 'form-control' %>
       </div>
     </div>
     <div class="form-group col-md-6">
       <div class="form-group">
-        <%= form.label :start_date , class: 'formGroupExampleInput' %>
+        <%= form.label :start_date , class: '' %>
         <%= form.number_field :start_date , class: 'form-control' %>
       </div>
     </div>
@@ -29,14 +29,14 @@
   <div class="form_row">
     <div class="form-group col-md-6">
       <div class="form-group">
-        <%= form.label :address , class: 'formGroupExampleInput' %>
+        <%= form.label :address , class: '' %>
         <%= form.text_field :address , class: 'form-control'%>
       </div>
     </div>
     <div class="form-group col-md-6">
 
       <div class="form-group">
-        <%= form.label :tel , class: 'formGroupExampleInput' %>
+        <%= form.label :tel , class: '' %>
         <%= form.text_field :tel , class: 'form-control'%>
       </div>
     </div>
@@ -45,13 +45,13 @@
   <div class="form_row">
     <div class="form-group col-md-6">
       <div class="form-group">
-        <%= form.label :activity_area , class: 'formGroupExampleInput' %>
+        <%= form.label :activity_area , class: '' %>
         <%= form.text_field :activity_area , class: 'form-control'%>
       </div>
     </div>
     <div class="form-group col-md-6">
       <div class="form-group">
-        <%= form.label :siret , class: 'formGroupExampleInput' %>
+        <%= form.label :siret , class: '' %>
         <%= form.text_field :siret , class: 'form-control'%>
       </div>
     </div>
@@ -60,13 +60,13 @@
   <div class="form_row">
     <div class="form-group col-md-6">
       <div class="form-group">
-        <%= form.label :legal_status , class: 'formGroupExampleInput' %>
+        <%= form.label :legal_status , class: '' %>
         <%= form.text_field :legal_status , class: 'form-control'%>
       </div>
     </div>
     <div class="form-group col-md-6">
       <div class="form-group">
-        <%= form.label :Other , class: 'formGroupExampleInput' %>
+        <%= form.label :Other , class: '' %>
         <%= form.text_field :other , class: 'form-control'%>
       </div>
     </div>
@@ -74,8 +74,8 @@
 
   <br>
 
-  <div class="actions">
-    <%= form.submit  %>
+  <div class="text-center">
+    <%= form.submit "Mettre à jour", class: "btn btn-default" %>
   </div>
 
 <% end %>

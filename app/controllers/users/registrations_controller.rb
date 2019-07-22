@@ -8,7 +8,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # GET /resource/sign_up
   def new
     if user_signed_in?
-      flash[:alert] = "vous etes déjà connecté"
+      flash[:alert] = "Vous etes déjà connecté"
       redirect_to home_path
     end
     build_resource
@@ -177,8 +177,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def create_student_or_company(resource)
-    status = params[:status]
-    if status == "student"
+    if !params[:student].nil?
       p "S"*50
       s = Student.new(student_params)
       create_cv(s)
@@ -187,14 +186,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
       s.user = resource
       s.save
       p "S"*50
-    elsif status == "company"
+    elsif !params[:company].nil?
       p "C"*50
       c = Company.new(company_params)
-       c.user = resource
-       c.cities = [ ]
-       c.staff = [ ]
-       c.webs = [ ]
-       c.save
+       	c.user = resource
+       	c.cities = []
+       	create_company_city(c)
+       	c.staff = []
+       	c.webs = []
+       	c.save
       p "C"*50
     end
   end
@@ -212,6 +212,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create_city(student)
     c = City.find_by(name: params[:city]) != nil ? City.find_by(name: params[:city]) : City.create(name:params[:city], country: params[:country])
     student.city = c
+  end
+
+  def create_company_city(company)
+    c = City.find_by(name: params[:city]) != nil ? City.find_by(name: params[:city]) : City.create(name:params[:city], country: params[:country])
+  	company.cities << c
   end
 
   def student_params

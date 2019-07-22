@@ -1,8 +1,10 @@
-<nav class="navbar navbar-inverse">
-    <a class="navbar-brand" href="/" data-method="GET">Home</a>
+<header id="header">
+    <nav class="navbar navbar-inverse navbar navbar-default navbar-fixed-top menu">
+    <a class="navbar-brand" href="https://www.sayna.io" data-method="GET">Sayna</a>
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
+<<<<<<< HEAD
             <li class="active"><a href="/">Accueil <span class="sr-only">(current)</span></a></li>
             <% if user_signed_in? %>
             <li class="navbar-brand" > <span> <%= current_user.username %> </span></li>
@@ -13,9 +15,12 @@
             <% if user_signed_in? && current_user.company %>
             <li><a href="<%= root_path %>">Liste des etudiants</a></li>
             <% end %>
+=======
+            <li class=""><a href="/">Accueil <span class="sr-only">(current)</span></a></li>
+>>>>>>> 2257b5997e671e2e41561a97aa4907c75593de79
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-
+                    <%= user_signed_in? ? current_user.username : "Liens" %>
                     <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <% if !user_signed_in? %>
@@ -23,19 +28,23 @@
                     <li role="separator" class="divider"></li>
                     <li><a href="<%= new_user_session_path %>" data-method="get">Se connecter</a></li>
                     <% else %>
-
-
                     <% if current_user.status == "admin" %>
                     <li><a href="/admin" data-method="get">Dashboard</a></li>
                     <% else %>
                     <li><a href="<%= mondashboard_path %>" data-method="get">Mon dashboard</a></li>
                     <li role="separator" class="divider"></li>
                     <li>
-                        <a href="<%= current_user.company ? company_path(Company.find_by(user_id: current_user.id).id) : "/monprofil/#{(Student.find_by(user_id: current_user.id).id)}" %>" data-method="get">Mon profil</a>
+                        <a href="<%= current_user.company ? "/monprofile/#{current_user.company.id}" : "/monprofil/#{current_user.student.id}" %>" data-method="get">Mon profil</a>
                     </li>
                     <li>
+<<<<<<< HEAD
                       <% if !Company.find_by(user_id: current_user.id)  %>
                         <a href="<%= current_user.company ? company_path(Company.find_by(user_id: current_user.id).id) : "/moncv/#{current_user.student.cv.id}" %>" data-method="get">Mon cv</a>
+=======
+                        <% if current_user.company %>
+                        <% else %>
+                            <a href="/moncv/<%= current_user.student.cv.id %>" data-method="get">Mon cv</a>
+>>>>>>> 2257b5997e671e2e41561a97aa4907c75593de79
                         <% end %>
                     </li>
                     <% end %>
@@ -45,5 +54,44 @@
                 </ul>
             </li>
         </ul>
+        <% if user_signed_in? && current_user.student %>
+        <%= render template: 'students/navbar' %>
+        <% elsif user_signed_in? && current_user.company %>
+        <%= render template: 'companies/navbar' %>
+        <% end %>
     </div>
 </nav>
+</header>
+<% if flash[:notice] || notice %>
+<p class="alert alert-success">
+    <%= notice %>
+</p>
+<% end %>
+<% if flash[:alert] || alert %>
+<p class="alert alert-danger">
+    <%= alert %>
+</p>
+<% end %>
+
+<% if flash[:notice] || flash[:alert] || notice || alert %>
+    
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+    setTimeout(function() {
+        $(`.alert`).slideUp("slow");
+    }, 2500);
+
+    let yourNavigation = $(".navbar");
+    stickyDiv = "sticky";
+    yourHeader = $('.header').height();
+
+    $(window).scroll(function() {
+        if ($(this).scrollTop() > yourHeader) {
+            yourNavigation.addClass(stickyDiv);
+        } else {
+            yourNavigation.removeClass(stickyDiv);
+        }
+    });
+});
+</script>
+<% end %>

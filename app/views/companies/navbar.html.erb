@@ -1,0 +1,91 @@
+<div id="navbar" class="icon-bar">
+    <a href="/monprofile/<%= current_user.company.id %>/edit" data-method="GET" <% if controller_name=="companies" && action_name=="edit" %>class="active"
+        <% end %>>
+        <i class="fa fa-user-edit"></i>
+    </a>
+    <a href="/monprofile/<%= current_user.company.id %>" data-method="GET" <% if controller_name=="companies" && action_name=="show" %>class="active"
+        <% end %> >
+        <i class="fa fa-user"></i>
+    </a>
+    <a href="/students" data-method="GET" <% if controller_name=="students" && action_name=="index" %>class="active"
+        <% end %> >
+        <i class="fa fa-home"></i>
+    </a>
+    <% if controller_name=="students" && action_name=="show" %>
+    <a href="#" class="active">
+      <i class="fa fa-user-plus"></i>
+    </a>
+    <% end %>
+    <% if controller_name=="cvs" && action_name=="show" %>
+    <a href="#" class="active">
+      <i class="fa fa-user-plus"></i>
+    </a>
+    <% end %>
+</div>
+<style>
+    #navbar {
+  overflow: hidden;
+  background-color: #333;
+}
+
+#navbar a {
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+#navbar a:hover {
+  z-index: 99;
+  background-color: #ddd;
+  color: black;
+  transform: scale3d(1.5, 1.5, 2);
+}
+
+#navbar a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.content {
+  padding: 16px;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  z-index: 9999;
+  width: 100%;
+}
+
+.sticky + .content {
+  padding-top: 60px;
+}
+
+.icon-bar {
+  width: 30%;
+  background-color: #333;
+  overflow: auto;
+}
+
+.icon-bar a {
+  transform: translateZ(10px);
+  float: left;
+  width: 20%;
+  text-align: center;
+  padding: 12px 0;
+  transition: all 0.3s ease;
+  color: white;
+  font-size: 1em;
+}
+
+.icon-bar a:hover {
+  background-color: #000;
+}
+
+.active {
+  background-color: #4CAF50;
+}
+</style>

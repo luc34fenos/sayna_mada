@@ -9,7 +9,7 @@ class CreateCompanies < ActiveRecord::Migration[5.2]
       t.string :activity_area
       t.string :siret
       t.text :other
-      t.references :user, index: true
+      t.references :user,       index: true
       t.boolean :is_activated?, default: false
       t.timestamps
     end

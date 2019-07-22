@@ -6,6 +6,10 @@ class StudentsController < ApplicationController
   # GET /students.json
   def index
     @students = Student.all
+    respond_to do |format|
+      format.html { render template: 'students/index' }
+      format.js
+    end
   end
 
   # GET /students/1
@@ -15,7 +19,6 @@ class StudentsController < ApplicationController
 
   # GET /students/new
   def new
-    formulaire
     @student = Student.new
   end
 
