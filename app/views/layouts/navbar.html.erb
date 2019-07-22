@@ -5,11 +5,11 @@
         <ul class="nav navbar-nav">
             <li class="active"><a href="/">Accueil <span class="sr-only">(current)</span></a></li>
             <% if user_signed_in? %>
-            <li class="active" >  <%= current_user.username %></li>
+            <li class="navbar-brand" > <span> <%= current_user.username %> </span></li>
             <% else %>
 
             <% end %>
-      
+
             <% if user_signed_in? && current_user.company %>
             <li><a href="<%= root_path %>">Liste des etudiants</a></li>
             <% end %>
@@ -34,7 +34,9 @@
                         <a href="<%= current_user.company ? company_path(Company.find_by(user_id: current_user.id).id) : "/monprofil/#{(Student.find_by(user_id: current_user.id).id)}" %>" data-method="get">Mon profil</a>
                     </li>
                     <li>
+                      <% if !Company.find_by(user_id: current_user.id)  %>
                         <a href="<%= current_user.company ? company_path(Company.find_by(user_id: current_user.id).id) : "/moncv/#{current_user.student.cv.id}" %>" data-method="get">Mon cv</a>
+                        <% end %>
                     </li>
                     <% end %>
                     <li role="separator" class="divider"></li>
