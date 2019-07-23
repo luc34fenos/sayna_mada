@@ -1,0 +1,17 @@
+let div = $(`div.for_web:first`);
+
+div.append(`
+	<ul>
+
+	<li><%= @web.name %> </li>
+	<li><%= @web.link %> </li>
+	
+	</ul>
+
+	`);
+
+$(`input#web_name`).val(``);
+$(`input#web_link`).val(``);
+
+
+alert('mety')

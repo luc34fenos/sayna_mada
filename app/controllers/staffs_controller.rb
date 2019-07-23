@@ -24,11 +24,17 @@ class StaffsController < ApplicationController
   # POST /staffs
   # POST /staffs.json
   def create
+    puts params.inspect
+    puts params[:company_id]
+    puts 'ccccc'
     @staff = Staff.new(staff_params)
+
+    @staff.company = Company.find(params[:company_id])
 
     respond_to do |format|
       if @staff.save
         format.html { redirect_to @staff, notice: 'Staff was successfully created.' }
+        format.js
         format.json { render :show, status: :created, location: @staff }
       else
         format.html { render :new }
@@ -56,7 +62,8 @@ class StaffsController < ApplicationController
   def destroy
     @staff.destroy
     respond_to do |format|
-      format.html { redirect_to staffs_url, notice: 'Staff was successfully destroyed.' }
+      format.html { redirect_to root_path, notice: 'Staff was successfully updated.' }
+      format.js
       format.json { head :no_content }
     end
   end
@@ -71,4 +78,4 @@ class StaffsController < ApplicationController
     def staff_params
       params.require(:staff).permit(:first_name, :last_name, :job, :email, :tel)
     end
-end
+  end
