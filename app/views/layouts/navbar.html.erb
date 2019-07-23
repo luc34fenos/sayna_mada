@@ -16,7 +16,7 @@
                     <li><a href="<%= new_user_session_path %>" data-method="get">Se connecter</a></li>
                     <% else %>
                     <% if current_user.status == "admin" %>
-                    <li><a href="/admin" data-method="get">Dashboard</a></li>
+                    <li><a href="/admin" data-method="get">Mon dashboard</a></li>
                     <% else %>
                     <li><a href="<%= mondashboard_path %>" data-method="get">Mon dashboard</a></li>
                     <li role="separator" class="divider"></li>

@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'downloads_controller/show'
-  get 'downloads_controller/cv_pdf'
-  get 'downloads_controller/send_cv_pdf'
-
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   resources :cvs do
     resource :download, only: [:show]

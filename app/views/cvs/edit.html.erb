@@ -67,9 +67,8 @@ jQuery(document).ready(function($) {
     $(`span.glyphicon`).click(function(event) {
         event.preventDefault();
         let $ITEM, $ID, $LEVEL;
-        let parent = $(this).parent('div.tag:first');
-        let siblings = parent.children('span.glyphicon');
-
+        let parent = $(this).parent('div.stars:first').parent('div.tag:first');
+        let siblings = $(this).parent('div.stars:first').children('span.glyphicon');
 
         $ITEM = parent.hasClass('language') ? "languages" : "programming_languages";
         $ID = parent.attr('id');
@@ -115,13 +114,19 @@ jQuery(document).ready(function($) {
         }
     });
 
-    function updateCv(){
+    $(`.tag`).hover(function() {
+        $(this).children('.close').show('fast');
+    }, function() {
+        $(this).children('.close').hide('fast');
+    });
+
+    function updateCv() {
         let div = $(`.moncv:first`),
             maj = $(`.update:first`);
 
-            div.css({
-                background: 'gold'
-            });
+        div.css({
+            background: 'gold'
+        });
         maj.show('slow');
 
         maj.click(function(event) {
@@ -299,7 +304,7 @@ jQuery(document).ready(function($) {
                 background: repeating-radial-gradient(black, transparent 100px);
                 padding: 1%;
                 border-radius: 0px 10px 10px 0px;
-                display:  none;
+                display: none;
             }
             </style>
         </div>
@@ -378,20 +383,22 @@ jQuery(document).ready(function($) {
                             <% @cv.languages.each do |language| %>
                             <% if language %>
                             <div id="<%= language.id %>" class="tag language">
-                                <a href="#" class="language" id="<%=language.id%>"><i class="fa fa-times" aria-hidden="true"></i></a>
-                                <span>
+                                <a href="#" class="language close" id="<%=language.id%>"><i class="fa fa-times" aria-hidden="true"></i></a>
+                                <span class="name">
                                     <%=language.name%></span>
-                                <% language.level.times do |id| %>
-                                <span class="glyphicon glyphicon-star" style="color: gold;"></span>
-                                <% end %>
-                                <% (7 - language.level.to_i).times do |id| %>
-                                <span class="glyphicon glyphicon-star-empty" style="color: gold;"></span>
-                                <% end %>
+                                <div class="stars">
+                                    <% language.level.times do |id| %>
+                                    <span class="glyphicon glyphicon-star" style="color: gold;"></span>
+                                    <% end %>
+                                    <% (7 - language.level.to_i).times do |id| %>
+                                    <span class="glyphicon glyphicon-star-empty" style="color: gold;"></span>
+                                    <% end %>
+                                </div>
                             </div>
                             <% end %>
                             <% end %>
                         </div>
-                        <input id="language_name" class="language" type="text" />
+                        <input id="language_name" class="language" type="text" maxlength="14" />
                     </div>
                     <!--  -->
                 </div>
@@ -403,20 +410,22 @@ jQuery(document).ready(function($) {
                             <% @cv.programming_languages.each do |programming_language| %>
                             <% if programming_language %>
                             <div id="<%= programming_language.id %>" class="tag programming_language">
-                                <a href="#" class="programming_language" id="<%=programming_language.id%>"><i class="fa fa-times" aria-hidden="true"></i></a>
-                                <span>
+                                <a href="#" class="programming_language close" id="<%=programming_language.id%>"><i class="fa fa-times" aria-hidden="true"></i></a>
+                                <span class="name">
                                     <%=programming_language.name%></span>
-                                <% programming_language.level.times do |id| %>
-                                <span class="glyphicon glyphicon-star" style="color: gold;"></span>
-                                <% end %>
-                                <% (7 - programming_language.level.to_i).times do |id| %>
-                                <span class="glyphicon glyphicon-star-empty" style="color: gold;"></span>
-                                <% end %>
+                                <div class="stars">
+                                    <% programming_language.level.times do |id| %>
+                                    <span class="glyphicon glyphicon-star" style="color: gold;"></span>
+                                    <% end %>
+                                    <% (7 - programming_language.level.to_i).times do |id| %>
+                                    <span class="glyphicon glyphicon-star-empty" style="color: gold;"></span>
+                                    <% end %>
+                                </div>
                             </div>
                             <% end %>
                             <% end %>
                         </div>
-                        <input id="programming_language_name" class="programming_language" type="text" />
+                        <input id="programming_language_name" class="programming_language" type="text" maxlength="14" />
                     </div>
                     <!--  -->
                 </div>
@@ -453,7 +462,7 @@ jQuery(document).ready(function($) {
                         </div>
                         <div id="0" class="experience new">
                             <div class="name">
-                                <input type="text" id="experience_name" name="experience[name]" placeholder="">
+                                <input type="text" id="experience_name" name="experience[name]" placeholder="Stagiaire chez Google">
                             </div>
                             <div class="date">
                                 <label for="experience_start_date">Du</label>
@@ -520,7 +529,7 @@ jQuery(document).ready(function($) {
                         </div>
                         <div id="0" class="background new">
                             <div class="name">
-                                <input type="text" id="background_name" name="background[name]" placeholder="">
+                                <input type="text" id="background_name" name="background[name]" placeholder="Stagiaire chez Google">
                             </div>
                             <div class="date">
                                 <label for="background_start_date">Du</label>

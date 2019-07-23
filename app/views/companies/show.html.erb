@@ -1,58 +1,101 @@
-<div class="container">
-    <div class="form_row">
-        <div class="form-group col-md-6">
-            <div class="form-group">
-                <label for='name' class='formGroupExampleInput'>Nom de l'entreprise:</label>
-                <input value="<%= @company.name %>" type='text_field' id='name' class='form-control' readOnly="readOnly">
-            </div>
-        </div>
-        <div class="form-group col-md-6">
-            <div class="form-group">
-                <label for='start_date' class='formGroupExampleInput'>Date d'ouverture(formelle):</label>
-                <input value="<%= @company.start_date %>" type='number_field' id='start_date' class='form-control' readOnly="readOnly">
-            </div>
-        </div>
-    </div>
-    <div class="form_row">
-        <div class="form-group col-md-6">
-            <div class="form-group">
-                <label for='address' class='formGroupExampleInput'> Addresse:</label>
-                <input value="<%= @company.address %>" type='text_field' id='address' class='form-control' readOnly="readOnly">
-            </div>
-        </div>
-        <div class="form-group col-md-6">
-            <div class="form-group">
-                <label for='tel' class='formGroupExampleInput'>Numero de téléphone:</label>
-                <input value="<%= @company.tel %>" type='text_field' id='tel' class='form-control' readOnly="readOnly">
-            </div>
-        </div>
-    </div>
-    <div class="form_row">
-        <div class="form-group col-md-6">
-            <div class="form-group">
-                <label for='activity_area' class='formGroupExampleInput'> Secteur d'activité:</label>
-                <input value="<%= @company.activity_area %>" type='text_field' id='activity_area' class='form-control' readOnly="readOnly">
-            </div>
-        </div>
-        <div class="form-group col-md-6">
-            <div class="form-group">
-                <label for='siret' class='formGroupExampleInput'>Numero de série:</label>
-                <input value="<%= @company.siret %>" type='text_field' id='siret' class='form-control' readOnly="readOnly">
-            </div>
-        </div>
-    </div>
-    <div class="form_row">
-        <div class="form-group col-md-6">
-            <div class="form-group">
-                <label for='legal_status' class='formGroupExampleInput'> Status légal:</label>
-                <input value="<%= @company.legal_status %>" type='text_field' id='legal_status' class='form-control' readOnly="readOnly">
-            </div>
-        </div>
-        <div class="form-group col-md-6">
-            <div class="form-group">
-                <label for='Other' class='formGroupExampleInput'>Autre:</label>
-                <input value="<%= @company.other %>" type='text_field' id='other' class='form-control' readOnly="readOnly">
-            </div>
-        </div>
+<% content_for :head_tag do %>
+<style type="text/css">
+@page {
+    size: 7in 9.25in;
+    margin: 27mm 16mm 27mm 16mm;
+}
+#monprofile .title {
+	text-decoration: underline;
+}
+</style>
+<% end %>
+<div id="monprofile" class="container" style="border-right: 4px double;border-top: 1px solid;border-bottom: 1px solid;border-left: 5em solid; box-shadow: 5px 5px 30px 10px black; margin-bottom: 10%;">
+    <div class="row">
+            <section class="">
+                <h2 style="text-align: -webkit-center;font-weight: bolder;">Company</h2>
+            </section>
+        <section class="content col-md-10">
+            <section class="infos container-fluid">
+            	<section>
+            		<div class="title">
+            			<h3>Mes identifiants</h3>
+            		</div>
+            		<div class="content">
+            			<ul>
+            			<li><strong>Nom : </strong><%= @company.name %></li>
+            			<li><strong>Addresse : </strong><%= @company.address %> <%= @company.cities.first.name %></li>
+            			<li><strong>Contact : </strong><%= @company.tel %></li>
+            			<li><strong>Status legal : </strong><%= @company.legal_status %></li>
+							    <% if @company.staff.any? %>
+							    <li>
+							    	<strong>Personne à contacter : </strong>
+							    	<ul>
+							    		<% @company.staff.each do |staf| %>
+							    			<li><%= staf.first_name %> <%= staf.last_name %></li>	
+							    			<li><%= staf.job %></li>		
+							    			<li><a href="mailto:<%= staf.email %>" target="_blank"><%= staf.email %></a></li>		
+							    			<li><%= staf.tel %></li>	
+							    			<% break %>
+							    		<% end %>
+							    	</ul>
+							    </li>
+							    <% end %>	
+							    <% if @company.webs.any? %>
+							    	<li><strong>Site web : </strong><mark><a href="<%= @company.webs.first.link %>" target="_blank"><%= @company.webs.first.link %></a></mark></li> 
+							    <% end %>
+            			</ul>
+            		</div>
+            	</section>
+            	<section>
+            		<div class="title">
+            			<h3>Détails commerciaux</h3>
+            		</div>
+            		<div class="content">
+            			<ul>
+            			<li><strong>Date de création : </strong><%= @company.start_date %></li>
+            			<li><strong>Secteur d'activité : </strong><%= @company.activity_area %></li>
+							    <li><strong>Siret : </strong><%= @company.siret %></li>
+            			</ul>
+            		</div>
+            	</section>
+            	<section>
+            		<div class="title">
+            			<h3>Capacité d'affaires</h3>
+            		</div>
+            		<div class="content">
+            			<ul>
+            				<li><strong>Ressources humaines (<%= @company.staff.length %>)</strong>
+            					<% if @company.staff.any? %>
+            					<ul>
+            						<% @company.staff.each do |staf| %>
+            							<li><%= staf.first_name %> <%= staf.last_name %> (<%= staf.job %>)</li>
+            						<% end %>	
+            					</ul>
+            					<% end %>
+										</li>
+										<li><strong>Financial</strong>
+											<ul>
+												
+												<li>Financial Circumstances of Business (Optional)</li>
+											</ul>
+										</li>
+										<li><strong>Technical</strong>
+											<ul>
+												<li>Company Capacity for the Project in Terms of Qualifications and Certifications</li>
+											</ul>
+										</li>
+										<li><strong>Autre</strong>
+											<ul>
+												<li>
+													<p>
+														<%= @company.other %>
+													</p>
+												</li>
+											</ul>
+										</li>
+            			</ul>
+            		</div>
+            	</section>
+        </section>
     </div>
 </div>
