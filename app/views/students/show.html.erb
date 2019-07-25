@@ -3,30 +3,65 @@
   <%= @student.firstname %>
 </p>
 
-<p>
-  <strong>Lastname:</strong>
-  <%= @student.lastname %>
-</p>
+<h1>profil Company</h1>
+<div class="contenue">
+  <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Birthdate:</strong>
-  <%= @student.birthdate.strftime("%B %d, %Y") %>
-</p>
 
-<p>
-  <strong>Tel:</strong>
-  <%= @student.tel %>
-</p>
+  <div class="form_row">
+    <div class="form-group col-md-6">
 
-<p>
-  <strong>Userame:</strong>
-  <%= @student.user.username %>
-</p>
+      <div class="form-group">
+        <label for='name' class='formGroupExampleInput' >Firstname:</label>
+        <input value="  <%= @student.firstname %>" type='text_field' id='name' class='form-control' readOnly="readOnly">
+      </div>
+    </div>
+    <div class="form-group col-md-6">
 
-<p>
-  <strong>Address:</strong>
-  <%= @student.address %>
-</p>
+      <div class="form-group">
+        <label for='start_date' class='formGroupExampleInput' >Address:</label>
+        <input value="<%= @student.address %>" type='number_field' id='start_date' class='form-control' readOnly="readOnly">
+      </div>
+    </div>
+  </div>
+
+  <div class="form_row">
+    <div class="form-group col-md-6">
+      <div class="form-group">
+        <label for='address' class='formGroupExampleInput' >Lastname:</label>
+        <input value="  <%= @student.lastname %>" type='text_field' id='address' class='form-control' readOnly="readOnly">
+      </div>
+    </div>
+    <div class="form-group col-md-6">
+      <div class="form-group">
+        <label for='tel' class='formGroupExampleInput' >Birthdate:</label>
+        <input value="  <%= @student.birthdate.strftime("%B %d, %Y") %>" type='text_field' id='tel' class='form-control' readOnly="readOnly">
+      </div>
+    </div>
+  </div>
+
+    <div class="form_row">
+      <div class="form-group col-md-6">
+        <div class="form-group">
+          <label for='activity_area' class='formGroupExampleInput' > Tel:</label>
+          <input value="<%= @student.tel %>" type='text_field' id='activity_area' class='form-control' readOnly="readOnly">
+        </div>
+      </div>
+
+      <div class="form-group col-md-6">
+        <div class="form-group">
+          <label for='siret' class='formGroupExampleInput' >Username:</label>
+          <input value="<%= @student.user.username %>" type='text_field' id='siret' class='form-control' readOnly="readOnly">
+        </div>
+      </div>
+    </div>
+
+
+    </div>
+
+
+</div>
+
 
 <p>
   <strong>Cv:</strong>

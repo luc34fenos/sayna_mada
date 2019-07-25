@@ -99,3 +99,16 @@
         </section>
     </div>
 </div>
+  <label  class='formGroupExampleInput'>Staff:</label>
+
+<% @company.staff.each do |staf| %>
+   
+        <%= staf.first_name %>
+        <%= staf.last_name %>
+        <%= staf.job %>
+        <%= staf.email %>
+        <%= staf.tel %>
+
+
+        <br>
+      <% end %>

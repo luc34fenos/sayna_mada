@@ -1,0 +1,17 @@
+let div = $(`div.for_staff:first`);
+div.append(`
+	<ul>
+	<li><%= @staff.first_name %> </li>
+	<li><%= @staff.last_name %> </li>
+	<li><%= @staff.job %> </li>
+	<li><%= @staff.email %> </li>
+	<li><%= @staff.tel %> </li>
+	</ul>
+`);
+$(`input#staff_first_name`).val(``);
+$(`input#staff_job`).val(``);
+$(`input#staff_last_name`).val(``);
+$(`input#staff_email `).val(``);
+$(`input#staff_tel `).val(``);
+
+alert('mande');
