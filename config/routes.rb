@@ -3,12 +3,12 @@ Rails.application.routes.draw do
   get 'downloads_controller/show'
   get 'downloads_controller/cv_pdf'
   get 'downloads_controller/send_cv_pdf'
-
+  resources :webs
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   resources :cvs do
     resource :download, only: [:show]
   end
-  resources :students, only: [:show, :edit, :update, :new, :create, :destroy]
+  resources :students, only: [:index, :show, :edit, :update, :destroy]
   root 'home#index'
 
   get '/company_1' ,to: 'dashboard#company_dashboard1'
@@ -21,6 +21,9 @@ Rails.application.routes.draw do
 
   get '/monprofil/:id', to: 'students#show'
   get '/monprofil/:id/edit', to: 'students#edit'
+
+    get '/monprofile/:id', to: 'companies#show'
+    get '/monprofile/:id/edit', to: 'companies#edit'
 
   get '/student_1' ,to: 'dashboard#student_dashboard1'
   get '/student_2' ,to: 'dashboard#student_dashboard2'
@@ -38,6 +41,7 @@ Rails.application.routes.draw do
   resources :languages, only: [:create, :update, :destroy]
   resources :experiences, only: [:create, :update, :destroy]
   resources :programming_languages, only: [:create, :update, :destroy]
+  resources :backgrounds, only: [:create, :update, :destroy]
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :states, only: :index

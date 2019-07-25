@@ -43,19 +43,17 @@ class CvsController < ApplicationController
   # PATCH/PUT /cvs/1
   # PATCH/PUT /cvs/1.json
   def update
-    p "U"*70
-    p params.inspect
     respond_to do |format|
       if @cv.update(cv_params)
         #add_exp_skill_lg_plg(@cv)
         format.html { redirect_to @cv, notice: 'Cv was successfully updated.' }
         format.json { render :show, status: :ok, location: @cv }
+        format.js
       else
         format.html { render :edit }
         format.json { render json: @cv.errors, status: :unprocessable_entity }
       end
     end
-    p "U"*70
   end
 
   # DELETE /cvs/1
@@ -121,8 +119,9 @@ class CvsController < ApplicationController
     end
 
     def authenticate_student
-      unless current_user.student.cv == Cv.find(params[:id])
-        redirect_to "/moncv/#{current_user.student.cv.id}"
+      unless current_user.student && current_user.student.cv == Cv.find(params[:id])
+        redirect_to '/',
+        alert: "Unknown error"
       end
     end
   end

@@ -1,16 +1,15 @@
 jQuery("document").ready(function($) {
-    $(`input[type=radio]`).change(function(event) {
-        var $userForm = $(`.user-form`);
-        var lastSpan = $(`.user-form span:last`);
-        var status = this.value;
+    $(`input[type=checkbox]:first`).change(function(event) {
+        let $userForm = $(`.user-form:first`);
+        let $div = $(`div.toggle:first`);
 
-        var inputs = $(`.user_status .inputs`);
+        let inputs = $(`.user_status .inputs`);
 
-        if (status == 'student') {
+        if ($div.hasClass('off')) {
 
             inputs.html(`
                 <span class="agileits_personal">
-                    <input class="form-control" type="tel" id="student_tel" name="student[tel]" placeholder="Personal phone" />
+                    <input value="0347739305" class="form-control" type="tel" id="student_tel" name="student[tel]" placeholder="Telephone personal" required="" />
                 </span>
             `);
 
@@ -33,7 +32,7 @@ jQuery("document").ready(function($) {
                         <div class="col-md-6" style="padding-right: 2%">
                             <span class="w3layouts_personal">
                                 <label class="agileits_label" for="student_birthdate">Date de naissance</label>
-                                <input class="form-control" type="date" id="student_birthdate" name="student[birthdate]" placeholder="03X XXX XX XXX" required="" />
+                                <input class="form-control" type="date" id="student_birthdate" name="student[birthdate]" required="" />
                             </span>
                         </div>
                         <div class="col-md-6" style="padding-left: 2%">
@@ -80,44 +79,60 @@ jQuery("document").ready(function($) {
                         </textarea>
                     </span>
             `);
-        } else if (status == 'company') {
+        } else if ($div.hasClass('btn-success')) {
             inputs.html(`
                 <span class="agileits_personal">
-                    <input class="form-control" type="tel" id="company_tel" name="company[tel]" placeholder="Company contact" />
+                    <input class="form-control" value="020 77 393 05" type="tel" id="company_tel" name="company[tel]" placeholder="Company contact" />
                 </span>
             `);
             $userForm.html(`
-                <span class="w3layouts_personal">
-                    <label class="agileits_label" for="company_name">Company name</label>
-                    <input class="form-control" type="text" id="company_name" name="company[name]" placeholder="Sayna Madagascar" />
-                </span>
-                <span class="w3_agileits_personal">
-                    <label class="agileits_label" for="company_address">Company address</label>
-                    <input class="form-control" type="text" id="company_address" name="company[address]" placeholder="The nearest address" />
-                </span>
-              
-                <span class="w3_agileits_personal">
-                    <label class="agileits_label" for="company_start_date">Company start_date</label>
-                    <input class="form-control" type="text" id="company_start_date" name="company[start_date]" placeholder="example@company.com" />
-                </span>
-                <span class="w3_agileits_personal">
-                    <label class="agileits_label" for="company_legal_status">Company legal_status</label>
-                    <input class="form-control" type="legal_status" id="company_legal_status" name="company[legal_status]" placeholder="example@company.com" />
-                </span>
-                <span class="w3_agileits_personal">
-                    <label class="agileits_label" for="company_activity_area">Company activity_area</label>
-                    <input class="form-control" type="activity_area" id="company_activity_area" name="company[activity_area]" placeholder="example@company.com" />
-                </span>
-                <span class="w3_agileits_personal">
-                    <label class="agileits_label" for="company_siret">Company siret</label>
-                    <input class="form-control" type="siret" id="company_siret" name="company[siret]" placeholder="example@company.com" />
-                </span>
-                <span class="w3_agileits_personal">
-                    <label class="agileits_label" for="company_other">Company other</label>
-                    <input class="form-control" type="other" id="company_other" name="company[other]" placeholder="example@company.com" />
-                </span>
+                <div class="input-group-icon mt-10">
+                    <div class="icon"><i class="fa fa-edit" aria-hidden="true"></i></div>
+                    <input type="text" name="company[name]" id="company_name" placeholder="Nom de votre entreprise" class="single-input">
+                </div>
 
+                <div class="row">
+
+                    <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 input-group-icon mt-10">
+                        <div class="icon"><i class="fa fa-thumb-tack" aria-hidden="true"></i></div>
+                        <input type="text" name="company[address]" id="company_address" placeholder="Address" class="single-input">
+                    </div>
+
+
+                    <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 input-group-icon mt-10">
+                        <div class="icon"><i class="fa fa-thumb-tack" aria-hidden="true"></i></div>
+                        <input type="text" name="company[legal_status]" id="company_legal_status" placeholder="Status légal" class="single-input">
+                    </div>
+                </div>
+
+                <div class="input-group-icon mt-10">
+                    <div class="icon"><i class="fa fa-globe" aria-hidden="true"></i></div>
+                    <div class="form-select" id="default-select"">
+                        <select name="company[start_date]" id="company_start_date" class="default-select">
+                            <option value="">Année de décollage</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="input-group-icon mt-10">
+                    <div class="icon"><i class="fa fa-thumb-tack" aria-hidden="true"></i></div>
+                    <input type="text" name="company[activity_area]" id="company_activity_area" placeholder="Secteur d'activité" class="single-input">
+                </div>
+
+                <div class="input-group-icon mt-10">
+                    <div class="icon"><i class="fa fa-thumb-tack" aria-hidden="true"></i></div>
+                    <input type="text" name="company[siret]" id="company_siret" placeholder="Siret" class="single-input">
+                </div>
+                
+                <div class="mt-10">
+                    <textarea name="company[other]" id="company_other" class="single-textarea" placeholder="Des informations additionnelles sur votre entreprise"></textarea>
+                </div>
             `);
+            for (var year = 1800; year < 2050; year++) {
+                $('select#company_start_date').append(`
+                    <option value="${year}">${year}</option>
+                `);
+            }
         } else {
             inputs.html(``);
             $userForm.html(``);
@@ -125,7 +140,7 @@ jQuery("document").ready(function($) {
     })
 
     function loadCities() {
-        var country = document.getElementById("country");
+        let country = document.getElementById("country");
 
         country.addEventListener("change", function() {
             $.ajax({

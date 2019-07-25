@@ -1,0 +1,39 @@
+let studentsList = $(`tbody.students`);
+studentsList.html(`
+<% @students.each do |student| %>
+		<tr>
+            <td>
+                <%= student.lastname %>
+                <%= student.firstname %>
+            </td>
+            <td>
+                <%= student.birthdate.strftime("%B %d, %Y") %>
+            </td>
+            <td>
+                <%= student.tel %>
+            </td>
+            <td>
+                <%= student.address %>
+            </td>
+            <td>
+                <ul class="list-group">
+                    <% student.cv.skills.each do |skill| %>
+                    <li class="list-group-item">
+                        <%= skill.name %>
+                    </li>
+                    <% end %>
+                </ul>
+            </td>
+            <td>
+                <%= link_to "/moncv/#{student.cv.id}" do %>
+                <i class="fa fa-link"> mon cv</i>
+                <% end %>
+            </td>
+            <td>
+                <%= link_to "/monprofil/#{student.id}" do %>
+                <i class="fa fa-user"> afficher</i>
+                <% end %>
+            </td>
+        </tr>
+<% end %>
+`);

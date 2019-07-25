@@ -22,6 +22,8 @@ class CompaniesController < ApplicationController
 
   # GET /companies/1/edit
   def edit
+    @staff = Staff.new
+    @web = Web.new
   end
 
   # POST /companies

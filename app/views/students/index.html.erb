@@ -1,41 +1,68 @@
-<p id="notice"><%= notice %></p>
+<% content_for :head_tag do %>
+<script type="text/javascript">
+  function uploadStudent(){
+    setTimeout(function() {
+      $.ajax({
+        url: '/students',
+        type: 'GET',
+        dataType: 'script'
+      });
 
+      uploadStudent();
+    }, 1000*60*10);
+  }
+  uploadStudent();
+</script>
+<% end %>
 <h1>Students</h1>
-
 <table class="table table-bordered">
-  <thead>
-    <tr>
-      <th>Firstname</th>
-      <th>Lastname</th>
-      <th>Birthdate</th>
-      <th>Tel</th>
-      <th>Address</th>
-      <th>Cv</th>
-      <th colspan="3">Liens</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @students.each do |student| %>
-      <tr>
-        <td><%= student.firstname %></td>
-        <td><%= student.lastname %></td>
-        <td>  
-          <%= student.birthdate.strftime("%B %d, %Y") %>  
-        </td>
-        <td><%= student.tel %></td>
-        <td><%= student.address %></td>
-        <td>
-          <%= link_to "mon cv", "/moncv/#{student.cv.id}" %>  
-        </td>
-        <td><%= link_to 'Show', student %></td>
-        <td><%= link_to 'Edit', edit_student_path(student) %></td>
-        <td><%= link_to 'Destroy', student, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
+    <thead>
+        <tr>
+            <th>Fullname</th>
+            <th>Birthdate</th>
+            <th>Tel</th>
+            <th>Address</th>
+            <th>Compétences</th>
+            <th>Cv</th>
+            <th colspan="3">Profil</th>
+        </tr>
+    </thead>
+    <tbody class="students">
+        <% @students.each do |student| %>
+        <tr>
+            <td>
+                <%= student.lastname %>
+                <%= student.firstname %>
+            </td>
+            <td>
+                <%= student.birthdate.strftime("%B %d, %Y") %>
+            </td>
+            <td>
+                <%= student.tel %>
+            </td>
+            <td>
+                <%= student.address %>
+            </td>
+            <td>
+                <ul class="list-group">
+                    <% student.cv.skills.each do |skill| %>
+                    <li class="list-group-item">
+                        <%= skill.name %>
+                    </li>
+                    <% end %>
+                </ul>
+            </td>
+            <td>
+                <%= link_to "/moncv/#{student.cv.id}" do %>
+                <i class="fa fa-link"> mon cv</i>
+                <% end %>
+            </td>
+            <td>
+                <%= link_to "/monprofil/#{student.id}" do %>
+                <i class="fa fa-user"> afficher</i>
+                <% end %>
+            </td>
+        </tr>
+        <% end %>
+    </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Student', new_student_path %>

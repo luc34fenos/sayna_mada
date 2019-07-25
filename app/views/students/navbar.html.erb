@@ -15,7 +15,11 @@
         <% end %>>
         <i class="fa fa-edit"></i>
     </a>
+<<<<<<< HEAD
     <a href="<%= cv_download_path(current_user.student.cv, format: "pdf") %>" target="_blank">
+=======
+    <a href="<%= cv_download_path(current_user.student.cv, format: "pdf") %>", data-method="GET", target="_blank">
+>>>>>>> fb3ab01525e8e7b9e99d874e12a0c47dd125c5b7
         <i class="fas fa-file-export"></i>
     </a>
 </div>
@@ -85,6 +89,7 @@
 .active {
   background-color: #4CAF50;
 }
+<<<<<<< HEAD
 </style>
 <script type="text/javascript">
 jQuery(document).ready(function($) {
@@ -101,3 +106,6 @@ jQuery(document).ready(function($) {
     });
 });
 </script>
+=======
+</style>
+>>>>>>> fb3ab01525e8e7b9e99d874e12a0c47dd125c5b7

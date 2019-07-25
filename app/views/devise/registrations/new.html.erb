@@ -1,19 +1,25 @@
-<style type="text/css">
-    .personal-data {
-        clear: both;
-    }
-
-    .progress-bar {
-        width: 100%;
-        border-radius: 15px;
-        margin-bottom: 10px;
-    }
-</style>
-
 <% content_for :head_tag do %>
 <%= javascript_include_tag 'simpleform.min.js' %>
 <%= javascript_include_tag 'users/registrations.js' %>
 <%= javascript_include_tag 'validation.js' %>
+<style type="text/css">
+div.toggle label.btn {
+    text-align: center;
+}
+
+div.toggle {
+    display: block;
+    width: 100% !important;
+    float: left;
+}
+
+span.toggle-handle.btn {
+    background-color: white;
+    width: 3%;
+    height: 100%;
+    margin: 0;
+}
+</style>
 <% end %>
 <div class="registration">
     <center>
@@ -26,30 +32,30 @@
             <div class="fieldset">
                 <!-- user params -->
                 <fieldset class="personal-data w3_agileits_field">
-                    <span class="w3l_personal">
-                        <%= f.text_field :username, autofocus: true, autocomplete: "username", placeHolder:"Pseudo", class: "form-control", required: "" %>
-                    </span>
-                    <span class="w3ls_personal">
-                        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeHolder:"email@address.com", class: "form-control", required: "" %>
-                    </span>
-                    <span class="agileits_personal">
-                        <%= f.password_field :password, autocomplete: "new-password", placeHolder:"******", class: "form-control", value: "000000", required: "" %>
-                    </span>
-                    <span class="agileits_personal">
-                        <%= f.password_field :password_confirmation, autocomplete: "new-password", placeHolder:"******", class: "form-control", value: "000000", required: ""  %>
-                    </span>
+                    <div class="row">
+                        <span>
+                            <%= f.text_field :username,value: "Rivaille", autofocus: true, autocomplete: "email", placeHolder:"Votre meilleur pseudo", class: "balloon" %>
+                            <label for="user_username">Pseudo</label>
+                        </span>
+                        <span>
+                            <%= f.email_field :email, value: "rivaille@yopmail.com", autocomplete: "email", placeHolder:"email@address.com", class: "balloon" %><label for="user_email">email</label>
+                        </span>
+                        <span>
+                            <%= f.password_field :password, value: "000000", autocomplete: "new-password", placeHolder:"******", class: "balloon" %>
+                            <label for="user_password">Mot de passe</label>
+                        </span>
+                        <span>
+                            <%= f.password_field :password_confirmation, autocomplete: "new-password", value: "000000", placeHolder:"******", class: "balloon" %>
+                            <label for="user_password_confirmation">Mot de passe</label>
+                        </span>
+                    </div>
                 </fieldset>
                 <!-- end user params -->
                 <fieldset class="personal-data w3_agileits_field">
                     <div class="user_status row">
                         <div class="status">
-                            <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                                <input class="form-control" value="student" type="radio" name="status" id="student" checked="" />
-                                <label for="student">Etudiant</label>
-                            </div>
-                            <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                                <input class="form-control" value="company" type="radio" name="status" id="company" />
-                                <label for="company">Enteprise</label>
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-12 form-group bw fir" style="width: 100% !important; padding: 0;">
+                                <input data-toggle="toggle" data-off="Student" data-offstyle="warning" data-on="Company" data-onstyle="success" type="checkbox" name="status" id="status" class="form-control">
                             </div>
                         </div>
                         <span class="w3_agile_personal">
@@ -83,13 +89,13 @@
                         <div class="col-md-6" style="padding-right: 2%">
                             <span class="w3l_personal">
                                 <label class="agileits_label" for="student_lastname">Nom de famille</label>
-                                <input value="RASOLONDRAIBE" class="form-control" type="text" id="student_lastname" name="student[lastname]" placeholder="Nom de famille" required="" />
+                                <input value="A.N.Tsimanarson" class="form-control" type="text" id="student_lastname" name="student[lastname]" placeholder="Nom de famille" required="" />
                             </span>
                         </div>
                         <div class="col-md-6" style="padding-left: 2%">
                             <span class="w3l_personal">
                                 <label class="agileits_label" for="student_firstname">Prénom</label>
-                                <input value="Fenositraka" class="form-control" type="text" id="student_firstname" name="student[firstname]" placeholder="Prénom" required="" />
+                                <input value="Princy" class="form-control" type="text" id="student_firstname" name="student[firstname]" placeholder="Prénom" required="" />
                             </span>
                         </div>
                     </div>
@@ -247,7 +253,7 @@
                         </div>
                     </span>
                     <div class="">
-                        <input class="form-control" type="checkbox" id="registration_condition" name="registration[condition]">
+                        <input type="checkbox" id="registration_condition" name="registration[condition]">
                         <label for="registration_condition">J'accepte les conditions sans lire car j'ai trop la flemme de la lecture</label>
                     </div>
                 </fieldset>

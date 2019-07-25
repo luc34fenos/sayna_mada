@@ -2,7 +2,11 @@ class SkillsController < ApplicationController
 	def create
   	@cv = Cv.find(params[:cv_id])
 
-    @skill = Skill.new(name: params[:name])
+    if Skill.find_by(name: params[:name])
+      @skill = Skill.find_by(name: params[:name])
+    else
+      @skill = Skill.new(name: params[:name])
+    end
   	
     respond_to do |format|
       if @skill.save
@@ -34,7 +38,7 @@ class SkillsController < ApplicationController
 
   	skills.delete(@skill)
 
-    @skill.destroy
+    @skill.destroy if @skill.cvs.nil?
     
   	respond_to do |format|
   		format.js
