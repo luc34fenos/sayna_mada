@@ -1,5 +1,5 @@
 class WebsController < ApplicationController
-  before_action :set_web, only: [:show, :edit, :update, :destroy]
+  before_action :set_web, only: [:show, :edit, :update , :destroy]
 
 
   def index
@@ -12,6 +12,7 @@ class WebsController < ApplicationController
 
   def create
    @web = Web.new(web_params)
+   
    puts params.inspect
 
          respond_to do |format|
@@ -37,7 +38,8 @@ class WebsController < ApplicationController
 
   end
 
-  def delete
+  def destroy
+
    @web.destroy
    respond_to do |format|
     format.html { redirect_to root_path, notice: 'web was successfully updated.' }
@@ -50,7 +52,7 @@ class WebsController < ApplicationController
   private
 
   def set_web
-    @web = web.find(params[:id])
+    @web = Web.find(params[:id])
   end
 
     def web_params

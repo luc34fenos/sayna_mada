@@ -1,71 +1,233 @@
-<div class="container">
-    <div class="form_row">
-        <div class="form-group col-md-6">
-            <div class="form-group">
-                <label for='name' class='formGroupExampleInput'>Nom de l'entreprise:</label>
-                <input value="<%= @company.name %>" type='text_field' id='name' class='form-control' readOnly="readOnly">
+<body >
+<div data-scroll='1' class="aboutme-section sec-p100-bg-bs mb-30 clearfix" id="about">
+            <div class="Section-title">
+                <h2>
+                   <i class="fa fa-user" aria-hidden="true"></i>
+                </h2>
+                <span> <%= @company.name %></span>
+                  <p>
+                     <%= @company.other %>
+                  </p>
             </div>
-        </div>
-        <div class="form-group col-md-6">
-            <div class="form-group">
-                <label for='start_date' class='formGroupExampleInput'>Date d'ouverture(formelle):</label>
-                <input value="<%= @company.start_date %>" type='number_field' id='start_date' class='form-control' readOnly="readOnly">
-            </div>
-        </div>
-    </div>
-    <div class="form_row">
-        <div class="form-group col-md-6">
-            <div class="form-group">
-                <label for='address' class='formGroupExampleInput'> Addresse:</label>
-                <input value="<%= @company.address %>" type='text_field' id='address' class='form-control' readOnly="readOnly">
-            </div>
-        </div>
-        <div class="form-group col-md-6">
-            <div class="form-group">
-                <label for='tel' class='formGroupExampleInput'>Numero de téléphone:</label>
-                <input value="<%= @company.tel %>" type='text_field' id='tel' class='form-control' readOnly="readOnly">
-            </div>
-        </div>
-    </div>
-    <div class="form_row">
-        <div class="form-group col-md-6">
-            <div class="form-group">
-                <label for='activity_area' class='formGroupExampleInput'> Secteur d'activité:</label>
-                <input value="<%= @company.activity_area %>" type='text_field' id='activity_area' class='form-control' readOnly="readOnly">
-            </div>
-        </div>
-        <div class="form-group col-md-6">
-            <div class="form-group">
-                <label for='siret' class='formGroupExampleInput'>Numero de série:</label>
-                <input value="<%= @company.siret %>" type='text_field' id='siret' class='form-control' readOnly="readOnly">
-            </div>
-        </div>
-    </div>
-    <div class="form_row">
-        <div class="form-group col-md-6">
-            <div class="form-group">
-                <label for='legal_status' class='formGroupExampleInput'> Status légal:</label>
-                <input value="<%= @company.legal_status %>" type='text_field' id='legal_status' class='form-control' readOnly="readOnly">
-            </div>
-        </div>
-        <div class="form-group col-md-6">
-            <div class="form-group">
-                <label for='Other' class='formGroupExampleInput'>Autre:</label>
-                <input value="<%= @company.other %>" type='text_field' id='other' class='form-control' readOnly="readOnly">
-            </div>
-        </div>
-    </div>
-</div>
-  <label  class='formGroupExampleInput'>Staff:</label>
+            <!-- /.Section-title -->
+            <div class="personal-details-area">
+                <div class="row">
+                    <div class="col l6 m12 s12">
+                        <div class="personal-details-left">
+                            <ul class="service-list ul-li">
+                               
+                                <li class="website">
+                                    <i class="fa fa-globe" aria-hidden="true"></i>
+                                    <span class="service-name">web</span>
+                                    <a href="index.html#" class="more"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                                </li>
+                                <li class="softwares">
+                                    <i class="fa fa-desktop" aria-hidden="true"></i>
+                                    <span class="service-name">Staff</span>
+                                    <a href="index.html#" class="more"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                                </li>
+                               
+                            </ul>
+                            <!-- /.service-list -->
+                        </div>
+                        <!-- /.personal-details-left -->
+                    </div>
+                    <!-- colm6 -->
 
-<% @company.staff.each do |staf| %>
+                    <div class="col l6 m12 s12">
+                        <div class="personal-details-right">
+                            <h2 class="title">personal details</h2>
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td class="td-w25">start_date</td>
+                                        <td class="td-w10">:</td>
+                                        <td class="td-w65"><%= @company.start_date %> </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="td-w25">tel</td>
+                                        <td class="td-w10">:</td>
+                                        <td class="td-w65"><%= @company.tel %></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="td-w25">Address</td>
+                                        <td class="td-w10">:</td>
+                                        <td class="td-w65"><%= @company.address %></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="td-w25">activity_area</td>
+                                        <td class="td-w10">:</td>
+                                        <td class="td-w65"><%= @company.activity_area %></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="td-w25">siret</td>
+                                        <td class="td-w10">:</td>
+                                        <td class="td-w65"><%= @company.siret %> </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="td-w25">legal_status</td>
+                                        <td class="td-w10">:</td>
+                                        <td class="td-w65"><%= @company.legal_status %></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="td-w25">Website</td>
+                                        <td class="td-w10">:</td>
+                                        <td class="td-w65">http://example.com</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.personal-details-right -->
+                    </div>
+                    <!-- colm6 -->
+                </div>
+                <!-- row -->
+            </div>
+            <!-- /.personal-details-area -->
+
+           
+            <!-- /.success -->
+        </div>
+ <div data-scroll='2' class="my-skill-section sec-p100-bg-bs mb-30 clearfix" id="skill">
+            <div class="Section-title">
+                <h2>
+          <i class="fa fa-desktop" aria-hidden="true"></i>
+          STAFF
+        </h2>
+                <span>STAFF</span>
+                <p>
+                    Proin gravida nibh vel velit quet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulpuate cursus a sit amet mauris. Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt.
+                </p>
+            </div>
+            <!-- /.Section-title -->
+
+            <div class="professional-skills-area">
+                <ul class="tabs skills-tab ul-li">
+                    <li class="tab tag-item tag-icon">
+                        <i class="fa fa-tags" aria-hidden="true"></i>
+                    </li>
+                     <% @company.staff.each do |staf| %>
+                     <li class="tab tag-item"><a href="index.html#"><%= staf.first_name %></a></li>
+                     <% end %>
+
+                    
+                   
+                </ul>
+                <div id="graphicdesign">
+                    <h2 class="title">professional skills</h2>
+
+                    <div class="skill_progress">
+
+                        <div class="row">
+                            <div class="col l6 m6 s12">
+                                <div class="single_experties">
+                                    <div class="skilled-tittle">Photoshop</div>
+                                    <div class="progress">
+                                        <div class="progress-bar photoshop-bg wow Rx-width-90 animated" role="progressbar" data-wow-duration="0.5s" data-wow-delay=".5s" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                                            <span class="photoshop-color">90%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /single_experties -->
+
+                                <div class="single_experties">
+                                    <div class="skilled-tittle">Jquery</div>
+                                    <div class="progress">
+                                        <div class="progress-bar jquery-bg wow Rx-width-60 animated" role="progressbar" data-wow-duration="1s" data-wow-delay=".15s" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                                            <span class="jquery-color">60%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /single_experties -->
+
+                                <div class="single_experties m-0">
+                                    <div class="skilled-tittle">PHP</div>
+                                    <div class="progress">
+                                        <div class="progress-bar php-bg wow Rx-width-75 animated" role="progressbar" data-wow-duration="1.5s" data-wow-delay=".25s" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                                            <span class="php-color">75%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /single_experties -->
+                            </div>
+                            <!-- colm6 -->
+
+                            <div class="col l6 m6 s12">
+                                <div class="single_experties">
+                                    <div class="skilled-tittle">HTML5</div>
+                                    <div class="progress">
+                                        <div class="progress-bar html5-bg wow Rx-width-45 animated" role="progressbar" data-wow-duration="0.5s" data-wow-delay=".5s" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                                            <span class="html5-color">45%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /single_experties -->
+
+                                <div class="single_experties">
+                                    <div class="skilled-tittle">Css3</div>
+                                    <div class="progress">
+                                        <div class="progress-bar css3-bg wow Rx-width-65 animated" role="progressbar" data-wow-duration="1s" data-wow-delay=".15s" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                                            <span class="css3-color">65%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /single_experties -->
+
+                                <div class="single_experties m-0">
+                                    <div class="skilled-tittle">Marketing</div>
+                                    <div class="progress">
+                                        <div class="progress-bar marketing-bg wow Rx-width-80 animated" role="progressbar" data-wow-duration="1.5s" data-wow-delay=".25s" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                                            <span class="marketing-color">80%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /single_experties -->
+                            </div>
+                            <!-- colm6 -->
+                        </div>
+                        <!-- row -->
+
+                    </div>
+                    <!-- /.skill_progress -->
+                </div>
+
+            </div>
+        </div>
+    <div class="cub" >
    
-        <%= staf.first_name %>
-        <%= staf.last_name %>
-        <%= staf.job %>
-        <%= staf.email %>
-        <%= staf.tel %>
+        <div class="container">
+                <div class="cub_staff" >
+                    
+                      <label  class='formGroupExampleInput'><h1>Staff:</h1></label>
+
+                         <% @company.staff.each do |staf| %>
+                        <h2> First_name</h2>
+                            <%= staf.first_name %>
+                        <h2> last_name</h2>
+                            <%= staf.last_name %>
+                        <h2> job</h2>
+                            <%= staf.job %>
+                        <h2> email</h2>
+                            <%= staf.email %>
+                        <h2> tel</h2>
+                            <%= staf.tel %>
 
 
-        <br>
-      <% end %>
+                            <br>
+                          <% end %>    
+                </div>
+               <div class="cub_web" >
+                    <label  class='formGroupExampleInput'><h1>web:</h1></label>
+
+                    <% @company.webs.each do |page| %>
+                     <h2> name</h2>
+                        <%= page.name %>
+                    <h2> link</h2>
+                        <%= page.link %>
+
+                      <% end %>
+               </div>
+        </div>
+    </div>
+</body>
