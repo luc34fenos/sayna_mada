@@ -113,7 +113,7 @@ ActiveRecord::Schema.define(version: 2019_07_16_052459) do
 
   create_table "languages", force: :cascade do |t|
     t.string "name"
-    t.integer "level"
+    t.integer "level", default: 3
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -128,7 +128,7 @@ ActiveRecord::Schema.define(version: 2019_07_16_052459) do
 
   create_table "programming_languages", force: :cascade do |t|
     t.string "name"
-    t.integer "level"
+    t.integer "level", default: 3
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

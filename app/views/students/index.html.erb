@@ -2,17 +2,16 @@
 
 <h1>Students</h1>
 
-<table>
+<table class="table table-bordered">
   <thead>
     <tr>
       <th>Firstname</th>
       <th>Lastname</th>
       <th>Birthdate</th>
       <th>Tel</th>
-      <th>User</th>
       <th>Address</th>
       <th>Cv</th>
-      <th colspan="3"></th>
+      <th colspan="3">Liens</th>
     </tr>
   </thead>
 
@@ -21,11 +20,14 @@
       <tr>
         <td><%= student.firstname %></td>
         <td><%= student.lastname %></td>
-        <td><%= student.birthdate %></td>
+        <td>  
+          <%= student.birthdate.strftime("%B %d, %Y") %>  
+        </td>
         <td><%= student.tel %></td>
-        <td><%= student.user %></td>
         <td><%= student.address %></td>
-        <td><%= student.cv %></td>
+        <td>
+          <%= link_to "mon cv", "/moncv/#{student.cv.id}" %>  
+        </td>
         <td><%= link_to 'Show', student %></td>
         <td><%= link_to 'Edit', edit_student_path(student) %></td>
         <td><%= link_to 'Destroy', student, method: :delete, data: { confirm: 'Are you sure?' } %></td>

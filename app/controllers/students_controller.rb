@@ -1,5 +1,6 @@
 class StudentsController < ApplicationController
   before_action :set_student, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_student, only: [:edit, :update, :destroy]
 
   # GET /students
   # GET /students.json
@@ -71,5 +72,11 @@ class StudentsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def student_params
       params.require(:student).permit(:firstname, :lastname, :birthdate, :tel, :user_id, :address, :cv_id)
+    end
+
+    def authenticate_student
+      unless current_user.student == Student.find(params[:id])
+        redirect_to current_user.student
+      end
     end
 end

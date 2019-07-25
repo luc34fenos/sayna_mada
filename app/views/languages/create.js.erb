@@ -1,15 +1,100 @@
-let div = $(`div.field.new.old:first`);
-div.attr('id', 'language<%=@language.id%>');
+let $input = $(`div#languages`).children('input.language:first'),
+    $tag = $("<div />"),
+    $a = $(`<a href='#' class="language"/>`),
+    $span = $("<span />"),
+    $appendHere = $(`.tagHere.languages:first`);
 
-let name = div.children('input:first');
-name.attr('id', 'language<%=@language.id%>0');
-name.attr('name', 'languagenames[name<%=@language.id%>]');
+$tag.addClass('tag language');
 
-// let level = div.children('textarea:first');
-// level.attr('id', 'language<%=@language.id%>1');
-// level.attr('name', 'languagelevels[level<%=@language.id%>]');
+$('<i class="fa fa-times" aria-hidden="true"></i>').appendTo($a);
 
-let remove = div.children('a.remove-me:first');
-remove.attr('id', 'rmlanguage<%=@language.id%>');
+$span.text("<%= @language.name %>");
 
-div.removeClass('new');
+$a.appendTo($tag);
+$span.appendTo($tag);
+
+for (var i = 0; i < 3; i++) {
+    $(`<span class="glyphicon glyphicon-star" style="color: gold;"></span>`).appendTo($tag);
+}
+
+for (var i = 0; i < 4; i++) {
+    $(`<span class="glyphicon glyphicon-star-empty" style="color: gold;"></span>`).appendTo($tag);
+}
+
+$tag.appendTo($appendHere);
+
+$($input).val('');
+$($input).focus();
+
+$a.bind('click', function(e) {
+    e.preventDefault();
+    $(this).unbind('click');
+
+    let $DIV = $tag,
+        $CVID = $(`div.moncv:first`).attr('id'),
+        $ID = "<%=  @language.id %>";
+
+    removeLanguage($DIV, $CVID, $ID);
+});
+
+$(`span.glyphicon`).click(function(event) {
+    event.preventDefault();
+    let $ITEM, $ID, $LEVEL;
+    let parent = $(this).parent('div.tag:first');
+    let siblings = parent.children('span.glyphicon');
+
+
+    $ITEM = "languages";
+    $ID = "<%=  @language.id %>";
+    $LEVEL = Number(siblings.index(this)) + 1;
+
+    for (let i = siblings.length - 1; i >= 0; i--) {
+        if (siblings.index(siblings.eq(i)) <= siblings.index(this)) {
+            siblings.eq(i).removeClass('glyphicon-star-empty');
+            siblings.eq(i).addClass('glyphicon-star');
+        } else {
+            siblings.eq(i).removeClass('glyphicon-star');
+            siblings.eq(i).addClass('glyphicon-star-empty');
+        }
+    }
+
+    updateLevel($ITEM, $ID, $LEVEL);
+});
+
+
+
+function removeLanguage(div, cv_id, id) {
+    let AUTH_TOKEN = $(`input[name="authenticity_token"]`).attr('value');
+
+    div.fadeOut('slow', function() {
+        div.remove();
+    });
+
+    $.ajax({
+        url: `/languages/${id}`,
+        type: 'DELETE',
+        data: {
+            authenticity_token: AUTH_TOKEN,
+            cv_id: cv_id,
+            id: id
+        },
+    });
+}
+
+function updateLevel(item, id, level) {
+	console.log(item);
+	console.log(id);
+	console.log(level);
+
+    let AUTH_TOKEN = $(`input[name="authenticity_token"]`).attr('value');
+
+    $.ajax({
+        url: `/${item}/${id}`,
+        type: 'PATCH',
+        data: {
+            authenticity_token: AUTH_TOKEN,
+            id: id,
+            level: level
+        }
+    });
+}

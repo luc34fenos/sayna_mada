@@ -1,0 +1,23 @@
+<table>
+  <% @students.each do |student| %>
+      <% if student.is_activated?  %>
+        <tr>
+          <td><span style="color: skyblue; text-decoration: underline;">Nom</span> : <%= student.firstname %></td>
+          <td><%= link_to "voir son CV", cv_path(student.id) %></td>
+          <td class="col-md-6">&nbsp;</td>
+        </tr>
+        <tr>
+          <td><span style="color: skyblue; text-decoration: underline;">Prenom</span> : <%= student.lastname %></td>
+        </tr>
+        <tr>
+          <td colspan="6"><span style="color: skyblue; text-decoration: underline;">Sommaire</span> : <%= student.cv.summary %></td>
+        </tr>
+        <tr>
+          <td colspan="6">&nbsp;</td>
+        </tr>
+        <tr>
+          <td colspan="6">&nbsp;</td>
+        </tr>
+      <% end %>
+  <% end %>
+</table>

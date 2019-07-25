@@ -2,7 +2,7 @@ body.cvs {
     background: rgba(0, 0, 0, .6);
 }
 
-#moncv {
+#moncv, .moncv {
     background: ghostwhite;
     border-right: 40px solid;
     border-left: 0;
@@ -49,22 +49,8 @@ body.cvs {
     font-weight: 700;
 }
 
-.experiences,
-.skills,
-.languages,
-.programming_languages {
-    padding: 0 15px;
-}
-
 .first-field {
     padding: 0 8px 0 0;
-}
-
-.experience,
-.skill,
-.language,
-.programming_language {
-    margin: 0 0 1% 0 !important;
 }
 
 .student_dashboard1 .col-md-11,
@@ -109,44 +95,53 @@ body.cvs {
     word-spacing: .7em;
 }
 
-#skills {
+#skills, #languages, #programming_languages {
     background: #fff;
     border-radius: 4px;
-    box-shadow: 0 40px 50px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 40px 50px rgba(0, 0, 0, 0.25) !important;
     outline: none;
     font-size: 1em;
     padding: 1%;
 }
 
-#skills input {
+#skills input, #languages input, #programming_languages input {
     outline: none;
-    width: 20%;
     border: 0;
     float: left;
     padding: 8px;
     background: none;
 }
 
-#skills::before {
+#skills input {
+    margin: 0.5% 0.5%;
+}
+
+#languages input, #programming_languages input {
+    width: 100%;
+    margin: 1% 5% 0% 0%;
+}
+
+#skills::before, #languages::before, #programming_languages::before {
     content: '';
     display: table;
 }
 
-#skills::after {
+#skills::after, #languages::after, #programming_languages::after {
     content: '';
     display: table;
     clear: both;
 }
 
 .tag {
+    margin: 0.5% 0.5%;
     border-radius: 3px;
     background: #b5aff9;
     float: left;
-    margin: 3px;
     padding: 4px;
-    font-size: 1em;
+    font-size: 1.4em;
     vertical-align: middle;
     box-shadow: 0px 1px 4px #c6c6c6, 0px 2px 17px #d1d1d1;
+    width: auto;
 }
 
 .tag a {
@@ -170,6 +165,53 @@ body.cvs {
     bottom: 10px;
     text-align: center;
     width: 100%;
+}
+
+/* Experiences */
+
+.experience {
+    margin: 0 2.5% 1% 2.5%;
+    border: 1px solid;
+    padding: 1%;
+    border-radius: 5px;
+}
+
+.experience .name, .experience .date {
+    display: inline;
+}
+
+.experience .name {
+    width: 40%;
+}
+
+.experience .date {
+    width: 60%;
+}
+
+
+
+.experience .name span, .experience .name input{
+    margin-bottom: 1%;
+    border: 1px solid;
+    padding: 0 1%;
+    border-radius: 5px;
+    display: -webkit-inline-box;
+        background-color: #4CAF50;
+    color: white;
+}
+
+.experience .date span, .experience .date input{
+        border: 1px solid;
+    padding: 0 1%;
+    border-radius: 5px;
+    margin: 0 .5% 0 0%;
+}
+
+.experience .description p, .experience .description textarea{
+    border: 1px solid;
+    padding: 0 1%;
+    border-radius: 5px;
+    margin: .5% 0;
 }
 
 @media only screen and (min-width: 1200px) {

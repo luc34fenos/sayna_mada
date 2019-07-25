@@ -1,6 +1,7 @@
 class CvsController < ApplicationController
   before_action :set_cv, only: [:show, :edit, :update, :destroy]
-  before_action :only_connected
+  before_action :authenticate_student, only: [:edit, :update, :destroy]
+
   # GET /cvs
   # GET /cvs.json
   def index
@@ -119,10 +120,9 @@ class CvsController < ApplicationController
       experience_params(cv)
     end
 
-    def only_connected()
-      unless user_signed_in?
-        flash[:alert] = "vous n'avez pas le droit à cette action"
-        redirect_to new_user_registration_path
+    def authenticate_student
+      unless current_user.student.cv == Cv.find(params[:id])
+        redirect_to "/moncv/#{current_user.student.cv.id}"
       end
     end
-end
+  end

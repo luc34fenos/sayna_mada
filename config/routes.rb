@@ -8,25 +8,30 @@ Rails.application.routes.draw do
   resources :cvs do
     resource :download, only: [:show]
   end
-  resources :students
+  resources :students, only: [:show, :edit, :update, :new, :create, :destroy]
   root 'home#index'
 
   get '/company_1' ,to: 'dashboard#company_dashboard1'
   get '/company_2' ,to: 'dashboard#company_dashboard2'
 
-    get '/mondashboard', to: 'dashboard#show'
+  get '/mondashboard', to: 'dashboard#show'
 
-    get '/moncv/:id', to: 'cvs#show'
-    get '/moncv/:id/edit', to: 'cvs#edit'
+  get '/moncv/:id', to: 'cvs#show'
+  get '/moncv/:id/edit', to: 'cvs#edit'
+
+  get '/monprofil/:id', to: 'students#show'
+  get '/monprofil/:id/edit', to: 'students#edit'
 
   get '/student_1' ,to: 'dashboard#student_dashboard1'
   get '/student_2' ,to: 'dashboard#student_dashboard2'
 
   get '/concours' ,to: 'dashboard#concour'
+  get '/card' , to: 'dashboard#card'
 
   devise_for :users, controllers: {
   	registrations: 'users/registrations'
   }
+
   resources :staffs
   resources :companies
   resources :skills, only: [:create, :update, :destroy]
