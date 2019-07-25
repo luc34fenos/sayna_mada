@@ -73,7 +73,7 @@ ActiveRecord::Schema.define(version: 2019_07_16_052459) do
     t.bigint "student_id"
     t.text "hobbies"
     t.text "summary"
-    t.string "developer_type", default: "Developpeur Web"
+    t.string "developer_type", default: "Développeur Web"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["student_id"], name: "index_cvs_on_student_id"
@@ -194,13 +194,9 @@ ActiveRecord::Schema.define(version: 2019_07_16_052459) do
     t.string "link"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["company_id"], name: "index_webs_on_company_id"
-    t.index ["cv_id"], name: "index_webs_on_cv_id"
   end
 
   add_foreign_key "backgrounds", "cvs"
   add_foreign_key "experiences", "cvs"
   add_foreign_key "staffs", "companies"
-  add_foreign_key "webs", "companies"
-  add_foreign_key "webs", "cvs"
 end

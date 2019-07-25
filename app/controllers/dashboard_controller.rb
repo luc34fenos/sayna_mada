@@ -4,40 +4,40 @@ class DashboardController < ApplicationController
 	before_action :authenticate_company, only: [:company_dashboard1, :company_dashboard2]
 	before_action :authenticate_student, only: [:student_dashboard1, :student_dashboard2]
 
-    def show
-        @student = Student.find_by(user: current_user)
-        @company = Company.find_by(user: current_user)
+	def show
+		@student = Student.find_by(user: current_user)
+		@company = Company.find_by(user: current_user)
 
-        if @student
-          @cv = @student.cv
-        end
-    end
-
-		def card
-  		@students = Student.all
+		if @student
+			@cv = @student.cv
 		end
+	end
+
+	def card
+		@students = Student.all
+	end
 
 	# Company
-    def company_dashboard1
+	def company_dashboard1
 
-    end
+	end
 
-    def company_dashboard2
+	def company_dashboard2
 
-    end
+	end
 
 	# Student
-    def student_dashboard1
-    end
+	def student_dashboard1
+	end
 
-    def student_dashboard2
-    end
+	def student_dashboard2
+	end
 ####################
-    def concour
+def concour
 
-    end
+end
 
-    private
+private
     # def authenticate_validity
     # 	user = current_user.student ? current_user.student : current_user.company
     # 	default_url = current_user.student ? student_1_path : company_1_path
@@ -57,4 +57,4 @@ class DashboardController < ApplicationController
     	end
     end
 
-end
+  end

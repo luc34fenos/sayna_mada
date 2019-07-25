@@ -2,7 +2,8 @@ body.cvs {
     background: rgba(0, 0, 0, .6);
 }
 
-#moncv, .moncv {
+#moncv,
+.moncv {
     background: ghostwhite;
     border-right: 40px solid;
     border-left: 0;
@@ -51,6 +52,7 @@ body.cvs {
 .cv label {
     text-transform: capitalize;
 }
+
 .student_infos a {
     display: inline-block;
     max-width: 100%;
@@ -100,11 +102,15 @@ body.cvs {
     bottom: 2.4em; */
 }
 
-.stars {
-    word-spacing: .7em;
-}
-
-#skills, #languages, #programming_languages, #experiences, #backgrounds, #hobbies, #summaries, #developer_type, #myprofil {
+#skills,
+#languages,
+#programming_languages,
+#experiences,
+#backgrounds,
+#hobbies,
+#summaries,
+#developer_type,
+#myprofil {
     background: #fff;
     border-radius: 4px;
     box-shadow: 0 40px 50px rgba(0, 0, 0, 0.25) !important;
@@ -113,7 +119,14 @@ body.cvs {
     padding: 1%;
 }
 
-#skills input, #languages input, #programming_languages input {
+#languages,
+#programming_languages {
+    padding: 0 1% 0 0;
+}
+
+#skills input,
+#languages input,
+#programming_languages input {
     outline: none;
     border: 0;
     float: left;
@@ -121,21 +134,30 @@ body.cvs {
     background: none;
 }
 
+#languages input,
+#programming_languages input {
+    width: 100%;
+    margin: 1% 0% 1% .5%;
+    box-shadow: 1px 1px 5px inset;
+    border-radius: inherit;
+}
+
 #skills input {
     margin: 0.5% 0.5%;
 }
 
-#languages input, #programming_languages input {
-    width: 100%;
-    margin: 1% 5% 0% 0%;
-}
-
-#skills::before, #languages::before, #programming_languages::before, #summaries::before {
+#skills::before,
+#languages::before,
+#programming_languages::before,
+#summaries::before {
     content: '';
     display: table;
 }
 
-#skills::after, #languages::after, #programming_languages::after, #summaries::after {
+#skills::after,
+#languages::after,
+#programming_languages::after,
+#summaries::after {
     content: '';
     display: table;
     clear: both;
@@ -162,11 +184,34 @@ body.cvs {
     margin-right: 5px;
 }
 
+.tag .close {
+    display: none;
+}
+
 .tag span {
     /* padding-right: 10px; */
     padding-left: 0px;
     padding-top: 5px;
     padding-bottom: 5px;
+}
+
+.tag span.name {
+    padding-left: 2%;
+    position: relative;
+    top: 3px;
+}
+
+.tag.language,
+.tag.programming_language {
+    width: 100%;
+}
+
+.tag .glyphicon {}
+
+.stars {
+    word-spacing: .5em;
+    margin: 0 .5%;
+    float: right;
 }
 
 .note {
@@ -178,48 +223,63 @@ body.cvs {
 
 /* Experiences */
 
-.experience, .background {
+.experience,
+.background {
     background-color: #222;
-    border:  0 none;
+    border: 0 none;
     margin: 0 .2% 1% .2%;
     color: whitesmoke;
     padding: 1%;
     border-radius: 5px;
 }
 
-.experience .name, .experience .date, .background .name, .background .date {
+.experience .name,
+.experience .date,
+.background .name,
+.background .date {
     display: inline;
 }
 
-.experience .name, .background .name {
+.experience .name,
+.background .name {
     width: 40%;
 }
 
-.experience .date, .background .date {
+.experience .date,
+.background .date {
     width: 60%;
 }
 
 
 
-.experience .name span, .experience .name input, .background .name span, .background .name input{
+.experience .name span,
+.experience .name input,
+.background .name span,
+.background .name input {
 
     margin-bottom: 1%;
     padding: 0 1%;
     border-radius: 5px;
     display: -webkit-inline-box;
-        background-color: #4CAF50;
+    background-color: #4CAF50;
     color: white;
 }
 
-.experience .date span, .experience .date input, .background .date span, .background .date input{
+.experience .date span,
+.experience .date input,
+.background .date span,
+.background .date input {
     width: 25.1612195%;
-        border: 1px solid;
+    border: 1px solid;
     padding: 0 1%;
     border-radius: 5px;
     margin: 0 .5% 0 0%;
 }
 
-.experience .description p, .experience .description textarea, .background .description p, .background .description textarea{
+.experience .description p,
+.experience .description textarea,
+.background .description p,
+.background .description textarea {
     border: 1px solid;
     background-color: whitesmoke;
     color: #222;

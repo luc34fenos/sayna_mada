@@ -15,19 +15,19 @@ class BackgroundsController < ApplicationController
   	@background = Background.find(params[:id])
     if params[:name] 
      @background.update(name: params[:name])
-  	else
+   else
      @background.update(description: params[:description])
-    end
-  	respond_to do |format|
-  		format.js
-  	end
+   end
+   respond_to do |format|
+    format.js
   end
-  
-  def destroy
-  	@background = Background.find(params[:id])
-  	@background.destroy
-  	respond_to do |format|
-  		format.js
-  	end
-  end
+end
+
+def destroy
+ @background = Background.find(params[:id])
+ @background.destroy
+ respond_to do |format|
+  format.js
+end
+end
 end
