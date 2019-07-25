@@ -1,8 +1,8 @@
 let $input = $(`div#skills`).children('input.skill:first'),
-    $tag = $("<div />"),
-    $a = $(`<a href='#' class="skill"/>`),
-    $span = $("<span />"),
-    $appendHere = $(`.tagHere.skills:first`);
+$tag = $("<div />"),
+$a = $(`<a href='#' class="skill"/>`),
+$span = $("<span />"),
+$appendHere = $(`.tagHere.skills:first`);
 
 $tag.addClass('tag');
 
@@ -20,12 +20,12 @@ $($input).focus();
 $a.bind('click', function(e) {
   e.preventDefault();
   $(this).unbind('click');
-	
-	let $DIV = $tag,
-    $CVID = $(`div.moncv:first`).attr('id'),
-		$ID = "<%=  @skill.id %>";
 
-	removeSkill($DIV, $CVID, $ID);
+  let $DIV = $tag,
+  $CVID = $(`div.moncv:first`).attr('id'),
+  $ID = "<%=  @skill.id %>";
+
+  removeSkill($DIV, $CVID, $ID);
 });
 
 
@@ -34,7 +34,7 @@ function removeSkill(div, cv_id, id) {
 
     div.fadeOut('slow', function() {
       div.remove();
-    });
+  });
 
     $.ajax({
         url: `/skills/${id}`,
