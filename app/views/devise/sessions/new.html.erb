@@ -1,26 +1,37 @@
-<h2>Log in</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.text_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+<section class="signin-up-bg">
+    <div class="leftHalf" style="background-image: url('/assets/codelab/img/login-bg.jpg')">
+        <div class="login-promo-txt">
+            <h2>Let’s Start The Journey</h2>
+            <p>Enter the most beautiful admin ever</p>
+        </div>
     </div>
-  <% end %>
-
-  <div class="">
-    <%= f.submit "Log in", class: "btn btn-default" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+    <div class="rightHalf">
+        <div class="position-relative">
+            <!--login form-->
+            <div class="login-form">
+                <h2 class="text-center mb-4">
+                    <img src="/assets/codelab/img/logo.png" srcset="/assets/codelab/img/logo@2x.jpg 2x" alt="CodeLab">
+                </h2>
+                <h4 class="text-uppercase- text-purple text-center mb-5">Login to Admin</h4>
+                <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+                <div class="form-group">
+                    <%= f.text_field :email, autofocus: true, autocomplete: "email", class: "form-control", id: "exampleInputEmail1", placeholder: "Enter email" %>
+                </div>
+                <div class="form-group mb-4">
+                    <%= f.password_field :password, autocomplete: "current-password", class: "form-control", id: "exampleInputPassword1", placeholder: "Enter Password" %>
+                </div>
+                <div class="form-group clearfix">
+                    <a href="/users/password/new" data-method="GET" class="float-left forgot-link my-2">Forgot Password ?</a>
+                    <button type="submit" class="btn btn-purple btn-pill float-right">LOGIN</button>
+                </div>
+                <div class="form-divider"></div>
+                <!-- <a href="#" class="btn btn-facebook btn-pill text-uppercase"><i class="fa fa-facebook-square"></i> Login with facebook</a> -->
+                <div class="text-center mt-5">
+                    <a href="/users_sign_up" data-method="GET" class="btn-link text-capitalize f12">Create New Account</a>
+                </div>
+                <% end %>
+            </div>
+            <!--/login form-->
+        </div>
+    </div>
+</section>

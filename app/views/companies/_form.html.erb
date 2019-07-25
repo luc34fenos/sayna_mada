@@ -1,16 +1,4 @@
-<% if company.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= pluralize(company.errors.count, "error") %> prohibited this company from being saved:</h2>
-
-    <ul>
-    <% company.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-    </ul>
-  </div>
-<% end %>
-
-<%= form_with(model: company, local: true, remote: true) do |form| %>
+<%= form_with(model: company, local: true) do |form| %>
   <div class="form_row">
     <div class="form-group col-md-6">
       <div class="form-group">
@@ -20,7 +8,7 @@
     </div>
     <div class="form-group col-md-6">
       <div class="form-group">
-        <%= form.label :start_date , class: '' %>
+        <%= form.label :start_date, "Année de lancement", class: '' %>
         <%= form.number_field :start_date , class: 'form-control' %>
       </div>
     </div>
@@ -29,7 +17,7 @@
   <div class="form_row">
     <div class="form-group col-md-6">
       <div class="form-group">
-        <%= form.label :address , class: '' %>
+        <%= form.label :address, "Addresse", class: '' %>
         <%= form.text_field :address , class: 'form-control'%>
       </div>
     </div>
@@ -45,13 +33,13 @@
   <div class="form_row">
     <div class="form-group col-md-6">
       <div class="form-group">
-        <%= form.label :activity_area , class: '' %>
+        <%= form.label :activity_area, "Secteur d'activité", class: '' %>
         <%= form.text_field :activity_area , class: 'form-control'%>
       </div>
     </div>
     <div class="form-group col-md-6">
       <div class="form-group">
-        <%= form.label :siret , class: '' %>
+        <%= form.label :siret, class: '' %>
         <%= form.text_field :siret , class: 'form-control'%>
       </div>
     </div>
@@ -60,14 +48,14 @@
   <div class="form_row">
     <div class="form-group col-md-6">
       <div class="form-group">
-        <%= form.label :legal_status , class: '' %>
+        <%= form.label :legal_status, "Status Légal", class: '' %>
         <%= form.text_field :legal_status , class: 'form-control'%>
       </div>
     </div>
     <div class="form-group col-md-6">
       <div class="form-group">
-        <%= form.label :Other , class: '' %>
-        <%= form.text_field :other , class: 'form-control'%>
+        <%= form.label :other, "Autre", class: '' %>
+        <%= form.text_area :other , class: 'form-control'%>
       </div>
     </div>
   </div>
