@@ -1,26 +1,26 @@
 <% content_for :head_tag do %>
-<%= javascript_include_tag 'jquery.validate.min.js' %>
-<%= javascript_include_tag 'simpleform.min.js' %>
-<%= javascript_include_tag 'users/registrations.js' %>
-<%= javascript_include_tag 'validation.js' %>
-<style type="text/css">
-div.toggle label.btn {
-    text-align: center;
-}
+    <%= javascript_include_tag 'jquery.validate.min.js' %>
+    <%= javascript_include_tag 'simpleform.min.js' %>
+    <%= javascript_include_tag 'validation.js' %>
+    <%= javascript_include_tag 'users/registrations.js' %>
+    <style type="text/css">
+        div.toggle label.btn {
+            text-align: center;
+        }
 
-div.toggle {
-    display: block;
-    width: 100% !important;
-    float: left;
-}
+        div.toggle {
+            display: block;
+            width: 100% !important;
+            float: left;
+        }
 
-span.toggle-handle.btn {
-    background-color: white;
-    width: 3%;
-    height: 100%;
-    margin: 0;
-}
-</style>
+        span.toggle-handle.btn {
+            background-color: white;
+            width: 3%;
+            height: 100%;
+            margin: 0;
+        }
+    </style>
 <% end %>
 <div class="registration">
     <center>

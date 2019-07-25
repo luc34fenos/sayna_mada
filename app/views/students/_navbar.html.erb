@@ -1,0 +1,16 @@
+<div class="dropdown-item- px-3 py-2">
+    <img class="rounded-circle mr-2" src="/assets/codelab/img/avatar/avatar2.jpg" width="35" alt="" />
+    <span class="text-muted"><%= student.firstname %> <%= student.lastname %></span>
+</div>
+<div class="dropdown-divider"></div>
+<a class="dropdown-item" href="/monprofil/<%= student.id %>" data-method="GET" >Mon Profil</a>
+<a class="dropdown-item" href="/monprofil/<%= student.id %>/edit" data-method="GET" >Paramètres du compte</a>
+
+<a class="dropdown-item" href="/moncv/<%= student.cv.id %>" data-method="GET" >Mon CV</a>
+<a class="dropdown-item" href="/moncv/<%= student.cv.id %>/edit" data-method="GET" >Editer Mon CV</a>
+
+<!-- <a class="dropdown-item" href="#">Inbox <span class="badge badge-primary">3</span></a>
+<a class="dropdown-item" href="#">Message <span class="badge badge-success">5</span></a> -->
+<div class="dropdown-divider"></div>
+
+<a class="dropdown-item" href="/users/sign_out" data-method="DELETE">Sign Out</a>
