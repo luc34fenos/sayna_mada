@@ -1,40 +1,30 @@
-<title><%= "#{controller_name.upcase} #{action_name.capitalize}"%></title>
+<title>
+    <%= "#{controller_name.upcase} #{action_name.capitalize}"%>
+</title>
 <%= csrf_meta_tags %>
 <%= csp_meta_tag %>
-<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-<%= javascript_include_tag 'application.js', 'data-turbolinks-track': 'reload' %>
-<!--web fonts-->
-<link href="//fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800" rel="stylesheet">
-<link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+<% stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 <!--bootstrap styles-->
-<link href="/assets/codelab/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <!--icon font-->
-<link href="/assets/codelab/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-<link href="/assets/codelab/vendor/dashlab-icon/dashlab-icon.css" rel="stylesheet">
-<link href="/assets/codelab/vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
-<link href="/assets/codelab/vendor/themify-icons/css/themify-icons.css" rel="stylesheet">
-<link href="/assets/codelab/vendor/weather-icons/css/weather-icons.min.css" rel="stylesheet">
+<link href="/assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+<link href="/assets/vendor/dashlab-icon/dashlab-icon.css" rel="stylesheet">
+<link href="/assets/vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
+<link href="/assets/vendor/themify-icons/css/themify-icons.css" rel="stylesheet">
+<link href="/assets/vendor/weather-icons/css/weather-icons.min.css" rel="stylesheet">
 <!--jquery ui-->
-<link href="/assets/codelab/vendor/jquery-ui/jquery-ui.min.css" rel="stylesheet">
+<link href="/assets/vendor/jquery-ui/jquery-ui.min.css" rel="stylesheet">
 <!--iCheck-->
-<link href="/assets/codelab/vendor/icheck/skins/all.css" rel="stylesheet">
+<link href="/assets/vendor/icheck/skins/all.css" rel="stylesheet">
 <!--custom styles-->
-<link href="/assets/codelab/css/main.css" rel="stylesheet">
+<link href="/assets/css/main.css" rel="stylesheet">
+
+<%= javascript_include_tag 'application.js', 'data-turbolinks-track': 'reload' %>
 <!--basic scripts-->
-<script src="/assets/codelab/vendor/jquery/jquery.min.js"></script>
-<script src="/assets/codelab/vendor/jquery-ui/jquery-ui.min.js"></script>
-<script src="/assets/codelab/vendor/popper.min.js"></script>
-<script src="/assets/codelab/vendor/bootstrap/js/bootstrap.min.js"></script>
-<script src="/assets/codelab/vendor/jquery.dcjqaccordion.2.7.js"></script>
-<!--chartjs-->
-<script src="/assets/codelab/vendor/chartjs/Chart.bundle.min.js"></script>
-<!--chartjs initialization-->
-<script src="/assets/codelab/vendor/js-init/chartjs/init-sales-overview-chart.js"></script>
-<script src="/assets/codelab/vendor/js-init/chartjs/init-area-chart.js"></script>
-<script src="/assets/codelab/vendor/js-init/chartjs/init-line-chart.js"></script>
-<!--[if lt IE 9]>
-            <script src="/assets/codelab/vendor/modernizr.js"></script>
-            <![endif]-->
-<!--basic scripts initialization-->
-<script src="/assets/codelab/js/scripts.js"></script>
+<script src="/assets/vendor/jquery/jquery.min.js"></script>
+<script src="/assets/vendor/jquery-ui/jquery-ui.min.js"></script>
+<script src="/assets/vendor/popper.min.js"></script>
+<script src="/assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="/assets/vendor/jquery.dcjqaccordion.2.7.js"></script>
+<script src="/assets/js/scripts.js"></script>
 <%= yield :head_tag %>

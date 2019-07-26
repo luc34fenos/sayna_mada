@@ -32,7 +32,8 @@ Rails.application.routes.draw do
   get '/card' , to: 'dashboard#card'
 
   devise_for :users, controllers: {
-  	registrations: 'users/registrations'
+    registrations: 'users/registrations',
+  	sessions: 'users/sessions',
   }
 
   resources :staffs

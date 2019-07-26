@@ -12,4 +12,3 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 # application.js, application.css, and all non-JS/CSS in the app/assets
 # folder are already added.
 # Rails.application.config.assets.precompile += %w( admin.js admin.css )
-Rails.application.config.assets.precompile += %w( bootstrap.min.js jquery-2.1.3.min.js jquery.validate.min.js bootstrap-toggle.min.js home.js users/registrations.js simpleform.min.js validation.js cvs.js)

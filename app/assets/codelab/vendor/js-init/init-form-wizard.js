@@ -28,7 +28,8 @@ $(document).ready(function () {
             return form.valid();
         },
         onFinished: function (event, currentIndex) {
-            alert("Submitted!");
+            // alert("Submitted!");
+            form.submit();
         }
     }).validate({
         errorPlacement: function errorPlacement(error, element) {

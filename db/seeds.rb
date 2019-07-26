@@ -11,21 +11,13 @@ admins = [
 	{username: "luc", email: "fef@fef.fef", password: "34froot98", password_confirmation: "34froot98", status: "admin"}
 ]
 
-f = User.new(username: "luc", email: "fef@fef.fef", password: "34froot98", password_confirmation: "34froot98", status: "admin")
-f.save!
-f.confirm
+admins.each do |admin|
+	User.create(admin)
+end
 
-# admins = [
-# 	{username: "Linx", email: "plinsy2@gmail.com", password: "#{ENV[LINX_PASSWORD]}", password_confirmation: "#{ENV[LINX_PASSWORD]}", status: "admin"}
-# ]
+# CS.update
 
-# admins.each do |admin|
-# 	User.create(admin)
-# end
-
-CS.update
-
-# students
+# Students
 (0..20).each do |x|
   g = User.new(username: "User#{x}", email: "etudiant#{x}@gmail.com", password: "000000", password_confirmation: "000000")
   g.save!
@@ -38,7 +30,7 @@ CS.update
   s.save
 end
 
-# Company
+# Companies
 (21..35).each do |x|
   g = User.new(username: "User#{x}", email: "company#{x}@gmail.com", password: "000000", password_confirmation: "000000")
   g.save!
@@ -49,6 +41,6 @@ end
   st = Staff.new(first_name: "firstname#{x}", last_name: "lastname#{x}", company_id: s.id, job: "job#{ x%2 + 1}", email: "staff#{x}.company#{s.id}@gmail.com", tel: "03298765#{x}")
   st.save!
   s.cities = [c]
-  s.staff = [ st ]
+  s.staff = [st]
   s.save
 end
