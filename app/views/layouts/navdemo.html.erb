@@ -127,23 +127,26 @@
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userNav">
                 <% if user_signed_in? %>
-                <div class="dropdown-item- px-3 py-2">
-                    <img class="rounded-circle mr-2" src="/assets/codelab/img/avatar/avatar2.jpg" width="35" alt="" />
-                    <span class="text-muted">Jhon Doe</span>
-                </div>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">My Profile</a>
-                  <a class="dropdown-item" href="#">Account Settings</a>
-                  <a class="dropdown-item" href="#">Inbox <span class="badge badge-primary">3</span></a>
-                  <a class="dropdown-item" href="#">Message <span class="badge badge-success">5</span></a>
-                  <div class="dropdown-divider"></div>
-                <% end %>
-                <% if user_signed_in? %>
-                  <a class="dropdown-item" href="/users/sign_out" data-method="DELETE">Sign Out</a>
-                  <% else %>
-                  <a class="dropdown-item" href="/users/sign_in" data-method="GET">Sign In</a>
-                  <a class="dropdown-item" href="/users/sign_up" data-method="GET">Sign Up</a>
+                    <% if current_user.student %>
+                        <%= render 'students/navbar', student: current_user.student %>
+                    <% elsif current_user.company %>
+                        <%= render 'companies/navbar', company: current_user.company %>
+                    <% end %>
+                <% else %>
+                    <div class="dropdown-item- px-3 py-2">
+                        <img class="rounded-circle mr-2" src="/assets/codelab/img/avatar/avatar2.jpg" width="35" alt="" />
+                        <span class="text-muted">Jhon Doe</span>
+                    </div>
 
+                    <!-- <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">My Profile</a>
+                    <a class="dropdown-item" href="#">Account Settings</a>
+                    <a class="dropdown-item" href="#">Inbox <span class="badge badge-primary">3</span></a>
+                    <a class="dropdown-item" href="#">Message <span class="badge badge-success">5</span></a>
+                    <div class="dropdown-divider"></div> -->
+
+                    <a class="dropdown-item" href="/users/sign_in" data-method="GET">Sign In</a>
+                    <a class="dropdown-item" href="/users/sign_up" data-method="GET">Sign Up</a>
                 <% end %>
             </div>
         </li>

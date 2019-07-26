@@ -14,13 +14,13 @@ Rails.application.routes.draw do
   get '/company_1' ,to: 'dashboard#company_dashboard1'
   get '/company_2' ,to: 'dashboard#company_dashboard2'
 
-    get '/mondashboard', to: 'dashboard#show'
+  get '/mondashboard', to: 'dashboard#show'
 
-    get '/moncv/:id', to: 'cvs#show'
-    get '/moncv/:id/edit', to: 'cvs#edit'
+  get '/moncv/:id', to: 'cvs#show'
+  get '/moncv/:id/edit', to: 'cvs#edit'
 
-    get '/monprofil/:id', to: 'students#show'
-    get '/monprofil/:id/edit', to: 'students#edit'
+  get '/monprofil/:id', to: 'students#show'
+  get '/monprofil/:id/edit', to: 'students#edit'
 
     get '/monprofile/:id', to: 'companies#show'
     get '/monprofile/:id/edit', to: 'companies#edit'
@@ -34,6 +34,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
   	registrations: 'users/registrations'
   }
+
   resources :staffs
   resources :companies
   resources :skills, only: [:create, :update, :destroy]

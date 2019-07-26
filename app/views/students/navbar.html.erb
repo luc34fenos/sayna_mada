@@ -85,4 +85,23 @@
 .active {
   background-color: #4CAF50;
 }
+<<<<<<< HEAD
 </style>
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+    let yourNavigation = $(".navbar");
+    stickyDiv = "sticky";
+    yourHeader = $('.header').height();
+
+    $(window).scroll(function() {
+        if ($(this).scrollTop() > yourHeader) {
+            yourNavigation.addClass(stickyDiv);
+        } else {
+            yourNavigation.removeClass(stickyDiv);
+        }
+    });
+});
+</script>
+=======
+</style>
+>>>>>>> fb3ab01525e8e7b9e99d874e12a0c47dd125c5b7

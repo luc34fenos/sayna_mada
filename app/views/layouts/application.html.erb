@@ -6,7 +6,7 @@
 </head>
 
 <body class="<%= controller_name %> <%= action_name %>">
-    <% render template: 'layouts/navbar' %>
+    <%= render 'layouts/flash' %>
     <% if controller_name != "sessions" && controller_name != "registrations" %>
         <%= render template: 'layouts/navdemo' %>
     <% end %>
