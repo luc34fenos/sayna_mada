@@ -15,6 +15,25 @@ admins.each do |admin|
 	User.create(admin)
 end
 
+
+user = User.new
+user.email = 'test@yahoo.com'
+user.password = '123456789'
+user.password_confirmation ='123456789'
+user.confirm
+user.save!
+
+company = Company.new
+company.name = 'Ramaharavo'
+company.start_date = 'Mahefa'
+company.address = 'faravohitra'
+company.legal_status = 'S.A'
+company.tel = 'Ramaharavo'
+company.activity_area = 'comerce'
+company.siret = '123456789'
+company.user_id = user.id
+company.save
+
 # AdminUser.create!(email: 'plinsy2@gmail.com', password: "Linx#01111998", password_confirmation: "Linx#01111998") if Rails.env.development?
 
 # CS.update

@@ -30,19 +30,6 @@
 							    <li>
 							    	<strong>Personne à contacter : </strong>
 							    	<ul>
-							    		<% @company.staff.each do |staf| %>
-							    			<li><%= staf.first_name %> <%= staf.last_name %></li>
-							    			<li><%= staf.job %></li>
-							    			<li><a href="mailto:<%= staf.email %>" target="_blank"><%= staf.email %></a></li>
-							    			<li><%= staf.tel %></li>
-							    			<% break %>
-							    		<% end %>
-							    	</ul>
-							    </li>
-							    <% end %>
-							    <% if @company.webs.any? %>
-							    	<li><strong>Site web : </strong><mark><a href="<%= @company.webs.first.link %>" target="_blank"><%= @company.webs.first.link %></a></mark></li>
-							    <% end %>
             			</ul>
             		</div>
             	</section>
@@ -58,51 +45,6 @@
             			</ul>
             		</div>
             	</section>
-            	<section>
-            		<div class="title">
-            			<h3>Capacité d'affaires</h3>
-            		</div>
-            		<div class="content">
-            			<ul>
-            				<li><strong>Ressources humaines (<%= @company.staff.length %>)</strong>
-            					<% if @company.staff.any? %>
-            					<ul>
-            						<% @company.staff.each do |staf| %>
-            							<li><%= staf.first_name %> <%= staf.last_name %> (<%= staf.job %>)</li>
-            						<% end %>
-            					</ul>
-            					<% end %>
-										</li>
-										<li><strong>Financial</strong>
-											<ul>
-
-												<li>Financial Circumstances of Business (Optional)</li>
-											</ul>
-										</li>
-										<li><strong>Technical</strong>
-											<ul>
-												<li>Company Capacity for the Project in Terms of Qualifications and Certifications</li>
-											</ul>
-										</li>
-										<li><strong>Autre</strong>
-											<ul>
-												<li>
-													<p>
-														<%= @company.other %>
-													</p>
-												</li>
-											</ul>
-										</li>
-            			</ul>
-            		</div>
-            	</section>
-        </section>
-    </div>
-</div>
-  <label  class='formGroupExampleInput'>Staff:</label>
-
-<% @company.staff.each do |staf| %>
-
         <div class="container">
                 <div class="cub_staff" >
 
