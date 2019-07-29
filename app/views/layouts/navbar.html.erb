@@ -1,77 +1,187 @@
-<header id="header">
-    <nav class="navbar navbar-inverse navbar navbar-default navbar-fixed-top menu">
-        <a class="navbar-brand" href="https://www.sayna.io" data-method="GET">Sayna</a>
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li class=""><a href="/">Accueil <span class="sr-only">(current)</span></a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        <%= user_signed_in? ? current_user.username : "Liens" %>
-                        <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <% if !user_signed_in? %>
-                        <li><a href="<%= new_user_registration_path %>" data-method="get">S'inscrire</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="<%= new_user_session_path %>" data-method="get">Se connecter</a></li>
-                        <% else %>
-                        <% if current_user.status == "admin" %>
-                        <li><a href="/admin" data-method="get">Mon dashboard</a></li>
-                        <% else %>
-                        <li><a href="<%= mondashboard_path %>" data-method="get">Mon dashboard</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li>
-                            <a href="<%= current_user.company ? "/monprofile/#{current_user.company.id}" : "/monprofil/#{current_user.student.id}" %>" data-method="get">Mon profil</a>
-                        </li>
-                        <li>
-                            <% if current_user.company %>
-                            <% else %>
-                            <a href="/moncv/<%= current_user.student.cv.id %>" data-method="get">Mon cv</a>
-                            <% end %>
-                        </li>
-                        <% end %>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="<%= destroy_user_session_path %>" data-method="delete">Se deconnecter</a></li>
-                        <% end %>
-                    </ul>
-                </li>
-            </ul>
-            <% if user_signed_in? && current_user.student %>
-            <%= render template: 'students/navbar' %>
-            <% elsif user_signed_in? && current_user.company %>
-            <%= render template: 'companies/navbar' %>
-            <% end %>
+<!--header start-->
+<header class="app-header">
+    <div class="branding-wrap">
+        <% if user_signed_in? && current_user.status == "admin" %>
+        <!--left nav toggler start-->
+        <a class="nav-link mt-2 float-left js_left-nav-toggler pos-fixed" href="javaScript:;">
+            <i class="ti-align-right"></i>
+        </a>
+        <!--left nav toggler end-->
+        <% else %>
+        <a class="nav-link mt-2 float-left js_left-nav-toggler pos-fixed" href="javaScript:;">
+            <i class="fa fa-dashboard" aria-hidden="true"></i>
+        </a>
+        <% end %>
+        <!--brand start-->
+        <div class="navbar-brand pos-fixed">
+            <a class="" href="/" data-method="GET">
+                <img src="/assets/img/logo.png" srcset="/assets/img/logo@2x.jpg 2x" alt="CodeLab">
+            </a>
         </div>
-    </nav>
+        <!--brand end-->
+    </div>
+    <!--header rightside links-->
+    <ul class="header-links hide-arrow navbar">
+        <li class="nav-item search-bar">
+            <button type="button" class="btn btn-link" data-toggle="modal" data-target="#searchModal">
+                <i class="vl_search"></i>
+            </button>
+        </li>
+        <li class="nav-item dropdown sm-device-none">
+            <a class="nav-link dropdown-toggle mr-lg-3" id="messagesDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="vl_chat-bubble"></i>
+                <div class="notification-alarm">
+                    <span class="wave wave-danger"></span>
+                    <span class="dot"></span>
+                </div>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right header-right-dropdown-width pb-0" aria-labelledby="messagesDropdown">
+                <h6 class="dropdown-header weight500 ">Messages</h6>
+                <div class="dropdown-divider mb-0"></div>
+                <a class="dropdown-item border-bottom msg-unread" href="#">
+                    <div class="float-left notificaton-thumb">
+                        <img class="rounded-circle" src="/assets/img/avatar/avatar4.jpg" alt="" />
+                    </div>
+                    <span class="weight500">Andrew Flinton</span>
+                    <span class="small float-right text-muted">08:30 AM</span>
+                    <div class="dropdown-message">
+                        I hope that you will be there in time. See you then
+                    </div>
+                </a>
+                <a class="dropdown-item border-bottom msg-unread" href="#">
+                    <div class="float-left notificaton-thumb">
+                        <img class="rounded-circle" src="/assets/img/avatar/avatar2.jpg" alt="" />
+                    </div>
+                    <span class="weight500">John Doe</span>
+                    <span class="small float-right text-muted">10:28 AM</span>
+                    <div class="dropdown-message">
+                        Hello this is an example message. Just want to show how it looks
+                    </div>
+                </a>
+                <a class="dropdown-item border-bottom" href="#">
+                    <div class="float-left notificaton-thumb">
+                        <img class="rounded-circle" src="/assets/img/avatar/avatar3.jpg" alt="" />
+                    </div>
+                    <span class="weight500">Dash Don</span>
+                    <span class="small float-right text-muted">07:12 PM</span>
+                    <div class="dropdown-message">
+                        Hi, This is Dash Don form usa. I'm looking for someone who really good at design and frontend like mosaddek
+                    </div>
+                </a>
+                <a class="dropdown-item border-bottom" href="#">
+                    <div class="float-left notificaton-thumb">
+                        <img class="rounded-circle" src="/assets/img/avatar/avatar1.jpg" alt="" />
+                    </div>
+                    <span class="weight500">dkmosa</span>
+                    <span class="small float-right text-muted">12:10 PM</span>
+                    <div class="dropdown-message">
+                        We build a beautiful dashboard admin panel for professional
+                    </div>
+                </a>
+                <a class="dropdown-item small" href="#">View all messages</a>
+            </div>
+        </li>
+        <li class="nav-item dropdown ">
+            <a class="nav-link dropdown-toggle mr-lg-3" id="alertsDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="vl_bell"></i>
+                <div class="notification-alarm">
+                    <span class="wave wave-warning"></span>
+                    <span class="dot bg-warning"></span>
+                </div>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right header-right-dropdown-width pb-0" aria-labelledby="alertsDropdown">
+                <h6 class="dropdown-header weight500">Notification</h6>
+                <div class="dropdown-divider mb-0"></div>
+                <a class="dropdown-item border-bottom" href="#">
+                    <span class="text-primary">
+                        <span class="weight500">
+                            <i class="vl_bell weight600 pr-2"></i>Weekly Update</span>
+                    </span>
+                    <span class="small float-right text-muted">03:14 AM</span>
+                    <div class="dropdown-message f12">
+                        This week project update report generated. All team members are requested to check the updates
+                    </div>
+                </a>
+                <a class="dropdown-item border-bottom" href="#">
+                    <span class="text-danger">
+                        <span class="weight500">
+                            <i class="vl_Download-circle weight600 pr-2"></i>Server Error</span>
+                    </span>
+                    <span class="small float-right text-muted">10:34 AM</span>
+                    <div class="dropdown-message f12">
+                        Unexpectedly server response stop. Responsible members are requested to fix it soon
+                    </div>
+                </a>
+                <a class="dropdown-item border-bottom" href="#">
+                    <span class="text-success">
+                        <span class="weight500">
+                            <i class="vl_screen weight600 pr-2"></i>Monthly Meeting</span>
+                    </span>
+                    <span class="small float-right text-muted">12:30 AM</span>
+                    <div class="dropdown-message f12">
+                        Our monthly meeting will be held on tomorrow sharp 12:30. All members are requested to attend this meeting.
+                    </div>
+                </a>
+                <a class="dropdown-item small" href="#">View all notification</a>
+            </div>
+        </li>
+        <li class="nav-item dropdown ">
+            <a class="nav-link dropdown-toggle" id="userNav" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <div class="user-thumb">
+                    <img class="rounded-circle" src="/assets/img/avatar/avatar2.jpg" alt="" />
+                </div>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userNav">
+                <% if user_signed_in? %>
+                <% if current_user.student %>
+                <%= render 'students/navbar', student: current_user.student %>
+                <% elsif current_user.company %>
+                <%= render 'companies/navbar', company: current_user.company %>
+                <% elsif current_user.status == "admin" %>
+                <a class="dropdown-item" href="/admin" data-method="GET">Dashboard</a>
+                <a class="dropdown-item" href="#">Inbox <span class="badge badge-primary">3</span></a>
+                <a class="dropdown-item" href="#">Message <span class="badge badge-success">5</span></a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="/users/sign_out" data-method="DELETE">Sign Out</a>
+                <% end %>
+                <% else %>
+                <div class="dropdown-item- px-3 py-2">
+                    <img class="rounded-circle mr-2" src="/assets/img/avatar/avatar2.jpg" width="35" alt="" />
+                    <span class="text-muted">Jhon Doe</span>
+                </div>
+                <!-- <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">My Profile</a>
+                    <a class="dropdown-item" href="#">Account Settings</a>
+                    <a class="dropdown-item" href="#">Inbox <span class="badge badge-primary">3</span></a>
+                    <a class="dropdown-item" href="#">Message <span class="badge badge-success">5</span></a>
+                    <div class="dropdown-divider"></div> -->
+                <a class="dropdown-item" href="/users/sign_in" data-method="GET">Sign In</a>
+                <a class="dropdown-item" href="/users/sign_up" data-method="GET">Sign Up</a>
+                <% end %>
+            </div>
+        </li>
+        <% if user_signed_in? && current_user.status == "admin" %>
+        <li class="nav-item">
+            <a href="javascript:;" class="nav-link right_side_toggle">
+                <i class="icon-options-vertical"> </i>
+            </a>
+        </li>
+        <% end %>
+    </ul>
+    <!--/header rightside links-->
 </header>
-<% if flash[:notice] || notice %>
-<p class="alert alert-success">
-    <%= notice %>
-</p>
-<% end %>
-<% if flash[:alert] || alert %>
-<p class="alert alert-danger">
-    <%= alert %>
-</p>
-<% end %>
-<% if flash[:notice] || flash[:alert] || notice || alert %>
-<script type="text/javascript">
-jQuery(document).ready(function($) {
-    setTimeout(function() {
-        $(`.alert`).slideUp("slow");
-    }, 2500);
-
-    let yourNavigation = $(".navbar");
-    stickyDiv = "sticky";
-    yourHeader = $('.header').height();
-
-    $(window).scroll(function() {
-        if ($(this).scrollTop() > yourHeader) {
-            yourNavigation.addClass(stickyDiv);
-        } else {
-            yourNavigation.removeClass(stickyDiv);
-        }
-    });
-});
-</script>
-<% end %>
+<!--search modal start-->
+<div class="modal modal-search fade" id="searchModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <input type="text" class="form-control" placeholder="Search...">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--search modal start-->
+<!--header end-->

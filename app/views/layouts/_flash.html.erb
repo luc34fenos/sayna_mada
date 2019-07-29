@@ -1,32 +1,277 @@
-<% if flash[:alert] || alert %>
-<div class="alert alert-danger alert-dismissible fade show" role="alert">
-    <strong>Alert! </strong><%= alert %>.
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-    </button>
+<div class="card-body collapse">
+    <div class="row toastr-row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="control-label" for="title">Title</label>
+                <input id="title" type="text" class="form-control" placeholder="Enter Notification Title " value="Enter Notification Title">
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="message">Message</label>
+                <textarea class="form-control" id="message" rows="3" placeholder="Enter a message ...">Enter you notification message here. You can describe details here. </textarea>
+            </div>
+            <div class="form-group">
+                <div class="checkbox-custom check-success">
+                    <label class="d-block">
+                        <input type="checkbox" checked value="checked" id="closeButton">
+                        <span class="pl-2">Close Button</span>
+                    </label>
+                    <label class="d-block">
+                        <input type="checkbox" value="checked" id="addBehaviorOnToastClick">
+                        <span class="pl-2">Add behavior on toast click</span>
+                    </label>
+                    <label class="d-block">
+                        <input type="checkbox" value="checked" id="debugInfo">
+                        <span class="pl-2">Debug</span>
+                    </label>
+                    <label class="d-block">
+                        <input type="checkbox" value="checked" id="progressBar" checked="checked">
+                        <span class="pl-2">Progress Bar</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group" id="toastTypeGroup">
+                <label class="weight500">Toast Type</label>
+                <div class="radio-custom radio-primary">
+                    <label class="d-block">
+                        <input type="radio" checked name="toasts" value="success" id="success">
+                        <span class="pl-2">Success</span>
+                    </label>
+                    <label class="d-block">
+                        <input type="radio" name="toasts" value="info" id="info">
+                        <span class="pl-2">Info</span>
+                    </label>
+                    <label class="d-block">
+                        <input type="radio" name="toasts" value="warning" id="warning">
+                        <span class="pl-2">Warning</span>
+                    </label>
+                    <label class="d-block">
+                        <input type="radio" name="toasts" value="error" id="error">
+                        <span class="pl-2">Error</span>
+                    </label>
+                </div>
+            </div>
+            <div class="form-group" id="positionGroup">
+                <label class="weight500">Position</label>
+                <div class="radio-custom radio-primary">
+                    <label class="d-block">
+                        <input type="radio" checked name="positions" value="toast-top-right" id="top-right">
+                        <span class="pl-2">Top Right</span>
+                    </label>
+                    <label class="d-block">
+                        <input type="radio" name="positions" value="toast-bottom-right" id="bottom-right">
+                        <span class="pl-2">Bottom Right</span>
+                    </label>
+                    <label class="d-block">
+                        <input type="radio" name="positions" value="toast-bottom-left" id="bottom-left">
+                        <span class="pl-2">Bottom Left</span>
+                    </label>
+                    <label class="d-block">
+                        <input type="radio" name="positions" value="toast-top-left" id="top-left">
+                        <span class="pl-2">Top Left</span>
+                    </label>
+                    <label class="d-block">
+                        <input type="radio" name="positions" value="toast-top-center" id="top-center">
+                        <span class="pl-2">Top Center</span>
+                    </label>
+                    <label class="d-block">
+                        <input type="radio" name="positions" value="toast-bottom-center" id="bottom-center">
+                        <span class="pl-2">Bottom Center</span>
+                    </label>
+                    <label class="d-block">
+                        <input type="radio" name="positions" value="toast-top-full-width" id="top-full-width">
+                        <span class="pl-2">Top Full Width</span>
+                    </label>
+                    <label class="d-block">
+                        <input type="radio" name="positions" value="toast-bottom-full-width" id="bottom-full-width">
+                        <span class="pl-2">Bottom Full Width</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <div class="controls toastr-pad">
+                    <label class="control-label weight500" for="showEasing">Show Easing</label>
+                    <input id="showEasing" type="text" placeholder="swing, linear" class="form-control input-small" value="swing">
+                    <br />
+                    <label class="control-label weight500" for="hideEasing">Hide Easing</label>
+                    <input id="hideEasing" type="text" placeholder="swing, linear" class="form-control input-small" value="linear">
+                    <br />
+                    <label class="control-label weight500" for="showMethod">Show Method</label>
+                    <input id="showMethod" type="text" placeholder="show, fadeIn, slideDown" class="form-control input-small" value="fadeIn">
+                    <br />
+                    <label class="control-label weight500" for="hideMethod">Hide Method</label>
+                    <input id="hideMethod" type="text" placeholder="hide, fadeOut, slideUp" class="form-control input-small" value="fadeOut">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <div class="controls toastr-pad">
+                    <label class="control-label weight500" for="showDuration">Show Duration</label>
+                    <input id="showDuration" type="text" placeholder="ms" class="form-control input-small" value="300">
+                    <br />
+                    <label class="control-label weight500" for="hideDuration">Hide Duration</label>
+                    <input id="hideDuration" type="text" placeholder="ms" class="form-control input-small" value="1000">
+                    <br />
+                    <label class="control-label weight500" for="timeOut">Time out</label>
+                    <input id="timeOut" type="text" placeholder="ms" class="form-control input-small" value="5000">
+                    <br />
+                    <label class="control-label weight500" for="timeOut">Extended time out</label>
+                    <input id="extendedTimeOut" type="text" placeholder="ms" class="form-control input-small" value="1000">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <button type="button" class="btn btn-purple mb-2" id="showtoast">Show Toastr</button>
+            <button type="button" class="btn btn-warning mb-2" id="cleartoasts">Clear All Toastr</button>
+            <button type="button" class="btn btn-danger mb-2" id="clearlasttoast">Clear Last Toastr</button>
+        </div>
+    </div>
+    <div class="row m-t-20">
+        <div class="col-md-12">
+            <pre id='toastrOptions' class="toastrStyle">Settings...</pre>
+        </div>
+    </div>
 </div>
-<% elsif flash[:notice] || notice %>
-<div class="alert alert-success alert-dismissible fade show" role="alert">
-    <strong>Success! </strong><%= notice %>.
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-    </button>
-</div>
-<% end %>
-
-<style type="text/css">
-	.alert {
-		position: fixed;
-	    width: -webkit-fill-available;
-	    top: auto;
-        text-align: center;
-	}
-</style>
-
 <script type="text/javascript">
-    setTimeout(function(){
-        $(`.alert.show`).fadeOut('slow', function() {
-            $(`.alert.show`).hide('slow');
-        });
-    }, 7000);
+function loadAlert() {
+    let shortCutFunction,
+        title,
+        msg,
+        tinput = $(`#title`),
+        mtextarea = $(`#message`);
+
+    <% if notice %>
+    title = "Succès";
+    msg = "<%= notice %>";
+
+    $(`#success`).attr('checked', 'checked');
+    <% elsif alert %>
+    title = "Alert";
+    msg = "<%= alert %>";
+
+    $(`#error`).attr('checked', 'checked');
+    <% end %>
+
+    tinput.val(title);
+    mtextarea.val(msg);
+
+    let i = -1;
+    let toastCount = 0;
+    let $toastlast;
+
+    let getMessage = function() {
+        let msgs = ['Hi, this is toastr notification',
+            '<div><input class="input-small" value="textbox"/>&nbsp;<a href="http://mosaddek.com" target="_blank">This is a hyperlink</a></div><div><button type="button" id="okBtn" class="btn btn-primary">Close me</button><button type="button" id="surpriseBtn" class="btn" style="margin: 0 8px 0 8px">Surprise me</button></div>',
+            'Bootstrap 4 Admin Dashboard',
+            'Author: VectorLab',
+        ];
+        i++;
+        if (i === msgs.length) {
+            i = 0;
+        }
+
+        return msgs[i];
+    };
+
+    setTimeout(function() {
+        let shortCutFunction = $("#toastTypeGroup input:radio:checked").val();
+        let msg = $('#message').val();
+        let title = $('#title').val() || '';
+        let $showDuration = $('#showDuration');
+        let $hideDuration = $('#hideDuration');
+        let $timeOut = $('#timeOut');
+        let $extendedTimeOut = $('#extendedTimeOut');
+        let $showEasing = $('#showEasing');
+        let $hideEasing = $('#hideEasing');
+        let $showMethod = $('#showMethod');
+        let $hideMethod = $('#hideMethod');
+        let toastIndex = toastCount++;
+
+        toastr.options = {
+            closeButton: $('#closeButton').prop('checked'),
+            debug: $('#debugInfo').prop('checked'),
+            progressBar: $('#progressBar').prop('checked'),
+            positionClass: $('#positionGroup input:radio:checked').val() || 'toast-top-right',
+            preventDuplicates: $('#preventDuplicates').prop('checked'),
+            onclick: null
+        };
+
+        if ($('#addBehaviorOnToastClick').prop('checked')) {
+            toastr.options.onclick = function() {
+                alert('You can perform some custom action after a toast goes away');
+            };
+        }
+
+        if ($showDuration.val().length) {
+            toastr.options.showDuration = $showDuration.val();
+        }
+
+        if ($hideDuration.val().length) {
+            toastr.options.hideDuration = $hideDuration.val();
+        }
+
+        if ($timeOut.val().length) {
+            toastr.options.timeOut = $timeOut.val();
+        }
+
+        if ($extendedTimeOut.val().length) {
+            toastr.options.extendedTimeOut = $extendedTimeOut.val();
+        }
+
+        if ($showEasing.val().length) {
+            toastr.options.showEasing = $showEasing.val();
+        }
+
+        if ($hideEasing.val().length) {
+            toastr.options.hideEasing = $hideEasing.val();
+        }
+
+        if ($showMethod.val().length) {
+            toastr.options.showMethod = $showMethod.val();
+        }
+
+        if ($hideMethod.val().length) {
+            toastr.options.hideMethod = $hideMethod.val();
+        }
+
+
+
+        if (!msg) {
+            msg = getMessage();
+        }
+
+        $("#toastrOptions").text("Command: toastr[" +
+            shortCutFunction +
+            "](\"" +
+            msg +
+            (title ? "\", \"" + title : '') +
+            "\")\n\ntoastr.options = " +
+            JSON.stringify(toastr.options, null, 2)
+        );
+
+        let $toast = toastr[shortCutFunction](msg, title); // Wire up an event handler to a button in the toast, if it exists
+        $toastlast = $toast;
+        if ($toast.find('#okBtn').length) {
+            $toast.delegate('#okBtn', 'click', function() {
+                alert('you clicked me. i was toast #' + toastIndex + '. goodbye!');
+                $toast.remove();
+            });
+        }
+        if ($toast.find('#surpriseBtn').length) {
+            $toast.delegate('#surpriseBtn', 'click', function() {
+                alert('Surprise! you clicked me. i was toast #' + toastIndex + '. You could perform an action here.');
+            });
+        }
+    }, 100);
+}
+
+<% if flash[:alert] || alert || flash[:notice] || notice %>
+loadAlert();
+<% end %>
 </script>

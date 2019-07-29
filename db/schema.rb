@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 2019_07_16_052459) do
 
   create_table "cover_letters", force: :cascade do |t|
     t.bigint "cv_id"
-    t.text "content"
+    t.text "content", default: "Veuillez créer une lettre de motivation ou importez-en une et copiez-la ici"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["cv_id"], name: "index_cover_letters_on_cv_id"
@@ -155,8 +155,8 @@ ActiveRecord::Schema.define(version: 2019_07_16_052459) do
     t.bigint "user_id"
     t.string "firstname"
     t.string "lastname"
-    t.string "sexe", default: "Non confirmé"
-    t.string "marital_status", default: "Compliqué"
+    t.string "sexe", default: "non spécifié"
+    t.string "marital_status", default: "compliqué"
     t.datetime "birthdate"
     t.string "tel"
     t.string "address"

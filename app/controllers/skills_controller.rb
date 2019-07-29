@@ -9,7 +9,7 @@ class SkillsController < ApplicationController
     end
   	
     respond_to do |format|
-      if @skill.save
+      if @skill.save && !@cv.skills.include?(@skill)
     		@cv.skills << @skill
         format.js
       else

@@ -4,8 +4,8 @@ class CreateStudents < ActiveRecord::Migration[5.2]
       t.belongs_to :user,       index: true
       t.string :firstname
       t.string :lastname
-      t.string :sexe,           default: "Non confirmé"
-      t.string :marital_status, default: "Compliqué"
+      t.string :sexe,           default: "non spécifié"
+      t.string :marital_status, default: "compliqué"
       t.datetime :birthdate
       t.string :tel
       t.string :address

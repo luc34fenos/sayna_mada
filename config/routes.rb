@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
   get 'downloads_controller/show'
   get 'downloads_controller/cv_pdf'
   get 'downloads_controller/send_cv_pdf'
@@ -7,17 +8,18 @@ Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   resources :cvs do
     resource :download, only: [:show]
+    resources 'cover_letters'
   end
   resources :students, only: [:index, :show, :edit, :update, :destroy]
   root 'home#index'
-
-  get '/company_1' ,to: 'dashboard#company_dashboard1'
-  get '/company_2' ,to: 'dashboard#company_dashboard2'
 
   get '/mondashboard', to: 'dashboard#show'
 
   get '/moncv/:id', to: 'cvs#show'
   get '/moncv/:id/edit', to: 'cvs#edit'
+
+  get '/moncv/:cv_id/malm/:id', to: 'cover_letters#show'
+  get '/moncv/:cv_id/malm/:id/edit', to: 'cover_letters#edit'
 
   get '/monprofil/:id', to: 'students#show'
   get '/monprofil/:id/edit', to: 'students#edit'
@@ -25,14 +27,12 @@ Rails.application.routes.draw do
     get '/monprofile/:id', to: 'companies#show'
     get '/monprofile/:id/edit', to: 'companies#edit'
 
-  get '/student_1' ,to: 'dashboard#student_dashboard1'
-  get '/student_2' ,to: 'dashboard#student_dashboard2'
-
   get '/concours' ,to: 'dashboard#concour'
   get '/card' , to: 'dashboard#card'
 
   devise_for :users, controllers: {
-  	registrations: 'users/registrations'
+    registrations: 'users/registrations',
+  	sessions: 'users/sessions',
   }
 
   resources :staffs

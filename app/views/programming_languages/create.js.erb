@@ -1,30 +1,26 @@
-let $input = $(`div#programming_languages`).children('input.programming_language:first'),
-    $tag = $("<div />"),
-    $a = $(`<a href='#' class="programming_language"/>`),
-    $span = $("<span />"),
+    $input = $(`div#programming_languages`).children('input.programming_language:first'),
+    $tag = $(`
+        <div id="<%=  @programming_language.id  %>" class="tag programming_language">
+            <a href="#" class="programming_language" id="<%= @programming_language.id %>"><i class="icon-close" aria-hidden="true"></i></a>
+            <span class="name"><%= @programming_language.name %></span>
+            <div class="stars">
+                <% 3.times do |id| %>
+                    <span class="level fa fa-star" style="color: gold;"></span>
+                <% end %>
+                <% 4.times do |id| %>
+                    <span class="level icon-star" style="color: gold;"></span>
+                <% end %>
+            </div>
+        </div>
+    `),
     $appendHere = $(`.tagHere.programming_languages:first`);
-
-$tag.addClass('tag programming_language');
-
-$('<i class="fa fa-times" aria-hidden="true"></i>').appendTo($a);
-
-$span.text("<%= @programming_language.name %>");
-
-$a.appendTo($tag);
-$span.appendTo($tag);
-
-for (var i = 0; i < 3; i++) {
-    $(`<span class="glyphicon glyphicon-star" style="color: gold;"></span>`).appendTo($tag);
-}
-
-for (var i = 0; i < 4; i++) {
-    $(`<span class="glyphicon glyphicon-star-empty" style="color: gold;"></span>`).appendTo($tag);
-}
 
 $tag.appendTo($appendHere);
 
 $($input).val('');
 $($input).focus();
+
+$a = $(`a.programming_language`);
 
 $a.bind('click', function(e) {
     e.preventDefault();
@@ -37,11 +33,11 @@ $a.bind('click', function(e) {
     removeProgrammingLanguage($DIV, $CVID, $ID);
 });
 
-$(`span.glyphicon`).click(function(event) {
+$(`span.level`).click(function(event) {
     event.preventDefault();
     let $ITEM, $ID, $LEVEL;
-    let parent = $(this).parent('div.tag:first');
-    let siblings = parent.children('span.glyphicon');
+    let parent = $(this).parent('div.stars:first');
+    let siblings = parent.children('span.level');
 
 
     $ITEM = "programming_languages";
@@ -50,17 +46,24 @@ $(`span.glyphicon`).click(function(event) {
 
     for (let i = siblings.length - 1; i >= 0; i--) {
         if (siblings.index(siblings.eq(i)) <= siblings.index(this)) {
-            siblings.eq(i).removeClass('glyphicon-star-empty');
-            siblings.eq(i).addClass('glyphicon-star');
+            siblings.eq(i).removeClass('icon-star')
+                .addClass('fa')
+                .addClass('fa-star');
         } else {
-            siblings.eq(i).removeClass('glyphicon-star');
-            siblings.eq(i).addClass('glyphicon-star-empty');
+            siblings.eq(i).removeClass('fa')
+                .removeClass('fa-star')
+                .addClass('icon-star');
         }
     }
 
     updateLevel($ITEM, $ID, $LEVEL);
 });
 
+    $(`.tag`).hover(function() {
+        $(this).children('.close').show('fast');
+    }, function() {
+        $(this).children('.close').hide('fast');
+    });
 
 
 function removeProgrammingLanguage(div, cv_id, id) {

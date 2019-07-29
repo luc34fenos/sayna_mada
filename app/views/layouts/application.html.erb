@@ -5,16 +5,26 @@
     <%= render 'layouts/head' %>
 </head>
 
-<body class="<%= controller_name %> <%= action_name %>">
+<body class="<%= controller_name %> <%= action_name %> header-fixed header-primary-color">
     <%= render 'layouts/flash' %>
     <% if controller_name != "sessions" && controller_name != "registrations" %>
-        <%= render template: 'layouts/navdemo' %>
+    <%= render template: 'layouts/navbar' %>
     <% end %>
+    <% if user_signed_in? && current_user.status == "admin" %>
     <section class="left-sidebar-fixed">
         <div class="app-body">
+            <%= render 'layouts/leftnav' %>
+    <% end %>
+        
+        <div class="pt-10">
             <%= yield %>
         </div>
+
+    <% if user_signed_in? && current_user.status == "admin" %>
+            <%= render 'layouts/rightnav' %>
+        </div>
     </section>
+    <% end %>
 </body>
 
 </html>
