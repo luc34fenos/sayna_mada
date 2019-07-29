@@ -1,8 +1,6 @@
-<<<<<<< HEAD
-<title><%= "#{controller_name} #{action_name}"%></title>
-=======
+
 <title><%= "#{controller_name.upcase} #{action_name.capitalize}"%></title>
->>>>>>> 3d8bf1840f41bdcc937225dc01bd5eb73c1f91ee
+
 <%= csrf_meta_tags %>
 <%= csp_meta_tag %>
 <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -40,9 +38,5 @@
             <script src="/codelab/vendor/modernizr.js"></script>
             <![endif]-->
 <!--basic scripts initialization-->
-<<<<<<< HEAD
 <script src="/assets/codelab/js/scripts.js"></script>
-=======
-<script src="/codelab/js/scripts.js"></script>
->>>>>>> 3d8bf1840f41bdcc937225dc01bd5eb73c1f91ee
 <%= yield :head_tag %>

@@ -30,6 +30,19 @@
 							    <li>
 							    	<strong>Personne à contacter : </strong>
 							    	<ul>
+							    		<% @company.staff.each do |staf| %>
+							    			<li><%= staf.first_name %> <%= staf.last_name %></li>
+							    			<li><%= staf.job %></li>
+							    			<li><a href="mailto:<%= staf.email %>" target="_blank"><%= staf.email %></a></li>
+							    			<li><%= staf.tel %></li>
+							    			<% break %>
+							    		<% end %>
+							    	</ul>
+							    </li>
+							    <% end %>
+							    <% if @company.webs.any? %>
+							    	<li><strong>Site web : </strong><mark><a href="<%= @company.webs.first.link %>" target="_blank"><%= @company.webs.first.link %></a></mark></li>
+							    <% end %>
             			</ul>
             		</div>
             	</section>
