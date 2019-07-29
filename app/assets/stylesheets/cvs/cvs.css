@@ -197,7 +197,7 @@ body.cvs {
     padding-bottom: 5px;
 }
 
-.tag span.name {
+.tag span.name {    
     /* padding-left: 2%; */
     position: relative;
 }
