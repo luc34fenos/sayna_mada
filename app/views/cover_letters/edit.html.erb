@@ -1,0 +1,44 @@
+<% content_for :head_tag do %>
+    <link href="/assets/vendor/summernote/summernote-bs4.css" rel="stylesheet">
+    <!--summernote-->
+    <script src="/assets/vendor/summernote/summernote-bs4.min.js"></script>
+    <!--init-->
+    <script src="/assets/vendor/js-init/init-summernote.js"></script>
+	
+<% end %>
+<%= form_with(model: @cover_letter, url: cv_cover_letter_path(@cv.id, @cover_letter.id), html: {id: "lmForm"}) do |f| %>
+	<%= f.hidden_field :content %>
+<% end %>
+<!--main content wrapper-->
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card card-shadow mb-4">
+                    <div class="card-body">
+                        <div id="summernote"><%= @cover_letter.content.html_safe %></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+		<button type="button" id="updateLM" class="btn btn-purple btn-lg btn-block rounded-0">Mettre à jour</button>
+    </div>
+</div>
+<!--/main content wrapper-->
+<script type="text/javascript">
+	jQuery(document).ready(function($) {
+		let btn = $(`button#updateLM`);
+
+		btn.click(function(event) {
+			event.preventDefault();
+			let form = $(`#lmForm`),
+				icontent = form.children('#cover_letter_content'),
+				div = $(`.note-editable:first`),
+				content = String(div.html());
+
+			icontent.val(`${content}`);	
+			
+			form.submit();
+		});
+	});
+</script>

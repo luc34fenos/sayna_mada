@@ -1,16 +1,38 @@
 <div class="dropdown-item- px-3 py-2">
     <img class="rounded-circle mr-2" src="/assets/img/avatar/avatar2.jpg" width="35" alt="" />
-    <span class="text-muted"><%= student.firstname %> <%= student.lastname %></span>
+    <span class="text-muted">
+        <%= student.firstname %>
+        <%= student.lastname %></span>
 </div>
+<a class="dropdown-item" href="/mondashboard" data-method="GET"><i class="fa fa-dashboard"> Mon Dashboard</i></a>
 <div class="dropdown-divider"></div>
-<a class="dropdown-item" href="/monprofil/<%= student.id %>" data-method="GET" >Mon Profil</a>
-<a class="dropdown-item" href="/monprofil/<%= student.id %>/edit" data-method="GET" >Paramètres du compte</a>
-
-<a class="dropdown-item" href="/moncv/<%= student.cv.id %>" data-method="GET" >Mon CV</a>
-<a class="dropdown-item" href="/moncv/<%= student.cv.id %>/edit" data-method="GET" >Editer Mon CV</a>
-
+<a class="dropdown-item" href="/monprofil/<%= student.id %>" data-method="GET"><i class="icon-user"> Mon Profil</i></a>
+<a class="dropdown-item" href="/monprofil/<%= student.id %>/edit" data-method="GET"><i class="icon-settings"> Paramètres</i></a>
+<a class="dropdown-item" href="/moncv/<%= student.cv.id %>" data-method="GET"><i class="fa fa-address-book-o"> Mon CV</i></a>
+<div class="row">
+    <div class="ml-3 col-8 col-sm-8 col-md-8" style="padding: 0;">
+        <a class="dropdown-item" href="/moncv/<%= student.cv.id %>/edit" data-method="GET"><i class="fa fa-edit"> Editer Mon CV</i></a>
+    </div>
+    <div class="col-2 col-sm-2 col-md-2" style="padding: 0;border-radius: 50%;text-align: -webkit-center;">
+        <a data-toggle="tooltip" data-placement="left" title="Exporter mon CV" href="<%= cv_download_path(current_user.student.cv, format: "pdf") %>" data-method="GET" target="_blank" style="position: relative;top: 7px; padding-left: 1.5em;">
+            <i class="ti-import"></i>
+        </a>
+    </div>
+	<div class="col-1 col-sm-1 col-md-1"></div>
+</div>
+<a class="dropdown-item" href="/moncv/<%= student.cv.id %>/malm/<%= student.cv.cover_letter.id %>" data-method="GET"><i class="fa fa-file-o"> Ma lettre de motivation</i></a>
+<div class="row">
+    <div class="ml-3 col-8 col-sm-8 col-md-8" style="padding: 0;">
+        <a class="dropdown-item" href="/moncv/<%= student.cv.id %>/malm/<%= student.cv.cover_letter.id %>/edit" data-method="GET"><i class="fa fa-file-text-o"> Editer Ma LM</i></a>
+    </div>
+    <div class="col-2 col-sm-2 col-md-2" style="padding: 0;border-radius: 50%;text-align: -webkit-center;">
+        <a data-toggle="tooltip" data-placement="left" title="Exporter ma lettre" href="<%= cv_download_path(current_user.student.cv, format: "pdf") %>" data-method="GET" target="_blank" style="position: relative;top: 7px; padding-left: 1.5em;">
+            <i class="ti-import"></i>
+        </a>
+    </div>
+	<div class="col-1 col-sm-1 col-md-1"></div>
+</div>
 <!-- <a class="dropdown-item" href="#">Inbox <span class="badge badge-primary">3</span></a>
 <a class="dropdown-item" href="#">Message <span class="badge badge-success">5</span></a> -->
 <div class="dropdown-divider"></div>
-
-<a class="dropdown-item" href="/users/sign_out" data-method="DELETE">Sign Out</a>
+<a class="dropdown-item" href="/users/sign_out" data-method="DELETE"><i class="icon-logout"> Se déconnecter</i></a>

@@ -31,6 +31,7 @@ jQuery(document).ready(function($) {
                 addProgrammingLanguage($DIV, $CVID, $NAME);
             }
 
+            event.preventDefault();
         }
     });
 
@@ -41,7 +42,7 @@ jQuery(document).ready(function($) {
             $DIV = $(this).parent('.tag:first'),
             $CVID = $(`div.moncv:first`).attr('id');
 
-        removeSkill($DIV, $CVID, $ID);
+        removeSkill($DIV, $CVID, $ID);                      
     });
 
     $(`a.language`).click(function(event) {
@@ -64,11 +65,31 @@ jQuery(document).ready(function($) {
         removeProgrammingLanguage($DIV, $CVID, $ID);
     });
 
-    $(`span.glyphicon`).click(function(event) {
+    $(`a.rmexperience`).click(function(event) {
+        event.preventDefault();
+
+        let $ID = $(this).attr('for'),
+            $DIV = $(`#${$ID}`),
+            $CVID = $(`div.moncv:first`).attr('id');
+
+        removeExperience($DIV, $CVID, $ID);
+    });
+
+    $(`a.rmbackground`).click(function(event) {
+        event.preventDefault();
+
+        let $ID = $(this).attr('for'),
+            $DIV = $(`#${$ID}`),
+            $CVID = $(`div.moncv:first`).attr('id');
+
+        removeBackground($DIV, $CVID, $ID);
+    });
+
+    $(`.stars span.level`).click(function(event) {
         event.preventDefault();
         let $ITEM, $ID, $LEVEL;
         let parent = $(this).parent('div.stars:first').parent('div.tag:first');
-        let siblings = $(this).parent('div.stars:first').children('span.glyphicon');
+        let siblings = $(this).parent('div.stars:first').children('span.level');
 
         $ITEM = parent.hasClass('language') ? "languages" : "programming_languages";
         $ID = parent.attr('id');
@@ -76,11 +97,13 @@ jQuery(document).ready(function($) {
 
         for (let i = siblings.length - 1; i >= 0; i--) {
             if (siblings.index(siblings.eq(i)) <= siblings.index(this)) {
-                siblings.eq(i).removeClass('glyphicon-star-empty');
-                siblings.eq(i).addClass('glyphicon-star');
+                siblings.eq(i).removeClass('icon-star')
+                    .addClass('fa')
+                    .addClass('fa-star');
             } else {
-                siblings.eq(i).removeClass('glyphicon-star');
-                siblings.eq(i).addClass('glyphicon-star-empty');
+                siblings.eq(i).removeClass('fa')
+                    .removeClass('fa-star')
+                    .addClass('icon-star');
             }
         }
 
@@ -114,11 +137,11 @@ jQuery(document).ready(function($) {
         }
     });
 
-    $(`.tag`).hover(function() {
-        $(this).children('.close').show('fast');
-    }, function() {
-        $(this).children('.close').hide('fast');
-    });
+    // $(`.tag`).hover(function() {
+    //     $(this).children('.close').show('fast');
+    // }, function() {
+    //     $(this).children('.close').hide('fast');
+    // });
 
     function updateCv() {
         let div = $(`.moncv:first`),
@@ -269,6 +292,24 @@ jQuery(document).ready(function($) {
         }
     }
 
+    function removeExperience(div, cv_id, id){
+        let AUTH_TOKEN = $(`input[name="authenticity_token"]`).attr('value');
+
+        div.fadeOut('slow', function() {
+            div.remove();
+        });
+
+        $.ajax({
+            url: `/experiences/${id}`,
+            type: 'DELETE',
+            data: {
+                authenticity_token: AUTH_TOKEN,
+                cv_id: cv_id,
+                id: id
+            },
+        });
+    }
+
     function addBackground(div, name, description, start, end, cv_id) {
         if (name != "" && description != "" && start != "") {
             let AUTH_TOKEN = $(`input[name="authenticity_token"]`).attr('value');
@@ -286,6 +327,24 @@ jQuery(document).ready(function($) {
                 },
             });
         }
+    }
+
+    function removeBackground(div, cv_id, id){
+        let AUTH_TOKEN = $(`input[name="authenticity_token"]`).attr('value');
+
+        div.fadeOut('slow', function() {
+            div.remove();
+        });
+
+        $.ajax({
+            url: `/backgrounds/${id}`,
+            type: 'DELETE',
+            data: {
+                authenticity_token: AUTH_TOKEN,
+                cv_id: cv_id,
+                id: id
+            },
+        });
     }
 
 });
@@ -313,14 +372,14 @@ jQuery(document).ready(function($) {
             <h1>Mon Curriculum Vitae</h1>
         </center>
         <section class="row">
-            <div class="col-md-1"></div>
-            <div class="avatar col-md-3">
+            <div class="col-3 col-sm-3 col-md-4 col-lg-1"></div>
+            <div class="avatar col-6 col-sm-6 col-md-4 col-lg-3">
                 <% avatar = @student.sexe == 'Homme' ? 'profilh.png' : 'profilf.png' %>
                 <div class="text-center">
                     <%= image_tag avatar, class: "img-thumbnail rounded float-left" %>
                 </div>
             </div>
-            <div class="summary right col-md-8" style="padding: 0;">
+            <div class="summary right col-md-12 col-lg-8" style="padding: 0;">
                 <h2>
                     <%= f.label :summary, "Résumé" %>
                 </h2>
@@ -380,18 +439,18 @@ jQuery(document).ready(function($) {
                     <!--  -->
                     <div class="" id='languages'>
                         <div class='tagHere languages'>
-                            <% @cv.languages.each do |language| %>
+                            <% @cv.languages.sort.each do |language| %>
                             <% if language %>
                             <div id="<%= language.id %>" class="tag language">
-                                <a href="#" class="language close" id="<%=language.id%>"><i class="fa fa-times" aria-hidden="true"></i></a>
+                                <a href="#" class="language" id="<%=language.id%>"><i class="icon-close" aria-hidden="true"></i></a>
                                 <span class="name">
                                     <%=language.name%></span>
                                 <div class="stars">
                                     <% language.level.times do |id| %>
-                                    <span class="glyphicon glyphicon-star" style="color: gold;"></span>
+                                    <span class="level fa fa-star" style="color: gold;"></span>
                                     <% end %>
                                     <% (7 - language.level.to_i).times do |id| %>
-                                    <span class="glyphicon glyphicon-star-empty" style="color: gold;"></span>
+                                    <span class="level icon-star" style="color: gold;"></span>
                                     <% end %>
                                 </div>
                             </div>
@@ -407,18 +466,18 @@ jQuery(document).ready(function($) {
                     <!--  -->
                     <div class="" id='programming_languages'>
                         <div class='tagHere programming_languages'>
-                            <% @cv.programming_languages.each do |programming_language| %>
+                            <% @cv.programming_languages.sort.each do |programming_language| %>
                             <% if programming_language %>
                             <div id="<%= programming_language.id %>" class="tag programming_language">
-                                <a href="#" class="programming_language close" id="<%=programming_language.id%>"><i class="fa fa-times" aria-hidden="true"></i></a>
+                                <a tabindex="0" href="#" class="programming_language" id="<%=programming_language.id%>"><i class="icon-close" aria-hidden="true"></i></a>
                                 <span class="name">
                                     <%=programming_language.name%></span>
                                 <div class="stars">
                                     <% programming_language.level.times do |id| %>
-                                    <span class="glyphicon glyphicon-star" style="color: gold;"></span>
+                                    <span class="level fa fa-star" style="color: gold;"></span>
                                     <% end %>
                                     <% (7 - programming_language.level.to_i).times do |id| %>
-                                    <span class="glyphicon glyphicon-star-empty" style="color: gold;"></span>
+                                    <span class="level icon-star" style="color: gold;"></span>
                                     <% end %>
                                 </div>
                             </div>
@@ -438,7 +497,7 @@ jQuery(document).ready(function($) {
                             <% @cv.experiences.each do |ex| %>
                             <% if ex %>
                             <div id="<%= ex.id %>" class="experience">
-                                <a href="" class="close"></a>
+                                <a href="" class="rmexperience float-right" for="<%= ex.id %>"><i class="icon-close"></i></a>
                                 <div class="name">
                                     <span>
                                         <%= ex.name %></span>
@@ -460,22 +519,22 @@ jQuery(document).ready(function($) {
                             <% end %>
                             <% end %>
                         </div>
-                        <div id="0" class="experience new">
-                            <div class="name">
+                        <div id="0" class="experience new row" style="">
+                            <div class="name col-12">
                                 <input type="text" id="experience_name" name="experience[name]" placeholder="Stagiaire chez Google">
                             </div>
-                            <div class="date">
-                                <label for="experience_start_date">Du</label>
-                                <input type="date" id="experience_start_date" name="experience[start_date]">
-                                <label for="experience_end_date">jusqu'en</label>
-                                <input type="date" id="experience_end_date" name="experience[end_date]">
+                            <div class="date col-12 row">
+                                <label class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3" for="experience_start_date">Du</label>
+                                <input class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3" type="date" id="experience_start_date" name="experience[start_date]">
+                                <label class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3" for="experience_end_date">jusqu'en</label>
+                                <input class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3" type="date" id="experience_end_date" name="experience[end_date]">
                             </div>
-                            <div class="description">
+                            <div class="description col-12">
                                 <textarea maxlength="180" class="form-control"></textarea>
                             </div>
                         </div>
                         <div class="experience">
-                            <a href="#" for="experiences" class="add-more btn btn-primary"><i class="fas fa-plus"></i></a>
+                            <a href="#" for="experiences" class="add-more btn btn-info form-pill"><i class="ti-plus"></i></a>
                         </div>
                     </div>
                 </div>
@@ -487,7 +546,7 @@ jQuery(document).ready(function($) {
                             <% @cv.skills.each do |skill| %>
                             <% if skill %>
                             <div class="tag skill">
-                                <a href="#" class="skill" id="<%=skill.id%>"><i class="fa fa-times" aria-hidden="true"></i></a>
+                                <a href="#" class="skill" id="<%=skill.id%>"><i class="icon-close" aria-hidden="true"></i></a>
                                 <span>
                                     <%=skill.name%></span>
                             </div>
@@ -505,7 +564,7 @@ jQuery(document).ready(function($) {
                             <% @cv.backgrounds.each do |background| %>
                             <% if background %>
                             <div id="<%= background.id %>" class="background">
-                                <a href="" class="close"></a>
+                                <a href="" class="rmbackground float-right" for="<%= background.id %>"><i class="icon-close"></i></a>
                                 <div class="name">
                                     <span>
                                         <%= background.name %></span>
@@ -542,7 +601,7 @@ jQuery(document).ready(function($) {
                             </div>
                         </div>
                         <div class="background">
-                            <a href="#" for="backgrounds" class="add-more btn btn-primary"><i class="fas fa-plus"></i></a>
+                            <a href="#" for="backgrounds" class="add-more btn btn-info form-pill"><i class="ti-plus"></i></a>
                         </div>
                     </div>
                 </div>

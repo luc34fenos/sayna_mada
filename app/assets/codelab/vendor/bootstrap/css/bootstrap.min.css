@@ -8399,6 +8399,31 @@ button.bg-dark:hover {
     padding-left: 3rem !important
 }
 
+
+.p-10 {
+  padding: 5rem !important;
+}
+
+.pt-10,
+.py-10 {
+  padding-top: 5rem !important;
+}
+
+.pr-10,
+.px-10 {
+  padding-right: 5rem !important;
+}
+
+.pb-10,
+.py-10 {
+  padding-bottom: 5rem !important;
+}
+
+.pl-10,
+.px-10 {
+  padding-left: 5rem !important;
+}
+
 .m-auto {
     margin: auto !important
 }

@@ -12,13 +12,16 @@
 <link href="/assets/vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
 <link href="/assets/vendor/themify-icons/css/themify-icons.css" rel="stylesheet">
 <link href="/assets/vendor/weather-icons/css/weather-icons.min.css" rel="stylesheet">
+<!--favicon icon-->
+<link rel="icon" type="image/png" href="/assets/img/404.png">
 <!--jquery ui-->
 <link href="/assets/vendor/jquery-ui/jquery-ui.min.css" rel="stylesheet">
 <!--iCheck-->
 <link href="/assets/vendor/icheck/skins/all.css" rel="stylesheet">
+<!--toastr-->
+<link href="/assets/vendor/toastr-master/toastr.css" rel="stylesheet">
 <!--custom styles-->
 <link href="/assets/css/main.css" rel="stylesheet">
-
 <%= javascript_include_tag 'application.js', 'data-turbolinks-track': 'reload' %>
 <!--basic scripts-->
 <script src="/assets/vendor/jquery/jquery.min.js"></script>
@@ -27,4 +30,8 @@
 <script src="/assets/vendor/bootstrap/js/bootstrap.min.js"></script>
 <script src="/assets/vendor/jquery.dcjqaccordion.2.7.js"></script>
 <script src="/assets/js/scripts.js"></script>
+<!--toastr-->
+<script src="/assets/vendor/toastr-master/toastr.js"></script>
+<!--init toastr-->
+<script src="/assets/vendor/js-init/init-toastr.js"></script>
 <%= yield :head_tag %>

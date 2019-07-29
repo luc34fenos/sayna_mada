@@ -1,8 +1,8 @@
-let div = $(`div.tagHere.experiences:first`),
-	$NAME = $(`div.experience.new:first`).children('div.name:first').children('input:first'),
-	$DESCRIPTION = $(`div.experience.new:first`).children('div.description:first').children('textarea:first'),
-	$START = $(`div.experience.new:first`).children('div.date:first').children('input:first'),
-	$END = $(`div.experience.new:first`).children('div.date:first').children('input:last');
+	div = $(`div.tagHere.experiences:first`),
+    $NAME = $(`div.experience.new:first`).children('div.name:first').children('input:first'),
+    $DESCRIPTION = $(`div.experience.new:first`).children('div.description:first').children('textarea:first'),
+    $START = $(`div.experience.new:first`).children('div.date:first').children('input:first'),
+    $END = $(`div.experience.new:first`).children('div.date:first').children('input:last');
 
 $NAME.val('');
 $DESCRIPTION.val('');
@@ -13,7 +13,7 @@ $NAME.focus();
 
 div.append(`
 	<div id="<%= @experience.id %>" class="experience">
-		<a href="" class="close"></a>
+		<a href="" class="rmexperience float-right" for="<%= @experience.id %>"><i class="icon-close"></i></a>
 		<div class="name">
 			<span><%= @experience.name %></span>
 		</div>
@@ -32,3 +32,31 @@ div.append(`
 		</div>
 	</div>
 `);
+
+$(`a.rmexperience`).click(function(event) {
+    event.preventDefault();
+
+    let $ID = $(this).attr('for'),
+        $DIV = $(`#${$ID}`),
+        $CVID = $(`div.moncv:first`).attr('id');
+
+    removeExperience($DIV, $CVID, $ID);
+});
+
+function removeExperience(div, cv_id, id) {
+    let AUTH_TOKEN = $(`input[name="authenticity_token"]`).attr('value');
+
+    div.fadeOut('slow', function() {
+        div.remove();
+    });
+
+    $.ajax({
+        url: `/experiences/${id}`,
+        type: 'DELETE',
+        data: {
+            authenticity_token: AUTH_TOKEN,
+            cv_id: cv_id,
+            id: id
+        },
+    });
+}

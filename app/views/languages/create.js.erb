@@ -1,30 +1,26 @@
-let $input = $(`div#languages`).children('input.language:first'),
-    $tag = $("<div />"),
-    $a = $(`<a href='#' class="language"/>`),
-    $span = $("<span />"),
+    $input = $(`div#languages`).children('input.language:first'),
+    $tag = $(`
+        <div id="<%=  @language.id  %>" class="tag language">
+            <a href="#" class="language" id="<%= @language.id %>"><i class="icon-close" aria-hidden="true"></i></a>
+            <span class="name"><%= @language.name %></span>
+            <div class="stars">
+                <% 3.times do |id| %>
+                    <span class="level fa fa-star" style="color: gold;"></span>
+                <% end %>
+                <% 4.times do |id| %>
+                    <span class="level icon-star" style="color: gold;"></span>
+                <% end %>
+            </div>
+        </div>
+    `),
     $appendHere = $(`.tagHere.languages:first`);
-
-$tag.addClass('tag language');
-
-$('<i class="fa fa-times" aria-hidden="true"></i>').appendTo($a);
-
-$span.text("<%= @language.name %>");
-
-$a.appendTo($tag);
-$span.appendTo($tag);
-
-for (var i = 0; i < 3; i++) {
-    $(`<span class="glyphicon glyphicon-star" style="color: gold;"></span>`).appendTo($tag);
-}
-
-for (var i = 0; i < 4; i++) {
-    $(`<span class="glyphicon glyphicon-star-empty" style="color: gold;"></span>`).appendTo($tag);
-}
 
 $tag.appendTo($appendHere);
 
 $($input).val('');
 $($input).focus();
+
+$a = $(`a.language`);
 
 $a.bind('click', function(e) {
     e.preventDefault();
@@ -37,11 +33,11 @@ $a.bind('click', function(e) {
     removeLanguage($DIV, $CVID, $ID);
 });
 
-$(`span.glyphicon`).click(function(event) {
+$(`span.level`).click(function(event) {
     event.preventDefault();
     let $ITEM, $ID, $LEVEL;
-    let parent = $(this).parent('div.tag:first');
-    let siblings = parent.children('span.glyphicon');
+    let parent = $(this).parent('div.stars:first');
+    let siblings = parent.children('span.level');
 
 
     $ITEM = "languages";
@@ -50,17 +46,24 @@ $(`span.glyphicon`).click(function(event) {
 
     for (let i = siblings.length - 1; i >= 0; i--) {
         if (siblings.index(siblings.eq(i)) <= siblings.index(this)) {
-            siblings.eq(i).removeClass('glyphicon-star-empty');
-            siblings.eq(i).addClass('glyphicon-star');
+            siblings.eq(i).removeClass('icon-star')
+                .addClass('fa')
+                .addClass('fa-star');
         } else {
-            siblings.eq(i).removeClass('glyphicon-star');
-            siblings.eq(i).addClass('glyphicon-star-empty');
+            siblings.eq(i).removeClass('fa')
+                .removeClass('fa-star')
+                .addClass('icon-star');
         }
     }
 
     updateLevel($ITEM, $ID, $LEVEL);
 });
 
+    $(`.tag`).hover(function() {
+        $(this).children('.close').show('fast');
+    }, function() {
+        $(this).children('.close').hide('fast');
+    });
 
 
 function removeLanguage(div, cv_id, id) {
@@ -82,10 +85,6 @@ function removeLanguage(div, cv_id, id) {
 }
 
 function updateLevel(item, id, level) {
-	console.log(item);
-	console.log(id);
-	console.log(level);
-
     let AUTH_TOKEN = $(`input[name="authenticity_token"]`).attr('value');
 
     $.ajax({

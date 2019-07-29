@@ -1,25 +1,25 @@
+<% content_for :head_tag do %>
+<link rel="stylesheet" type="text/css" href="/assets/cvs/cvs.css">
+<% end %>
 <div class="">
     <div id="<%=@cv.id%>" class="moncv cv container">
-        <%= form_for @cv, method: :patch, html: {class: "updateCV", id: "updateCV"} do |f| %>
         <center>
             <h1>Mon Curriculum Vitae</h1>
         </center>
         <section class="row">
-            <div class="col-md-1"></div>
-            <div class="avatar col-md-3">
+            <div class="col-3 col-sm-3 col-md-4 col-lg-1"></div>
+            <div class="avatar col-6 col-sm-6 col-md-4 col-lg-3">
                 <% avatar = @student.sexe == 'Homme' ? 'profilh.png' : 'profilf.png' %>
                 <div class="text-center">
                     <%= image_tag avatar, class: "img-thumbnail rounded float-left" %>
                 </div>
             </div>
-            <div class="summary right col-md-8" style="padding: 0">
+            <div class="summary right col-md-12 col-lg-8" style="padding: 0;">
                 <h2>
-                    <label for="summary">Résumé</label>
+                    <label for="cv_summary">Résumé</label>
                 </h2>
-                <div id="summaries" class="summary">
-                    <p style="padding: 1%;text-align: justify;">
-                        <%= @cv.summary %>
-                    </p>
+                <div id="summaries" class="summary field">
+                    <textarea id="cv_summary" name="cv[summary]" value="" class= "form-control" readonly><%= @cv.summary %></textarea>
                 </div>
             </div>
         </section>
@@ -27,71 +27,66 @@
             <section class="col-md-5">
                 <div class="">
                     <div id="developer_type">
-                        <center>
-                            <h4>
-                                <%= @cv.developer_type %>
-                            </h4>
-                        </center>
+                        <input id="cv_developer_type" type="text" name="cv[developer_type]" value="<%= @cv.developer_type %>" class="form-control" readonly>
                     </div>
-                    <div id="myprofil" class="tagHere profil" style="margin: 5% 0;">
-                        <table class="table table-primary">
-                            <tr>
-                                <th>Nom complet</th>
-                                <td>
-                                    <%= @student.lastname %>
-                                    <%= @student.firstname %>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>Date de naissance</th>
-                                <td>
-                                    <%= @student.birthdate.strftime("%d %B %Y") %>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>Contact</th>
-                                <td>
-                                    <%= @student.tel %>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>Addresse</th>
-                                <td>
-                                    <%= @student.address %>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>Sexe</th>
-                                <td>
-                                    <%= @student.sexe %>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>Etat civil</th>
-                                <td>
-                                    <%= @student.marital_status %>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
+                    <table class="table table-primary">
+                        <tr>
+                            <th>Nom complet</th>
+                            <td>
+                                <%= @student.lastname %>
+                                <%= @student.firstname %>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Date de naissance</th>
+                            <td>
+                                <%= @student.birthdate.strftime("%d %B %Y") %>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Contact</th>
+                            <td>
+                                <%= @student.tel %>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Addresse</th>
+                            <td>
+                                <%= @student.address %>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Sexe</th>
+                            <td>
+                                <%= @student.sexe %>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Etat civil</th>
+                            <td>
+                                <%= @student.marital_status %>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
                 <div class="">
                     <h2><label for="language_name">Langues</label></h2>
                     <!--  -->
                     <div class="" id='languages'>
                         <div class='tagHere languages'>
-                            <% @cv.languages.each do |language| %>
+                            <% @cv.languages.sort.each do |language| %>
                             <% if language %>
-                            <div id="<%= language.id %>" class="tag language" style="width: 100%; background: none;text-align: center;margin: 0;text-transform: capitalize;">
-                                <span>
-                                    <%(language.level/2).times do |id| %>
-                                    <span class="glyphicon glyphicon-star" style="color: gold;"></span>
-                                    <% end%>
-                                    <%=language.name%>
-                                    <%(language.level/2).times do |id| %>
-                                    <span class="glyphicon glyphicon-star" style="color: gold;"></span>
-                                    <% end%>
-                                </span>
+                            <div id="<%= language.id %>" class="tag language">
+                                <span class="name">
+                                    <%=language.name%></span>
+                                <div class="stars">
+                                    <% language.level.times do |id| %>
+                                    <span class="level fa fa-star" style="color: gold;"></span>
+                                    <% end %>
+                                    <% (7 - language.level.to_i).times do |id| %>
+                                    <span class="level icon-star" style="color: gold;"></span>
+                                    <% end %>
+                                </div>
                             </div>
                             <% end %>
                             <% end %>
@@ -102,35 +97,24 @@
                 <div class="">
                     <h2><label for="programming_language_name">Connaissances Techniques</label></h2>
                     <!--  -->
-                    <div class="" id='programming_languages' style="padding: .5% 5%;">
+                    <div class="" id='programming_languages'>
                         <div class='tagHere programming_languages'>
-                            <div class="row">
-                                <div class="names col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                                    <% @cv.programming_languages.each do |programming_language| %>
-                                    <% if programming_language %>
-                                    <div class="programming_language">
-                                        <span>
-                                            <%=programming_language.name%>
-                                        </span>
-                                    </div>
+                            <% @cv.programming_languages.sort.each do |programming_language| %>
+                            <% if programming_language %>
+                            <div id="<%= programming_language.id %>" class="tag programming_language">
+                                <span class="name">
+                                    <%=programming_language.name%></span>
+                                <div class="stars">
+                                    <% programming_language.level.times do |id| %>
+                                    <span class="level fa fa-star" style="color: gold;"></span>
                                     <% end %>
-                                    <% end %>
-                                </div>
-                                <div class="stars col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                                    <% @cv.programming_languages.each do |programming_language| %>
-                                    <% if programming_language %>
-                                    <div class="programming_language">
-                                        <% programming_language.level.times do |id| %>
-                                        <span class="glyphicon glyphicon-star" style="color: gold;"></span>
-                                        <% end %>
-                                        <% (7 - programming_language.level.to_i).times do |id| %>
-                                        <span class="glyphicon glyphicon-star-empty" style="color: gold;"></span>
-                                        <% end %>
-                                    </div>
-                                    <% end %>
+                                    <% (7 - programming_language.level.to_i).times do |id| %>
+                                    <span class="level icon-star" style="color: gold;"></span>
                                     <% end %>
                                 </div>
                             </div>
+                            <% end %>
+                            <% end %>
                         </div>
                     </div>
                     <!--  -->
@@ -144,7 +128,6 @@
                             <% @cv.experiences.each do |ex| %>
                             <% if ex %>
                             <div id="<%= ex.id %>" class="experience">
-                                <a href="" class="close"></a>
                                 <div class="name">
                                     <span>
                                         <%= ex.name %></span>
@@ -176,8 +159,7 @@
                             <% @cv.skills.each do |skill| %>
                             <% if skill %>
                             <div class="tag skill">
-                                <span>
-                                    <%=skill.name%></span>
+                                <span><%=skill.name%></span>
                             </div>
                             <% end %>
                             <% end %>
@@ -192,7 +174,6 @@
                             <% @cv.backgrounds.each do |background| %>
                             <% if background %>
                             <div id="<%= background.id %>" class="background">
-                                <a href="" class="close"></a>
                                 <div class="name">
                                     <span>
                                         <%= background.name %></span>
@@ -221,16 +202,13 @@
                         <label for="cv_hobbies">loisirs</label>
                     </h2>
                     <div id="hobbies" class="hobbies">
-                        <div class="field hobbies">
-                            <p style="padding: 1%;border: 1px solid;border-radius: 5px;margin: 0;">
-                                <%= @cv.hobbies %>
-                            </p>
+                        <div id="<%= @cv.id %>" class="field hobbies">
+                            <textarea id="cv_hobbies" name="cv[hobbies]" value="" class="form-control" readonly=""><%= @cv.hobbies %></textarea>
                         </div>
                     </div>
                 </div>
             </section>
         </div>
         <hr>
-        <% end %>
     </div>
 </div>

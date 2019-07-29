@@ -124,6 +124,10 @@ body.cvs {
     padding: 0 1% 0 0;
 }
 
+#cv_developer_type {
+    text-align: -webkit-center;
+}
+
 #skills input,
 #languages input,
 #programming_languages input {
@@ -177,11 +181,9 @@ body.cvs {
 
 .tag a {
     color: #000;
-    padding-right: 10px;
     padding-left: 5px;
     padding-top: 5px;
     padding-bottom: 5px;
-    margin-right: 5px;
 }
 
 .tag .close {
@@ -196,9 +198,8 @@ body.cvs {
 }
 
 .tag span.name {
-    padding-left: 2%;
+    /* padding-left: 2%; */
     position: relative;
-    top: 3px;
 }
 
 .tag.language,
@@ -212,6 +213,10 @@ body.cvs {
     word-spacing: .5em;
     /* margin: 0 .5%; */
     float: right;
+}
+
+.tag span.level:hover {
+    cursor: pointer;
 }
 
 .note {
@@ -289,19 +294,117 @@ body.cvs {
 }
 
 @media only screen and (min-width: 1200px) {
+
+    /* col-xl- */
     * {
         /* border: 1px solid blue; */
+    }
+    .tag.language, .tag.programming_language {
+        margin: 0.5%;
     }
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
+
+    /* col-lg- */
     * {
         /* border: 1px solid red; */
+    }
+
+    .cv .summary h2 {
+        display: none;
+    }
+
+    .cv #summaries, .cv #summaries textarea {
+        height: 100%;
+    }
+
+    .cv label,
+    .tag span.name {
+        font-size: initial;
+    }
+    .tag div.stars {
+        font-size: x-small;
+    }
+    .tag.language, .tag.programming_language {
+        margin: 0% 0% 0.7% 0%;
     }
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
+
+    /* col-md- */
     * {
         /* border: 1px solid gold; */
+    }
+
+    .cv label {
+        font-size: smaller;
+        text-decoration: underline;
+    }
+    .tag span.name {
+        font-size: initial;
+    }
+    .tag div.stars {
+        font-size: x-small;
+    }
+    .tag.language, .tag.programming_language {
+        margin: 0% 0% 0.7% 0%;
+    }
+}
+
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+
+    /* col-sm- */
+    * {
+        /* border: 1px solid white; */
+    }
+
+    .cv h2 {
+        text-align: center;
+    }
+
+    .cv label,
+    .tag span.name {
+        font-size: smaller;
+    }
+    .tag.language, .tag.programming_language {
+        margin: 0% 0% 0.7% 0%;
+    }
+}
+
+@media only screen and (min-width: 360px) and (max-width: 575px) {
+
+    /* col- */
+    * {
+        /* border: 1px solid black; */
+    }
+
+    .cv h2 {
+        text-align: center;
+    }
+
+    .cv label,
+    .tag span.name {
+        font-size: initial;
+    }
+
+    .cv .background,
+    .cv .background label,
+    .cv .experience,
+    .cv .experience label {
+        font-size: xx-small;
+    }
+    .tag.language, .tag.programming_language {
+        margin: 0% 0% 0.7% 0%;
+    }
+}
+
+/* Not supported screen */
+@media only screen and (max-width: 359px) {
+
+    /* col- */
+    * {
+        display: none;
     }
 }

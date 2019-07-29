@@ -4,7 +4,6 @@
 <!--date picker-->
 <link href="/assets/vendor/date-picker/css/bootstrap-datepicker.min.css" rel="stylesheet">
 <link href="/assets/users/registrations/registrations.css" rel="stylesheet">
-
 <script src="/assets/vendor/icheck/skins/icheck.min.js"></script>
 <!--jquery validate-->
 <script src="/assets/vendor/jquery-validation/jquery.validate.min.js"></script>
@@ -23,7 +22,7 @@
 <!--init date picker-->
 <script src="/assets/vendor/js-init/pickers/init-date-picker.js"></script>
 <!-- registration js -->
-<script src="/assets/users/registrations.js"></script>
+<script src="/assets/users/registrations/registrations.js"></script>
 <% end %>
 <div class="col-xl-12">
     <div class="card card-shadow mb-4">
@@ -68,53 +67,13 @@
                         </div>
                         <hr>
                         <div class="form-group row">
-                            <div class="col-sm-4"></div>
-                            <div class="status col-sm-7 row">
-                                <div class="student col-sm-4" style="background-color: #3da5f4;">
-                                    <label for="registration_status" style="font-size: large;">Etudiant</label>
-                                </div>
-                                <div class="col-sm-2" style="padding: 0;">
-                                    <label class="switch">
-                                        <input type="checkbox" id="registration_status" name="registration[status]" value="student">
-                                        <span class="slider primary"></span>
-                                    </label>
-                                </div>
-                                <div class="company col-sm-4" style="position: relative; left: -49px; background-color: lightgrey;">
-                                    <label for="registration_status" style="font-size: large;">Entreprise</label>
-                                </div>
+                            <div class="col-sm-6">
+                                <button value="student" type="button" class="status btn btn-primary btn-lg btn-block">Etudiant</button>
                             </div>
-                            <div class="col-sm-1"></div>
-                            <style type="text/css">
-                            .status div.col-sm-4 {
-                                text-align: center;
-                            }
-                            </style>
-                            <script type="text/javascript">
-                            jQuery(document).ready(function($) {
-                                let $checkbox = $(`#registration_status`);
-                                let s = $(`.status:first .student:first`);
-                                let c = $(`.status:first .company:first`);
-                                $checkbox.click(function(event) {
-                                    $(this).val(this.checked ? "company" : "student");
-
-                                    if ($(this).val() == "company") {
-                                        s.css({
-                                            'background-color': 'lightgrey'
-                                        });
-                                        c.css({
-                                            'background-color': '#3da5f4'
-                                        });
-                                    } else if ($(this).val() == "student") {
-                                        s.css({
-                                            'background-color': '#3da5f4'
-                                        });
-                                        c.css({
-                                            'background-color': 'lightgrey'
-                                        });
-                                    }
-                                });
-                            });
-                            </script>
+                            <input type="hidden" id="registration_status" name="registration[status]">
+                            <div class="col-sm-6">
+                                <button value="company" type="button" class="status btn btn-outline-primary btn-lg btn-block">Entreprise</button>
+                            </div>
                         </div>
                     </div>
                     <div class="col-sm-3 col-md-3"></div>
@@ -140,7 +99,6 @@
                         <label class="col-sm-4 col-form-label col-form-label-sm" for="city"> Ville *</label>
                         <div class="col-sm-6">
                             <select class="form-control" name="city" id="city" required="">
-                                <option>Choose a state</option>
                                 <% CS.states(:AD).map do |c| %>
                                 <option value="<%= c[1] %>">
                                     <%= c[1] %>
@@ -149,17 +107,19 @@
                             </select>
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <label class="col-sm-4 col-form-label col-form-label-sm" for="student_address">Address </label>
-                        <div class="col-sm-6">
-                            <input id="student_address" name="student[address]" type="text" class="form-control" value="Lot FMAI 124 bis 67ha SUD">
+                    <div id="coord">
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label col-form-label-sm" for="student_address">Address </label>
+                            <div class="col-sm-6">
+                                <input id="student_address" name="student[address]" type="text" class="form-control" value="Lot FMAI 124 bis 67ha SUD">
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="inputmask_3" class="col-sm-4 col-form-label col-form-label-sm">Mobile</label>
-                        <div class="col-sm-6">
-                            <input type="text" class="form-control" id="inputmask_3" name="student[tel]" value="0347739305">
-                            <small class="form-text text-muted">Example : + (999) 999-9999</small>
+                        <div class="form-group row">
+                            <label for="inputmask_3" class="col-sm-4 col-form-label col-form-label-sm">Mobile</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="inputmask_3" name="student[tel]" value="0347739305">
+                                <small class="form-text text-muted">Example : 999 99 999 99</small>
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -167,71 +127,59 @@
                     <span class="wz-title">Step 3</span>
                     <span class="wz-sub-header">Un peu plus</span>
                 </h3>
-                <section class="row" style="margin-right: 0; margin-left: 0;">
-                    <div class="col-sm-6 col-md-6">
-                        <h4>Infos Personelles</h4>
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><label for="student_lastname">Nom et Prénom</label></span>
+                <section style="margin-right: 0; margin-left: 0;">
+                    <div class="step3 row" style="width: -webkit-fill-available;">
+                        <div class="col-sm-6 col-md-6">
+                            <h4>Infos Personelles</h4>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><label for="student_lastname">Nom et Prénom</label></span>
+                                </div>
+                                <input id="student_lastname" name="student[lastname]" type="text" class="form-control" placeholder="Nom de Famille" value="Hackerman">
+                                <input id="student_firstname" name="student[firstname]" type="text" class="form-control" placeholder="Prénom(s)" value="Rivaille">
                             </div>
-                            <input id="student_lastname" name="student[lastname]" type="text" class="form-control" placeholder="Nom de Famille" value="A.N. Tsimanarson">
-                            <input id="student_firstname" name="student[firstname]" type="text" class="form-control" placeholder="Prénom(s)" value="Princy">
-                        </div>
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <label class="input-group-text" for="student_sexe">Sexe</label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text" for="student_sexe">Sexe</label>
+                                </div>
+                                <select class="custom-select" name="student[sexe]" id="student_sexe">
+                                    <!-- <option>Choisissez...</option> -->
+                                    <option selected>Masculin</option>
+                                    <option>Feminin</option>
+                                    <option>Non spécifié</option>
+                                </select>
                             </div>
-                            <select class="custom-select" name="student[sexe]" id="student_sexe">
-                                <!-- <option>Choisissez...</option> -->
-                                <option selected>Masculin</option>
-                                <option>Feminin</option>
-                                <option>Non spécifié</option>
-                            </select>
-                        </div>
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><label for="student_marital_status">Status Civil</label></span>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><label for="student_marital_status">Status Civil</label></span>
+                                </div>
+                                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" id="student_marital_status" name="student[marital_status]" placeholder="Célibataire" value="Célibataire">
                             </div>
-                            <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" id="student_marital_status" name="student[marital_status]" placeholder="Célibataire" value="Célibataire">
-                        </div>
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><label for="student_birthdate">Date de naissance</label></span>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><label for="student_birthdate">Date de naissance</label></span>
+                                </div>
+                                <input type="date" class="form-control" value="0820-11-01" name="student[birthdate]" id="student_birthdate">
                             </div>
-                            <input type="text" class="form-control date-picker-input" value="11-01-1998" name="student[birthdate]" id="student_birthdate">
                         </div>
-                    </div>
-                    <div class="col-sm-6 col-md-6">
-                        <h4>Infos pour le CV</h4>
-                        <div class="form-group">
-                            <textarea class="form-control" placeholder="Mon résumé" name="cv[summary]" id="cv_summary">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</textarea>
-                        </div>
-                        <div class="form-group">
-                            <textarea class="form-control" placeholder="Mes meilleurs loisirs" name="cv[hobbies]" id="cv_hobbies">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</textarea>
+                        <div class="col-sm-6 col-md-6">
+                            <h4>Infos pour le CV</h4>
+                            <div class="form-group">
+                                <textarea class="form-control" placeholder="Mon résumé" name="cv[summary]" id="cv_summary">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</textarea>
+                            </div>
+                            <div class="form-group">
+                                <textarea class="form-control" placeholder="Mes meilleurs loisirs" name="cv[hobbies]" id="cv_hobbies">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</textarea>
+                            </div>
                         </div>
                     </div>
                 </section>
                 <h3>
                     <span class="wz-title">Step 4</span>
-                    <span class="wz-sub-header">Recheck Information</span>
+                    <span class="wz-sub-header">Revérification</span>
                 </h3>
                 <section>
-                    <div class="form-group row">
-                        <div class="col-sm-12">
-                            <ul class="list-unstyled">
-                                <li>First Name : Jane </li>
-                                <li>Last Name : Doe </li>
-                                <li>Emial: jane_doe@testmail.com</li>
-                                <li>Address: 123 Dreamland, USA </li>
-                            </ul>
-                        </div>
-                    </div>
-                </section>
-                <h3>
-                    <span class="wz-title">Step 5</span>
-                    <span class="wz-sub-header">Agree Terms</span>
-                </h3>
-                <section>
+                    <div class="step4"></div>
+                    <hr>
                     <div class="form-group row">
                         <div class="col-sm-12">
                             <input id="acceptTerms" name="acceptTerms" type="checkbox" class="required">
