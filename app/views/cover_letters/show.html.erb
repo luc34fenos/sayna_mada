@@ -1,2 +1,11 @@
-<h1>CoverLetters#show</h1>
-<p>Find me in app/views/cover_letters/show.html.erb</p>
+<div class="container">
+    <div class="malm">
+        <%= @cover_letter.content.html_safe %>
+    </div>
+</div>
+<style type="text/css">
+.malm {
+    border: 1px solid;
+    padding: 5em;
+}
+</style>

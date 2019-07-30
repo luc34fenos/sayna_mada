@@ -27,15 +27,24 @@
 <div class="col-xl-12">
     <div class="card card-shadow mb-4">
         <div class="card-header border-0">
-            <div class="custom-title-wrap bar-warning">
-                <div class="custom-title">Wizard Validation</div>
+            <div class="custom-title-wrap bar-warning row">
+                <div class="custom-title col-2">Inscription</div>
+                <div class="col-2 btn-link">
+                    <a href="/users/sign_in" data-method="GET">Se connecter</a>
+                </div>
+                <div class="col-2 btn-link">
+                    <a href="/users/password/new" data-method="GET">Mot de passe oublié</a>
+                </div>
+                <div class="col-3 btn-link">
+                    <a href="/users/confirmation/new" data-method="GET">J'ai pas reçu d'email de confirmation</a>
+                </div>
             </div>
         </div>
         <div class="card-body">
             <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {id: "wizard-validation-form", class: "right-text-label-form custom-wz"}) do |f| %>
             <div>
                 <h3>
-                    <span class="wz-title">Step 1</span>
+                    <span class="wz-title">étape 1</span>
                     <span class="wz-sub-header">Inscription / Connexion</span>
                 </h3>
                 <section class="">
@@ -79,8 +88,8 @@
                     <div class="col-sm-3 col-md-3"></div>
                 </section>
                 <h3>
-                    <span class="wz-title">Step 2</span>
-                    <span class="wz-sub-header">Contacts et coordonnées</span>
+                    <span class="wz-title">étape 2</span>
+                    <span class="wz-sub-header">Contacts / Coordonnées</span>
                 </h3>
                 <section>
                     <div class="form-group row">
@@ -109,7 +118,7 @@
                     </div>
                     <div id="coord">
                         <div class="form-group row">
-                            <label class="col-sm-4 col-form-label col-form-label-sm" for="student_address">Address </label>
+                            <label class="col-sm-4 col-form-label col-form-label-sm" for="student_address">Addresse </label>
                             <div class="col-sm-6">
                                 <input id="student_address" name="student[address]" type="text" class="form-control" value="Lot FMAI 124 bis 67ha SUD">
                             </div>
@@ -118,14 +127,14 @@
                             <label for="inputmask_3" class="col-sm-4 col-form-label col-form-label-sm">Mobile</label>
                             <div class="col-sm-6">
                                 <input type="text" class="form-control" id="inputmask_3" name="student[tel]" value="0347739305">
-                                <small class="form-text text-muted">Example : 999 99 999 99</small>
+                                <small class="form-text text-muted">Exemple : 999 99 999 99</small>
                             </div>
                         </div>
                     </div>
                 </section>
                 <h3>
-                    <span class="wz-title">Step 3</span>
-                    <span class="wz-sub-header">Un peu plus</span>
+                    <span class="wz-title">étape 3</span>
+                    <span class="wz-sub-header">Mes Informations</span>
                 </h3>
                 <section style="margin-right: 0; margin-left: 0;">
                     <div class="step3 row" style="width: -webkit-fill-available;">
@@ -174,8 +183,8 @@
                     </div>
                 </section>
                 <h3>
-                    <span class="wz-title">Step 4</span>
-                    <span class="wz-sub-header">Revérification</span>
+                    <span class="wz-title">étape 4</span>
+                    <span class="wz-sub-header">Vérification</span>
                 </h3>
                 <section>
                     <div class="step4"></div>
@@ -183,7 +192,7 @@
                     <div class="form-group row">
                         <div class="col-sm-12">
                             <input id="acceptTerms" name="acceptTerms" type="checkbox" class="required">
-                            <label for="acceptTerms">I agree with the <a href="#">Terms and Conditions</a>.</label>
+                            <label for="acceptTerms">J'accepte les <a href="#" class="btn-link">termes et conditions d'utilisation</a>.</label>
                         </div>
                     </div>
                 </section>

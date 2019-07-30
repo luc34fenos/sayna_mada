@@ -7,7 +7,7 @@
 
 <body class="<%= controller_name %> <%= action_name %> header-fixed header-primary-color">
     <%= render 'layouts/flash' %>
-    <% if controller_name != "sessions" && controller_name != "registrations" %>
+    <% if controller_name != "sessions" && controller_name != "registrations" && controller_name != "passwords" && controller_name != "confirmations" %>
     <%= render template: 'layouts/navbar' %>
     <% end %>
     <% if user_signed_in? && current_user.status == "admin" %>
@@ -16,7 +16,7 @@
             <%= render 'layouts/leftnav' %>
     <% end %>
         
-        <div class="pt-10">
+        <div <% if controller_name != "sessions" && controller_name != "registrations" && controller_name != "passwords" && controller_name != "confirmations" %>class="pt-10"<% end %>>
             <%= yield %>
         </div>
 

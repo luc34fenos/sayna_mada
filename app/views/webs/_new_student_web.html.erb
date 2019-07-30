@@ -1,0 +1,71 @@
+<% content_for :head_tag do %>
+<link href="/assets/vendor/select2/css/select2.css" rel="stylesheet">
+<!--select2-->
+<script src="/assets/vendor/select2/js/select2.min.js"></script>
+<!--init select2-->
+<script src="/assets/vendor/js-init/init-select2.js"></script>
+<script type="text/javascript">
+	jQuery(document).ready(function($) {
+		let btn = $(`#create-web`);
+
+		btn.click(function(event) {
+      let AUTH_TOKEN = $(`input[name="authenticity_token"]`).val(),
+          $CVID = $(`div.moncv:first`).attr('id'),
+					name = $(`select[name="web[name]"]`).val(),
+					link = $(`input[name="web[link]"]`).val();
+			if (name != "" && link != "") {
+				$.ajax({
+					url: '/webs',
+					type: 'POST',
+					dataType: 'script',
+					data: {
+						authenticity_token: AUTH_TOKEN,
+						'web[cv_id]': $CVID,
+						'web[name]': name,
+						'web[link]': link
+					}
+				});
+			}
+		});
+	});
+</script>
+<% end %>
+<div class="col-md-4 mb-4">
+    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal4" data-whatever="@mdo">Launch demo modal</button>
+    <div class="modal fade" id="exampleModal4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel5" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel5">Ajouter un lien</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group row">
+                        <div class="col-sm-12">
+                            <select class="form-control" id="option_s1" name="web[name]" style="width: -webkit-fill-available;">
+                                <option value="<i class='ti-link'> Site web</i>"><i class='ti-link'> Site web</i></option>
+                                <% @webslist.each do |web| %>
+                                <option value="<%= web.html_safe %>">
+                                    <%= web.html_safe %>
+                                </option>
+                                <% end %>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">@</span>
+                        </div>
+                        <input type="text" id="web_link" name="web[link]" class="form-control" placeholder="https://www.exemple.com">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                    <button type="button" class="btn btn-primary" id="create-web">Enregistrer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

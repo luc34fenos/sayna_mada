@@ -1,0 +1,25 @@
+<div class="card-body">
+    <dl class="accordion">
+        <% student.cv.experiences.each do |experience| %>
+        <dt>
+            <a href=""><%= experience.name %></a>
+        </dt>
+        <dd>
+            <%= experience.description %>
+        </dd>
+        <% end %>
+    </dl>
+</div>
+
+<div class="card-body">
+    <dl class="accordion">
+        <% student.cv.backgrounds.each do |background| %>
+        <dt>
+            <a href=""><%= background.name %></a>
+        </dt>
+        <dd>
+            <%= background.description %>
+        </dd>
+        <% end %>
+    </dl>
+</div>

@@ -5,10 +5,11 @@ $span = $("<span />"),
 $appendHere = $(`.tagHere.skills:first`);
 
 $tag.addClass('tag');
+$tag.addClass('skill');
 
-$('<i class="fa fa-times" aria-hidden="true"></i>').appendTo($a);
+$('<i class="icon-close" aria-hidden="true"></i>').appendTo($a);
 
-$span.text("<%= @skill.name %>");
+$span.text(" <%= @skill.name %>");
 
 $a.appendTo($tag);
 $span.appendTo($tag);

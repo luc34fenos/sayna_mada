@@ -11,20 +11,25 @@ class WebsController < ApplicationController
   end
 
   def create
-   @web = Web.new(web_params)
-   puts params.inspect
+    p "C"*60
+    if params[:web][:cv_id]
+      @web = Web.new(web_paramss)
 
-         respond_to do |format|
-          if @web.save
-            format.html { redirect_to @web, notice: 'web was successfully created.' }
-            format.js
-            format.json { render :show, status: :created, location: @web }
-          else
-            format.html { render :new }
-            format.json { render json: @web.errors, status: :unprocessable_entity }
-          end
+      respond_to do |format|
+        if @web.save
+          format.html { redirect_to "/moncv/#{params[:web][:cv_id]}", notice: 'Le nouveau lien a bien été ajouté' }
+          format.js
+          format.json { render :show, status: :created, location: @web }
+        else
+          format.html { render :new }
+          format.json { render json: @web.errors, status: :unprocessable_entity }
         end
+      end
 
+    elsif params[:company_id]
+      
+    end
+    p "C"*60
   end
 
   def update
@@ -37,23 +42,26 @@ class WebsController < ApplicationController
 
   end
 
-  def delete
+  def destroy
    @web.destroy
    respond_to do |format|
-    format.html { redirect_to root_path, notice: 'web was successfully updated.' }
+    format.html { redirect_to "/moncv/#{params[:web][:cv_id]}", notice: 'Lien supprimé.' }
     format.js
     format.json { head :no_content }
   end
-  end
+end
 
 
-  private
+private
 
-  def set_web
-    @web = web.find(params[:id])
-  end
+def set_web
+  @web = Web.find(params[:id])
+end
 
-    def web_params
-      params.require(:web).permit(:company_id, :name, :link)
-    end
+def web_paramss
+  params.require(:web).permit(:cv_id, :name, :link)
+end
+def web_paramsc
+  params.require(:web).permit(:company_id, :name, :link)
+end
 end
