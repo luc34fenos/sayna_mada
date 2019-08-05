@@ -119,6 +119,17 @@
                     </div>
                     <!--  -->
                 </div>
+                <div>
+                    <h2><label for="web_name">Mes liens</label></h2>
+                    <div id="webs">
+                        <% @cv.webs.each do |web| %>
+                            <div id="<%= web.id %>" class="web">
+                                <span class="name"><%= web.name.html_safe %></span>
+                                <a href="<%= web.link %>"><%= web.link %></a>
+                            </div>
+                        <% end %>
+                    </div>
+                </div>
             </section>
             <section class="col-md-7">
                 <div class="right">
@@ -159,7 +170,7 @@
                             <% @cv.skills.each do |skill| %>
                             <% if skill %>
                             <div class="tag skill">
-                                <span><%=skill.name%></span>
+                                <span class="name"><%=skill.name%></span>
                             </div>
                             <% end %>
                             <% end %>

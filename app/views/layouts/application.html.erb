@@ -11,10 +11,23 @@
 
 <body class="<%= controller_name %> <%= action_name %> header-fixed header-primary-color">
     <%= render 'layouts/flash' %>
+<<<<<<< HEAD
     <% if controller_name == "vitrines" %>
         <%= render template: 'layouts/navbar2' %>
 
         <div class="pt-10">
+=======
+    <% if controller_name != "sessions" && controller_name != "registrations" && controller_name != "passwords" && controller_name != "confirmations" %>
+    <%= render template: 'layouts/navbar' %>
+    <% end %>
+    <% if user_signed_in? && current_user.status == "admin" %>
+    <section class="left-sidebar-fixed">
+        <div class="app-body">
+            <%= render 'layouts/leftnav' %>
+    <% end %>
+        
+        <div <% if controller_name != "sessions" && controller_name != "registrations" && controller_name != "passwords" && controller_name != "confirmations" %>class="pt-10"<% end %>>
+>>>>>>> bd99a71f5eed52a16609d886a28e307d88b696fa
             <%= yield %>
         </div>
 

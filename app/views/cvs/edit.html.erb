@@ -42,7 +42,7 @@ jQuery(document).ready(function($) {
             $DIV = $(this).parent('.tag:first'),
             $CVID = $(`div.moncv:first`).attr('id');
 
-        removeSkill($DIV, $CVID, $ID);                      
+        removeSkill($DIV, $CVID, $ID);
     });
 
     $(`a.language`).click(function(event) {
@@ -137,6 +137,16 @@ jQuery(document).ready(function($) {
         }
     });
 
+    $(`a.rmweb`).click(function(event) {
+        /* Act on the event */
+        event.preventDefault();
+        let $ID = $(this).attr('for'),
+            $DIV = $(`div#${$ID}`),
+            $CVID = $(`div.moncv:first`).attr('id');
+
+        removeWeb($DIV, $CVID, $ID);
+    });
+
     // $(`.tag`).hover(function() {
     //     $(this).children('.close').show('fast');
     // }, function() {
@@ -148,7 +158,7 @@ jQuery(document).ready(function($) {
             maj = $(`.update:first`);
 
         div.css({
-            background: 'gold'
+            // background: 'gold'
         });
         maj.show('slow');
 
@@ -292,7 +302,7 @@ jQuery(document).ready(function($) {
         }
     }
 
-    function removeExperience(div, cv_id, id){
+    function removeExperience(div, cv_id, id) {
         let AUTH_TOKEN = $(`input[name="authenticity_token"]`).attr('value');
 
         div.fadeOut('slow', function() {
@@ -329,7 +339,7 @@ jQuery(document).ready(function($) {
         }
     }
 
-    function removeBackground(div, cv_id, id){
+    function removeBackground(div, cv_id, id) {
         let AUTH_TOKEN = $(`input[name="authenticity_token"]`).attr('value');
 
         div.fadeOut('slow', function() {
@@ -347,26 +357,54 @@ jQuery(document).ready(function($) {
         });
     }
 
+    function removeWeb(div, cv_id, id) {
+        let AUTH_TOKEN = $(`input[name="authenticity_token"]`).attr('value');
+
+        div.fadeOut('slow', function() {
+            div.remove();
+        });
+
+        $.ajax({
+            url: `/webs/${id}`,
+            type: 'DELETE',
+            data: {
+                authenticity_token: AUTH_TOKEN,
+                'web[cv_id]': cv_id,
+                id: id
+            },
+        });
+    }
+
 });
 </script>
 <div class="">
     <div id="<%=@cv.id%>" class="moncv cv container">
         <div class="update">
-            <a href="#" class="btn btn-toolbar"><i class="fa fa-retweet"></i></a>
-            <style type="text/css">
-            .moncv .update {
-                border: 1px solid;
-                display: -webkit-inline-box;
-                position: fixed;
-                top: 50%;
-                left: 0;
-                background: repeating-radial-gradient(black, transparent 100px);
-                padding: 1%;
-                border-radius: 0px 10px 10px 0px;
-                display: none;
-            }
-            </style>
+            <div>u</div>
+            <div>p</div>
+            <div>d</div>
+            <div>a</div>
+            <div>t</div>
+            <div>e</div>
         </div>
+        <style type="text/css">
+        .moncv .update {
+            /* writing-mode: vertical-lr; */
+            position: fixed;
+            top: 20%;
+            left: 0;
+            background: repeating-radial-gradient(gold, transparent 100px);
+            padding: 1%;
+            border-radius: 0px 10px 10px 0px;
+            color: white;
+            display: none;
+            text-transform: uppercase;
+            border: 0 none;
+        }
+        .moncv .update:hover {
+            cursor: pointer;
+        }
+        </style>
         <%= form_with model: @cv, html: {class: "updateCV", id: "updateCV"} do |f| %>
         <center>
             <h1>Mon Curriculum Vitae</h1>
@@ -488,6 +526,21 @@ jQuery(document).ready(function($) {
                     </div>
                     <!--  -->
                 </div>
+                <div>
+                    <h2><label for="web_name">Mes liens</label></h2>
+                    <div id="webs" style="border: 1px solid;padding: 2%;border-radius: 3px;">
+                        <% @cv.webs.each do |web| %>
+                            <div id="<%= web.id %>" class="web">
+                                <span class="name"><%= web.name.html_safe %></span>
+                                <div class="float-right">
+                                    <a href="<%= web.link %>"><%= web.link %></a>
+                                    <a href="#" class="rmweb" for="<%=web.id%>"><i class="icon-close" aria-hidden="true"></i></a>
+                                </div>
+                            </div>
+                        <% end %>
+                    </div>
+                    <%= render 'webs/new_student_web', web: @web, webslist: @webslist %>
+                </div>
             </section>
             <section class="col-md-7">
                 <div class="right">
@@ -519,17 +572,17 @@ jQuery(document).ready(function($) {
                             <% end %>
                             <% end %>
                         </div>
-                        <div id="0" class="experience new row" style="">
-                            <div class="name col-12">
+                        <div id="0" class="experience new">
+                            <div class="name">
                                 <input type="text" id="experience_name" name="experience[name]" placeholder="Stagiaire chez Google">
                             </div>
-                            <div class="date col-12 row">
-                                <label class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3" for="experience_start_date">Du</label>
-                                <input class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3" type="date" id="experience_start_date" name="experience[start_date]">
-                                <label class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3" for="experience_end_date">jusqu'en</label>
-                                <input class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3" type="date" id="experience_end_date" name="experience[end_date]">
+                            <div class="date">
+                                <label for="experience_start_date">Du</label>
+                                <input type="date" id="experience_start_date" name="experience[start_date]">
+                                <label for="experience_end_date">jusqu'en</label>
+                                <input type="date" id="experience_end_date" name="experience[end_date]">
                             </div>
-                            <div class="description col-12">
+                            <div class="description">
                                 <textarea maxlength="180" class="form-control"></textarea>
                             </div>
                         </div>

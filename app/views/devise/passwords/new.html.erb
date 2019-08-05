@@ -1,16 +1,66 @@
-<h2>Forgot your password?</h2>
-
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
-  </div>
+<% content_for :head_tag do %>
+<!--jquery steps-->
+<link href="/assets/vendor/jquery-steps/jquery.steps.css" rel="stylesheet">
+<!--date picker-->
+<link href="/assets/vendor/date-picker/css/bootstrap-datepicker.min.css" rel="stylesheet">
+<link href="/assets/users/registrations/registrations.css" rel="stylesheet">
+<script src="/assets/vendor/icheck/skins/icheck.min.js"></script>
+<!--jquery validate-->
+<script src="/assets/vendor/jquery-validation/jquery.validate.min.js"></script>
+<!--jquery steps-->
+<script src="/assets/vendor/jquery-steps/jquery.steps.min.js"></script>
+<!--init steps-->
+<script src="/assets/vendor/js-init/init-form-wizard.js"></script>
+<!--jquery stepy-->
+<script src="/assets/vendor/jquery-steps/jquery.stepy.js"></script>
+<!--input mask-->
+<script src="/assets/vendor/input-mask/jquery.inputmask.bundle.js"></script>
+<!--init input mask-->
+<script src="/assets/vendor/js-init/init-input-mask.js"></script>
+<!--date picker-->
+<script src="/assets/vendor/date-picker/js/bootstrap-datepicker.min.js"></script>
+<!--init date picker-->
+<script src="/assets/vendor/js-init/pickers/init-date-picker.js"></script>
+<!-- registration js -->
+<script src="/assets/users/registrations/registrations.js"></script>
 <% end %>
-
-<%= render "devise/shared/links" %>
+<div class="col-xl-12">
+    <div class="card card-shadow mb-4">
+        <div class="card-header border-0">
+            <div class="custom-title-wrap bar-warning row">
+                <div class="col-2 btn-link">
+                    <a href="/users/sign_up" data-method="GET">S'inscrire</a>
+                </div>
+                <div class="col-2 btn-link">
+                    <a href="/users/sign_in" data-method="GET">Se connecter</a>
+                </div>
+                <div class="custom-title col-2">Mot de passe oublié</div>
+                <div class="col-3 btn-link">
+                    <a href="/users/confirmation/new" data-method="GET">J'ai pas reçu d'email de confirmation</a>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, id: "wizard-validation-form", class: "right-text-label-form custom-wz" }) do |f| %>
+            <div>
+                <h3>
+                    <span class="wz-title">Changer MDP</span>
+                    <span class="wz-sub-header">Mot de passe oublié</span>
+                </h3>
+                <section>
+                    <div class="col-sm-3 col-md-3"></div>
+                    <div class="col-sm-6 col-md-6">
+                        <div class="input-group mb-3">
+                            <div class="input-group-append">
+                                <span class="input-group-text" id="basic-addon2"><label for="user_email">Email</label></span>
+                            </div>
+                            <%= f.email_field :email, value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), autocomplete: "email", placeHolder:"email@address.com", class: "required form-control" %>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 col-md-3"></div>
+                </section>
+            </div>
+            <% end %>
+        </div>
+    </div>
+</div>

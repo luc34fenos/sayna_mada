@@ -116,7 +116,7 @@ body.cvs {
     box-shadow: 0 40px 50px rgba(0, 0, 0, 0.25) !important;
     outline: none;
     font-size: 1em;
-    padding: 1%;
+    padding: 0.5% 0.1%;
 }
 
 .edit #languages,
@@ -167,8 +167,25 @@ body.cvs {
     clear: both;
 }
 
-.tag {
+#hobbies textarea {
+    height: 90px;
+}
+
+.edit .languages .tag,
+.edit .programming_languages .tag {
     margin: 0.5% 0.5%;
+}
+
+.show .languages .tag,
+.show .programming_languages .tag {
+    margin: .5% 0 !important;
+}
+
+.skills .tag {
+    margin: 0 0.4%;
+}
+
+.tag {
     border-radius: 3px;
     background: #b5aff9;
     float: left;
@@ -190,14 +207,15 @@ body.cvs {
     display: none;
 }
 
-.tag span {
-    /* padding-right: 10px; */
-    padding-left: 0px;
-    padding-top: 5px;
-    padding-bottom: 5px;
+.show .tag span.name {
+    padding: 5px 10px;
 }
 
-.tag span.name {    
+.tag span {
+    padding: 5px 10px 5px 0px;
+}
+
+.tag span.name {
     /* padding-left: 2%; */
     position: relative;
 }
@@ -255,13 +273,10 @@ body.cvs {
     width: 60%;
 }
 
-
-
 .experience .name span,
 .experience .name input,
 .background .name span,
 .background .name input {
-
     margin-bottom: 1%;
     padding: 0 1%;
     border-radius: 5px;
@@ -299,7 +314,9 @@ body.cvs {
     * {
         /* border: 1px solid blue; */
     }
-    .tag.language, .tag.programming_language {
+
+    .tag.language,
+    .tag.programming_language {
         margin: 0.5%;
     }
 }
@@ -315,7 +332,8 @@ body.cvs {
         display: none;
     }
 
-    .cv #summaries, .cv #summaries textarea {
+    .cv #summaries,
+    .cv #summaries textarea {
         height: 100%;
     }
 
@@ -323,10 +341,13 @@ body.cvs {
     .tag span.name {
         font-size: initial;
     }
+
     .tag div.stars {
         font-size: x-small;
     }
-    .tag.language, .tag.programming_language {
+
+    .tag.language,
+    .tag.programming_language {
         margin: 0% 0% 0.7% 0%;
     }
 }
@@ -342,13 +363,17 @@ body.cvs {
         font-size: smaller;
         text-decoration: underline;
     }
+
     .tag span.name {
         font-size: initial;
     }
+
     .tag div.stars {
         font-size: x-small;
     }
-    .tag.language, .tag.programming_language {
+
+    .tag.language,
+    .tag.programming_language {
         margin: 0% 0% 0.7% 0%;
     }
 }
@@ -368,7 +393,9 @@ body.cvs {
     .tag span.name {
         font-size: smaller;
     }
-    .tag.language, .tag.programming_language {
+
+    .tag.language,
+    .tag.programming_language {
         margin: 0% 0% 0.7% 0%;
     }
 }
@@ -395,7 +422,9 @@ body.cvs {
     .cv .experience label {
         font-size: xx-small;
     }
-    .tag.language, .tag.programming_language {
+
+    .tag.language,
+    .tag.programming_language {
         margin: 0% 0% 0.7% 0%;
     }
 }
