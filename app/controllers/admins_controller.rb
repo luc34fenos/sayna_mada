@@ -18,12 +18,4 @@ class AdminsController < ApplicationController
 			format.any  { head :not_found }
 		end
 	end
-
-	def who
-		who = %W(Student Company User)
-	end
-
-	def students_attr
-		%W(skills languages programming_languages)
-	end
 end

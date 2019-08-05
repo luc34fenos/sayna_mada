@@ -3,12 +3,12 @@
 <% elsif current_user.student && current_user.student.is_activated? %>
 <%= render template: 'dashboard/student_dashboard2' %>
 <% elsif current_user.company && !current_user.company.is_activated? %>
-<%= render template: 'dashboard/company_dashboard1.html.erb' %>
+<%= render template: 'dashboard/company_dashboard1' %>
 <% elsif current_user.company && current_user.company.is_activated? %>
-<%= render template: 'dashboard/company_dashboard2.html.erb' %>
+<%= render template: 'dashboard/company_dashboard2' %>
 <% elsif current_user.status == "staff" %>
-<%= render template: 'dashboard/staff_dashboard.html.erb' %>
+<%= render template: 'dashboard/staff_dashboard' %>
 <% elsif current_user.status == "admin" %>
-<%= render template: 'admins/dashboard.html.erb' %>
+<%= render template: 'admins/dashboard' %>
 <% else %>
 <% end %>

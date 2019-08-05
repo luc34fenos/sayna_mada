@@ -176,19 +176,7 @@ option {
                 <% end %>
             </optgroup>
             <optgroup label="Critères8">
-                <% 
-                  def filtered_cities
-                     cities = []
-                     Company.all.each do |company|
-                        company.cities.each do |city|
-                          cities << city if !cities.include?(city)
-                        end
-                     end
-                     cities
-                  end
-                  cities = filtered_cities 
-                %>
-                <% cities.each do |city| %>
+                <% City.all.each do |city| %>
                 <option value="<%= city.name %>">
                     <%= city.name %>
                 </option>

@@ -66,13 +66,12 @@ end
   g = User.new(username: "User#{x}", email: "company#{x}@gmail.com", password: "000000", password_confirmation: "000000", status: "company")
   g.save!
   g.confirm
-  c = City.find_by(country: 'AF', name: 'Kabul') ? City.find_by(country: 'AF', name: 'Kabul') : City.create(country: 'AF', name: 'Kabul')
 
   s = Company.new(name: "company#{x}", user_id: g.id, is_activated?: x%2 == 0 ? true : false, tel: "03412345#{x}", address: "address#{x}", start_date: 2002 + (x/(x-2)), legal_status: "company legal status #{x}", activity_area: "activity#{x - (x/(x-2))}", siret: "#{x}00#{x}1", other: "Ut enim ad minim veniam, nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo." )
   s.save!
+  c = City.find_by(country: 'AF', name: 'Kabul') ? City.find_by(country: 'AF', name: 'Kabul') : City.create(country: 'AF', name: 'Kabul')
+  s.cities << c
   st = Staff.new(first_name: "firstname#{x}", last_name: "lastname#{x}", company_id: s.id, job: "job#{ x%2 + 1}", email: "staff#{x}.company#{s.id}@gmail.com", tel: "03298765#{x}")
   st.save!
-  s.cities = [c]
-  s.staff = [st]
-  s.save
+  s.staff << st
 end
