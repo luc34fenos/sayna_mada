@@ -1,13 +1,13 @@
     $input = $(`div#languages`).children('input.language:first'),
     $tag = $(`
         <div id="<%=  @language.id  %>" class="tag language">
-            <a href="#" class="language" id="<%= @language.id %>"><i class="icon-close" aria-hidden="true"></i></a>
+            <a href="#" class="rmlanguage" for="<%= @language.id %>"><i class="icon-close" aria-hidden="true"></i></a>
             <span class="name"><%= @language.name %></span>
             <div class="stars">
                 <% 3.times do |id| %>
                     <span class="level fa fa-star" style="color: gold;"></span>
                 <% end %>
-                <% 4.times do |id| %>
+                <% 2.times do |id| %>
                     <span class="level icon-star" style="color: gold;"></span>
                 <% end %>
             </div>
@@ -20,7 +20,7 @@ $tag.appendTo($appendHere);
 $($input).val('');
 $($input).focus();
 
-$a = $(`a.language`);
+$a = $(`a.rmlanguage`);
 
 $a.bind('click', function(e) {
     e.preventDefault();
@@ -28,7 +28,7 @@ $a.bind('click', function(e) {
 
     let $DIV = $tag,
         $CVID = $(`div.moncv:first`).attr('id'),
-        $ID = "<%=  @language.id %>";
+        $ID = "<%= @language.id %>";
 
     removeLanguage($DIV, $CVID, $ID);
 });

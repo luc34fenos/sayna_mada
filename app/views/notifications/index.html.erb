@@ -1,0 +1,86 @@
+<% content_for :head_tag do %>
+<style type="text/css">
+.msg-unread {
+    background: rgba(0, 0, 0, 0.1);
+}
+</style>
+<% end %>
+<div class="container">
+    <%= form_with(model: Checking.new) do |f| %>
+    <input type="hidden" name="check[one]" value="on">
+    <input type="checkbox" id="check_all" name="check[all]" class="iCheck-flat-blue">
+    <label for="check_all" class="control-label">Tout marquer comme lu</label>
+    <%= f.submit "actualiser", :disable_with => 'Submiting...', class: "mt-1 mb-1 btn-primary float-right", style: "border-radius: 5px;padding: 0 1%;" %>
+    <% end %>
+</div>
+<div class="container" style="clear: both;">
+    <div class="notifications pb-5" id="notifications">
+        <ul class="list-group">
+            <% @notifications.each do |notification| %>
+            <%  if Checking.find_by(user: current_user, notification: notification)
+                    read = Checking.find_by(user: current_user, notification: notification).seen 
+                else
+                    read = false
+                end 
+            %>
+            <li class="list-group-item" style="padding: 0">
+                <a class="dropdown-item border-bottom notification <% if read %> msg-unread <% end %>" href="<%= notification.link %>" <% if read %> data-method="GET"
+                    <% end %> for="
+                    <%= Checking.find_by(user: current_user, notification: notification).id.to_i %>">
+                    <span class="text-<%= notification.level %>">
+                        <span class="weight500"><i class="vl_bell weight600 pr-2"></i>
+                            <%= notification.name %></span>
+                    </span>
+                    <span class="small float-right text-muted">
+                        <% if Time.now.strftime("%d").to_i - notification.created_at.strftime("%d").to_i == 0 %>
+                        Aujourd'hui à 
+                        <% elsif Time.now.strftime("%d").to_i - notification.created_at.strftime("%d").to_i == 1 %>
+                        Hier à 
+                        <% else %>
+                        <% end %>
+                        <%= notification.created_at.strftime("%H:%M") %></span>
+                    <div class="dropdown-message f12">
+                        <%= notification.description %>
+                    </div>
+                </a>
+            </li>
+            <% end %>
+        </ul>
+    </div>
+</div>
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+
+    $(`#notifications .notification`).click(function(event) {
+        let $ID = $(this).attr('for');
+        if ($ID != "" && !$(this).hasClass('msg-unread')) {
+            updateChecking($ID);
+        }
+        event.preventDefault();
+    });
+
+    function updateChecking(id) {
+        $auth_token = $(`input[name="authenticity_token"]`).attr('value');
+        $.ajax({
+                url: `/checkings/${id}`,
+                type: 'PATCH',
+                dataType: 'script',
+                data: {
+                    authenticity_token: $auth_token,
+                    id: id
+                }
+            })
+            .done(function() {
+                // console.log("success");
+            })
+            .fail(function() {
+                // console.log("error");
+                window.location.href = "/notifications";
+            })
+            .always(function() {
+                // console.log("complete");
+            });
+
+    }
+});
+</script>

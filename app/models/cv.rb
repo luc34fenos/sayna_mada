@@ -1,7 +1,7 @@
 class Cv < ApplicationRecord
 	belongs_to :student
 	
-	has_many :webs
+	has_many :swebs
 
 	has_and_belongs_to_many :languages
 

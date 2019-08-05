@@ -1,0 +1,15 @@
+<%
+	Notification.all.each do |notification|
+		if Checking.find_by(user: current_user, notification: notification).seen == false
+			@all_read = false
+			break 
+		else
+			@all_read = true
+		end
+	end
+%>
+if ("<%= @all_read %>") {
+	window.location.href = "/notifications";
+}
+// $icon = $(`#notif-icon .notification-alarm:first`);
+// $icon.hide('slow');

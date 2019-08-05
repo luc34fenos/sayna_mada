@@ -1,0 +1,40 @@
+$newWebForm = $(`#exampleModal4`);
+$newWebForm.modal("hide");
+
+$webs = $(`#webs`);
+$webs.append(`
+	<div id="<%= @sweb.id %>" class="sweb">
+        <span class="name"><%= image_tag "#{@sweb.name}.svg", class: "img-fluid", style: "width: 20px; height: 25px;" %></span>
+        <div class="float-right">
+            <a href="<%= @sweb.link %>"><%= @sweb.link %></a>
+            <a href="#" class="rmsweb" for="<%=@sweb.id%>"><i class="icon-close" aria-hidden="true"></i></a>
+		</div>
+	</div>
+`);
+
+$(`a.rmsweb`).click(function(event) {
+    event.preventDefault();
+    let $ID = $(this).attr('for'),
+        $DIV = $(`div#${$ID}`),
+        $CVID = $(`div.moncv:first`).attr('id');
+
+    removeSweb($DIV, $CVID, $ID);
+});
+
+function removeSweb(div, cv_id, id) {
+    let AUTH_TOKEN = $(`input[name="authenticity_token"]`).attr('value');
+
+    div.fadeOut('slow', function() {
+        div.remove();
+    });
+
+    $.ajax({
+        url: `/swebs/${id}`,
+        type: 'DELETE',
+        data: {
+            authenticity_token: AUTH_TOKEN,
+            'sweb[cv_id]': cv_id,
+            id: id
+        },
+    });
+}

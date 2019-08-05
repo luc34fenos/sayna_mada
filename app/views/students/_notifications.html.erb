@@ -1,0 +1,49 @@
+<a class="nav-link dropdown-toggle mr-lg-3" id="notif-icon" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <i class="vl_bell"></i>
+    <div class="notification-alarm"></div>
+</a>
+<div class="dropdown-menu dropdown-menu-right header-right-dropdown-width pb-0" aria-labelledby="notifications">
+    <h6 class="dropdown-header weight500">Notifications</h6>
+    <div class="dropdown-divider mb-0"></div>
+    <div id="notifications">
+        <a class="dropdown-item border-bottom default">
+            <span class="text-primary">
+                <span class="weight500"><i class="vl_bell weight600 pr-2"></i>Rien à signaler</span>
+            </span>
+            <span class="small float-right text-muted">
+                <%= Time.now.strftime("%H:%M") %></span>
+            <div class="dropdown-message f12">
+                Pas de nouvelles notifications pour le moment
+            </div>
+        </a>
+        <% notifications.each do |notification| %>
+        <% 	if Checking.find_by(user: current_user, notification: notification)
+					read = Checking.find_by(user: current_user, notification: notification).seen 
+				else
+					read = false
+				end 
+			%>
+        <a class="dropdown-item border-bottom notification <% if read %> msg-unread <% end %>" href="<%= notification.link %>" <% if read %> data-method="GET"
+            <% end %> for="
+            <%= Checking.find_by(user: current_user, notification: notification).id.to_i %>">
+            <span class="text-<%= notification.level %>">
+                <span class="weight500"><i class="vl_bell weight600 pr-2"></i>
+                    <%= notification.name %></span>
+            </span>
+            <span class="small float-right text-muted">
+                <% if Time.now.strftime("%d").to_i - notification.created_at.strftime("%d").to_i == 0 %>
+                Aujourd'hui à
+                <% elsif Time.now.strftime("%d").to_i - notification.created_at.strftime("%d").to_i == 1 %>
+                Hier à
+                <% else %>
+                <% end %>
+                <%= notification.created_at.strftime("%H:%M") %></span>
+            <div class="dropdown-message f12">
+                <%= notification.description %>
+            </div>
+        </a>
+        <% break if notifications.index(notification) == 2 %>
+        <% end %>
+    </div>
+    <a class="dropdown-item small" href="/notifications" data-method="GET">Tout afficher</a>
+</div>

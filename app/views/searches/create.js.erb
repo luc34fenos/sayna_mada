@@ -1,0 +1,43 @@
+// window.location.href = "/searches";
+	$(function() {
+		$(`#searchModal`).modal('hide');
+	    $(`body #main`).html(`
+	    	<div class="container">
+	    		<div id="result" class="pt-10 pb-10">
+					<% if @result.any? %>
+						<ul class="list-group">
+							<% @result.each do |user| %>
+								<% if user.student %>
+								<li class="list-group-item">
+									<tr>
+										<th><%= user.student.firstname %> <%= user.student.lastname %></th>
+										<td><a href="/monprofil/<%= user.student.id %>" data-method="GET">Son profil</a></td>
+										<td><a href="/moncv/<%= user.student.cv.id %>" data-method="GET">Son CV</a></td>
+									</tr>
+								</li>
+								<% elsif user.company %>
+								<li class="list-group-item">
+									<tr>
+										<th><%= user.company.name %></th>
+										<td><a href="/monprofile/<%= user.company.id %>" data-method="GET">Son profil</a></td>
+									</tr>
+								</li>
+								<% else %>
+								<li class="list-group-item">
+									<tr>
+										<th><%= user.username %></th>
+										<th><%= user.email %></th>
+									</tr>
+								</li>
+								<% end %>
+							<% end %>
+						</ul>
+					<% else %>
+						<div class="jumbotron text-center">
+							Aucun résultat n'a été trouvé.
+						<div>
+					<% end %>
+	    		</div>
+	    	</div>
+		`);
+	});

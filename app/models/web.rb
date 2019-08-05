@@ -1,4 +1,5 @@
 class Web < ApplicationRecord
-	has_one :cv
-  	has_one :company
+	validates_uniqueness_of :name
+  	
+  	belongs_to :company
 end

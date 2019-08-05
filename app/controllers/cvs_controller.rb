@@ -18,13 +18,13 @@ class CvsController < ApplicationController
   # GET /cvs/new
   def new
     @cv = Cv.new
-    @web = Web.new
   end
 
   # GET /cvs/1/edit
   def edit
     @student = @cv.student
     @webslist = webslist
+    @sweb = Sweb.new
   end
 
   # POST /cvs

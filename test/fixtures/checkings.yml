@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  notification: one
+  seen: false
+
+two:
+  user: two
+  notification: two
+  seen: false

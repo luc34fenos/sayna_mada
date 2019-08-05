@@ -1,8 +1,9 @@
 <div class="dropdown-item- px-3 py-2">
-    <img class="rounded-circle mr-2" src="/assets/img/avatar/avatar2.jpg" width="35" alt="" />
-    <span class="text-muted">
-        <%= student.firstname %>
-        <%= student.lastname %></span>
+    <% avatar = current_user.student.sexe == 'Homme' ? 'profilh.png' : 'profilf.png' %>
+    <% image_tag avatar, class: "rounded-circle mr-2", width: "35", alt: "" %>
+    <span class="text-muted text-capitalize">
+        <% student.firstname %>
+        <% student.lastname %></span>
 </div>
 <a class="dropdown-item" href="/mondashboard" data-method="GET"><i class="fa fa-dashboard"> Mon Dashboard</i></a>
 <div class="dropdown-divider"></div>
@@ -18,19 +19,19 @@
             <i class="ti-import"></i>
         </a>
     </div>
-	<div class="col-1 col-sm-1 col-md-1"></div>
+    <div class="col-1 col-sm-1 col-md-1"></div>
 </div>
 <a class="dropdown-item" href="/moncv/<%= student.cv.id %>/malm/<%= student.cv.cover_letter.id %>" data-method="GET"><i class="fa fa-file-o"> Ma lettre de motivation</i></a>
 <div class="row">
-    <div class="ml-3 col-8 col-sm-8 col-md-8" style="padding: 0;">
+    <div class="col-12 col-sm-12 col-md-12">
         <a class="dropdown-item" href="/moncv/<%= student.cv.id %>/malm/<%= student.cv.cover_letter.id %>/edit" data-method="GET"><i class="fa fa-file-text-o"> Editer Ma LM</i></a>
     </div>
-    <div class="col-2 col-sm-2 col-md-2" style="padding: 0;border-radius: 50%;text-align: -webkit-center;">
+    <!-- <div class="col-2 col-sm-2 col-md-2" style="padding: 0;border-radius: 50%;text-align: -webkit-center;">
         <a data-toggle="tooltip" data-placement="left" title="Exporter ma lettre" href="<%= cv_download_path(current_user.student.cv, format: "pdf") %>" data-method="GET" target="_blank" style="position: relative;top: 7px; padding-left: 1.5em;">
             <i class="ti-import"></i>
         </a>
-    </div>
-	<div class="col-1 col-sm-1 col-md-1"></div>
+    </div> -->
+    <div class="col-1 col-sm-1 col-md-1"></div>
 </div>
 <!-- <a class="dropdown-item" href="#">Inbox <span class="badge badge-primary">3</span></a>
 <a class="dropdown-item" href="#">Message <span class="badge badge-success">5</span></a> -->

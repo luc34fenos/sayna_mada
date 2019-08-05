@@ -6,47 +6,81 @@ $(function(){
 
     //Basic Validation
 
-    $( "#signupForm" ).validate( {
+    $( "#wizard-validation-form" ).validate( {
         rules: {
-            firstname: "required",
-            lastname: "required",
-            username: {
+            "student[firstname]": "required",
+            "student[lastname]": "required",
+            'user[username]': {
                 required: true,
                 minlength: 2
             },
-            password: {
+            'user[password]': {
                 required: true,
-                minlength: 5
+                minlength: 6
             },
-            confirm_password: {
+            'user[password_confirmation]': {
                 required: true,
-                minlength: 5,
-                equalTo: "#password"
+                minlength: 6,
+                equalTo: "#user_password"
             },
-            email: {
+            'user[email]': {
                 required: true,
                 email: true
             },
-            agree: "required"
+            'student[address]': "required",
+            'student[tel]': "required",
+            'student[lastname]': "required",
+            'student[firstname]': "required",
+            'student[legal_status]': "required",
+            'student[birthdate]': "required",
+            'cv[summary]': "required",
+            'cv[hobbies]': "required",
+
+            'company[address]': "required",
+            'company[tel]': "required",
+            'company[name]': "required",
+            'company[start_date]': "required",
+            'company[legal_status]': "required",
+            'company[activity_area]': "required",
+            'company[siret]': "required",
+            'city': "required",
+            'agree': "required"
         },
         messages: {
-            firstname: "Please enter your firstname",
-            lastname: "Please enter your lastname",
-            username: {
-                required: "Please enter a username",
-                minlength: "Your username must consist of at least 2 characters"
+            "student[firstname]": "Sois un peu sérieux 2 secondes",
+            "student[lastname]": "Sois un peu sérieux 2 secondes",
+            'user[username]': {
+                required: "Veuillez choisir un nouveau pseudo",
+                minlength: "Votre pseudo doit contenir au moins 2 caractères"
             },
-            password: {
-                required: "Please provide a password",
-                minlength: "Your password must be at least 5 characters long"
+            'user[password]': {
+                required: "Veuillez entrer un mot de passe",
+                minlength: "Votre mot de passe doit au moins contenir 6 caractères"
             },
-            confirm_password: {
-                required: "Please provide a password",
-                minlength: "Your password must be at least 5 characters long",
-                equalTo: "Please enter the same password as above"
+            'user[password_confirmation]': {
+                required: "Veuillez confirmer votre mot de passe",
+                minlength: "Votre mot de passe doit au moins contenir 6 caractères",
+                equalTo: "Veuillez entrer le même mot de passe que ci-dessus"
             },
-            email: "Please enter a valid email address",
-            agree: "Please accept our policy"
+            'user[email]': "Veuillez entrer une addresse email valide",
+            'student[address]': "Veuillez entrer une vraie addresse",
+            'student[tel]': "Veuillez entrer un numéro de téléphone",
+            'student[lastname]': "Veuillez entrer votre nom de famille",
+            'student[firstname]': "Veuillez entrer votre prénom",
+            'student[legal_status]': "Vous devez choisir",
+            'student[birthdate]': "Entrez votre date de naissance",
+            'cv[summary]': "Dites nous un peu plus sur vous",
+            'cv[hobbies]': "C'est pour qu'on puisse se faire un foot en salle un d'ces quatres.",
+
+            'company[address]': "Veuillez entrer une vraie addresse",
+            'company[tel]': "Veuillez entrer un numéro de téléphone",
+            'company[name]': "Nom obligatoire",
+            'company[start_date]': "Date de lancement requis",
+            'company[legal_status]': "Status légal obligatoire",
+            'company[activity_area]': "Secteur d'activité non valide",
+            'company[siret]': "Siret non valide",
+            'city': "Veuillez choisir au moins une ville",
+            'agree': "Please accept our policy"
         },
         errorElement: "em",
         errorPlacement: function ( error, element ) {

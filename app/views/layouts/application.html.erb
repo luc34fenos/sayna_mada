@@ -6,24 +6,44 @@
 </head>
 
 <body class="<%= controller_name %> <%= action_name %> header-fixed header-primary-color">
+    <% page_need_navbar = controller_name != "sessions" && controller_name != "registrations" && controller_name != "passwords" && controller_name != "confirmations" %>
     <%= render 'layouts/flash' %>
-    <% if controller_name != "sessions" && controller_name != "registrations" && controller_name != "passwords" && controller_name != "confirmations" %>
+    <% if page_need_navbar %>
     <%= render template: 'layouts/navbar' %>
     <% end %>
-    <% if user_signed_in? && current_user.status == "admin" %>
-    <section class="left-sidebar-fixed">
-        <div class="app-body">
-            <%= render 'layouts/leftnav' %>
-    <% end %>
-        
-        <div <% if controller_name != "sessions" && controller_name != "registrations" && controller_name != "passwords" && controller_name != "confirmations" %>class="pt-10"<% end %>>
+
+    <% if user_signed_in? %>
+        <div id="main">
+            <% case current_user.status %>
+                <% when "admin" %>
+                    <section class="left-sidebar-fixed">
+                        <div class="app-body">
+                            <%= render 'layouts/leftnav' %>
+                            <div class="content-wrapper">
+                                <%= yield %>
+                            </div>
+                            <%= render 'layouts/rightnav' %>
+                        </div>
+                    </section>
+                <% when "student" %>
+                    <div <% if page_need_navbar %>class="pt-10"<% end %>>
+                        <%= yield %>
+                    </div>
+                <% when "company" %>
+                    <div <% if page_need_navbar %>class="pt-10"<% end %>>
+                        <%= yield %>
+                    </div>
+                <% when "guest" %>
+                    <div <% if page_need_navbar %>class="pt-10"<% end %>>
+                        <%= yield %>
+                    </div>
+
+            <% end %>
+        </div>
+    <% else %>
+        <div <% if page_need_navbar %>class="pt-10"<% end %>>
             <%= yield %>
         </div>
-
-    <% if user_signed_in? && current_user.status == "admin" %>
-            <%= render 'layouts/rightnav' %>
-        </div>
-    </section>
     <% end %>
 </body>
 

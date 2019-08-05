@@ -1,6 +1,7 @@
 class CoverLettersController < ApplicationController
   before_action :set_cover_letter, only: [:show, :edit, :create, :update, :destroy]
   before_action :set_cv, only: [:show, :edit, :create, :update, :destroy]
+  before_action :authenticate_student, only: [:show, :edit, :create, :update, :destroy]
 
   def index
   end
@@ -36,5 +37,11 @@ class CoverLettersController < ApplicationController
   end
   def set_cv
     @cv = @cover_letter.cv
+  end
+  def authenticate_student
+    unless current_user.student.cv.cover_letter == @cover_letter
+      redirect_to root_path,
+      alert: "Bien essayer petit malin"
+    end
   end
 end

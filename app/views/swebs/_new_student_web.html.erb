@@ -1,0 +1,66 @@
+<% content_for :head_tag do %>
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+    let btn = $(`#create-sweb`);
+
+    btn.click(function(event) {
+        let AUTH_TOKEN = $(`input[name="authenticity_token"]`).val(),
+            $CVID = $(`div.moncv:first`).attr('id'),
+            name = $(`select[name="sweb[name]"]`).val(),
+            link = $(`input[name="sweb[link]"]`).val();
+        if (name != "" && link != "") {
+            $.ajax({
+                url: '/swebs',
+                type: 'POST',
+                dataType: 'script',
+                data: {
+                    authenticity_token: AUTH_TOKEN,
+                    'sweb[cv_id]': $CVID,
+                    'sweb[name]': name,
+                    'sweb[link]': link
+                }
+            });
+        }
+    });
+});
+</script>
+<% end %>
+<div class="col-md-12" style="padding: 1% 0 0 0;">
+    <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#exampleModal4" data-whatever="@mdo"><i class="fa fa-link"> Ajouter un lien</i></button>
+    <div class="modal fade" id="exampleModal4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel5" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel5">Ajouter un lien</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group row">
+                        <div class="col-sm-12">
+                            <select class="form-control" id="option_s1" name="sweb[name]" style="width: -webkit-fill-available;">
+                                <option value="Site web"><i class='ti-link'> Site web</i></option>
+                                <% webslist.each do |web| %>
+                                <option value="<%= web.html_safe %>">
+                                    <%= web.html_safe %>
+                                </option>
+                                <% end %>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">@</span>
+                        </div>
+                        <input type="text" id="sweb_link" name="sweb[link]" class="form-control" placeholder="https://www.exemple.com">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                    <button type="button" class="btn btn-primary" id="create-sweb">Enregistrer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

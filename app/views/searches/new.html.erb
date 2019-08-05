@@ -1,0 +1,58 @@
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+    ENTERKEY = 13;
+    $si = $(`#search_name`);
+    $si.keydown(function(event) {
+        // if (event.keyCode == ENTERKEY) {
+        //     let auth_token = $(`input[name="authenticity_token"]`).attr('value'),
+        //         name = $(this).val();
+        //     if (name != "") {
+        //         $.ajax({
+        //             url: '/searches',
+        //             type: 'POST',
+        //             dataType: 'script',
+        //             data: {
+        //                 authenticity_token: auth_token,
+        //                 'search[name]': name
+        //             }
+        //         });
+
+        //     }
+        // }
+    });
+
+    $btn = $(`#search-btn`);
+    $btn.click(function(event) {
+        let auth_token = $(`input[name="authenticity_token"]`).attr('value'),
+            values = $(`#option_s3`).val();
+
+        if (values != [] && values != "") {
+            $.ajax({
+                url: '/searches',
+                type: 'POST',
+                dataType: 'script',
+                data: {
+                    authenticity_token: auth_token,
+                    'search[name]': values
+                }
+            });
+
+        }
+    });
+});
+</script>
+<%= form_with(model: @search, html: { id: "search-form" })do |f| %>
+<div class="modal modal-search fade" id="searchModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <% if current_user.status == "admin" %>
+                <%= render 'admins/search' %>
+            <% elsif current_user.company %>
+                <%= render 'companies/search' %>
+            <% elsif current_user.student %>
+                <%= render 'students/search' %>
+            <% end %>
+        </div>
+    </div>
+</div>
+<% end %>
