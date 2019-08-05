@@ -9,7 +9,15 @@ Rails.application.routes.draw do
     resources 'cover_letters'
   end
   resources :students, only: [:index, :show, :edit, :update, :destroy]
-  root 'home#index'
+
+  ############################# vitrine ###############################
+  root 'vitrines#index'
+
+  get '/equipe', to: 'vitrines#equipe'
+  get '/simplon', to: 'vitrines#simplon'
+  get '/thp', to: 'vitrines#thp'
+
+  #############################   end   ###############################
 
   get '/mondashboard', to: 'dashboard#show'
 

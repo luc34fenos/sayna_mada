@@ -1,0 +1,51 @@
+<!-- Preloader -->
+<div id="loader-wrapper">
+    <div id="loader"></div>
+    <div class="loader-section section-left"></div>
+    <div class="loader-section section-right"></div>
+</div>
+<!--========={ EcoStudy Nav }========-->
+<header id="header" class="header_1 header_2">
+    <div class="header-top">
+        <div class="eco_nav">
+            <div class="container">
+                <nav class="navbar navbar-expand-md navbar-light bg-faded">
+                    <a class="navbar-brand" href="<%= root_path %>"><img src="images/sayna.png" alt="logo"></a>
+                    <div class="collapse navbar-collapse main-menu" id="navbarSupportedContent">
+                        <ul class="navbar-nav nav lavalamp ml-auto menu">
+                            <li class="nav-item menu-item current-menu-item">
+                                <a href="index.html" class='nav-link <%= @activer == "index" ? "active" : " " %>'>Acceuil</a>
+                            </li>
+
+                            <li class="nav-item single_nav">
+                                <a href="#" class='nav-link <%= (@activer == "thp" || @activer == "simplon") ? "active" : " " %>'>Progamme</a>
+                                <ul class="navbar-nav nav mx-auto">
+                                    <li class="nav-item">
+                                        <a href="<%= thp_path %>" class='nav-link <%= @activer == "thp" ? "active" : " " %>'>T.H.P</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="<%= simplon_path %>" class='nav-link <%= @activer == "simplon" ? "active" : " " %>'>Simplon</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link smooth-scroll" href="#cont">Contact</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<%= equipe_path %>" class='nav-link <%= @activer == "equipe" ? "active" : " " %>'>Equipe</a>
+                            </li>
+
+                            <li class="nav-item single_nav">
+                                <a href="#" class="nav-link">Utilisateur</a>
+                                <ul class="navbar-nav nav mx-auto">
+                                    <li class="nav-item"><a href="<%= new_user_session_path %>" class="nav-link">Se connecter</a></li>
+                                    <li class="nav-item"><a href="<%= new_user_registration_path %>" class="nav-link">S'inscrire</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </nav><!-- END NAVBAR -->
+            </div>
+        </div>
+    </div>
+</header> <!-- End nav -->
