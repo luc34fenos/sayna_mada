@@ -75,7 +75,7 @@
                 </div>
                 <div class="card card-shadow mb-4">
                     <div class="card-header border-0">
-                        <div class="custom-title-wrap bar-danger">
+                        <div class="custom-title-wrap bar-primary">
                             <div class="custom-title">Profil</div>
                         </div>
                     </div>
@@ -108,7 +108,7 @@
                 </div>
                 <div class="card card-shadow mb-4">
                     <div class="card-header border-0">
-                        <div class="custom-title-wrap bar-danger">
+                        <div class="custom-title-wrap bar-primary">
                             <div class="custom-title">Connaissances Techniques</div>
                         </div>
                     </div>
@@ -138,7 +138,7 @@
                 </div>
                 <div class="card card-shadow mb-4">
                     <div class="card-header border-0">
-                        <div class="custom-title-wrap bar-success">
+                        <div class="custom-title-wrap bar-primary">
                             <div class="custom-title">Mes liens</div>
                         </div>
                     </div>
@@ -315,3 +315,10 @@
     </div>
 </div>
 <!--/main content wrapper-->
+<% unless @student.cv.backgrounds.any? && @student.cv.experiences.any? && @student.cv.programming_languages.any? && @student.cv.languages.any? && @student.cv.skills.any? %>
+<a style="color: white;" href="/moncv/<%= @student.cv.id %>/edit" data-method="GET">
+    <div class="update-cv" style="position: fixed; bottom: 3%; right: 3%; z-index: 999;">
+        <button class="btn btn-danger form-pill"><span style=""><i class="ti-alert"></i> Editer CV</span></button>
+    </div>
+</a>
+<% end %>

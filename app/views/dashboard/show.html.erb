@@ -6,9 +6,7 @@
 <%= render template: 'dashboard/company_dashboard1' %>
 <% elsif current_user.company && current_user.company.is_activated? %>
 <%= render template: 'dashboard/company_dashboard2' %>
-<% elsif current_user.status == "staff" %>
-<%= render template: 'dashboard/staff_dashboard' %>
-<% elsif current_user.status == "admin" %>
+<% elsif current_user.status == "admin" || current_user.status == "staff" %>
 <%= render template: 'admins/dashboard' %>
 <% else %>
 <% end %>

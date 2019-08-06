@@ -31,6 +31,7 @@ function removeSweb(div, cv_id, id) {
     $.ajax({
         url: `/swebs/${id}`,
         type: 'DELETE',
+        dataType: 'script',
         data: {
             authenticity_token: AUTH_TOKEN,
             'sweb[cv_id]': cv_id,

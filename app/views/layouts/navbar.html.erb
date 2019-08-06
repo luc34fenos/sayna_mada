@@ -43,7 +43,7 @@ jQuery(document).ready(function($) {
 <% end %>
 <header class="app-header">
     <div class="branding-wrap">
-        <% if user_signed_in? && current_user.status == "admin" %>
+        <% if user_signed_in? && (current_user.status == "admin" || current_user.status == "staff") %>
         <!--left nav toggler start-->
         <a class="nav-link mt-2 float-left js_left-nav-toggler pos-fixed" href="javaScript:;">
             <i class="ti-align-right"></i>
@@ -119,7 +119,7 @@ jQuery(document).ready(function($) {
                 <%= render 'students/navbar', student: current_user.student %>
                 <% elsif current_user.company %>
                 <%= render 'companies/navbar', company: current_user.company %>
-                <% elsif current_user.status == "admin" %>
+                <% elsif current_user.status == "admin" || current_user.status == "staff" %>
                 <%= render 'admins/navbar' %>
                 <% else %>
                 <% end %>

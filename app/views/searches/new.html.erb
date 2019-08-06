@@ -45,7 +45,7 @@ jQuery(document).ready(function($) {
 <div class="modal modal-search fade" id="searchModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <% if current_user.status == "admin" %>
+            <% if current_user.status == "admin" || current_user.status == "staff" %>
                 <%= render 'admins/search' %>
             <% elsif current_user.company %>
                 <%= render 'companies/search' %>

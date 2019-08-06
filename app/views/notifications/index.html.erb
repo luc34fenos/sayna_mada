@@ -33,9 +33,9 @@
                     </span>
                     <span class="small float-right text-muted">
                         <% if Time.now.strftime("%d").to_i - notification.created_at.strftime("%d").to_i == 0 %>
-                        Aujourd'hui à 
+                        Aujourd'hui à
                         <% elsif Time.now.strftime("%d").to_i - notification.created_at.strftime("%d").to_i == 1 %>
-                        Hier à 
+                        Hier à
                         <% else %>
                         <% end %>
                         <%= notification.created_at.strftime("%H:%M") %></span>
@@ -62,24 +62,24 @@ jQuery(document).ready(function($) {
     function updateChecking(id) {
         $auth_token = $(`input[name="authenticity_token"]`).attr('value');
         $.ajax({
-                url: `/checkings/${id}`,
-                type: 'PATCH',
-                dataType: 'script',
-                data: {
-                    authenticity_token: $auth_token,
-                    id: id
-                }
-            })
-            .done(function() {
-                // console.log("success");
-            })
-            .fail(function() {
-                // console.log("error");
-                window.location.href = "/notifications";
-            })
-            .always(function() {
-                // console.log("complete");
-            });
+            url: `/checkings/${id}`,
+            type: 'PATCH',
+            dataType: 'script',
+            data: {
+                authenticity_token: $auth_token,
+                id: id
+            }
+        })
+        .done(function() {
+            // console.log("success");
+        })
+        .fail(function() {
+            // console.log("error");
+            window.location.href = "/notifications";
+        })
+        .always(function() {
+            // console.log("complete");
+        });
 
     }
 });

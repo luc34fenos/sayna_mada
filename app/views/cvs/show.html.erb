@@ -19,7 +19,7 @@
                     <label for="cv_summary">Résumé</label>
                 </h2>
                 <div id="summaries" class="summary field">
-                    <textarea id="cv_summary" name="cv[summary]" value="" class= "form-control" readonly><%= @cv.summary %></textarea>
+                    <textarea id="cv_summary" name="cv[summary]" value="" class="form-control" readonly><%= @cv.summary %></textarea>
                 </div>
             </div>
         </section>
@@ -124,10 +124,12 @@
                     <h2><label for="sweb_name">Mes liens</label></h2>
                     <div id="swebs">
                         <% @cv.swebs.each do |sweb| %>
-                            <div id="<%= sweb.id %>" class="sweb">
-                                <span class="name"><%= image_tag "#{sweb.name}.svg", class: "img-fluid", style: "width: 20px; height: 25px;" %></span>
-                                <a href="<%= sweb.link %>"><%= sweb.link %></a>
-                            </div>
+                        <div id="<%= sweb.id %>" class="sweb">
+                            <span class="name">
+                                <%= image_tag "#{sweb.name}.svg", class: "img-fluid", style: "width: 20px; height: 25px;" %></span>
+                            <a href="<%= sweb.link %>">
+                                <%= sweb.link %></a>
+                        </div>
                         <% end %>
                     </div>
                 </div>
@@ -172,7 +174,8 @@
                             <% @cv.skills.each do |skill| %>
                             <% if skill %>
                             <div class="tag skill">
-                                <span class="name"><%=skill.name%></span>
+                                <span class="name">
+                                    <%=skill.name%></span>
                             </div>
                             <% end %>
                             <% end %>
@@ -225,3 +228,10 @@
         <hr>
     </div>
 </div>
+<% unless @student.cv.backgrounds.any? && @student.cv.experiences.any? && @student.cv.programming_languages.any? && @student.cv.languages.any? && @student.cv.skills.any? %>
+<a style="color: white;" href="/moncv/<%= @student.cv.id %>/edit" data-method="GET">
+    <div class="update-cv" style="position: fixed; bottom: 3%; right: 3%; z-index: 999;">
+        <button class="btn btn-danger form-pill"><span style=""><i class="ti-alert"></i> Editer CV</span></button>
+    </div>
+</a>
+<% end %>

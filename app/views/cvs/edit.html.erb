@@ -529,8 +529,7 @@ jQuery(document).ready(function($) {
                 </div>
                 <div>
                     <h2><label for="web_name">Mes liens</label></h2>
-                    <% if @cv.swebs.any? %>
-                    <div id="webs" style="border: 1px solid;padding: 2%;border-radius: 3px;">
+                    <div id="webs" style="padding: 2%;border-radius: 3px;">
                         <% @cv.swebs.each do |sweb| %>
                             <div id="<%= sweb.id %>" class="sweb">
                                 <span class="name"><%= image_tag "#{sweb.name}.svg", class: "img-fluid", style: "width: 20px; height: 25px;" %></span>
@@ -541,7 +540,6 @@ jQuery(document).ready(function($) {
                             </div>
                         <% end %>
                     </div>
-                    <% end %>
                     <%= render 'swebs/new_student_web', sweb: @sweb, webslist: @webslist %>
                 </div>
             </section>

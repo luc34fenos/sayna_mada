@@ -1,3 +1,4 @@
+<% if @notifications.any? && there_is_a_new %>
 <%
 unread = []
 @notifications.each do |notification| 
@@ -16,7 +17,6 @@ $icon.html(`
 $icon.html(``);
 <% end %>
 $notificationsList = $(`#notifications`);
-<% if there_is_a_new %>
 $notificationsList.html(`
 	<% @notifications.each do |notification| %>
 			<% 	if Checking.find_by(user: current_user, notification: notification)
