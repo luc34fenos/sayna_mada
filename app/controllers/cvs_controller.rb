@@ -1,4 +1,5 @@
 class CvsController < ApplicationController
+  include ApplicationHelper
   before_action :set_cv, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_student, only: [:edit, :update, :destroy]
 
@@ -17,11 +18,13 @@ class CvsController < ApplicationController
   # GET /cvs/new
   def new
     @cv = Cv.new
+    @web = Web.new
   end
 
   # GET /cvs/1/edit
   def edit
     @student = @cv.student
+    @webslist = webslist
   end
 
   # POST /cvs
@@ -46,7 +49,7 @@ class CvsController < ApplicationController
     respond_to do |format|
       if @cv.update(cv_params)
         #add_exp_skill_lg_plg(@cv)
-        format.html { redirect_to "/moncv/#{@cv.id}", notice: 'Cv was successfully updated.' }
+        format.html { redirect_to "/moncv/#{@cv.id}", notice: 'Mon CV a bien été mis à jour.' }
         format.json { render :show, status: :ok, location: @cv }
         format.js
       else

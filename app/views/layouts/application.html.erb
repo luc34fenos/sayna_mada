@@ -2,12 +2,22 @@
 <html>
 
 <head>
-    <%= render 'layouts/head' %>
+    <% if controller_name != 'vitrines' %>
+        <%= render 'layouts/head' %>
+    <% else %>
+        <%= render 'layouts/head2' %>
+    <% end %>
 </head>
 
 <body class="<%= controller_name %> <%= action_name %> header-fixed header-primary-color">
     <%= render 'layouts/flash' %>
-    <% if controller_name != "sessions" && controller_name != "registrations" %>
+<<<<<<< HEAD
+    <% if controller_name == "vitrines" %>
+        <%= render template: 'layouts/navbar2' %>
+
+        <div class="pt-10">
+=======
+    <% if controller_name != "sessions" && controller_name != "registrations" && controller_name != "passwords" && controller_name != "confirmations" %>
     <%= render template: 'layouts/navbar' %>
     <% end %>
     <% if user_signed_in? && current_user.status == "admin" %>
@@ -16,15 +26,34 @@
             <%= render 'layouts/leftnav' %>
     <% end %>
         
-        <div class="pt-10">
+        <div <% if controller_name != "sessions" && controller_name != "registrations" && controller_name != "passwords" && controller_name != "confirmations" %>class="pt-10"<% end %>>
+>>>>>>> bd99a71f5eed52a16609d886a28e307d88b696fa
             <%= yield %>
         </div>
 
-    <% if user_signed_in? && current_user.status == "admin" %>
-            <%= render 'layouts/rightnav' %>
-        </div>
-    </section>
+        <%= render 'layouts/foot' %>
+    <% else %>
+        <% if controller_name != "sessions" && controller_name != "registrations"%>
+            <%= render template: 'layouts/navbar' %>
+        <% end %>
+
+        <% if user_signed_in? && current_user.status == "admin" %>
+            <section class="left-sidebar-fixed">
+                <div class="app-body">
+                    <%= render 'layouts/leftnav' %>
+        <% end %>
+
+            <div class="pt-10">
+                <%= yield %>
+            </div>
+
+        <% if user_signed_in? && current_user.status == "admin" %>
+                    <%= render 'layouts/rightnav' %>
+                </div>
+            </section>
+        <% end %>
     <% end %>
+
 </body>
 
 </html>
