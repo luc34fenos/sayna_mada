@@ -1,129 +1,355 @@
 <% content_for :head_tag do %>
-<style type="text/css">
-@page {
-    size: 7in 9.25in;
-    margin: 27mm 16mm 27mm 16mm;
-}
 
-#monprofile .title {
-    text-decoration: underline;
-}
-</style>
+
+
+
 <% end %>
-<div id="monprofile" class="container" style="border-right: 4px double;border-top: 1px solid;border-bottom: 1px solid;border-left: 5em solid; box-shadow: 5px 5px 30px 10px black; margin-bottom: 10%;">
-    <div class="row">
-        <section class="">
-            <h2 style="text-align: -webkit-center;font-weight: bolder;">Company</h2>
-        </section>
-        <section class="content col-md-10">
-            <section class="infos container-fluid">
-                <section>
-                    <div class="title">
-                        <h3>Mes identifiants</h3>
-                    </div>
-                    <div class="content">
-                        <ul>
-                            <li><strong>Nom : </strong>
-                                <%= @company.name %>
-                            </li>
-                            <li><strong>Addresse : </strong>
-                                <%= @company.address %>
-                                <%= @company.cities.first.name %>
-                            </li>
-                            <li><strong>Contact : </strong>
-                                <%= @company.tel %>
-                            </li>
-                            <li><strong>Status legal : </strong>
-                                <%= @company.legal_status %>
-                            </li>
-                            <% if @company.staff.any? %>
-                            <li>
-                                <strong>Personne à contacter : </strong>
-                                <ul>
-                                    <% @company.staff.each do |staf| %>
-                                    <li>
-                                        <%= staf.first_name %>
-                                        <%= staf.last_name %>
-                                    </li>
-                                    <li>
-                                        <%= staf.job %>
-                                    </li>
-                                    <li><a href="mailto:<%= staf.email %>" target="_blank">
-                                            <%= staf.email %></a></li>
-                                    <li>
-                                        <%= staf.tel %>
-                                    </li>
-                                    <% break %>
-                                    <% end %>
-                                </ul>
-                            </li>
-                            <% end %>
-                            <% if @company.webs.any? %>
-                            <li><strong>Site web : </strong><mark><a href="<%= @company.webs.first.link %>" target="_blank">
-                                        <%= @company.webs.first.link %></a></mark></li>
-                            <% end %>
-                        </ul>
-                    </div>
-                </section>
-                <section>
-                    <div class="title">
-                        <h3>Détails commerciaux</h3>
-                    </div>
-                    <div class="content">
-                        <ul>
-                            <li><strong>Date de création : </strong>
-                                <%= @company.start_date %>
-                            </li>
-                            <li><strong>Secteur d'activité : </strong>
-                                <%= @company.activity_area %>
-                            </li>
-                            <li><strong>Siret : </strong>
-                                <%= @company.siret %>
-                            </li>
-                        </ul>
-                    </div>
-                </section>
-                <section>
-                    <div class="title">
-                        <h3>Capacité d'affaires</h3>
-                    </div>
-                    <div class="content">
-                        <ul>
-                            <li><strong>Ressources humaines (
-                                    <%= @company.staff.length %>)</strong>
-                                <% if @company.staff.any? %>
-                                <ul>
-                                    <% @company.staff.each do |staf| %>
-                                    <li>
-                                        <%= staf.first_name %>
-                                        <%= staf.last_name %> (
-                                        <%= staf.job %>)</li>
-                                    <% end %>
-                                </ul>
-                                <% end %>
-                            </li>
-                            <li><strong>Financial</strong>
-                                <ul>
-                                    <li>Financial Circumstances of Business (Optional)</li>
-                                </ul>
-                            </li>
-                            <li><strong>Technical</strong>
-                                <ul>
-                                    <li>Company Capacity for the Project in Terms of Qualifications and Certifications</li>
-                                </ul>
-                            </li>
-                            <li><strong>Autre</strong>
-                                <ul>
-                                    <li>
-                                        <p>
-                                            <%= @company.other %>
-                                        </p>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                </section>
-            </section>
-    </div>
-</div>
+<body class="left-sidebar-fixed" style="margin-top: 0px;">
+                <div class="app-body">
+                    <!--main content wrapper-->
+                        <div class="content-wrapper" style="margin-left: 0px ; margin-top: -80px  ">
+                            <div class="content-wrapper" style="margin-top: -86px;" >
+                               <div class="container-fluid">
+
+                                    <div class="row">
+                                       <div class="col-12">
+                                           <div class="card card-shadow mb-4 p-md-5">
+                                               <div class="card-body">
+                                                    <div class="row py-4" style="margin-bottom: -104px;">
+                                                        <div class="col-sm-6" style="margin-bottom: 100px ; color: #2B3133;" >
+                                                            <img src="/assets/profilh.png"  alt="" style="margin-top: 50px;margin-left:90px;margin-bottom:20px "/>
+                                                            <br>
+                                                            <h1  ><%= @company.name %></h1>
+                                                                <div class="rattings mb-4 " style="margin-bottom: 20px" >
+                                                                  <% @company.webs.each do |page| %>
+                                                                  <a href="<%= page.link %>" class="<%= page.name %>" style="font-size: 25px; color: #737E82; margin-left: 20px; ">   </a>
+                                                                  <% end %>
+                                                                </div>
+                                                        </div>
+                                                              <div class="col-sm-6">
+                                                                  <div class="card card-shadow mb-4" style="border-radius: 30px; margin-top: 100px ;box-shadow: 0px 10px 40px 0px rgba(3, 3, 3, 0.3);">
+
+                                                                    <div class="card-body" >
+                                                                        <blockquote class="blockquote">
+                                                                            <p class="mb-0"><%= @company.other %></p>
+                                                                            <footer class="blockquote-footer"> <cite title="Source Title"><%= @company.name %></cite></footer>
+                                                                        </blockquote>
+                                                                    </div>
+
+
+                                                                  </div>
+
+                                                              </div>
+
+
+                                                    </div>
+                                                </div>
+
+                                           </div>
+                                      </div>
+
+                                    </div>
+                                </div>
+                                    <div class="row" style="margin-left: 15px; margin-right: 15px" >
+                                          <div class="col-md-4">
+                                            <div class=" profile-info-position ">
+                                              <div class="card card-shadow mb-4 ">
+
+                                                <div class="custom-title-wrap bar-danger">
+                                                  <div class="custom-title" style="margin-left: 20px">Mes identifiant</div>
+                                                </div>
+                                                <div class="card-body">
+                                                  <div class="row f12 mb-3">
+                                                    <div class="col-5">address :</div>
+                                                    <div class="col-7">
+                                                      <div class="row">
+                                                        <div class="col-3"> : </div>
+                                                        <div class="col-9">
+                                                          <p><%= @company.address %></p>
+                                                        </div>
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                  <div class="row f12 mb-3">
+                                                    <div class="col-5">legal_status</div>
+                                                    <div class="col-7">
+                                                      <div class="row">
+                                                        <div class="col-3">:</div>
+                                                        <div class="col-9">
+                                                          <p><%= @company.legal_status %></p>
+                                                        </div>
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                  <div class="row f12 mb-3">
+                                                    <div class="col-5">tel</div>
+                                                    <div class="col-7">
+                                                      <div class="row">
+                                                        <div class="col-3">:</div>
+                                                        <div class="col-9">
+                                                          <p><%= @company.tel %></p>
+                                                        </div>
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                  <div class="row f12">
+                                                    <div class="col-5">siret</div>
+                                                    <div class="col-7">
+                                                      <div class="row">
+                                                        <div class="col-3">:</div>
+                                                        <div class="col-9">
+                                                          <p><%= @company.siret %></p>
+                                                        </div>
+                                                      </div>
+                                                    </div>
+                                                  </div>
+
+                                                </div>
+                                              </div>
+                  <% if @company.staff.any? %>
+                        <div class="card card-shadow mb-4">
+                             <div class="card-header border-0">
+
+                                 <div class="custom-title-wrap bar-primary">
+                                     <div class="custom-title">Staff</div>
+                                 </div>
+                             </div>
+                             <div class="card-body">
+                                 <div class="table-responsive">
+                                     <table class="table">
+                                         <thead>
+                                         <tr>
+                                           <th scope="col">Profil</th>
+                                             <th scope="col">Nom</th>
+                                             <th scope="col">email</th>
+                                             <th scope="col">Tel</th>
+                                             <th scope="col">Posts</th>
+
+                                         </tr>
+                                         </thead>
+                                           <% @company.staff.each do |staf| %>
+                                         <tbody>
+                                         <tr>
+                                           <td><img class="rounded-circle" src="/assets/profilh.png" width="50px" alt=""/></td>
+                                             <td><%= staf.first_name %> <%= staf.last_name %></td>
+                                             <td><%= staf.email %></td>
+                                             <td><%= staf.tel %></td>
+                                             <td><%= staf.job %></td>
+                                         </tr>
+                                         </tbody>
+                                           <% end %>
+                                     </table>
+                                 </div>
+                             </div>
+                         </div>
+                      <% end %>
+
+                                            </div>
+                                          </div>
+
+                                          <div class="col-md-8">
+                                          <div class="card card-shadow mb-4">
+
+                                            <ul class="nav nav-tabs nav-fill mb-4" role="tablist" >
+                                              <li class="nav-item">
+                                                <a class="nav-link active" data-toggle="tab" href="#tab-j_1"> <i class="fa fa-home pr-2"></i> Publication </a>
+                                              </li>
+                                              <li class="nav-item">
+                                                <a class="nav-link" data-toggle="tab" href="#tab-j_2"> Historique</a>
+                                              </li>
+                                            </ul>
+
+                                            <div class="card-body" style="height: 700px;  overflow: scroll;">
+
+
+                                                <div class="tab-content">
+                                                  <div class="tab-pane active" id="tab-j_1" role="tabpanel">
+                                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal2">
+                                                             Publier
+                                                         </button>
+                                                         <br>
+                                                         <!-- Modal -->
+                                                         <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+                                                             <div class="modal-dialog" role="document">
+                                                                 <div class="modal-content">
+                                                                     <div class="modal-header">
+                                                                         <h5 class="modal-title" id="exampleModalLabel1">Modal title</h5>
+                                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                             <span aria-hidden="true">&times;</span>
+                                                                         </button>
+                                                                     </div>
+                                                                     <div class="modal-body">
+                                                                       <%= form_with(model: @post, remote: true, id: 'form_post') do |form| %>
+
+                                                                       <div class="form-group row">
+                                                                           <label class="col-sm-4 control-label" for="object">object</label>
+                                                                           <div class="col-sm-8">
+                                                                             <%= form.text_field :object , class: 'form-control', placeholder: "object" ,id: "object" %>
+                                                                           </div>
+                                                                       </div>
+                                                                       <div class="form-group row">
+                                                                           <label class="col-sm-4 control-label" for="object">content</label>
+                                                                           <div class="col-sm-8">
+                                                                             <%= form.text_field :content , class: 'form-control', placeholder: "content" ,id: "content" %>
+                                                                           </div>
+                                                                       </div>
+                                                                       <input type="hidden" name="company_id" value="<%= @company.id%>">
+                                                                       <div class="actions">
+                                                                       </div>
+
+                                                                     </div>
+                                                                     <div class="modal-footer">
+                                                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                         <%= form.submit "OK",class: "btn btn-primary" %>
+                                                                     </div>
+                                                                 </div>
+                                                             </div>
+                                                              <% end %>
+                                                         </div>
+
+                                                     <div class="post_append">
+                                                     </div>
+                                                     <br>
+                                                     <% @company.posts.each do |post| %>
+                                                     <div class="card" style="width: 800px;">
+                                                       <div class="card-body">
+                                                         <div class="row">
+                                                           <div class="col-md-4">
+                                                             <img class="rounded-circle" src="/assets/profilh.png" width="20px" alt=""/>
+                                                           </div>
+                                                           <div class="col-md-6">
+                                                             <h5 class="card-title"> <%= @company.name %> </h5>
+                                                           </div>
+                                                         </div>
+                                                         <h6 class="card-subtitle mb-2 text-muted" style="margin-top: 10px;"><%= post.object %></h6>
+                                                         <p class="card-text"><%= post.content %></p>
+                                                         <a href="#" class="card-link">Card link</a>
+                                                         <a href="#" class="card-link">Another link</a>
+                                                       </div>
+                                                     </div>
+                                                     <br>
+                                                     <% end %>
+                                                </div>
+                                                <div class="tab-pane" id="tab-j_2" role="tabpanel" style="max-height: 1000px">
+                                                  <div class="col-xl-12">
+                                                    <div class="card">
+                                                      <div class="card-body">
+                                                        <div class="timeline-title btn-pill text-muted d-inline-block px-3 py-1 mb-5 mx-5"><h1> activité </h1></div>
+                                                        <ul class="list-unstyled base-timeline activity-timeline">
+
+                                                          <li class="">
+                                                            <div class="timeline-icon bg-danger">
+                                                              <i class="fa fa-tasks"></i>
+                                                            </div>
+                                                            <div class="act-time">Today</div>
+                                                            <div class="base-timeline-info">
+                                                              <a href="#" class="text-uppercase weight700  text-danger">Task Added</a>
+                                                              <span class="d-block">You have added task #26 Successfully to the project “Agile CRM”</span>
+                                                            </div>
+                                                            <small class="text-muted">
+                                                              28 mins ago
+                                                            </small>
+                                                          </li>
+                                                          <li class="">
+                                                            <div class="timeline-icon bg-success">
+                                                              <i class="fa fa-download"></i>
+                                                            </div>
+                                                            <div class="base-timeline-info">
+                                                              <a href="#" class="text-uppercase weight700 f12 text-success">Download Complete</a>
+                                                              <span class="d-block">You downloaded the pdf documentation file of Agile CRM</span>
+                                                            </div>
+                                                            <small class="text-muted">
+                                                              45 mins ago
+                                                            </small>
+                                                          </li>
+                                                          <li class="">
+                                                            <div class="timeline-icon bg-primary">
+                                                              <i class="fa fa-handshake-o"></i>
+                                                            </div>
+                                                            <div class="act-time">Yesterday</div>
+                                                            <div class="base-timeline-info">
+                                                              <a href="#" class="text-uppercase weight700 f12 text-primary">Deal Added</a>
+                                                              <span class="d-block">Final deal with ABC Company is done and added to the “Upcoming deal” list</span>
+                                                            </div>
+                                                            <small class="text-muted">
+                                                              12 mins ago
+                                                            </small>
+                                                          </li>
+                                                          <li class="">
+                                                            <div class="timeline-icon">
+                                                              <img src="assets/img/avatar/avatar2.jpg" alt=""/>
+                                                            </div>
+                                                            <div class="base-timeline-info">
+                                                              <a href="#" class="text-uppercase weight700 f12 text-info">Charlie Johnson</a>
+                                                              <span class="d-block">joined DashLab last week.</span>
+                                                            </div>
+                                                            <small class="text-muted">
+                                                              3 days ago
+                                                            </small>
+                                                          </li>
+                                                          <li class="">
+                                                            <div class="timeline-icon bg-purple">
+                                                              <i class="fa fa-check"></i>
+                                                            </div>
+                                                            <div class="act-time">29 January</div>
+                                                            <div class="base-timeline-info">
+                                                              <a href="#" class="text-uppercase weight700 f12 text-purple">Task Complete</a>
+                                                              <span class="d-block">5 tasks for 29 january is completed successfully and no task pending</span>
+                                                            </div>
+                                                            <small class="text-muted">
+                                                              07:00 PM
+                                                            </small>
+                                                          </li>
+                                                        </ul>
+
+                                                        <br/>
+
+                                                        <div class="timeline-title btn-pill text-muted d-inline-block px-3 py-1 mb-5 mx-5">February 2018</div>
+
+                                                        <br/>
+
+                                                        <div class="timeline-title btn-pill text-muted d-inline-block px-3 py-1 mb-5 mx-5">March 2018</div>
+
+
+                                                        <br/>
+                                                      </div>
+                                                    </div>
+
+                                                  </div>
+                                                </div>
+
+                                              </div>
+                                            </div>
+                                          </div>
+                                          </div>
+                                    </div>
+                        </div>
+
+
+
+                            <footer class="sticky-footer">
+                                <div class="container">
+                                    <div class="text-center">
+                                        <small>Copyright &copy; Sayna Madagascar 2019</small>
+                                    </div>
+                                </div>
+                            </footer>
+                            <!--/footer-->
+
+                </div>
+</body>
+
+                <!--basic scripts-->
+                <script src="assets/vendor/jquery/jquery.min.js"></script>
+                <script src="assets/vendor/jquery-ui/jquery-ui.min.js"></script>
+                <script src="assets/vendor/popper.min.js"></script>
+                <script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+                <script src="assets/vendor/jquery.dcjqaccordion.2.7.js"></script>
+                <script src="assets/vendor/icheck/skins/icheck.min.js"></script>
+
+                <!--[if lt IE 9]>
+                <script src="assets/vendor/modernizr.js"></script>
+                <![endif]-->
+
+                <!--basic scripts initialization-->
+                <script src="assets/js/scripts.js"></script>

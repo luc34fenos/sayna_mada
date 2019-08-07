@@ -1,17 +1,74 @@
-let div = $(`div.for_staff:first`);
+let div = $(`div.staff_append:first`);
 div.append(`
-	<ul>
-	<li><%= @staff.first_name %> </li>
-	<li><%= @staff.last_name %> </li>
-	<li><%= @staff.job %> </li>
-	<li><%= @staff.email %> </li>
-	<li><%= @staff.tel %> </li>
-	</ul>
+
+
+	
+
+			<div class="dropdown-divider"></div>
+			<div class="card-body">
+					<div class="row f12 mb-3">
+							<div class="col-5">Nom</div>
+							<div class="col-7">
+									<div class="row">
+											<div class="col-3"> : </div>
+											<div class="col-9">
+												<p><%= @staff.first_name %></p>
+											</div>
+									</div>
+							</div>
+					</div>
+					<div class="row f12 mb-3">
+							<div class="col-5">Prénom</div>
+							<div class="col-7">
+									<div class="row">
+											<div class="col-3">:</div>
+											<div class="col-9">
+												<p><%= @staff.last_name %></p>
+											</div>
+									</div>
+							</div>
+					</div>
+					<div class="row f12 mb-3">
+							<div class="col-5">Post</div>
+							<div class="col-7">
+									<div class="row">
+											<div class="col-3">:</div>
+											<div class="col-9">
+												<p><%= @staff.job %></p>
+											</div>
+									</div>
+							</div>
+					</div>
+					<div class="row f12">
+							<div class="col-5">Email</div>
+							<div class="col-7">
+									<div class="row">
+											<div class="col-3">:</div>
+											<div class="col-9">
+												<p><%= @staff.email %></p>
+											</div>
+									</div>
+							</div>
+					</div>
+					<div class="row f12">
+							<div class="col-5">Contact</div>
+							<div class="col-7">
+									<div class="row">
+											<div class="col-3">:</div>
+											<div class="col-9">
+												<p><%= @staff.tel %></p>
+											</div>
+									</div>
+							</div>
+					</div>
+
+			</div>
+
 `);
-$(`input#staff_first_name`).val(``);
-$(`input#staff_job`).val(``);
-$(`input#staff_last_name`).val(``);
-$(`input#staff_email `).val(``);
-$(`input#staff_tel `).val(``);
+$(`input#first_name`).val(``);
+$(`input#job`).val(``);
+$(`input#last_name`).val(``);
+$(`input#email `).val(``);
+$(`input#tel `).val(``);
 
 alert('mande');

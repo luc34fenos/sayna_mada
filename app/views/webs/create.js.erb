@@ -1,0 +1,9 @@
+let div = $(`div.web_append:first`);
+div.append(`
+
+	<a href="<%= @web.link %>" class="<%= @web.name %>" style="font-size: 50px "></a>
+
+	`);
+$(`input#web_name`).val(``);
+$(`input#web_link`).val(``);
+alert('mety')

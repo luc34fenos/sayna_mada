@@ -21,7 +21,7 @@ jQuery(document).ready(function($) {
         //     createChecking();
         // }
         // getNotification();
-        
+
         event.preventDefault();
     });
 
@@ -77,7 +77,7 @@ jQuery(document).ready(function($) {
         <% if user_signed_in? %>
         <li class="nav-item dropdown ">
             <% if current_user.student %>
-                <% snotifications = [] 
+                <% snotifications = []
                     Notification.all.each do |notification|
                         snotifications << notification if (notification.target == "all" || notification.target == "students")
                     end
@@ -85,7 +85,7 @@ jQuery(document).ready(function($) {
                 %>
                 <%= render 'students/notifications', notifications: (snotifications) %>
             <% elsif current_user.company %>
-                <% cnotifications = [] 
+                <% cnotifications = []
                     Notification.all.each do |notification|
                         cnotifications << notification if (notification.target == "all" || notification.target == "companies")
                     end
@@ -104,7 +104,7 @@ jQuery(document).ready(function($) {
                         <% if current_user.status == "admin"
                             avatar = 'avatar_2x.png'
                           else
-                            avatar = 'profilh.png' 
+                            avatar = 'profilh.png'
                           end
                         %>
                     <%= image_tag avatar, class: "rounded-circle mr-2", alt: "" %>
