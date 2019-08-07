@@ -1,17 +1,9 @@
-let div = $(`div.for_web:first`);
-
+let div = $(`div.web_append:first`);
 div.append(`
-	<ul>
 
-	<li><%= @web.name %> </li>
-	<li><%= @web.link %> </li>
-	
-	</ul>
+	<a href="<%= @web.link %>" class="<%= @web.name %>" style="font-size: 50px "></a>
 
 	`);
-
 $(`input#web_name`).val(``);
 $(`input#web_link`).val(``);
-
-
 alert('mety')

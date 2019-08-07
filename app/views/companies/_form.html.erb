@@ -1,69 +1,190 @@
-<%= form_with(model: company, local: true) do |form| %>
-  <div class="form_row">
-    <div class="form-group col-md-6">
-      <div class="form-group">
-        <%= form.label :name, "Nom", class: '' %>
-        <%= form.text_field :name , class: 'form-control' %>
-      </div>
-    </div>
-    <div class="form-group col-md-6">
-      <div class="form-group">
-        <%= form.label :start_date, "Année de lancement", class: '' %>
-        <%= form.number_field :start_date , class: 'form-control' %>
-      </div>
-    </div>
+
+  <%= form_with(model: company, local: true) do |form| %>
+<center>
+  <%= form.button  "jddjk",  class: "btn btn-outline-primary btn-lg btn-block rounded-0" , style: "width: 400px" do %>
+  <i class="fa fa-user mr-2"></i>
+  Mettre à jour
+  <% end %>
+</center>
+<br>
+<div class="card card-shadow mb-4">
+  <div class="row" style="margin-top: 10px">
+      <div class="col-xl-5">
+
+          <div class="card-body">
+              <div class="text-center" style="margin-top: 80px">
+                <div class="mt-4 mb-3" >
+                  <img class="rounded-circle" src="/assets/profilh.png" width="85" alt=""/>
+                </div>
+              <div class="form-group row">
+                  <label class="col-sm-4 control-label" for="name">Nom de votre Entreprise</label>
+                  <div class="col-sm-8">
+                    <%= form.text_field :name , class: 'form-control', id: 'name' , placeholder: 'Nom de votre Entreprise' %>
+
+                  </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-4 control-label" for="activity_area">secteur d'activité</label>
+                <div class="col-sm-8">
+                  <%= form.text_field :activity_area , class: 'form-control', placeholder: "secteur d'activité" ,id: "activity_area" %>
+                </div>
+             </div>
+
+
+          </div>
+
+           </div>
+
+
+
+  </div>
+  <div class="col-xl-7">
+          <div class="card-header border-0">
+              <div class="custom-title-wrap bar-primary">
+                  <div class="custom-title" style="color: #07A9F5" > <i class="fa fa-address-book" > </i> Profil</div>
+              </div>
+          </div>
+          <div class="card-body">
+                <div class="form-group row">
+                  <label class="col-sm-4 col-form-label col-form-label-sm" for="option_s4">Année de Création</label>
+                  <div class="col-sm-8">
+                      <select class="form-control" id="option_s4" name="company[start_date]">
+                          <option></option>
+                          <option value="1990">
+                              1990
+                          </option>
+                          <option value="1991">
+                              1991
+                          </option>
+                          <option value="1992">
+                              1992
+                          </option>
+                          <option value="1993">
+                              1993
+                          </option>
+                          <option value="1994">
+                              1994
+                          </option>
+                          <option value="1995">
+                              1995
+                          </option>
+                          <option value="1996">
+                              1996
+                          </option>
+
+                          <option value="1997">
+                              1997
+                          </option>
+                          <option value="1998">
+                              1998
+                          </option>
+                          <option value="1999">
+                              1999
+                          </option>
+
+                          <option value="2000">
+                              2000
+                          </option>
+                          <option value="2001">
+                              2001
+                          </option>
+                          <option value="2002">
+                              2002
+                          </option>
+                          <option value="2003">
+                              2003
+                          </option>
+                          <option value="2004">
+                              2004
+                          </option>
+                          <option value="2005">
+                              2005
+                          </option>
+                          <option value="2006">
+                              2006
+                          </option>
+                          <option value="2007">
+                              2007
+                          </option>
+                          <option value="2008">
+                              2008
+                          </option>
+                          <option value="2009">
+                              2009
+                          </option>
+                          <option value="2010">
+                              2010
+                          </option>
+                          <option value="2011">
+                              2011
+                          </option>
+                          <option value="2012">
+                              2012
+                          </option>
+                          <option value="2013">
+                              2013
+                          </option>
+                          <option value="2014">
+                              2014
+                          </option>
+                          <option value="2015">
+                              2015
+                          </option>
+                          <option value="2016">
+                              2016
+                          </option>
+                          <option value="2017">
+                              2017
+                          </option>
+                          <option value="2018">
+                              2018
+                          </option>
+                          <option value="2019">
+                              2019
+                          </option>
+                      </select>
+                  </div>
+              </div>
+              <div class="form-group row">
+                  <label class="col-sm-4 control-label" for="address">Address</label>
+                  <div class="col-sm-8">
+                    <%= form.text_field :address , class: 'form-control', placeholder: "Address" ,id: "address" %>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-4 control-label" for="tel">Télephone</label>
+                <div class="col-sm-8">
+                  <%= form.text_field :tel , class: 'form-control', placeholder: "Télephone" ,id: "tel" %>
+                </div>
+            </div>
+          <div class="form-group row">
+              <label class="col-sm-4 control-label" for="siret">siret</label>
+                <div class="col-sm-8">
+                  <%= form.text_field :siret , class: 'form-control', placeholder: "siret" ,id: "siret" %>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-4 control-label" for="legal_status">legal_status</label>
+                <div class="col-sm-8">
+                  <%= form.text_field :legal_status , class: 'form-control', placeholder: "legal_status" ,id: "legal_status" %>
+              </div>
+            </div>
+            <div class="form-group row">
+               <label class="col-sm-4 control-label" for="other">other</label>
+               <div class="col-sm-8">
+                 <%= form.text_area :other , class: 'form-control rounded-0', placeholder: "other" ,id: "other" %>
+               </div>
+           </div>
+
+
+
+
+          </div>
+
   </div>
 
-  <div class="form_row">
-    <div class="form-group col-md-6">
-      <div class="form-group">
-        <%= form.label :address, "Addresse", class: '' %>
-        <%= form.text_field :address , class: 'form-control'%>
-      </div>
-    </div>
-    <div class="form-group col-md-6">
+  <% end %>
 
-      <div class="form-group">
-        <%= form.label :tel , class: '' %>
-        <%= form.text_field :tel , class: 'form-control'%>
-      </div>
-    </div>
   </div>
-
-  <div class="form_row">
-    <div class="form-group col-md-6">
-      <div class="form-group">
-        <%= form.label :activity_area, "Secteur d'activité", class: '' %>
-        <%= form.text_field :activity_area , class: 'form-control'%>
-      </div>
-    </div>
-    <div class="form-group col-md-6">
-      <div class="form-group">
-        <%= form.label :siret, class: '' %>
-        <%= form.text_field :siret , class: 'form-control'%>
-      </div>
-    </div>
-  </div>
-
-  <div class="form_row">
-    <div class="form-group col-md-6">
-      <div class="form-group">
-        <%= form.label :legal_status, "Status Légal", class: '' %>
-        <%= form.text_field :legal_status , class: 'form-control'%>
-      </div>
-    </div>
-    <div class="form-group col-md-6">
-      <div class="form-group">
-        <%= form.label :other, "Autre", class: '' %>
-        <%= form.text_area :other , class: 'form-control'%>
-      </div>
-    </div>
-  </div>
-
-  <br>
-
-  <div class="text-center">
-    <%= form.submit "Mettre à jour", class: "btn btn-default" %>
-  </div>
-
-<% end %>
+</div>

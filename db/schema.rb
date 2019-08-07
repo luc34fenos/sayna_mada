@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_16_052459) do
+ActiveRecord::Schema.define(version: 2019_08_01_162326) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 2019_07_16_052459) do
 
   create_table "cover_letters", force: :cascade do |t|
     t.bigint "cv_id"
-    t.text "content", default: "Veuillez créer une lettre de motivation ou importez-en une et copiez-la ici"
+    t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["cv_id"], name: "index_cover_letters_on_cv_id"
@@ -126,6 +126,15 @@ ActiveRecord::Schema.define(version: 2019_07_16_052459) do
     t.index ["cv_id"], name: "index_motivational_videos_on_cv_id"
   end
 
+  create_table "posts", force: :cascade do |t|
+    t.string "object"
+    t.text "content"
+    t.bigint "company_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_posts_on_company_id"
+  end
+
   create_table "programming_languages", force: :cascade do |t|
     t.string "name"
     t.integer "level", default: 3
@@ -155,8 +164,8 @@ ActiveRecord::Schema.define(version: 2019_07_16_052459) do
     t.bigint "user_id"
     t.string "firstname"
     t.string "lastname"
-    t.string "sexe", default: "non spécifié"
-    t.string "marital_status", default: "compliqué"
+    t.string "sexe", default: "Non confirmé"
+    t.string "marital_status", default: "Compliqué"
     t.datetime "birthdate"
     t.string "tel"
     t.string "address"
@@ -198,5 +207,6 @@ ActiveRecord::Schema.define(version: 2019_07_16_052459) do
 
   add_foreign_key "backgrounds", "cvs"
   add_foreign_key "experiences", "cvs"
+  add_foreign_key "posts", "companies"
   add_foreign_key "staffs", "companies"
 end

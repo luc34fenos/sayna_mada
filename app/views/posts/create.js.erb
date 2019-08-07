@@ -1,0 +1,17 @@
+let div = $(`div.post_append:first`);
+
+div.append(`
+  <div class="card" style="width: 800px;">
+    <div class="card-body">
+    <div class="alert alert-success" role="alert">
+      Nouveaux Publication que vous avez crée
+    </div>
+      <h6 class="card-subtitle mb-2 text-muted" style="margin-top: 10px;"><%= @post.object %></h6>
+      <p class="card-text"><%= @post.content %></p>
+      <a href="#" class="card-link">Card link</a>
+      <a href="#" class="card-link">Another link</a>
+    </div>
+  </div>
+
+  `);
+  alert('mande');

@@ -10,7 +10,7 @@ class CompaniesController < ApplicationController
   # GET /companies/1
   # GET /companies/1.json
   def show
-    
+    @post = Post.new
   end
 
   # GET /companies/new

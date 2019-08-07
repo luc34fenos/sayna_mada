@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 
+  resources :posts
   get 'downloads_controller/show'
   get 'downloads_controller/cv_pdf'
   get 'downloads_controller/send_cv_pdf'
