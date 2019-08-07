@@ -5,7 +5,7 @@ class NotificationsController < InheritedResources::Base
   # GET /notifications
   # GET /notifications.json
   def index
-    if current_user.status == "admin"
+    if current_user.status == "admin" || current_user.status == "staff"
       @notifications = Notification.all.sort_by { |obj| obj.created_at }.reverse
     elsif current_user.student
       @notifications = []
@@ -93,7 +93,7 @@ class NotificationsController < InheritedResources::Base
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def notification_params
-      params.require(:notification).permit(:name, :description, :target, :level, :link)
+      params.require(:notification).permit(:name, :link, :target, :level, :description)
     end
 
     def unreaded_notifications

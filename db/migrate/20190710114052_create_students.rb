@@ -11,6 +11,7 @@ class CreateStudents < ActiveRecord::Migration[5.2]
       t.string :address
       t.belongs_to :city,       index: true
       t.boolean :is_activated?, default: false
+      t.boolean :is_free?,      default: true
 
       t.timestamps
     end

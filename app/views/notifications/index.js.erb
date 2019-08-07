@@ -1,116 +1,91 @@
-<% if @notifications.any? && there_is_a_new %>
 <%
-unread = []
-@notifications.each do |notification| 
-	checking = Checking.find_by(user: current_user, notification: notification)
-	unread << notification if checking && !checking.seen
-end
-there_is_a_new = (unread.length != 0)
+	unread = []
+	@notifications.each do |notification| 
+		checking = Checking.find_by(user: current_user, notification: notification)
+		unread << notification if checking && !checking.seen
+	end
+	there_is_a_new = (unread.length != 0)
 %>
-$icon = $(`#notif-icon .notification-alarm:first`);
-<% if there_is_a_new %>
-$icon.html(`
-	<span class="wave wave-<%= @notifications.reverse.last.level.to_s %>"></span>
-	<span class="dot bg-<%= @notifications.reverse.last.level.to_s %>"></span>
-`);
+<% if !@notifications.nil? && there_is_a_new %>
+	$icon = $(`#notif-icon .notification-alarm:first`);
+	<% if there_is_a_new %>
+	$icon.html(`
+		<span class="wave wave-<%= @notifications.reverse.last.level.to_s %>"></span>
+		<span class="dot bg-<%= @notifications.reverse.last.level.to_s %>"></span>
+	`);
+	<% else %>
+	$icon.html(``);
+	<% end %>
+	$notificationsList = $(`#notifications`);
+	$notificationsList.html(`
+		<% @notifications.each do |notification| %>
+				<% 	if Checking.find_by(user: current_user, notification: notification)
+						read = Checking.find_by(user: current_user, notification: notification).seen 
+					else
+						read = false
+					end 
+				%>
+				<a class="dropdown-item border-bottom notification <% if read %> msg-unread <% end %>" href="<%= notification.link %>" <% if read %> data-method="GET" <% end %> for="<%= Checking.find_by(user: current_user, notification: notification).id.to_i %>">
+				<span class="text-<%= notification.level %>">
+				<span class="weight500"><i class="vl_bell weight600 pr-2"></i><%= notification.name %></span>
+				</span>
+				<span class="small float-right text-muted">
+					<% if Time.now.strftime("%d").to_i - notification.created_at.strftime("%d").to_i == 0 %>
+	                Aujourd'hui à 
+	                <% elsif Time.now.strftime("%d").to_i - notification.created_at.strftime("%d").to_i == 1 %>
+	                Hier à 
+	                <% else %>
+	               	<% end %>
+				<%= notification.created_at.strftime("%H:%M") %></span>
+				<div class="dropdown-message f12">
+					<%= notification.description %>
+				</div>
+			</a>
+			<% break if @notifications.index(notification) == 3 %>
+		<% end %>
+	`);
 <% else %>
-$icon.html(``);
-<% end %>
-$notificationsList = $(`#notifications`);
-$notificationsList.html(`
-	<% @notifications.each do |notification| %>
-			<% 	if Checking.find_by(user: current_user, notification: notification)
-					read = Checking.find_by(user: current_user, notification: notification).seen 
-				else
-					read = false
-				end 
-			%>
-			<a class="dropdown-item border-bottom notification <% if read %> msg-unread <% end %>" href="<%= notification.link %>" <% if read %> data-method="GET" <% end %> for="<%= Checking.find_by(user: current_user, notification: notification).id.to_i %>">
-			<span class="text-<%= notification.level %>">
-			<span class="weight500"><i class="vl_bell weight600 pr-2"></i><%= notification.name %></span>
+	$notificationsList.html(`
+		<a class="dropdown-item border-bottom default">
+			<span class="text-primary">
+				<span class="weight500"><i class="vl_bell weight600 pr-2"></i>Rien à signaler</span>
 			</span>
-			<span class="small float-right text-muted">
-				<% if Time.now.strftime("%d").to_i - notification.created_at.strftime("%d").to_i == 0 %>
-                Aujourd'hui à 
-                <% elsif Time.now.strftime("%d").to_i - notification.created_at.strftime("%d").to_i == 1 %>
-                Hier à 
-                <% else %>
-               	<% end %>
-			<%= notification.created_at.strftime("%H:%M") %></span>
+			<span class="small float-right text-muted"><%= Time.now.strftime("%H:%M") %></span>
 			<div class="dropdown-message f12">
-				<%= notification.description %>
+				Pas de nouvelles notifications pour le moment
 			</div>
 		</a>
-		<% break if @notifications.index(notification) == 3 %>
-	<% end %>
-`);
-<% else %>
-$notificationsList.html(`
-	<a class="dropdown-item border-bottom default">
-		<span class="text-primary">
-			<span class="weight500"><i class="vl_bell weight600 pr-2"></i>Rien à signaler</span>
-		</span>
-		<span class="small float-right text-muted"><%= Time.now.strftime("%H:%M") %></span>
-		<div class="dropdown-message f12">
-			Pas de nouvelles notifications pour le moment
-		</div>
-	</a>
-	<% @notifications.each do |notification| %>
-			<% 	if Checking.find_by(user: current_user, notification: notification)
-					read = Checking.find_by(user: current_user, notification: notification).seen 
-				else
-					read = false
-				end 
-			%>
-			<a class="dropdown-item border-bottom notification <% if read %> msg-unread <% end %>" href="<%= notification.link %>" <% if read %> data-method="GET" <% end %> for="<%= Checking.find_by(user: current_user, notification: notification).id.to_i %>">
-			<span class="text-<%= notification.level %>">
-			<span class="weight500"><i class="vl_bell weight600 pr-2"></i><%= notification.name %></span>
-			</span>
-			<span class="small float-right text-muted">
-				<% if Time.now.strftime("%d").to_i - notification.created_at.strftime("%d").to_i == 0 %>
-                Aujourd'hui à 
-                <% elsif Time.now.strftime("%d").to_i - notification.created_at.strftime("%d").to_i == 1 %>
-                Hier à 
-                <% else %>
-               	<% end %>
-			<%= notification.created_at.strftime("%H:%M") %></span>
-			<div class="dropdown-message f12">
-				<%= notification.description %>
-			</div>
-		</a>
-		<% break if @notifications.index(notification) == 2 %>
-	<% end %>
-`);
+	`);
 <% end %>
 
 $(`#notifications .notification`).click(function(event) {
-	let $ID = $(this).attr('for');
-	if ($ID != "" && !$(this).hasClass('msg-unread')) {
-		updateChecking($ID);
-	}
-	event.preventDefault();
+    let $ID = $(this).attr('for');
+    if ($ID != "" && !$(this).hasClass('msg-unread')) {
+        updateChecking($ID);
+    }
+    event.preventDefault();
 });
 
 function updateChecking(id) {
-	$auth_token = $(`input[name="authenticity_token"]`).attr('value');
-	$.ajax({
-		url: `/checkings/${id}`,
-		type: 'PATCH',
-        dataType: 'script',
-		data: {
-			authenticity_token: $auth_token,
-			id: id
-		}
-	})
-	.done(function() {
-		// console.log("success");
-	})
-	.fail(function() {
-		// console.log("error");
-		window.location.href="/notifications";
-	})
-	.always(function() {
-		// console.log("complete");
-	});
-	
+    $auth_token = $(`input[name="authenticity_token"]`).attr('value');
+    $.ajax({
+            url: `/checkings/${id}`,
+            type: 'PATCH',
+            dataType: 'script',
+            data: {
+                authenticity_token: $auth_token,
+                id: id
+            }
+        })
+        .done(function() {
+            // console.log("success");
+        })
+        .fail(function() {
+            // console.log("error");
+            window.location.href = "/notifications";
+        })
+        .always(function() {
+            // console.log("complete");
+        });
+
 }
