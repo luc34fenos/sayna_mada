@@ -25,6 +25,16 @@
                             <%= render 'layouts/rightnav' %>
                         </div>
                     </section>
+                <% when "staff" %>
+                    <section class="left-sidebar-fixed">
+                        <div class="app-body">
+                            <%= render 'layouts/leftnav' %>
+                            <div class="content-wrapper">
+                                <%= yield %>
+                            </div>
+                            <%= render 'layouts/rightnav' %>
+                        </div>
+                    </section>    
                 <% when "student" %>
                     <div <% if page_need_navbar %>class="pt-10"<% end %>>
                         <%= yield %>
