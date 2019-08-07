@@ -25,10 +25,10 @@ end
 
 # Students
 (0..20).each do |x|
-  g = User.new(username: "User#{x}", email: "etudiant#{x}@gmail.com", password: "000000", password_confirmation: "000000")
+  g = User.new(username: "User#{x}", email: "etudiant#{x}@gmail.com", password: "000000", password_confirmation: "000000", status: "student")
   g.save!
   g.confirm
-  c = City.create(country: 'AD', name: 'Ordino')
+  c = City.find_by(country: 'AD', name: 'Ordino') ? City.find_by(country: 'AD', name: 'Ordino') : City.create(country: 'AD', name: 'Ordino')
   s = Student.new(firstname: "firstname#{x}", lastname: "lastname#{x}", user_id: g.id, is_activated?: x.even? ? true : false, tel: "03345678#{x}", address: "address#{x}", sexe: x.even? ? "Homme" : "Femme", marital_status: "Célibataire", birthdate: DateTime.strptime("09/#{x%30 + 1}/1996",  "%m/%d/%Y") )
   cv = Cv.create(hobbies: 'Hacking, Football, Volleyball', summary: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do tempor ut labore et dolore magna aliqua. Ut enim ad minim veniam, nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.")
   s.city = c
@@ -38,13 +38,13 @@ end
 
   languages = %w(Malagasy Français Anglais Espagnol Allemand Mandarin)
   languages.each do |language|
-    l = Language.create(name: language, level: 4)
+    l = Language.create(name: language, level: 3)
     cv.languages << l
   end
 
   programming_languages = %w(Ruby RubyOnRails Javascript HTML CSS PHP)
   programming_languages.each do |programming_language|
-    pl = ProgrammingLanguage.create(name: programming_language, level: 4)
+    pl = ProgrammingLanguage.create(name: programming_language, level: 3)
     cv.programming_languages << pl
   end
 
@@ -63,15 +63,15 @@ end
 
 # Companies
 (21..35).each do |x|
-  g = User.new(username: "User#{x}", email: "company#{x}@gmail.com", password: "000000", password_confirmation: "000000")
+  g = User.new(username: "User#{x}", email: "company#{x}@gmail.com", password: "000000", password_confirmation: "000000", status: "company")
   g.save!
   g.confirm
-  c = City.create(country: 'AF', name: 'Kabul')
+
   s = Company.new(name: "company#{x}", user_id: g.id, is_activated?: x%2 == 0 ? true : false, tel: "03412345#{x}", address: "address#{x}", start_date: 2002 + (x/(x-2)), legal_status: "company legal status #{x}", activity_area: "activity#{x - (x/(x-2))}", siret: "#{x}00#{x}1", other: "Ut enim ad minim veniam, nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo." )
   s.save!
+  c = City.find_by(country: 'AF', name: 'Kabul') ? City.find_by(country: 'AF', name: 'Kabul') : City.create(country: 'AF', name: 'Kabul')
+  s.cities << c
   st = Staff.new(first_name: "firstname#{x}", last_name: "lastname#{x}", company_id: s.id, job: "job#{ x%2 + 1}", email: "staff#{x}.company#{s.id}@gmail.com", tel: "03298765#{x}")
   st.save!
-  s.cities = [c]
-  s.staff = [st]
-  s.save
+  s.staff << st
 end

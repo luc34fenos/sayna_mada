@@ -8,6 +8,9 @@ class User < ApplicationRecord
 
   has_one :company
 
+  has_many :checkings
+  has_many :notifications, through: :checkings
+
   validates :username, uniqueness: {case_sensitive: false}
 
 

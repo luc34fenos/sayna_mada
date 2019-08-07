@@ -1,13 +1,13 @@
     $input = $(`div#programming_languages`).children('input.programming_language:first'),
     $tag = $(`
         <div id="<%=  @programming_language.id  %>" class="tag programming_language">
-            <a href="#" class="programming_language" id="<%= @programming_language.id %>"><i class="icon-close" aria-hidden="true"></i></a>
+            <a href="#" class="rmprogramming_language" for="<%= @programming_language.id %>"><i class="icon-close" aria-hidden="true"></i></a>
             <span class="name"><%= @programming_language.name %></span>
             <div class="stars">
                 <% 3.times do |id| %>
                     <span class="level fa fa-star" style="color: gold;"></span>
                 <% end %>
-                <% 4.times do |id| %>
+                <% 2.times do |id| %>
                     <span class="level icon-star" style="color: gold;"></span>
                 <% end %>
             </div>
@@ -20,7 +20,7 @@ $tag.appendTo($appendHere);
 $($input).val('');
 $($input).focus();
 
-$a = $(`a.programming_language`);
+$a = $(`a.rmprogramming_language`);
 
 $a.bind('click', function(e) {
     e.preventDefault();
@@ -28,7 +28,7 @@ $a.bind('click', function(e) {
 
     let $DIV = $tag,
         $CVID = $(`div.moncv:first`).attr('id'),
-        $ID = "<%=  @programming_language.id %>";
+        $ID = "<%= @programming_language.id %>";
 
     removeProgrammingLanguage($DIV, $CVID, $ID);
 });
@@ -41,7 +41,7 @@ $(`span.level`).click(function(event) {
 
 
     $ITEM = "programming_languages";
-    $ID = "<%=  @programming_language.id %>";
+    $ID = "<%= @programming_language.id %>";
     $LEVEL = Number(siblings.index(this)) + 1;
 
     for (let i = siblings.length - 1; i >= 0; i--) {

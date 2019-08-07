@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_01_162326) do
+ActiveRecord::Schema.define(version: 2019_08_03_064149) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,16 @@ ActiveRecord::Schema.define(version: 2019_08_01_162326) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["cv_id"], name: "index_backgrounds_on_cv_id"
+  end
+
+  create_table "checkings", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "notification_id"
+    t.boolean "seen", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["notification_id"], name: "index_checkings_on_notification_id"
+    t.index ["user_id"], name: "index_checkings_on_user_id"
   end
 
   create_table "cities", force: :cascade do |t|
@@ -126,6 +136,16 @@ ActiveRecord::Schema.define(version: 2019_08_01_162326) do
     t.index ["cv_id"], name: "index_motivational_videos_on_cv_id"
   end
 
+  create_table "notifications", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.string "target"
+    t.string "level"
+    t.string "link", default: "/"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "posts", force: :cascade do |t|
     t.string "object"
     t.text "content"
@@ -138,6 +158,12 @@ ActiveRecord::Schema.define(version: 2019_08_01_162326) do
   create_table "programming_languages", force: :cascade do |t|
     t.string "name"
     t.integer "level", default: 3
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "searches", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -177,6 +203,15 @@ ActiveRecord::Schema.define(version: 2019_08_01_162326) do
     t.index ["user_id"], name: "index_students_on_user_id"
   end
 
+  create_table "swebs", force: :cascade do |t|
+    t.bigint "cv_id"
+    t.string "name"
+    t.string "link"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cv_id"], name: "index_swebs_on_cv_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "username", default: "", null: false
@@ -206,7 +241,10 @@ ActiveRecord::Schema.define(version: 2019_08_01_162326) do
   end
 
   add_foreign_key "backgrounds", "cvs"
+  add_foreign_key "checkings", "notifications"
+  add_foreign_key "checkings", "users"
   add_foreign_key "experiences", "cvs"
   add_foreign_key "posts", "companies"
   add_foreign_key "staffs", "companies"
+  add_foreign_key "swebs", "cvs"
 end

@@ -1,0 +1,52 @@
+<%= form_with(model: notification) do |form| %>
+<div class="input-group mb-3">
+    <label for="notification_name">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">@</span>
+        </div>
+    </label>
+    <%= form.text_field :name, class: "form-control", required: "", maxlength: "35", placeHolder: "Titre de la notification" %>
+</div>
+<div class="input-group mb-3">
+    <label for="notification_link">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon3">https://sayna.io</span>
+        </div>
+    </label>
+    <%= form.text_field :link, class: "form-control", required: "", placeHolder: "lien de la notification" %>
+</div>
+<div class="input-group mb-3">
+    <div class="input-group-prepend">
+        <label class="input-group-text" for="notificaiton_target">Cibles</label>
+    </div>
+    <select class="custom-select" id="notificaiton_target" name="notification[target]">
+        <option selected>Choisissez...</option>
+        <option value="all">Tout le monde</option>
+        <option value="students">Tous les étudiants</option>
+        <option value="companies">Toutes les entreprises</option>
+    </select>
+</div>
+<div class="input-group mb-3">
+    <div class="input-group-prepend">
+        <label class="input-group-text" for="notification_level">Niveau</label>
+    </div>
+    <select class="custom-select" id="notification_level" name="notification[level]">
+        <option selected>Choisissez...</option>
+        <option value="success">Bonne nouvelle</option>
+        <option value="primary">Information</option>
+        <option value="warning">Avertissement</option>
+        <option value="danger">Alerte</option>
+    </select>
+</div>
+<div class="input-group">
+    <label for="notification_description">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Description</span>
+        </div>
+    </label>
+    <textarea class="form-control" aria-label="Description" id="notification_description" name="notification[description]"></textarea>
+</div>
+<div class="actions">
+    <%= form.submit %>
+</div>
+<% end %>

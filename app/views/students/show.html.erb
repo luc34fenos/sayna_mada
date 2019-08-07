@@ -13,9 +13,6 @@
                                         <a class="nav-link active" data-toggle="tab" href="#backgrounds"> <i class="fa fa-info-circle pr-2"></i> formations</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" data-toggle="tab" href="#skills"> <i class="fa fa-home pr-2"></i> compétences</a>
-                                    </li>
-                                    <li class="nav-item">
                                         <a class="nav-link disabled" data-toggle="tab" href="#activities"><i class="fa fa-recycle pr-2"></i> activities</a>
                                     </li>
                                     <style type="text/css">
@@ -39,126 +36,125 @@
                     <div class="card-body">
                         <div class="text-center">
                             <div class="mt-4 mb-3">
-                                <img class="rounded-circle" src="/assets/img/avatar/avatar-large3.jpg" width="85" alt="" />
+                                <% avatar = @student.sexe == 'Masculin' ? 'profilh.png' : 'profilf.png' %>
+                                <div class="text-center">
+                                    <%= image_tag avatar, class: "rounded-circle", width: "85", alt: "" %>
+                                </div>
                             </div>
                             <h5 class="text-uppercase mb-0">
                                 <%= @student.firstname %>
                                 <%= @student.lastname %>
                             </h5>
+                            <% if @student.cv.programming_languages.any? %>
                             <p class="text-muted mb-0">
-                                <%= @student.cv.developer_type %>
+                                <%= @student.cv.developer_type %><br>
+                                (<%= @student.cv.programming_languages.first.name %>)
                             </p>
                             <div class="rattings mb-4">
-                                <i class="fa fa-star text-warning"></i>
-                                <i class="fa fa-star text-warning"></i>
-                                <i class="fa fa-star text-warning"></i>
-                                <i class="fa fa-star text-warning"></i>
-                                <i class="fa fa-star-o text-warning"></i>
+                                <% @student.cv.programming_languages.first.level.times do |level| %>
+                                    <i class="fa fa-star text-warning"></i>
+                                <% end %>
+                                <% (5-@student.cv.programming_languages.first.level).times do |level| %>
+                                    <i class="fa fa-star-o text-warning"></i>
+                                <% end %>
                             </div>
+                            <% end %>
+                            <% if @student.cv.swebs.any? %>
                             <div class="profile-social-link mb-4">
-                                <a href="#" class="mx-2"><i class="fa fa-facebook-square"></i></a>
-                                <a href="#" class="mx-2"><i class="fa fa-twitter"></i></a>
-                                <a href="#" class="mx-2"><i class="fa fa-youtube"></i></a>
+                                <% @student.cv.swebs.each do |sweb| %>
+                                <a href="<%= sweb.link %>" class="mx-2">
+                                    <span class="name">
+                                        <%= image_tag "#{sweb.name}.svg", class: "img-fluid", style: "width: 20px; height: 25px;" %></span>
+                                </a>
+                                <% break if @student.cv.swebs.index(sweb) == 2 %>
+                                <% end %>
+                            </div>
+                            <% end %>
+                        </div>
+                    </div>
+                </div>
+                <div class="card card-shadow mb-4">
+                    <div class="card-header border-0">
+                        <div class="custom-title-wrap bar-primary">
+                            <div class="custom-title">Profil</div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row f12 mb-3">
+                            <div class="col-6"><strong>Nom complet</strong></div>
+                            <div class="col-6">
+                                <%= @student.firstname %> <%= @student.lastname %>
+                            </div>
+                        </div>
+                        <div class="row f12 mb-3">
+                            <div class="col-6"><strong>Date de naissance</strong></div>
+                            <div class="col-6">
+                                <%= @student.birthdate.strftime("%d %B %Y") %>
+                            </div>
+                        </div>
+                        <div class="row f12 mb-3">
+                            <div class="col-6"><strong>Addresse</strong></div>
+                            <div class="col-6">
+                                <%= @student.address %>
+                            </div>
+                        </div>
+                        <div class="row f12 mb-3">
+                            <div class="col-6 text-capitalize"><strong>état civil</strong></div>
+                            <div class="col-6">
+                                <%= @student.marital_status %>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="card card-shadow mb-4">
                     <div class="card-header border-0">
-                        <div class="custom-title-wrap bar-danger">
-                            <div class="custom-title">Points</div>
-                        </div>
-                        <div class="progress mt-4" style="height: 5px;">
-                            <div class="progress-bar bg-purple-light" role="progressbar" style="width: 60%;" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                        <div class="mt-2">
-                            <span class="float-left f12 text-muted">Total 7250</span>
-                            <span class="float-right f12 text-muted">1250 Left</span>
+                        <div class="custom-title-wrap bar-primary">
+                            <div class="custom-title">Connaissances Techniques</div>
                         </div>
                     </div>
-                    <div class="dropdown-divider"></div>
                     <div class="card-body">
+                        <% @student.cv.programming_languages.sort.each do |programming_language| %>
+                        <% if programming_language %>
                         <div class="row f12 mb-3">
-                            <div class="col-6">Article Read</div>
+                            <div class="col-6">
+                                <%=programming_language.name%>
+                            </div>
                             <div class="col-6">
                                 <div class="row">
-                                    <div class="col-6">900/1200</div>
+                                    <div class="col-6">
+                                        <%= programming_language.level %>/5
+                                    </div>
                                     <div class="col-6">
                                         <div class="progress mt-2" style="height: 5px;">
-                                            <div class="progress-bar bg-info" role="progressbar" style="width: 30%;" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+                                            <div class="progress-bar bg-success" role="progressbar" style="width: <%= programming_language.level*100/5 %>%;" aria-valuenow="<%= programming_language.level*100/5 %>" aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="row f12 mb-3">
-                            <div class="col-6">Comments</div>
-                            <div class="col-6">
-                                <div class="row">
-                                    <div class="col-6">145/450</div>
-                                    <div class="col-6">
-                                        <div class="progress mt-2" style="height: 5px;">
-                                            <div class="progress-bar bg-primary" role="progressbar" style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row f12 mb-3">
-                            <div class="col-6">Likes</div>
-                            <div class="col-6">
-                                <div class="row">
-                                    <div class="col-6">370/750</div>
-                                    <div class="col-6">
-                                        <div class="progress mt-2" style="height: 5px;">
-                                            <div class="progress-bar bg-success" role="progressbar" style="width: 35%;" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row f12">
-                            <div class="col-6">Share</div>
-                            <div class="col-6">
-                                <div class="row">
-                                    <div class="col-6">30/100</div>
-                                    <div class="col-6">
-                                        <div class="progress mt-2" style="height: 5px;">
-                                            <div class="progress-bar bg-danger" role="progressbar" style="width: 60%;" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="text-center mt-4">
-                            <a href="#" class="btn btn-sm btn-pill btn-outline-primary">View All</a>
-                        </div>
+                        <% end %>
+                        <% end %>
                     </div>
                 </div>
                 <div class="card card-shadow mb-4">
                     <div class="card-header border-0">
-                        <div class="custom-title-wrap bar-success">
-                            <div class="custom-title">Your Items</div>
+                        <div class="custom-title-wrap bar-primary">
+                            <div class="custom-title">Mes liens</div>
                         </div>
                     </div>
                     <div class="card-body">
+                        <% @student.cv.swebs.each do |sweb| %>
                         <div class="media text-muted mb-3">
-                            <img class="rounded mr-3" src="/assets/img/watch.jpg" width="80" alt="" />
-                            <p class="media-body pb-3 mb-0">
-                                <a href="#" class="d-block text-secondary"><strong class="">Bhawin Jagad</strong></a>
-                                Donec id elit non mi porta gravida at eget metus.
-                            </p>
+                            <a href="<%= sweb.link %>" target="_blank">
+                                <img class="rounded mr-3" src="/assets/<%= sweb.name %>.svg" width="80" alt="" />
+                                <p class="media-body pb-3 mb-0">
+                                    <a href="javascript:;" class="d-block text-secondary"><strong class="">
+                                            <%= sweb.name %></strong></a>
+                                    <%= sweb.link %>
+                                </p>
+                            </a>
                         </div>
-                        <div class="media text-muted">
-                            <img class="rounded mr-3" src="/assets/img/device.jpg" width="80" alt="" />
-                            <p class="media-body pb-3 mb-0">
-                                <a href="#" class="d-block text-secondary"><strong class="">Bhawin Jagad</strong></a>
-                                Donec id elit non mi porta gravida at eget metus.
-                            </p>
-                        </div>
-                        <div class="text-center mt-4">
-                            <a href="#" class="btn btn-sm btn-pill btn-outline-success">View All</a>
-                        </div>
+                        <% end %>
                     </div>
                 </div>
             </div>
@@ -167,9 +163,6 @@
                     <div class="tab-content">
                         <div class="tab-pane active" id="backgrounds" role="tabpanel">
                             <%= render 'backgrounds/show', student: @student %>
-                        </div>
-                        <div class="tab-pane" id="skills" role="tabpanel">
-                            <%= render 'skills/show', student: @student %>
                         </div>
                         <div class="tab-pane" id="activities" role="tabpanel">
                             <div class="card-body">
@@ -181,7 +174,7 @@
                                         </div>
                                         <div class="act-time">Today</div>
                                         <div class="base-timeline-info">
-                                            <a href="#" class="text-uppercase weight700 f12 text-danger">Task Added</a>
+                                            <a href="javascript:;" class="text-uppercase weight700 f12 text-danger">Task Added</a>
                                             <span class="d-block">You have added task #26 Successfully to the project “Agile CRM”</span>
                                         </div>
                                         <small class="text-muted">
@@ -193,7 +186,7 @@
                                             <i class="fa fa-download"></i>
                                         </div>
                                         <div class="base-timeline-info">
-                                            <a href="#" class="text-uppercase weight700 f12 text-success">Download Complete</a>
+                                            <a href="javascript:;" class="text-uppercase weight700 f12 text-success">Download Complete</a>
                                             <span class="d-block">You downloaded the pdf documentation file of Agile CRM</span>
                                         </div>
                                         <small class="text-muted">
@@ -206,7 +199,7 @@
                                         </div>
                                         <div class="act-time">Yesterday</div>
                                         <div class="base-timeline-info">
-                                            <a href="#" class="text-uppercase weight700 f12 text-primary">Deal Added</a>
+                                            <a href="javascript:;" class="text-uppercase weight700 f12 text-primary">Deal Added</a>
                                             <span class="d-block">Final deal with ABC Company is done and added to the “Upcoming deal” list</span>
                                         </div>
                                         <small class="text-muted">
@@ -218,7 +211,7 @@
                                             <img src="/assets/img/avatar/avatar2.jpg" alt="" />
                                         </div>
                                         <div class="base-timeline-info">
-                                            <a href="#" class="text-uppercase weight700 f12 text-info">Charlie Johnson</a>
+                                            <a href="javascript:;" class="text-uppercase weight700 f12 text-info">Charlie Johnson</a>
                                             <span class="d-block">joined DashLab last week.</span>
                                         </div>
                                         <small class="text-muted">
@@ -231,7 +224,7 @@
                                         </div>
                                         <div class="act-time">29 January</div>
                                         <div class="base-timeline-info">
-                                            <a href="#" class="text-uppercase weight700 f12 text-purple">Task Complete</a>
+                                            <a href="javascript:;" class="text-uppercase weight700 f12 text-purple">Task Complete</a>
                                             <span class="d-block">5 tasks for 29 january is completed successfully and no task pending</span>
                                         </div>
                                         <small class="text-muted">
@@ -248,7 +241,7 @@
                                         </div>
                                         <div class="act-time">02 February</div>
                                         <div class="base-timeline-info">
-                                            <a href="#" class="text-uppercase weight700 f12 text-dark">Task Added</a>
+                                            <a href="javascript:;" class="text-uppercase weight700 f12 text-dark">Task Added</a>
                                             <span class="d-block">You have added task #26 Successfully to the project “Agile CRM”</span>
                                         </div>
                                         <small class="text-muted">
@@ -261,7 +254,7 @@
                                         </div>
                                         <div class="act-time">04 february</div>
                                         <div class="base-timeline-info">
-                                            <a href="#" class="text-uppercase weight700 f12 text-warning">Deal Added</a>
+                                            <a href="javascript:;" class="text-uppercase weight700 f12 text-warning">Deal Added</a>
                                             <span class="d-block">Final deal with ABC Company is done and added to the “Upcoming deal” list</span>
                                         </div>
                                         <small class="text-muted">
@@ -278,7 +271,7 @@
                                         </div>
                                         <div class="act-time">05 March</div>
                                         <div class="base-timeline-info">
-                                            <a href="#" class="text-uppercase weight700 f12 text-purple">Task Added</a>
+                                            <a href="javascript:;" class="text-uppercase weight700 f12 text-purple">Task Added</a>
                                             <span class="d-block">You have added task #26 Successfully to the project “Agile CRM”</span>
                                         </div>
                                         <small class="text-muted">
@@ -291,7 +284,7 @@
                                         </div>
                                         <div class="act-time">06 March</div>
                                         <div class="base-timeline-info">
-                                            <a href="#" class="text-uppercase weight700 f12 text-info">Deal Added</a>
+                                            <a href="javascript:;" class="text-uppercase weight700 f12 text-info">Deal Added</a>
                                             <span class="d-block">Final deal with ABC Company is done and added to the “Upcoming deal” list</span>
                                         </div>
                                         <small class="text-muted">
@@ -304,7 +297,7 @@
                                         </div>
                                         <div class="act-time">06 March</div>
                                         <div class="base-timeline-info">
-                                            <a href="#" class="text-uppercase weight700 f12 text-danger">Event Created</a>
+                                            <a href="javascript:;" class="text-uppercase weight700 f12 text-danger">Event Created</a>
                                             <span class="d-block">Final deal with ABC Company is done and added to the “Upcoming deal” list</span>
                                         </div>
                                         <small class="text-muted">
@@ -322,3 +315,10 @@
     </div>
 </div>
 <!--/main content wrapper-->
+<% unless @student.cv.backgrounds.any? && @student.cv.experiences.any? && @student.cv.programming_languages.any? && @student.cv.languages.any? && @student.cv.skills.any? %>
+<a style="color: white;" href="/moncv/<%= @student.cv.id %>/edit" data-method="GET">
+    <div class="update-cv" style="position: fixed; bottom: 3%; right: 3%; z-index: 999;">
+        <button class="btn btn-danger form-pill"><span style=""><i class="ti-alert"></i> Editer CV</span></button>
+    </div>
+</a>
+<% end %>

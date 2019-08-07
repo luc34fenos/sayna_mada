@@ -1,7 +1,49 @@
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+    getNotification();
+
+    function getNotification() {
+        setTimeout(function() {
+            $.ajax({
+                url: '/notifications',
+                type: 'GET',
+                dataType: 'script'
+            });
+
+            getNotification();
+        }, 1000 * 10); // 10s
+    }
+
+    $(`a#notif-icon`).click(function(event) {
+        /* Act on the event */
+        $notifications = $(`#notifications`);
+        // if ($notifications.html() != "" && !$notifications.children('a:first').hasClass('default')) {
+        //     createChecking();
+        // }
+        // getNotification();
+
+        event.preventDefault();
+    });
+
+    function createChecking() {
+        let AUTH_TOKEN = $(`input[name="authenticity_token"]`).attr('value');
+        $.ajax({
+            url: `/checkings`,
+            type: 'POST',
+            dataType: 'script',
+            data: {
+                authenticity_token: AUTH_TOKEN
+            },
+        });
+    }
+});
+</script>
 <!--header start-->
+<%= form_with(model: Checking.new) do |f| %>
+<% end %>
 <header class="app-header">
     <div class="branding-wrap">
-        <% if user_signed_in? && current_user.status == "admin" %>
+        <% if user_signed_in? && (current_user.status == "admin" || current_user.status == "staff") %>
         <!--left nav toggler start-->
         <a class="nav-link mt-2 float-left js_left-nav-toggler pos-fixed" href="javaScript:;">
             <i class="ti-align-right"></i>
@@ -22,113 +64,53 @@
     </div>
     <!--header rightside links-->
     <ul class="header-links hide-arrow navbar">
+        <% if user_signed_in? %>
         <li class="nav-item search-bar">
             <button type="button" class="btn btn-link" data-toggle="modal" data-target="#searchModal">
                 <i class="vl_search"></i>
             </button>
         </li>
-        <li class="nav-item dropdown sm-device-none">
-            <a class="nav-link dropdown-toggle mr-lg-3" id="messagesDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="vl_chat-bubble"></i>
-                <div class="notification-alarm">
-                    <span class="wave wave-danger"></span>
-                    <span class="dot"></span>
-                </div>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right header-right-dropdown-width pb-0" aria-labelledby="messagesDropdown">
-                <h6 class="dropdown-header weight500 ">Messages</h6>
-                <div class="dropdown-divider mb-0"></div>
-                <a class="dropdown-item border-bottom msg-unread" href="#">
-                    <div class="float-left notificaton-thumb">
-                        <img class="rounded-circle" src="/assets/img/avatar/avatar4.jpg" alt="" />
-                    </div>
-                    <span class="weight500">Andrew Flinton</span>
-                    <span class="small float-right text-muted">08:30 AM</span>
-                    <div class="dropdown-message">
-                        I hope that you will be there in time. See you then
-                    </div>
-                </a>
-                <a class="dropdown-item border-bottom msg-unread" href="#">
-                    <div class="float-left notificaton-thumb">
-                        <img class="rounded-circle" src="/assets/img/avatar/avatar2.jpg" alt="" />
-                    </div>
-                    <span class="weight500">John Doe</span>
-                    <span class="small float-right text-muted">10:28 AM</span>
-                    <div class="dropdown-message">
-                        Hello this is an example message. Just want to show how it looks
-                    </div>
-                </a>
-                <a class="dropdown-item border-bottom" href="#">
-                    <div class="float-left notificaton-thumb">
-                        <img class="rounded-circle" src="/assets/img/avatar/avatar3.jpg" alt="" />
-                    </div>
-                    <span class="weight500">Dash Don</span>
-                    <span class="small float-right text-muted">07:12 PM</span>
-                    <div class="dropdown-message">
-                        Hi, This is Dash Don form usa. I'm looking for someone who really good at design and frontend like mosaddek
-                    </div>
-                </a>
-                <a class="dropdown-item border-bottom" href="#">
-                    <div class="float-left notificaton-thumb">
-                        <img class="rounded-circle" src="/assets/img/avatar/avatar1.jpg" alt="" />
-                    </div>
-                    <span class="weight500">dkmosa</span>
-                    <span class="small float-right text-muted">12:10 PM</span>
-                    <div class="dropdown-message">
-                        We build a beautiful dashboard admin panel for professional
-                    </div>
-                </a>
-                <a class="dropdown-item small" href="#">View all messages</a>
-            </div>
-        </li>
+            <% if current_user.student %>
+                <%= render 'students/messages' %>
+            <% end %>
+        <% end %>
+        <% if user_signed_in? %>
         <li class="nav-item dropdown ">
-            <a class="nav-link dropdown-toggle mr-lg-3" id="alertsDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="vl_bell"></i>
-                <div class="notification-alarm">
-                    <span class="wave wave-warning"></span>
-                    <span class="dot bg-warning"></span>
-                </div>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right header-right-dropdown-width pb-0" aria-labelledby="alertsDropdown">
-                <h6 class="dropdown-header weight500">Notification</h6>
-                <div class="dropdown-divider mb-0"></div>
-                <a class="dropdown-item border-bottom" href="#">
-                    <span class="text-primary">
-                        <span class="weight500">
-                            <i class="vl_bell weight600 pr-2"></i>Weekly Update</span>
-                    </span>
-                    <span class="small float-right text-muted">03:14 AM</span>
-                    <div class="dropdown-message f12">
-                        This week project update report generated. All team members are requested to check the updates
-                    </div>
-                </a>
-                <a class="dropdown-item border-bottom" href="#">
-                    <span class="text-danger">
-                        <span class="weight500">
-                            <i class="vl_Download-circle weight600 pr-2"></i>Server Error</span>
-                    </span>
-                    <span class="small float-right text-muted">10:34 AM</span>
-                    <div class="dropdown-message f12">
-                        Unexpectedly server response stop. Responsible members are requested to fix it soon
-                    </div>
-                </a>
-                <a class="dropdown-item border-bottom" href="#">
-                    <span class="text-success">
-                        <span class="weight500">
-                            <i class="vl_screen weight600 pr-2"></i>Monthly Meeting</span>
-                    </span>
-                    <span class="small float-right text-muted">12:30 AM</span>
-                    <div class="dropdown-message f12">
-                        Our monthly meeting will be held on tomorrow sharp 12:30. All members are requested to attend this meeting.
-                    </div>
-                </a>
-                <a class="dropdown-item small" href="#">View all notification</a>
-            </div>
+            <% if current_user.student %>
+                <% snotifications = []
+                    Notification.all.each do |notification|
+                        snotifications << notification if (notification.target == "all" || notification.target == "students")
+                    end
+                    snotifications = snotifications.sort_by { |obj| obj.created_at }.reverse
+                %>
+                <%= render 'students/notifications', notifications: (snotifications) %>
+            <% elsif current_user.company %>
+                <% cnotifications = []
+                    Notification.all.each do |notification|
+                        cnotifications << notification if (notification.target == "all" || notification.target == "companies")
+                    end
+                    cnotifications = cnotifications.sort_by { |obj| obj.created_at }.reverse
+                %>
+                <%= render 'companies/notifications', notifications: (cnotifications) %>
+            <% elsif current_user.status == "admin" %>
+            <%= render 'admins/notifications', notifications: (Notification.all.sort_by { |obj| obj.created_at }.reverse) %>
+            <% end %>
         </li>
+        <% end %>
         <li class="nav-item dropdown ">
-            <a class="nav-link dropdown-toggle" id="userNav" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" id="userNav" href="javascript:;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <div class="user-thumb">
-                    <img class="rounded-circle" src="/assets/img/avatar/avatar2.jpg" alt="" />
+                    <% if user_signed_in? %>
+                        <% if current_user.status == "admin"
+                            avatar = 'avatar_2x.png'
+                          else
+                            avatar = 'profilh.png'
+                          end
+                        %>
+                    <%= image_tag avatar, class: "rounded-circle mr-2", alt: "" %>
+                    <% else %>
+                    <img src="/assets/img/avatar/avatar2.jpg" class="rounded-circle mr-2" alt="">
+                    <% end %>
                 </div>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userNav">
@@ -137,26 +119,17 @@
                 <%= render 'students/navbar', student: current_user.student %>
                 <% elsif current_user.company %>
                 <%= render 'companies/navbar', company: current_user.company %>
-                <% elsif current_user.status == "admin" %>
-                <a class="dropdown-item" href="/admin" data-method="GET">Dashboard</a>
-                <a class="dropdown-item" href="#">Inbox <span class="badge badge-primary">3</span></a>
-                <a class="dropdown-item" href="#">Message <span class="badge badge-success">5</span></a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="/users/sign_out" data-method="DELETE">Sign Out</a>                
+                <% elsif current_user.status == "admin" || current_user.status == "staff" %>
+                <%= render 'admins/navbar' %>
+                <% else %>
                 <% end %>
                 <% else %>
                 <div class="dropdown-item- px-3 py-2">
-                    <img class="rounded-circle mr-2" src="/assets/img/avatar/avatar2.jpg" width="35" alt="" />
-                    <span class="text-muted">Jhon Doe</span>
+                    <img src="/assets/img/avatar/avatar2.jpg" class="rounded-circle mr-2" width="35" alt="">
+                    <span class="text-muted">Sayna Lab</span>
                 </div>
-                <!-- <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">My Profile</a>
-                    <a class="dropdown-item" href="#">Account Settings</a>
-                    <a class="dropdown-item" href="#">Inbox <span class="badge badge-primary">3</span></a>
-                    <a class="dropdown-item" href="#">Message <span class="badge badge-success">5</span></a>
-                    <div class="dropdown-divider"></div> -->
-                <a class="dropdown-item" href="/users/sign_in" data-method="GET">Sign In</a>
-                <a class="dropdown-item" href="/users/sign_up" data-method="GET">Sign Up</a>
+                <a class="dropdown-item" href="/users/sign_in" data-method="GET">Se connecter</a>
+                <a class="dropdown-item" href="/users/sign_up" data-method="GET">S'inscrire</a>
                 <% end %>
             </div>
         </li>
@@ -170,18 +143,9 @@
     </ul>
     <!--/header rightside links-->
 </header>
+<% if user_signed_in? %>
 <!--search modal start-->
-<div class="modal modal-search fade" id="searchModal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <input type="text" class="form-control" placeholder="Search...">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
+<%= render template: 'searches/new' %>
 <!--search modal start-->
+<% end %>
 <!--header end-->

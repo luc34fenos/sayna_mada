@@ -35,30 +35,30 @@ jQuery(document).ready(function($) {
         }
     });
 
-    $(`a.skill`).click(function(event) {
+    $(`a.rmskill`).click(function(event) {
         event.preventDefault();
 
-        let $ID = $(this).attr('id'),
+        let $ID = $(this).attr('for'),
             $DIV = $(this).parent('.tag:first'),
             $CVID = $(`div.moncv:first`).attr('id');
 
         removeSkill($DIV, $CVID, $ID);
     });
 
-    $(`a.language`).click(function(event) {
+    $(`a.rmlanguage`).click(function(event) {
         event.preventDefault();
 
-        let $ID = $(this).attr('id'),
+        let $ID = $(this).attr('for'),
             $DIV = $(this).parent('.tag:first'),
             $CVID = $(`div.moncv:first`).attr('id');
 
         removeLanguage($DIV, $CVID, $ID);
     });
 
-    $(`a.programming_language`).click(function(event) {
+    $(`a.rmprogramming_language`).click(function(event) {
         event.preventDefault();
 
-        let $ID = $(this).attr('id'),
+        let $ID = $(this).attr('for'),
             $DIV = $(this).parent('.tag:first'),
             $CVID = $(`div.moncv:first`).attr('id');
 
@@ -137,14 +137,14 @@ jQuery(document).ready(function($) {
         }
     });
 
-    $(`a.rmweb`).click(function(event) {
+    $(`a.rmsweb`).click(function(event) {
         /* Act on the event */
         event.preventDefault();
         let $ID = $(this).attr('for'),
             $DIV = $(`div#${$ID}`),
             $CVID = $(`div.moncv:first`).attr('id');
 
-        removeWeb($DIV, $CVID, $ID);
+        removeSweb($DIV, $CVID, $ID);
     });
 
     // $(`.tag`).hover(function() {
@@ -357,7 +357,7 @@ jQuery(document).ready(function($) {
         });
     }
 
-    function removeWeb(div, cv_id, id) {
+    function removeSweb(div, cv_id, id) {
         let AUTH_TOKEN = $(`input[name="authenticity_token"]`).attr('value');
 
         div.fadeOut('slow', function() {
@@ -365,11 +365,12 @@ jQuery(document).ready(function($) {
         });
 
         $.ajax({
-            url: `/webs/${id}`,
+            url: `/swebs/${id}`,
             type: 'DELETE',
+            dataType: 'script',
             data: {
                 authenticity_token: AUTH_TOKEN,
-                'web[cv_id]': cv_id,
+                'sweb[cv_id]': cv_id,
                 id: id
             },
         });
@@ -393,7 +394,7 @@ jQuery(document).ready(function($) {
             position: fixed;
             top: 20%;
             left: 0;
-            background: repeating-radial-gradient(gold, transparent 100px);
+            background: #3d74f1;
             padding: 1%;
             border-radius: 0px 10px 10px 0px;
             color: white;
@@ -412,7 +413,7 @@ jQuery(document).ready(function($) {
         <section class="row">
             <div class="col-3 col-sm-3 col-md-4 col-lg-1"></div>
             <div class="avatar col-6 col-sm-6 col-md-4 col-lg-3">
-                <% avatar = @student.sexe == 'Homme' ? 'profilh.png' : 'profilf.png' %>
+                <% avatar = @student.sexe == 'Masculin' ? 'profilh.png' : 'profilf.png' %>
                 <div class="text-center">
                     <%= image_tag avatar, class: "img-thumbnail rounded float-left" %>
                 </div>
@@ -480,14 +481,14 @@ jQuery(document).ready(function($) {
                             <% @cv.languages.sort.each do |language| %>
                             <% if language %>
                             <div id="<%= language.id %>" class="tag language">
-                                <a href="#" class="language" id="<%=language.id%>"><i class="icon-close" aria-hidden="true"></i></a>
+                                <a href="#" class="rmlanguage" for="<%=language.id%>"><i class="icon-close" aria-hidden="true"></i></a>
                                 <span class="name">
                                     <%=language.name%></span>
                                 <div class="stars">
                                     <% language.level.times do |id| %>
                                     <span class="level fa fa-star" style="color: gold;"></span>
                                     <% end %>
-                                    <% (7 - language.level.to_i).times do |id| %>
+                                    <% (5 - language.level.to_i).times do |id| %>
                                     <span class="level icon-star" style="color: gold;"></span>
                                     <% end %>
                                 </div>
@@ -495,7 +496,7 @@ jQuery(document).ready(function($) {
                             <% end %>
                             <% end %>
                         </div>
-                        <input id="language_name" class="language" type="text" maxlength="14" />
+                        <input id="language_name" class="language" type="text" placeholder="Appuiez sur TAB pour ajouter" maxlength="14" />
                     </div>
                     <!--  -->
                 </div>
@@ -507,14 +508,14 @@ jQuery(document).ready(function($) {
                             <% @cv.programming_languages.sort.each do |programming_language| %>
                             <% if programming_language %>
                             <div id="<%= programming_language.id %>" class="tag programming_language">
-                                <a tabindex="0" href="#" class="programming_language" id="<%=programming_language.id%>"><i class="icon-close" aria-hidden="true"></i></a>
+                                <a tabindex="0" href="#" class="rmprogramming_language" for="<%=programming_language.id%>"><i class="icon-close" aria-hidden="true"></i></a>
                                 <span class="name">
                                     <%=programming_language.name%></span>
                                 <div class="stars">
                                     <% programming_language.level.times do |id| %>
                                     <span class="level fa fa-star" style="color: gold;"></span>
                                     <% end %>
-                                    <% (7 - programming_language.level.to_i).times do |id| %>
+                                    <% (5 - programming_language.level.to_i).times do |id| %>
                                     <span class="level icon-star" style="color: gold;"></span>
                                     <% end %>
                                 </div>
@@ -522,24 +523,24 @@ jQuery(document).ready(function($) {
                             <% end %>
                             <% end %>
                         </div>
-                        <input id="programming_language_name" class="programming_language" type="text" maxlength="14" />
+                        <input id="programming_language_name" class="programming_language" type="text" placeholder="Appuiez sur TAB pour ajouter" maxlength="14" />
                     </div>
                     <!--  -->
                 </div>
                 <div>
                     <h2><label for="web_name">Mes liens</label></h2>
-                    <div id="webs" style="border: 1px solid;padding: 2%;border-radius: 3px;">
-                        <% @cv.webs.each do |web| %>
-                            <div id="<%= web.id %>" class="web">
-                                <span class="name"><%= web.name.html_safe %></span>
+                    <div id="webs" style="padding: 2%;border-radius: 3px;">
+                        <% @cv.swebs.each do |sweb| %>
+                            <div id="<%= sweb.id %>" class="sweb">
+                                <span class="name"><%= image_tag "#{sweb.name}.svg", class: "img-fluid", style: "width: 20px; height: 25px;" %></span>
                                 <div class="float-right">
-                                    <a href="<%= web.link %>"><%= web.link %></a>
-                                    <a href="#" class="rmweb" for="<%=web.id%>"><i class="icon-close" aria-hidden="true"></i></a>
+                                    <a href="<%= sweb.link %>"><%= sweb.link %></a>
+                                    <a href="#" class="rmsweb" for="<%=sweb.id%>"><i class="icon-close" aria-hidden="true"></i></a>
                                 </div>
                             </div>
                         <% end %>
                     </div>
-                    <%= render 'webs/new_student_web', web: @web, webslist: @webslist %>
+                    <%= render 'swebs/new_student_web', sweb: @sweb, webslist: @webslist %>
                 </div>
             </section>
             <section class="col-md-7">
@@ -583,7 +584,7 @@ jQuery(document).ready(function($) {
                                 <input type="date" id="experience_end_date" name="experience[end_date]">
                             </div>
                             <div class="description">
-                                <textarea maxlength="180" class="form-control"></textarea>
+                                <textarea maxlength="180" class="form-control" placeholder="Une petite description de votre expérience"></textarea>
                             </div>
                         </div>
                         <div class="experience">
@@ -599,14 +600,14 @@ jQuery(document).ready(function($) {
                             <% @cv.skills.each do |skill| %>
                             <% if skill %>
                             <div class="tag skill">
-                                <a href="#" class="skill" id="<%=skill.id%>"><i class="icon-close" aria-hidden="true"></i></a>
+                                <a href="#" class="rmskill" for="<%=skill.id%>"><i class="icon-close" aria-hidden="true"></i></a>
                                 <span>
                                     <%=skill.name%></span>
                             </div>
                             <% end %>
                             <% end %>
                         </div>
-                        <input id="skill_name" class="skill" type="text" />
+                        <input id="skill_name" class="skill" placeholder="Appuiez sur TAB pour ajouter" type="text" />
                     </div>
                     <!--  -->
                 </div>
@@ -650,7 +651,7 @@ jQuery(document).ready(function($) {
                                 <input type="date" id="background_end_date" name="background[end_date]">
                             </div>
                             <div class="description">
-                                <textarea maxlength="180" class="form-control"></textarea>
+                                <textarea maxlength="180" class="form-control" placeholder="Une petite description de votre parcours"></textarea>
                             </div>
                         </div>
                         <div class="background">

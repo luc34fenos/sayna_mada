@@ -19,6 +19,7 @@ module SaynaMada
     config.assets.paths << Rails.root.join('app','assets','fonts')
     config.assets.paths << Rails.root.join('app','assets','codelab')
 
+    config.i18n.default_locale = :en
     config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     ENV['RAILS_ADMIN_THEME'] = 'rollincode'        
   end

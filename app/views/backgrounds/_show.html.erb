@@ -1,8 +1,23 @@
 <div class="card-body">
+    <div class="card-header border-0">
+        <div class="custom-title-wrap bar-primary">
+            <div class="custom-title">Mon background</div>
+        </div>
+    </div>
     <dl class="accordion">
         <% student.cv.experiences.each do |experience| %>
         <dt>
-            <a href=""><%= experience.name %></a>
+            <a href="">
+                <%= experience.name %>
+                <div class="date">
+                    <label>Du</label>
+                    <strong>
+                        <%= experience.start_date.strftime("%B %Y") %></strong>
+                    <label>jusqu'en</label>
+                    <strong>
+                        <%= experience.end_date ? experience.end_date.strftime("%B %Y") : Time.now.strftime("%B %Y") %></strong>
+                </div>
+            </a>
         </dt>
         <dd>
             <%= experience.description %>
@@ -10,12 +25,21 @@
         <% end %>
     </dl>
 </div>
-
 <div class="card-body">
     <dl class="accordion">
         <% student.cv.backgrounds.each do |background| %>
         <dt>
-            <a href=""><%= background.name %></a>
+            <a href="">
+                <%= background.name %>
+                <div class="date">
+                    <label>Du</label>
+                    <strong>
+                        <%= background.start_date.strftime("%B %Y") %></strong>
+                    <label>jusqu'en</label>
+                    <strong>
+                        <%= background.end_date ? background.end_date.strftime("%B %Y") : Time.now.strftime("%B %Y") %></strong>
+                </div>
+            </a>
         </dt>
         <dd>
             <%= background.description %>

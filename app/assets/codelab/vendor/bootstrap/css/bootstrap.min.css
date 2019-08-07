@@ -2386,7 +2386,7 @@ textarea.form-control {
     box-shadow: 0 0 0 .2rem rgba(40, 167, 69, .25)
 }
 
-.invalid-feedback {
+.invalid-feedback, .error {
     display: none;
     width: 100%;
     margin-top: .25rem;
@@ -2424,20 +2424,20 @@ textarea.form-control {
     box-shadow: 0 0 0 .2rem rgba(220, 53, 69, .25)
 }
 
-.custom-select.is-invalid~.invalid-feedback,
+.custom-select.is-invalid~.invalid-feedback, .error,
 .custom-select.is-invalid~.invalid-tooltip,
-.form-control.is-invalid~.invalid-feedback,
+.form-control.is-invalid~.invalid-feedback, .error,
 .form-control.is-invalid~.invalid-tooltip,
-.was-validated .custom-select:invalid~.invalid-feedback,
+.was-validated .custom-select:invalid~.invalid-feedback, .error,
 .was-validated .custom-select:invalid~.invalid-tooltip,
-.was-validated .form-control:invalid~.invalid-feedback,
+.was-validated .form-control:invalid~.invalid-feedback, .error,
 .was-validated .form-control:invalid~.invalid-tooltip {
     display: block
 }
 
-.form-control-file.is-invalid~.invalid-feedback,
+.form-control-file.is-invalid~.invalid-feedback, .error,
 .form-control-file.is-invalid~.invalid-tooltip,
-.was-validated .form-control-file:invalid~.invalid-feedback,
+.was-validated .form-control-file:invalid~.invalid-feedback, .error,
 .was-validated .form-control-file:invalid~.invalid-tooltip {
     display: block
 }
@@ -2447,9 +2447,9 @@ textarea.form-control {
     color: #dc3545
 }
 
-.form-check-input.is-invalid~.invalid-feedback,
+.form-check-input.is-invalid~.invalid-feedback, .error,
 .form-check-input.is-invalid~.invalid-tooltip,
-.was-validated .form-check-input:invalid~.invalid-feedback,
+.was-validated .form-check-input:invalid~.invalid-feedback, .error,
 .was-validated .form-check-input:invalid~.invalid-tooltip {
     display: block
 }
@@ -2464,9 +2464,9 @@ textarea.form-control {
     background-color: #efa2a9
 }
 
-.custom-control-input.is-invalid~.invalid-feedback,
+.custom-control-input.is-invalid~.invalid-feedback, .error,
 .custom-control-input.is-invalid~.invalid-tooltip,
-.was-validated .custom-control-input:invalid~.invalid-feedback,
+.was-validated .custom-control-input:invalid~.invalid-feedback, .error,
 .was-validated .custom-control-input:invalid~.invalid-tooltip {
     display: block
 }
@@ -2491,9 +2491,9 @@ textarea.form-control {
     border-color: inherit
 }
 
-.custom-file-input.is-invalid~.invalid-feedback,
+.custom-file-input.is-invalid~.invalid-feedback, .error,
 .custom-file-input.is-invalid~.invalid-tooltip,
-.was-validated .custom-file-input:invalid~.invalid-feedback,
+.was-validated .custom-file-input:invalid~.invalid-feedback, .error,
 .was-validated .custom-file-input:invalid~.invalid-tooltip {
     display: block
 }
@@ -3361,8 +3361,8 @@ input[type=submit].btn-block {
     display: none;
     float: left;
     min-width: 10rem;
-    padding: .5rem 0;
-    margin: .125rem 0 0;
+    padding: 0 0 .5rem 0;
+    /* margin: .125rem 0 0; */
     font-size: 1rem;
     color: #212529;
     text-align: left;

@@ -11,7 +11,7 @@ $(function(){
 
     // multi select
     $('#option_s3').select2({
-        placeholder: "Select a state"
+        placeholder: "Git, Github, Bootstrap, ..."
     });
 
     // placeholder

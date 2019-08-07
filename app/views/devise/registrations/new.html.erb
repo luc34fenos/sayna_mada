@@ -7,6 +7,8 @@
 <script src="/assets/vendor/icheck/skins/icheck.min.js"></script>
 <!--jquery validate-->
 <script src="/assets/vendor/jquery-validation/jquery.validate.min.js"></script>
+<!-- init jquery validate -->
+<script src="/assets/vendor/js-init/init-jquery-validate.js"></script>
 <!--jquery steps-->
 <script src="/assets/vendor/jquery-steps/jquery.steps.min.js"></script>
 <!--init steps-->
@@ -54,25 +56,25 @@
                             <div class="input-group-append">
                                 <span class="input-group-text" id="basic-addon2"><label for="user_email">Email</label></span>
                             </div>
-                            <%= f.email_field :email, value: "rivaille@yopmail.com", autocomplete: "email", placeHolder:"email@address.com", class: "required form-control" %>
+                            <%= f.email_field :email, autocomplete: "email", placeHolder:"email@address.com", class: "form-control" %>
                         </div>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="basic-addon1"><label for="user_username">Pseudo</label></span>
                             </div>
-                            <%= f.text_field :username,value: "Rivaille", autofocus: true, autocomplete: "email", placeHolder:"Votre meilleur pseudo", class: "required form-control" %>
+                            <%= f.text_field :username, autofocus: true, autocomplete: "email", placeHolder:"Votre meilleur pseudo", class: "form-control" %>
                         </div>
                         <div class="input-group mb-3">
                             <div class="input-group-append">
                                 <span class="input-group-text" id="basic-addon2"><label for="user_password">Mot de passe</label></span>
                             </div>
-                            <%= f.password_field :password, value: "000000", autocomplete: "new-password", placeHolder:"******", class: "required form-control" %>
+                            <%= f.password_field :password, autocomplete: "new-password", placeHolder:"******", minlenght: "6", class: "form-control" %>
                         </div>
                         <div class="input-group mb-3">
                             <div class="input-group-append">
                                 <span class="input-group-text" id="basic-addon2"><label for="user_password_confirmation">Re-Mot de passe</label></span>
                             </div>
-                            <%= f.password_field :password_confirmation, value: "000000", autocomplete: "new-password", placeHolder:"******", class: "required form-control" %>
+                            <%= f.password_field :password_confirmation, autocomplete: "new-password", placeHolder:"******", minlenght: "6", class: "form-control" %>
                         </div>
                         <hr>
                         <div class="form-group row">
@@ -89,7 +91,7 @@
                 </section>
                 <h3>
                     <span class="wz-title">étape 2</span>
-                    <span class="wz-sub-header">Contacts / Coordonnées</span>
+                    <span class="wz-sub-header">Coordonnées / Contacts</span>
                 </h3>
                 <section>
                     <div class="form-group row">
@@ -97,7 +99,8 @@
                         <div class="col-sm-6">
                             <select class="form-control" name="country" id="country">
                                 <% CS.countries.map do |c| %>
-                                <option value="<%= c[0] %>">
+                                <option value="<%= c[0] %>" <% if c[0].to_s=="MG" %> selected
+                                    <% end %>>
                                     <%= c[1] %>
                                 </option>
                                 <% end %>
@@ -108,11 +111,41 @@
                         <label class="col-sm-4 col-form-label col-form-label-sm" for="city"> Ville *</label>
                         <div class="col-sm-6">
                             <select class="form-control" name="city" id="city" required="">
-                                <% CS.states(:AD).map do |c| %>
-                                <option value="<%= c[1] %>">
-                                    <%= c[1] %>
-                                </option>
-                                <% end %>
+                                <option>Veuillez choisir votre ville</option>
+                                <optgroup label="Antsiranana">
+                                    <option value="DIANA">DIANA</option>
+                                    <option value="SAVA">SAVA</option>
+                                </optgroup>
+                                <optgroup label="Mahajanga">
+                                    <option value="Sofia">Sofia</option>
+                                    <option value="Boeny">Boeny</option>
+                                    <option value="Betsiboka">Betsiboka</option>
+                                </optgroup>
+                                <optgroup label="Toamasina">
+                                    <option value="Alaotra Mangoro">Alaotra Mangoro</option>
+                                    <option value="Analanjirofo">Analanjirofo</option>
+                                    <option value="Atsinanana">Atsinanana</option>
+                                </optgroup>
+                                <optgroup label="Antananarivo">
+                                    <option value="Analamanga">Analamanga</option>
+                                    <option value="Vakinankaratra">Vakinankaratra</option>
+                                    <option value="Bongolava">Bongolava</option>
+                                    <option value="Itasy">Itasy</option>
+                                </optgroup>
+                                <optgroup label="Toliara">
+                                    <option value="Melaky">Melaky</option>
+                                    <option value="Menabe">Menabe</option>
+                                    <option value="Atsimo Andrefana">Atsimo Andrefana</option>
+                                    <option value="Androy">Androy</option>
+                                    <option value="Anosy">Anosy</option>
+                                </optgroup>
+                                <optgroup label="Fianarantsoa">
+                                    <option value="Ihorombe">Ihorombe</option>
+                                    <option value="Atsimo Atsinanana">Atsimo Atsinanana</option>
+                                    <option value="Vatovavy Fitovinany">Vatovavy Fitovinany</option>
+                                    <option value="Haute Matsiatra">Haute Matsiatra</option>
+                                    <option value="Amoron'i Mania">Amoron'i Mania</option>
+                                </optgroup>
                             </select>
                         </div>
                     </div>
@@ -120,14 +153,13 @@
                         <div class="form-group row">
                             <label class="col-sm-4 col-form-label col-form-label-sm" for="student_address">Addresse </label>
                             <div class="col-sm-6">
-                                <input id="student_address" name="student[address]" type="text" class="form-control" value="Lot FMAI 124 bis 67ha SUD">
+                                <input id="student_address" name="student[address]" type="text" class="form-control" >
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="inputmask_3" class="col-sm-4 col-form-label col-form-label-sm">Mobile</label>
                             <div class="col-sm-6">
-                                <input type="text" class="form-control" id="inputmask_3" name="student[tel]" value="0347739305">
-                                <small class="form-text text-muted">Exemple : 999 99 999 99</small>
+                                <input type="text" class="form-control" id="inputmask_3" name="student[tel]" >
                             </div>
                         </div>
                     </div>
@@ -144,15 +176,14 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><label for="student_lastname">Nom et Prénom</label></span>
                                 </div>
-                                <input id="student_lastname" name="student[lastname]" type="text" class="form-control" placeholder="Nom de Famille" value="Hackerman">
-                                <input id="student_firstname" name="student[firstname]" type="text" class="form-control" placeholder="Prénom(s)" value="Rivaille">
+                                <input id="student_lastname" name="student[lastname]" type="text" class="form-control" placeholder="Nom de Famille">
+                                <input id="student_firstname" name="student[firstname]" type="text" class="form-control" placeholder="Prénom(s)">
                             </div>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <label class="input-group-text" for="student_sexe">Sexe</label>
                                 </div>
                                 <select class="custom-select" name="student[sexe]" id="student_sexe">
-                                    <!-- <option>Choisissez...</option> -->
                                     <option selected>Masculin</option>
                                     <option>Feminin</option>
                                     <option>Non spécifié</option>
@@ -162,22 +193,22 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><label for="student_marital_status">Status Civil</label></span>
                                 </div>
-                                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" id="student_marital_status" name="student[marital_status]" placeholder="Célibataire" value="Célibataire">
+                                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" id="student_marital_status" name="student[marital_status]" placeholder="Célibataire">
                             </div>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><label for="student_birthdate">Date de naissance</label></span>
                                 </div>
-                                <input type="date" class="form-control" value="0820-11-01" name="student[birthdate]" id="student_birthdate">
+                                <input type="date" class="form-control" name="student[birthdate]" id="student_birthdate">
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-6">
                             <h4>Infos pour le CV</h4>
                             <div class="form-group">
-                                <textarea class="form-control" placeholder="Mon résumé" name="cv[summary]" id="cv_summary">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</textarea>
+                                <textarea class="form-control" placeholder="Mon résumé" name="cv[summary]" id="cv_summary"></textarea>
                             </div>
                             <div class="form-group">
-                                <textarea class="form-control" placeholder="Mes meilleurs loisirs" name="cv[hobbies]" id="cv_hobbies">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</textarea>
+                                <textarea class="form-control" placeholder="Mes meilleurs loisirs" name="cv[hobbies]" id="cv_hobbies"></textarea>
                             </div>
                         </div>
                     </div>
@@ -191,8 +222,44 @@
                     <hr>
                     <div class="form-group row">
                         <div class="col-sm-12">
-                            <input id="acceptTerms" name="acceptTerms" type="checkbox" class="required">
-                            <label for="acceptTerms">J'accepte les <a href="#" class="btn-link">termes et conditions d'utilisation</a>.</label>
+                            <input id="acceptTerms" name="agree" type="checkbox" required="">
+                            <label for="acceptTerms">J'accepte les <a href="javascript:;" class="btn-link" data-toggle="modal" data-target="#exampleModalLong">termes et conditions d'utilisation</a>.</label>
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLongTitle">Termes et conditions d'inscription</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+                                            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
+                                            <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
+                                            <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+                                            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
+                                            <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
+                                            <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+                                            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
+                                            <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
+                                            <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+                                            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
+                                            <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
+                                            <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+                                            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
+                                            <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
+                                            <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+                                            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
+                                            <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </section>

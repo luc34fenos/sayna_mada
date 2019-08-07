@@ -1,0 +1,36 @@
+<div class="modal-header">
+    <strong>Rechercher par compétences, langues parlées, ou autres ...</strong>
+    <input id="search_name" name="search[name]" type="hidden" class="form-control" placeholder="Search...">
+    <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button> -->
+    <button type="button" id="search-btn" class="close search float-right bg-transparent border-0" style="position: relative;top: 48px;z-index: 1;">
+        <span aria-hidden="true"><i class="fa fa-search"></i></span>
+    </button>
+</div>
+<div class="form-group row">
+    <div class="col-sm-12">
+        <select class="form-control" id="option_s3" name="search[name]" multiple="multiple">
+            <optgroup label="Compétences">
+                <% filtered_skills = []
+                            Skill.all.each { |skill| filtered_skills << skill if !filtered_skills.include?(Skill.find_by(name: skill.name))} 
+                            %>
+                <% filtered_skills.each do |skill| %>
+                <option>
+                    <%= skill.name %>
+                </option>
+                <% end %>
+            </optgroup>
+            <optgroup label="Langues">
+                <% filtered_languages = []
+                            Language.all.each { |language| filtered_languages << language if !filtered_languages.include?(Language.find_by(name: language.name))} 
+                            %>
+                <% filtered_languages.each do |language| %>
+                <option>
+                    <%= language.name %>
+                </option>
+                <% end %>
+            </optgroup>
+        </select>
+    </div>
+</div>

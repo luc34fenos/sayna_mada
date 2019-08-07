@@ -1,0 +1,238 @@
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+    $(`span.select2-selection.select2-selection--multiple`).click(function(event) {
+        /* Act on the event */
+        let zero = $(`li[aria-label="Critères0"`),
+            first = $(`li[aria-label="Critères1"`),
+            second = $(`li[aria-label="Critères2"]`),
+            third = $(`li[aria-label="Critères3"]`),
+
+            skills = $(`li[aria-label="Critères4"]`),
+            languages = $(`li[aria-label="Critères5"]`),
+            programming_languages = $(`li[aria-label="Critères6"]`),
+
+            area = $(`li[aria-label="Critères7"]`),
+            city = $(`li[aria-label="Critères8"]`),
+
+            username = $(`li[aria-label="Critères9"]`),
+            email = $(`li[aria-label="Critères10"]`),
+            status = $(`li[aria-label="Critères11"]`),
+            
+            select = $(`#option_s3`),
+
+       		values = select.val(),
+            group,
+            item;
+
+        if (values[0] == "students") {
+            if (values[1] == "skills") {
+                item = skills;
+            } else if (values[1] == "languages") {
+                item = languages;
+            } else if (values[1] == "programming_languages") {
+                item = programming_languages;
+            } else {
+                item = first;
+            }
+        } else if (values[0] == "companies") {
+            if (values[1] == "area") {
+                item = area;
+            } else if (values[1] == "city") {
+                item = city;
+            } else {
+                item = second;
+            }
+        } else if (values[0] == "users") {
+            if (values[1] == "username") {
+                item = username;
+            } else if (values[1] == "email") {
+                item = email;
+            } else if (values[1] == "status") {
+                item = status;
+            } else {
+                item = third;
+            }
+        } else {
+            item = zero;
+        }
+        group = $(`li[aria-label^="Critères"]`);
+        item.show();
+        hideOthers(group, item);
+
+        function hideOthers(group, item) {
+            for (var i = 0; i < group.length; i++) {
+                if (group.eq(i).attr('aria-label') != item.attr('aria-label')) {
+                    group.eq(i).hide('fast');
+                }
+            }
+        }
+    });
+});
+</script>
+<style type="text/css">
+option {
+    text-transform: capitalize;
+}
+</style>
+<div class="modal-header">
+    <strong>Rechercher par nom, ville, ou secteur d'activité ...</strong>
+    <input id="search_name" name="search[name]" type="hidden" class="form-control" placeholder="Search...">
+    <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button> -->
+    <button type="button" id="search-btn" class="close search float-right bg-transparent border-0">
+        <span aria-hidden="true"><i class="fa fa-search"></i></span>
+    </button>
+</div>
+<div class="form-group row">
+    <div class="col-sm-12">
+        <select class="form-control" id="option_s3" name="search[name]" multiple="multiple">
+            <optgroup label="Critères0">
+                <option value="students">Etudiants</option>
+                <option value="companies">Entreprises</option>
+                <option value="users">Utilisateurs</option>
+            </optgroup>
+            <optgroup label="Critères1">
+                <option value="skills">Compétences</option>
+                <option value="languages">Langues</option>
+                <option value="programming_languages">Langages de programmation</option>
+            </optgroup>
+            <optgroup label="Critères2">
+                <option value="area">Secteur d'activité</option>
+                <option value="city">Ville</option>
+            </optgroup>
+            <optgroup label="Critères3">
+                <option value="username">Pseudo</option>
+                <option value="email">Email</option>
+                <option value="status">Status</option>
+            </optgroup>
+            <optgroup label="Critères4">
+                <% 
+                  def filtered_skills
+                     skills = []
+                     Skill.all.each do |skill|
+                        skills << skill if !skills.include?(Skill.find_by(name: skill.name))
+                     end
+                     skills
+                  end
+                  skills = filtered_skills 
+               %>
+                <% skills.each do |skill| %>
+                <option value="<%= skill.name %>">
+                    <%= skill.name %>
+                </option>
+                <% end %>
+            </optgroup>
+            <optgroup label="Critères5">
+                <% 
+                  def filtered_languages
+                     languages = []
+                     Language.all.each do |language|
+                        languages << language if !languages.include?(Language.find_by(name: language.name))
+                     end
+                     languages
+                  end
+                  languages = filtered_languages 
+               %>
+                <% languages.each do |language| %>
+                <option value="<%= language.name %>">
+                    <%= language.name %>
+                </option>
+                <% end %>
+            </optgroup>
+            <optgroup label="Critères6">
+                <% 
+                  def filtered_programming_languages
+                     programming_languages = []
+                     ProgrammingLanguage.all.each do |programming_language|
+                        programming_languages << programming_language if !programming_languages.include?(ProgrammingLanguage.find_by(name: programming_language.name))
+                     end
+                     programming_languages
+                  end
+                  programming_languages = filtered_programming_languages 
+               %>
+                <% programming_languages.each do |programming_language| %>
+                <option value="<%= programming_language.name %>">
+                    <%= programming_language.name %>
+                </option>
+                <% end %>
+            </optgroup>
+            <optgroup label="Critères7">
+                <% 
+                  def filtered_areas
+                     areas = []
+                     Company.all.each do |company|
+                        area = company.activity_area
+                        areas << area if !areas.include?(area)
+                     end
+                     areas
+                  end
+                  areas = filtered_areas 
+               %>
+                <% areas.each do |area| %>
+                <option value="<%= area %>">
+                    <%= area %>
+                </option>
+                <% end %>
+            </optgroup>
+            <optgroup label="Critères8">
+                <% City.all.each do |city| %>
+                <option value="<%= city.name %>">
+                    <%= city.name %>
+                </option>
+                <% end %>
+            </optgroup>
+            <optgroup label="Critères9">
+                <% 
+                  def filtered_usernames
+                     usernames = []
+                     User.all.each do |user|
+                        usernames << user.username if !usernames.include?(user.username)
+                     end
+                     usernames
+                  end
+                  usernames = filtered_usernames 
+               %>
+                <% usernames.each do |username| %>
+                <option value="<%= username %>">
+                    <%= username %>
+                </option>
+                <% end %>
+            </optgroup>
+            <optgroup label="Critères10">
+                <% 
+                  def filtered_emails
+                     emails = []
+                     User.all.each do |user|
+                        emails << user.email if !emails.include?(user.email)
+                     end
+                     emails
+                  end
+                  emails = filtered_emails 
+               %>
+                <% emails.each do |email| %>
+                <option value="<%= email %>">
+                    <%= email %>
+                </option>
+                <% end %>
+            </optgroup>
+            <optgroup label="Critères11">
+                <% 
+                  def filtered_status
+                     status = []
+                     User.all.each do |user|
+                        status << user.status if !status.include?(user.status)
+                     end
+                     status
+                  end
+                  status = filtered_status 
+               %>
+                <% status.each do |status| %>
+                <option value="<%= status %>">
+                    <%= status %>
+                </option>
+                <% end %>
+            </optgroup>
+        </select>
+    </div>
+</div>

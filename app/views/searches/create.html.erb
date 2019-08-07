@@ -1,0 +1,17 @@
+<% if current_user.company %>
+	<ul class="list-group">
+	<% @result.each do |student| %>
+		<li class="list-group-item">
+			<tr>
+				<th><%= student.firstname %> <%= student.lastname %></th>
+				<td><a href="/monprofil/<%= student.id %>">Son profil</a></td>
+				<td><a href="/moncv/<%= student.cv.id %>">Son CV</a></td>
+			</tr>
+		</li>
+	<% end %>
+	</ul>
+<% elsif current_user.student %>
+	<% @result.each do |company| %>
+		
+	<% end %>	
+<% end %>
