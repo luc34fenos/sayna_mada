@@ -193,7 +193,7 @@ select {
     left: 0px;
     background-color: rgba(0, 0, 0, 0.95);
     opacity: 0;
-    cursor: url("../images/cursor.png"), auto;
+    cursor: url("/assets/vi-images/cursor.png"), auto;
     transition: all 0.3s ease-in-out;
 }
 
@@ -1064,7 +1064,7 @@ header .eco_nav nav .sign-in-option .navbar-nav li .sign-in:hover {
 }
 
 .register_area:before {
-    background: transparent url("../images/register-bg.jpg") no-repeat center center/cover;
+    background: transparent url("/assets/vi-images/register-bg.jpg") no-repeat center center/cover;
     content: "";
     height: 100%;
     position: absolute;
@@ -1075,7 +1075,7 @@ header .eco_nav nav .sign-in-option .navbar-nav li .sign-in:hover {
 }
 
 .register_area:after {
-    background: transparent url("../images/apply-shape.png") no-repeat center center/cover;
+    background: transparent url("/assets/vi-images/apply-shape.png") no-repeat center center/cover;
     content: "";
     height: 100%;
     position: absolute;
@@ -1666,7 +1666,7 @@ header .eco_nav nav .sign-in-option .navbar-nav li .sign-in:hover {
 }
 
 .testimonial:before {
-    background: url("../images/testimonial_shape.png") center;
+    background: url("/assets/vi-images/testimonial_shape.png") center;
     content: "";
     height: 100%;
     position: absolute;
@@ -2058,7 +2058,7 @@ footer .copytight_info ul li a:hover {
 
 .header_intro_2 .intro-wrapper_2 {
     text-align: center;
-    background: transparent url("../images/banner-2.png") no-repeat center center/cover;
+    background: transparent url("/assets/vi-images/banner-2.png") no-repeat center center/cover;
     min-height: 850px;
     position: relative;
 }
@@ -2311,7 +2311,7 @@ footer .copytight_info ul li a:hover {
 /*=======[ Index 03 Achievment Area ]========*/
 
 .achievment-area {
-    background: transparent url("../images/counter-bg.png") no-repeat center center/cover;
+    background: transparent url("/assets/vi-images/counter-bg.png") no-repeat center center/cover;
     position: relative;
     z-index: 1;
     padding: 200px 0;
@@ -2519,7 +2519,7 @@ footer .copytight_info ul li a:hover {
 }
 
 .blog_2 {
-    background: url("../images/news-bg.jpg") no-repeat center center/cover;
+    background: url("/assets/vi-images/news-bg.jpg") no-repeat center center/cover;
     min-height: 300px;
     position: relative;
     padding: 70px 0 50px;
@@ -2671,7 +2671,7 @@ footer .copytight_info ul li a:hover {
 
 .header_3 .intro_wrapper {
     text-align: center;
-    background: transparent url("../images/banner-3.png") no-repeat center center/cover;
+    background: transparent url("/assets/vi-images/banner-3.png") no-repeat center center/cover;
     min-height: 850px;
     position: relative;
 }
@@ -2896,7 +2896,7 @@ footer .copytight_info ul li a:hover {
 .cources_categories_3 {
     padding: 100px 0 50px;
     text-align: center;
-    background: transparent url("../images/courses3-bg.jpg") no-repeat center center/cover;
+    background: transparent url("/assets/vi-images/courses3-bg.jpg") no-repeat center center/cover;
     position: relative;
 }
 
@@ -3043,7 +3043,7 @@ footer .copytight_info ul li a:hover {
 .video_3 .video_wrapper {
     border: 20px solid #2f2f2f;
     text-align: center;
-    background: transparent url("../images/video-3.png") no-repeat center center/cover;
+    background: transparent url("/assets/vi-images/video-3.png") no-repeat center center/cover;
     position: relative;
     min-height: 535px;
     width: 100%;
@@ -3065,7 +3065,7 @@ footer .copytight_info ul li a:hover {
 }
 
 .video_3 .video_wrapper:after {
-    background: transparent url("../images/shape/video-shape.png") no-repeat center center/cover;
+    background: transparent url("/assets/vi-images/shape/video-shape.png") no-repeat center center/cover;
     content: "";
     height: 20px;
     position: absolute;
@@ -3658,11 +3658,7 @@ footer .copytight_info ul li a:hover {
 
 
 .header_wrapper_4 .banner_4 img {
-
     width: auto;
-}
-.header_wrapper_4 .intro_wrapper_4 {
-  background-image: url('images/staff.JPG');
 }
 
 .header_wrapper_4 .intro_wrapper_4 .intro-text {
@@ -3849,7 +3845,7 @@ footer .copytight_info ul li a:hover {
 }
 
 .about_4 .about_top_wrapper .video_wrapper {
-    background: transparent url("../images/video-3.png") no-repeat center center/cover;
+    background: transparent url("/assets/vi-images/video-3.png") no-repeat center center/cover;
     position: relative;
     min-height: 615px;
     z-index: 1;
@@ -4369,7 +4365,7 @@ footer .copytight_info ul li a:hover {
 }
 
 .take_tour .about_top_wrapper .take_tour_banner {
-    background: transparent url("../images/staff.JPG") no-repeat center center/cover;
+    background: transparent url("/assets/vi-images/staff.JPG") no-repeat center center/cover;
     position: relative;
     min-height: 615px;
     z-index: 1;
@@ -4532,7 +4528,7 @@ footer .copytight_info ul li a:hover {
 
 .sub_header_banner {
     text-align: left;
-    background: transparent url("../images/counter4_bg.jpg") no-repeat center center/cover;
+    background: transparent url("/assets/vi-images/counter4_bg.jpg") no-repeat center center/cover;
     min-height: 440px;
     position: relative;
 }
@@ -4599,7 +4595,7 @@ footer .copytight_info ul li a:hover {
 }
 
 .courses_details_body .sub_header_banner {
-    background: transparent url("../images/courses_details_bg.jpg") no-repeat center center/cover;
+    background: transparent url("/assets/vi-images/courses_details_bg.jpg") no-repeat center center/cover;
 }
 
 .courses_details_body .courses_apply_wrapper {
@@ -5387,7 +5383,7 @@ footer .copytight_info ul li a:hover {
 /*=======[ Events Details Page ]========*/
 
 .event_details_page .sub_header_banner {
-    background: url("../images/event_details.png") no-repeat center center/cover;
+    background: url("/assets/vi-images/event_details.png") no-repeat center center/cover;
 }
 
 .event_details_page .event_details_wrapper {
@@ -5644,11 +5640,11 @@ footer .copytight_info ul li a:hover {
 /*=======[ Blog Page ]========*/
 
 .blog .sub_header_banner {
-    background: transparent url("../images/nivo-2.jpg") no-repeat center center/cover;
+    background: transparent url("/assets/vi-images/nivo-2.jpg") no-repeat center center/cover;
 }
 
 .blog_post .sub_header_banner {
-    background: transparent url("../images/blog-post-bg.png") no-repeat center center/cover;
+    background: transparent url("/assets/vi-images/blog-post-bg.png") no-repeat center center/cover;
 }
 
 .blog_wrapper {
@@ -6290,7 +6286,7 @@ footer .copytight_info ul li a:hover {
 /*=======[ Teachars Page ]========*/
 
 .instructor_page_1 .sub_header_banner {
-    background: transparent url("../images/nivo-1.jpg") no-repeat center center/cover;
+    background: transparent url("/assets/vi-images/nivo-1.jpg") no-repeat center center/cover;
 }
 
 .our_instructors_1 {
@@ -6447,7 +6443,7 @@ footer .copytight_info ul li a:hover {
 }
 
 .instructor_page_2 .sub_header_banner {
-    background: transparent url("../images/counter4_bg.jpg") no-repeat center center/cover;
+    background: transparent url("/assets/vi-images/counter4_bg.jpg") no-repeat center center/cover;
 }
 
 .teachers_2 {
@@ -6928,7 +6924,7 @@ footer .copytight_info ul li a:hover {
 }
 
 .contact_page .sub_header_banner {
-    background: transparent url("../images/contact_banner.jpg") no-repeat center center/cover;
+    background: transparent url("/assets/vi-images/contact_banner.jpg") no-repeat center center/cover;
 }
 
 .contact_page .contact_info_wrapper {
@@ -7392,7 +7388,7 @@ footer .copytight_info ul li a:hover {
 }
 
 .courses_1 .sub_header_banner {
-    background: transparent url("../images/counter4_bg.jpg") no-repeat center center/cover;
+    background: transparent url("/assets/vi-images/counter4_bg.jpg") no-repeat center center/cover;
 }
 
 .courses_1 .popular_cources_1 {
@@ -7521,7 +7517,7 @@ footer .copytight_info ul li a:hover {
 }
 
 .courses_2 .sub_header_banner {
-    background: transparent url("../images/news-bg.jpg") no-repeat center center/cover;
+    background: transparent url("/assets/vi-images/news-bg.jpg") no-repeat center center/cover;
 }
 
 .courses_2 .popular_cources_2 {
@@ -7550,7 +7546,7 @@ footer .copytight_info ul li a:hover {
 }
 
 .courses_3 .sub_header_banner {
-    background: transparent url("../images/register-bg.jpg") no-repeat center center/cover;
+    background: transparent url("/assets/vi-images/register-bg.jpg") no-repeat center center/cover;
 }
 
 .courses_3 .cources_categories_3 {
@@ -7593,7 +7589,7 @@ footer .copytight_info ul li a:hover {
 }
 
 .courses_4_carousel .sub_header_banner {
-    background: transparent url("../images/register-bg.jpg") no-repeat center center/cover;
+    background: transparent url("/assets/vi-images/register-bg.jpg") no-repeat center center/cover;
 }
 
 .courses_4_carousel .cources_categories_3 {
@@ -7637,7 +7633,7 @@ footer .copytight_info ul li a:hover {
 }
 
 .event_grid_2 .sub_header_banner {
-    background: transparent url("../images/register-bg.jpg") no-repeat center center/cover;
+    background: transparent url("/assets/vi-images/register-bg.jpg") no-repeat center center/cover;
 }
 
 .event_grid_2 .popular_event {
@@ -7666,7 +7662,7 @@ footer .copytight_info ul li a:hover {
 }
 
 .event_list_1 .sub_header_banner {
-    background: transparent url("../images/register-bg.jpg") no-repeat center center/cover;
+    background: transparent url("/assets/vi-images/register-bg.jpg") no-repeat center center/cover;
 }
 
 .event_list_1 .popular_event {
@@ -8073,7 +8069,7 @@ footer .copytight_info ul li a:hover {
     background: #161616;
     opacity: 0.92;
     z-index: -1;
-    cursor: url("../images/cursor.png"), auto;
+    cursor: url("/assets/vi-images/cursor.png"), auto;
 }
 
 .login_popup {

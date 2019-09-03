@@ -19,7 +19,7 @@
     <%= render template: 'layouts/navbar' %>
     <% end %>
     <% end %>
-    <% if user_signed_in? %>
+    <% if user_signed_in? && controller_name != "vitrines"%>
     <div id="main">
         <% case current_user.status %>
         <% when "admin" %>
