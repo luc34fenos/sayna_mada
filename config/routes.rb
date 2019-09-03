@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   ############################# vitrine ###############################
   root 'vitrines#index'
 
-  get '/equipe', to: 'vitrines#equipe'
+  get '/team', to: 'vitrines#team'
   get '/simplon', to: 'vitrines#simplon'
   get '/thp', to: 'vitrines#thp'
 

@@ -4,8 +4,8 @@ class VitrinesController < ApplicationController
     @activer = "index"
   end
 
-  def equipe
-    @activer = "equipe"
+  def team
+    @activer = "team"
   end
 
   def simplon

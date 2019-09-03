@@ -14,32 +14,37 @@
                     <div class="collapse navbar-collapse main-menu" id="navbarSupportedContent">
                         <ul class="navbar-nav nav lavalamp ml-auto menu">
                             <li class="nav-item menu-item current-menu-item">
-                                <a href="index.html" class='nav-link <%= @activer == "index" ? "active" : " " %>'>Acceuil</a>
+                                <a data-method="GET" href="<%= root_path %>" class='nav-link <%= @activer == "index" ? "active" : " " %>'>Acceuil</a>
                             </li>
 
                             <li class="nav-item single_nav">
-                                <a href="#" class='nav-link <%= (@activer == "thp" || @activer == "simplon") ? "active" : " " %>'>Progamme</a>
+                                <a href="javascript:;" class='nav-link <%= (@activer == "thp" || @activer == "simplon") ? "active" : " " %>'>Progamme</a>
                                 <ul class="navbar-nav nav mx-auto">
                                     <li class="nav-item">
-                                        <a href="<%= thp_path %>" class='nav-link <%= @activer == "thp" ? "active" : " " %>'>T.H.P</a>
+                                        <a data-method="GET" href="<%= thp_path %>" class='nav-link <%= @activer == "thp" ? "active" : " " %>'>T.H.P</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="<%= simplon_path %>" class='nav-link <%= @activer == "simplon" ? "active" : " " %>'>Simplon</a>
+                                        <a data-method="GET" href="<%= simplon_path %>" class='nav-link <%= @activer == "simplon" ? "active" : " " %>'>Simplon</a>
                                     </li>
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link smooth-scroll" href="#cont">Contact</a>
+                                <a class="nav-link smooth-scroll" href="#contact">Contact</a>
                             </li>
                             <li class="nav-item">
-                                <a href="<%= equipe_path %>" class='nav-link <%= @activer == "equipe" ? "active" : " " %>'>Equipe</a>
+                                <a data-method="GET" href="<%= team_path %>" class='nav-link <%= @activer == "team" ? "active" : " " %>'>Equipe</a>
                             </li>
 
                             <li class="nav-item single_nav">
-                                <a href="#" class="nav-link">Utilisateur</a>
+                                <a href="javascript:;" class="nav-link">Utilisateur</a>
                                 <ul class="navbar-nav nav mx-auto">
-                                    <li class="nav-item"><a href="<%= new_user_session_path %>" class="nav-link">Se connecter</a></li>
-                                    <li class="nav-item"><a href="<%= new_user_registration_path %>" class="nav-link">S'inscrire</a></li>
+                                    <% if user_signed_in? %>
+                                    <li class="nav-item"><a data-method="GET" href="<%= mondashboard_path %>" class="nav-link">Mon dashboard</a></li>
+                                    <li class="nav-item"><a data-method="DELETE" href="<%= destroy_user_session_path %>" class="nav-link">Se déconnecter</a></li>
+                                    <% else %>
+                                    <li class="nav-item"><a data-method="GET" href="<%= new_user_session_path %>" class="nav-link">Se connecter</a></li>
+                                    <li class="nav-item"><a data-method="GET" href="<%= new_user_registration_path %>" class="nav-link">S'inscrire</a></li>
+                                    <% end %>
                                 </ul>
                             </li>
                         </ul>
