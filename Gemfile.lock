@@ -205,7 +205,7 @@ GEM
     pdfkit (0.8.4.1)
     pg (1.1.4)
     public_suffix (3.1.1)
-    puma (3.12.1)
+    puma (3.12.2)
     rack (2.0.7)
     rack-pjax (1.1.0)
       nokogiri (~> 1.5)
@@ -347,7 +347,7 @@ DEPENDENCIES
   mailjet
   pdfkit
   pg (>= 0.18, < 2.0)
-  puma (~> 3.11)
+  puma (~> 3.12)
   rails (~> 5.2.3)
   rails_admin!
   rails_admin_rollincode (~> 1.0)
